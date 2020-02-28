@@ -18,7 +18,7 @@ public class EnderecoSQL extends Conexao {
 
     public void create(Enderecos endereco) throws Exception {
 
-        open(); //abre conexão com o banco de dados - teste git
+        open(); //abre conexão com o banco de dados 
 
         if (endereco.getIdCliente() != null) { //se for endereço residencial de cliente
             stmt = con.prepareStatement("INSERT INTO enderecos(cep, cidade, bairro, rua, numero, complemento, idCliente, isFesta) VALUES (?,?,?,?,?,?,?,?)");
