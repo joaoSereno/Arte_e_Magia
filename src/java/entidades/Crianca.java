@@ -20,7 +20,7 @@ public class Crianca implements Serializable {
     private String sexo;
     private String dataNascimento;
     private int ativo;
-    private Cliente idCliente;
+    private int idCliente;
     private List<FestaCrianca> festacriancaList;
 
     public Crianca() {
@@ -78,11 +78,11 @@ public class Crianca implements Serializable {
         this.ativo = ativo;
     }
 
-    public Cliente getIdCliente() {
+    public int getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
 

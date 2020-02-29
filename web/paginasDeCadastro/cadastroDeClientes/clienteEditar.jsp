@@ -210,8 +210,17 @@
             <!-- fim  div de listagem telefone cliente-->   
         </div>
        <br>
-       <h3>Crianças:</h3>
-       <a href="cadastroDeCrianca/criancaEditarOuCadastrar.jsp" class="btn btn-primary">Nova Criança</a>
+        <div>
+            <h3>Crianças:</h3>
+            <div>
+                <!-- form cadastrar criança -->
+                <form method="GET" action="editarORcadastrarCrianca">
+                    <input type="hidden" name="idClienteCrianca" value="${cliente.idCliente}">
+                    <button type="submit">Nova Criança</button>
+                </form>                        
+            </div>        
+           
+        </div>
        <br>
        <br>
         <!--botão de voltar página-->

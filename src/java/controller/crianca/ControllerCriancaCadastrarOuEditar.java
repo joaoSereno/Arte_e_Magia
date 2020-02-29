@@ -17,12 +17,19 @@ import javax.servlet.http.HttpServletResponse;
  * @author João Pedro
  */
 
-@WebServlet("/paginasDeCadastro/cadastroDeClientes/cadastroDeCrianca/editarORcadastrarCrianca")
+@WebServlet("/paginasDeCadastro/cadastroDeClientes/editarORcadastrarCrianca")
 public class ControllerCriancaCadastrarOuEditar extends HttpServlet{
     
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int a = 10;
+        
+        //pegando valores do formulario que chamou o controller
+        String idCliente = request.getParameter("idClienteCrianca");
+        int idCliente2 = Integer.parseInt(idCliente);        
+        
+        //set de atributo para outra página
+        request.setAttribute("idClienteE", idCliente2);
+        
+        //dispara os atributos setados para outra página
+        request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);
     }
-    
 }

@@ -23,7 +23,7 @@
             <!-- logo do navbar -->
             <div>
                 <a class="navbar-brand">
-                    <img src="../../../custom/img/logoArte_E_Magia.png" width="130" height="60"
+                    <img src="../../custom/img/logoArte_E_Magia.png" width="130" height="60"
                         class="d-inline-block align-top" alt="Logo Arte & Magia">
                 </a>
             </div>
@@ -36,12 +36,12 @@
                     </li>
                     <!-- botão cadastros -->
                     <li class="nav-item">
-                        <a href="../../cadastros.jsp" class="btn btn-outline-light"
+                        <a href="../cadastros.jsp" class="btn btn-outline-light"
                             style="background-color: #ec1b1b00;">Cadastros</a>
                     </li>
                     <!-- botão relatorios -->
                     <li class="nav-item">
-                        <a href="../../../paginasDeRelatorios/relatorios.jsp" class="btn btn-outline-light"
+                        <a href="../../paginasDeRelatorios/relatorios.jsp" class="btn btn-outline-light"
                             style="background-color: #ec1b1b00;">Relatórios</a>
                     </li>
                     <!-- botão sair que redireciona para a página deslogar.jsp -->
@@ -56,7 +56,8 @@
         <br>
         <div>
             <!-- form para cadastrar ou editar criança-->
-            <form method="GET" action="editarORcadastrarCrianca"> 
+            <form method="GET" action="editarORcadastrarCrianca2">
+                    <input type="hidden" name="idCliente" value="${idClienteE}">
                     <input type="hidden" name="idCrianca" value="${idCriancaE}">
                     Nome da criança:
                     <input type="text" name="nomeCrianca" value="${nomeCriancaE}">
@@ -76,5 +77,6 @@
                     <button class="btn btn-warning"> Confirmar </button>
             </form>             
         </div>
+        <h3>${msg}</h3>
     </body>
 </html>
