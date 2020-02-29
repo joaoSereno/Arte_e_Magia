@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class Crianca implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     private Integer idCrianca;
     private String nomeCrianca;
     private String sexo;

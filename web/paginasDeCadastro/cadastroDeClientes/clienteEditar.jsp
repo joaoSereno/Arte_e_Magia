@@ -91,7 +91,7 @@
                 <button type="submit" value="Cadastrar" />Salvar</button>
             </form>
         <!-- fim do form para editar cliente-->
-        <div>
+        </div>
         <br>
         <!-- botão que abre o modal de confirmação de exclusão -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
@@ -125,7 +125,6 @@
             </div>
         </div>
         <!-- fim Modal -->
-        </div>
         <br>
         <h3>${msg}</h3>
         <br>
@@ -210,7 +209,11 @@
             </div> 
             <!-- fim  div de listagem telefone cliente-->   
         </div>
-        <br>
+       <br>
+       <h3>Crianças:</h3>
+       <a href="cadastroDeCrianca/criancaEditarOuCadastrar.jsp" class="btn btn-primary">Nova Criança</a>
+       <br>
+       <br>
         <!--botão de voltar página-->
         <div>
             <!-- form para listar os clientes cadastrados -->
