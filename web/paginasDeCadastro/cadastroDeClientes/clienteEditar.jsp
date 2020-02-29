@@ -219,7 +219,39 @@
                     <button type="submit">Nova Criança</button>
                 </form>                        
             </div>        
-           
+            <!-- div de listagem crianca do cliente-->          
+            <div>
+                <table id="tabela" class="table table-secondary">
+                    <thead> 
+                        <tr>    
+                            <th scope="col">Nome</th>
+                            <th scope="col">sexo</th>
+                            <th scope="col">Data de Nascimento</th>
+                        </tr>
+                    </thead> 
+                    <tbody>
+                        <c:forEach items="${listaCriancaCliente}" var="item"> 
+                            <tr>
+                                <td>${item.nomeCrianca}</td>
+                                <td>${item.sexo}</td>
+                                <td>${item.dataNascimento}</td>
+                                <td>
+                                    <!-- form para editar contato --> 
+                                    <form method="GET" action="editarORcadastrarPacote">
+                                        <input type="hidden" name="idClienteCrianca" value="${item.idCliente}">
+                                        <input type="hidden" name="idCrianca" value="${item.idCrianca}">
+                                        <input type="hidden" name="nomeCrianca" value="${item.nomeCrianca}">
+                                        <input type="hidden" name="sexo" value="${item.sexo}">
+                                        <input type="hidden" name="dataNascimento" value="${item.dataNascimento}">
+                                        <button class="btn btn-warning"> + </button>
+                                    </form> 
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div> 
+            <!-- fim  div de listagem crianca do cliente-->              
         </div>
        <br>
        <br>

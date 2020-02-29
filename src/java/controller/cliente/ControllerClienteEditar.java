@@ -6,6 +6,7 @@
 package controller.cliente;
 
 import entidades.Cliente;
+import entidades.Crianca;
 import entidades.Enderecos;
 import entidades.Telefone;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ClienteSQL;
+import persistence.CriancaSQL;
 import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
 
@@ -43,20 +45,25 @@ public class ControllerClienteEditar extends HttpServlet {
         EnderecoSQL enderecoBanco = new EnderecoSQL();//instancia classe de banco do endereco
         Enderecos endereco = new Enderecos();
 
+        List<Crianca> listaCriancaCliente = null; //lista de criança
+        CriancaSQL criancaBanco = new CriancaSQL();
+
         try {
 
             cliente = clienteBanco.getClienteEspecifico(idCliente2); //recebendo na instancia cliente , o cliente que será editado
             listaTelefoneCliente = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista de telefone , todos os telefones do cliente
             endereco = enderecoBanco.getEnderecoCliente(idCliente2); // recebendo endereco do cliente na variavel endereco
+            listaCriancaCliente = criancaBanco.getCrianca(idCliente2); // recebendo na lista todas as crianças do cliente
 
             //set de atributo para outra página
             request.setAttribute("cliente", cliente);
             request.setAttribute("listaTelefoneCliente", listaTelefoneCliente);
             request.setAttribute("endereco", endereco);
+            request.setAttribute("listaCriancaCliente", listaCriancaCliente);
 
             //dispara os atributos setados para outra página
             request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
-            
+
         } catch (Exception ex) {
             Logger.getLogger(ControllerClienteEditar.class.getName()).log(Level.SEVERE, null, ex);
         }
