@@ -7,11 +7,14 @@ package controller.crianca;
 
 import entidades.Crianca;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.CriancaSQL;
 
 /**
  *
@@ -29,25 +32,47 @@ public class ControllerCriancaCadastrarOuEditar2 extends HttpServlet {
         if (!"".equals(idCrianca)) { //se for diferente de vazio (ou seja for editar) , faz a conversão para int
             idCrianca2 = Integer.parseInt(idCrianca);
         }
-        
+
         String nomeCrianca = request.getParameter("nomeCrianca");
         String dataNascimento = request.getParameter("dataNascimento");
         String sexoCrianca = request.getParameter("sexoCrianca");
-        
+
         String idCliente = request.getParameter("idCliente");
         int idCliente2 = Integer.parseInt(idCliente);
-        
+
         Crianca crianca = new Crianca(); //instanciando variavel do tipo crianca
-        
+
         //setando valores recebidos pelo usuario
-        if(idCrianca2 != 0){
-            crianca.setIdCrianca(idCrianca2);            
+        if (idCrianca2 != 0) {
+            crianca.setIdCrianca(idCrianca2);
         }
         crianca.setNomeCrianca(nomeCrianca);
         crianca.setDataNascimento(dataNascimento);
         crianca.setSexo(sexoCrianca);
         crianca.setIdCliente(idCliente2);
-        
+
+        //instanciando classe que vai fazer a comunicação com o banco de dados
+        CriancaSQL criancaBanco = new CriancaSQL();
+
+        try {
+            //se for o idCrianca2 = 0 significa que é para cadastrar 
+            if (idCrianca2 == 0) {
+
+                criancaBanco.create(crianca);//chamando método de inserir da classe CriancaSQL e passando classe instanciada da crianca como parametro  
+                request.setAttribute("msg", "Criança cadastrada com sucesso!!");
+                request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);
+
+            } else {//se não significa que é para editar
+
+                criancaBanco.editarCadastroCrianca(crianca);//chamando método de update da classe CriancaSQL e passando classe instanciada da crianca como parametro  
+                request.setAttribute("msg", "Criança editada com sucesso!!");
+                request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerCriancaCadastrarOuEditar2.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
+        }
     }
 
 }

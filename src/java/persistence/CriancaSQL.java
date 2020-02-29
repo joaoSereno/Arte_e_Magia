@@ -45,17 +45,17 @@ public class CriancaSQL extends Conexao {
         close(); // fecha conexão com o banco de dados
     }
 
-    public void editarCadastroCrianca(int idCrianca, String nomeCrianca, String sexo, String dataNascimento) throws Exception {
+    public void editarCadastroCrianca(Crianca crianca) throws Exception {
 
         open(); // abre a conexão com o banco de dados
 
         stmt = con.prepareStatement("UPDATE cliente SET nomeCrianca = ?, sexo = ?, dataNascimento = ? where idCrianca = ?");
 
         //seta valores para comando sql
-        stmt.setString(1, nomeCrianca);
-        stmt.setString(2, sexo);
-        stmt.setString(3, dataNascimento);
-        stmt.setInt(4, idCrianca);
+        stmt.setString(1, crianca.getNomeCrianca());
+        stmt.setString(2, crianca.getSexo());
+        stmt.setString(3, crianca.getDataNascimento());
+        stmt.setInt(4, crianca.getIdCrianca());
 
         stmt.execute();//executa comando sql
 
