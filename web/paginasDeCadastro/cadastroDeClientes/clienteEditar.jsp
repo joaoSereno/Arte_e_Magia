@@ -237,7 +237,7 @@
                                 <td>${item.dataNascimento}</td>
                                 <td>
                                     <!-- form para editar contato --> 
-                                    <form method="GET" action="editarORcadastrarPacote">
+                                    <form method="GET" action="editarORcadastrarCrianca">
                                         <input type="hidden" name="idClienteCrianca" value="${item.idCliente}">
                                         <input type="hidden" name="idCrianca" value="${item.idCrianca}">
                                         <input type="hidden" name="nomeCrianca" value="${item.nomeCrianca}">

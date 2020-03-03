@@ -40,7 +40,7 @@ public class CriancaSQL extends Conexao {
 
         open(); // abre a conexão com o banco de dados
 
-        stmt = con.prepareStatement("UPDATE cliente SET nomeCrianca = ?, sexo = ?, dataNascimento = ? where idCrianca = ?");
+        stmt = con.prepareStatement("UPDATE crianca SET nomeCrianca = ?, sexo = ?, dataNascimento = ? where idCrianca = ?");
 
         //seta valores para comando sql
         stmt.setString(1, crianca.getNomeCrianca());

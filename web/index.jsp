@@ -35,7 +35,7 @@
                 if(usarioInvalido != null){
                     if (usarioInvalido.equals("USUARIO_NAO_EXISTE")) {//exibe mensagem de usuario invalido
                     %>    
-                    Login ou senha inválida!!!kasdma
+                    Login ou senha inválida!
                     <%
                     }
                 }

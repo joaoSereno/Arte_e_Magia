@@ -69,8 +69,21 @@
                     <br>
                     Sexo:
                     <select type="select" name="sexoCrianca">
-                        <option value="M">M</option>
-                        <option value="F">F</option>
+                        <option value="${sexoE}">${sexoE}</option>
+                        <%  
+                            String sexo = request.getParameter("sexo");
+                            if(sexo != null){
+                                if(sexo.equals("M")){
+                                    %>
+                                    <option value="F">F</option>
+                                    <%                            
+                                }else{
+                                    %>
+                                    <option value="M">M</option>
+                                    <%   
+                                }
+                            }        
+                        %>
                     </select> 
                     <br>
                     <br>

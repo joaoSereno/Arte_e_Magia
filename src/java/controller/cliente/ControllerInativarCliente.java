@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ClienteSQL;
+import persistence.CriancaSQL;
 
 /**
  *
@@ -32,9 +33,11 @@ public class ControllerInativarCliente extends HttpServlet{
         
         
         ClienteSQL clienteBanco = new ClienteSQL();//instanciando classe do banco de dados para fazer o update no banco
+        CriancaSQL criancaBanco = new CriancaSQL(); //instanciando classe do banco de dados para fazer update no banco
         
         try {
             clienteBanco.inativarCadastro(idCliente2);//chama metodo que faz update para inativar o funcionario e passa o idFuncionario pego no request
+            criancaBanco.inativarTodosCadastroCliente(idCliente2); //chamando método que inativa os cadastros da criança desse funcionario
             
             request.setAttribute("msg", msg);
             request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
