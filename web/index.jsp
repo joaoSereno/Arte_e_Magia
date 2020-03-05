@@ -15,36 +15,48 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="custom/css/paginaLogin.css" />
     </head>
-    <body>
-        <div>
-            <div>
-                <form method="POST" action="logarSistema.jsp"> <%--chama a página que valida o usuário --%>
-                    Login:
-                    <input type="text" name="usuario">
-                    <br>
-                    <br>
-                    Senha:
-                    <input type="password" name="senha">
-                    <br>
-                    <br>
-                    <button style="background-color: #ef1b3436;" type="submit" value="Confirmar"/>Confirmar</button>
-                </form>
-            </div>
-            <%
-                String usarioInvalido = request.getParameter("usarioInvalido"); //se caiu no else do logarSistema.jsp recebe esse parametro
-                if(usarioInvalido != null){
-                    if (usarioInvalido.equals("USUARIO_NAO_EXISTE")) {//exibe mensagem de usuario invalido
-                    %>    
-                    Login ou senha inválida!
-                    <%
-                    }
-                }
-            %>
-        </div>
+    <body>            
+            <form class="formulario" method="POST" action="logarSistema.jsp"> <%--chama a página que valida o usuário --%>
+                <div class="card">
+                    <div class="card-img">
+                    <img src="custom/img/logoFundoLogin.jpg" class="imagem-login">
+                    <h3>Gerencie seu Negócio</h3>
+                    </div>
+                        <div class="card-group">
+                        <label>Usuário:</label>
+                        <input type="text" name="usuario" placeholder="Digite seu usuário">
+                        </div>
+                        <div class="card-group">
+                        <label>Senha:</label>
+                        <input type="password" name="senha" placeholder="Digite sua senha">
+                        </div>
+                        <div class="card-group">
+                        <label><input class="checkbox" type="checkbox" name="lembrar">&nbsp Lembrar-me</label>
+                        </div>
+                        <div>
+                            <button type="submit">Acessar</button>
+                        </div>
+                        <br>
+                        <div class="login-msg">
+                        <%
+                        String usarioInvalido = request.getParameter("usarioInvalido"); //se caiu no else do logarSistema.jsp recebe esse parametro
+                        if(usarioInvalido != null){
+                        if (usarioInvalido.equals("USUARIO_NAO_EXISTE")) {//exibe mensagem de usuario invalido
+                        %>    
+                        Login ou senha inválido!
+                        <%
+                        }
+                        }
+                        %>
+                        </div>
+                </div>
+
         <br>
+                <br>        
+            </form>
         <br>
         <form method="GET" action="conexao">
-            <input class="btn btn-info" type="submit" value="Testar Conexão"/>
+            <input class="btn btn-info" type="hidden" value="Testar Conexão"/>
         </form>
         <br>
         <h3>${msg}</h3>

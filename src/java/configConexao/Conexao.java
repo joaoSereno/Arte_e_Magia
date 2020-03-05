@@ -24,7 +24,7 @@ public class Conexao {
 //    private String URL = "jdbc:mysql://localhost:3306/sistemabrecho?autoReconnect=true&useSSL=false";
 //    private String URL = "jdbc:mysql://localhost:3306/arteemagia?useTimezone=true&serverTimezone=UTC";
     private static String USER = "root";
-    private static String PASS = "1234567de";
+    private static String PASS = "advanced12#$CARE";
 
     public static void open() throws Exception {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
