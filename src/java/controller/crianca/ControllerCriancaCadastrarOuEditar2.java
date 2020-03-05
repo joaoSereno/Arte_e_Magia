@@ -59,13 +59,27 @@ public class ControllerCriancaCadastrarOuEditar2 extends HttpServlet {
             if (idCrianca2 == 0) {
 
                 criancaBanco.create(crianca);//chamando método de inserir da classe CriancaSQL e passando classe instanciada da crianca como parametro  
+                
+                //setando atributos que será jogados para outra página
+                request.setAttribute("idClienteE", idCliente2);
                 request.setAttribute("msg", "Criança cadastrada com sucesso!!");
+                
+                //dispachando para a página
                 request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);
 
             } else {//se não significa que é para editar
 
                 criancaBanco.editarCadastroCrianca(crianca);//chamando método de update da classe CriancaSQL e passando classe instanciada da crianca como parametro  
+                
+                //setando atributos que será jogados para outra página
+                request.setAttribute("idClienteE", idCliente2);
+                request.setAttribute("idCriancaE", idCrianca2);
+                request.setAttribute("nomeCriancaE", nomeCrianca);
+                request.setAttribute("dataNascimentoE", dataNascimento);
+                request.setAttribute("sexoE", sexoCrianca);
                 request.setAttribute("msg", "Criança editada com sucesso!!");
+                
+                //dispachando para a página
                 request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);
 
             }
