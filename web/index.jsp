@@ -34,7 +34,7 @@
                         <label><input class="checkbox" type="checkbox" name="lembrar">&nbsp Lembrar-me</label>
                         </div>
                         <div>
-                            <button type="submit">Acessar</button>
+                        <button type="submit">Acessar</button>
                         </div>
                         <br>
                         <div class="login-msg">
@@ -50,8 +50,7 @@
                         %>
                         </div>
                 </div>
-
-        <br>
+                <br>
                 <br>        
             </form>
         <br>
