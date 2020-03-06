@@ -82,5 +82,8 @@
                 <button type="submit" value="ListarFuncionarios"/>Listar funcionários</button>
             </form>                        
         </div>
+        <br>
+        <br>
+        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
     </body>
 </html>

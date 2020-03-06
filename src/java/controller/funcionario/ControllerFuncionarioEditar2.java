@@ -39,8 +39,11 @@ public class ControllerFuncionarioEditar2 extends HttpServlet {
         try {
             //chama método de update do banco
             funcionarioBanco.editarCadastroFuncionario(idFuncionario2, nomeFuncionario, sexo);
-            
+
             //set de atributo para outra página
+            request.setAttribute("idFuncionario", idFuncionario2);
+            request.setAttribute("nomeFuncionario", nomeFuncionario);
+            request.setAttribute("sexo", sexo);
             request.setAttribute("msg", msg);
 
             //dispara os atributos setados para outra página

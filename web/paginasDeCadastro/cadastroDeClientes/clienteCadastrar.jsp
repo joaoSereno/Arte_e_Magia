@@ -97,6 +97,9 @@
             <form method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
                 <button type="submit" value="ListarFuncionarios"/>Listar Clientes</button>
             </form>                        
-        </div>        
+        </div>   
+        <br>
+        <br>
+        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
     </body>
 </html>
