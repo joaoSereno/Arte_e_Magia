@@ -19,43 +19,43 @@
             <form class="formulario" method="POST" action="logarSistema.jsp"> <%--chama a página que valida o usuário --%>
                 <div class="card">
                     <div class="card-img">
-                    <img src="custom/img/logoFundoLogin.jpg" class="imagem-login">
-                    <h3>Gerencie seu Negócio</h3>
+                        <img src="custom/img/logoFundoLogin.jpg" class="imagem-login">
+                        <h3>Gerencie seu Negócio</h3>
                     </div>
-                        <div class="card-group">
+                    <div class="card-group">
                         <label>Usuário:</label>
-                        <input type="text" name="usuario" placeholder="Digite seu usuário">
-                        </div>
-                        <div class="card-group">
+                    <input type="text" name="usuario" placeholder="Digite seu usuário">
+                    </div>
+                    <div class="card-group">
                         <label>Senha:</label>
                         <input type="password" name="senha" placeholder="Digite sua senha">
-                        </div>
-                        <div class="card-group">
+                    </div>
+                    <div class="card-group">
                         <label><input class="checkbox" type="checkbox" name="lembrar">&nbsp Lembrar-me</label>
-                        </div>
-                        <div>
+                    </div>
+                    <div>
                         <button type="submit">Acessar</button>
-                        </div>
-                        <br>
-                        <div class="login-msg">
+                    </div>
+                    <br>
+                    <div class="login-msg">
                         <%
                         String usarioInvalido = request.getParameter("usarioInvalido"); //se caiu no else do logarSistema.jsp recebe esse parametro
                         if(usarioInvalido != null){
-                        if (usarioInvalido.equals("USUARIO_NAO_EXISTE")) {//exibe mensagem de usuario invalido
-                        %>    
-                        Usuário ou senha inválido!
-                        <%
-                        }
+                            if (usarioInvalido.equals("USUARIO_NAO_EXISTE")) {//exibe mensagem de usuario invalido
+                            %>    
+                            Usuário ou senha inválido!
+                            <%
+                            }
                         }
                         %>
-                        </div>
+                    </div>
                 </div>
                 <br>
                 <br>        
             </form>
         <br>
         <form method="GET" action="conexao">
-            <input class="btn btn-info" type="hidden" value="Testar Conexão"/>
+            <input class="btn btn-info"  value="Testar Conexão"/>
         </form>
         <br>
         <h3>${msg}</h3>
