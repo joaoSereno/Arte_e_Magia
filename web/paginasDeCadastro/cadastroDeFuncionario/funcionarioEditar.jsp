@@ -49,14 +49,15 @@
         
         <!--form para edição de funcionario-->
         <div>
-            <form method="GET" action="editarCadastroFuncionario2"> <%-- joga formulario para o controllerFuncionarioEditar --%>
+            <form method="GET" action="editarCadastroFuncionario2"> <%-- joga formulario para o controllerFuncionarioEditar --%>              
+                <input type="hidden" name="listaTelefoneFuncionario" value="${listaTelefoneFuncionario}">
                 <input type="hidden" name="idFuncionario" value="${idFuncionario}">
                 Nome do funcionário:
                 <input type="text" name="nomeFuncionario" value="${nomeFuncionario}">
                 <br>
                 <br>
                 Sexo:
-                <select type="select" name="sexoFuncionario">
+                <select type="select" name="sexo">
                     <option value="${sexo}">${sexo}</option>
                     <%  
                         String sexo = request.getParameter("sexo");

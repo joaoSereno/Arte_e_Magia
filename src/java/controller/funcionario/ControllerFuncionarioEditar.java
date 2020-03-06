@@ -37,6 +37,7 @@ public class ControllerFuncionarioEditar extends HttpServlet{
         
         List<Telefone> listaTelefoneFuncionario = null; //lista de telefone
         TelefoneSQL telefoneBanco = new TelefoneSQL(); //instancia classe de banco do telefone
+        
         //pega os telefone do funcionario
         try {
             listaTelefoneFuncionario = telefoneBanco.getTelefone(idFuncionario2, 0); //set em uma lista a consulta realizada no banco
