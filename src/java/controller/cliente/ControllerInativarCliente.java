@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ClienteSQL;
 import persistence.CriancaSQL;
+import persistence.EnderecoSQL;
+import persistence.TelefoneSQL;
 
 /**
  *
@@ -40,13 +42,18 @@ public class ControllerInativarCliente extends HttpServlet {
 
         ClienteSQL clienteBanco = new ClienteSQL();//instanciando classe do banco de dados para fazer o update no banco
         CriancaSQL criancaBanco = new CriancaSQL(); //instanciando classe do banco de dados para fazer update no banco
-
+        EnderecoSQL enderecoBanco = new EnderecoSQL(); //instanciando classe do banco de dados para fazer delete no banco
+        TelefoneSQL telefoneBanco = new TelefoneSQL(); //instanciando classe do banco de dados para fazer delete no banco
+        
         try {
 
             if (idCliente2 != 0) { //se existir idCliente ele vai inativar, se não exisitir somente redireciona até a página
 
                 clienteBanco.inativarCadastro(idCliente2);//chama metodo que faz update para inativar o funcionario e passa o idFuncionario pego no request
                 criancaBanco.inativarTodosCadastroCliente(idCliente2); //chamando método que inativa os cadastros da criança desse funcionario
+                enderecoBanco.excluirEnderecoCliente(idCliente2); //chama método que realiza delete nos endereços desse cliente
+                telefoneBanco.excluirTelCliente(idCliente2); //chama método que realiza delete no telefone do cliente
+                
                 request.setAttribute("msg", msg);
 
             }
