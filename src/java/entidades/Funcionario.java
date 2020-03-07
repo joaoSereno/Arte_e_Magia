@@ -36,6 +36,12 @@ public class Funcionario implements Serializable {
         this.sexo = sexo;
         this.ativo = ativo;
     }
+    
+    public Funcionario(Integer idFuncionario, String nomeFuncionario, String sexo) {
+        this.idFuncionario = idFuncionario;
+        this.nomeFuncionario = nomeFuncionario;
+        this.sexo = sexo;
+    }
 
     public Integer getIdFuncionario() {
         return idFuncionario;
