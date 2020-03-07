@@ -34,22 +34,46 @@ public class ClienteControllerEditar2 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Crianca> listaCriancaCliente = null; //lista de criança
         List<Telefone> listaTelefoneCliente = null; //lista de telefone
+        int idCliente2 = 0;
+        int idEnderecos2 = 0;
         String msg = "Cliente editado com sucesso!";
 
         //pega os parametros do form
         //Cliente
         String idCliente = request.getParameter("idCliente");
-        int idCliente2 = Integer.parseInt(idCliente);
+
+        if (idCliente != null) { //verifica se existe idCliente
+
+            if (!idCliente.equals("")) {
+
+                idCliente2 = Integer.parseInt(idCliente);
+
+            }
+
+        }
 
         String nomeCliente = request.getParameter("nomeCliente");
         String cpf = request.getParameter("cpf");
         String tipoFesta = request.getParameter("tipoFesta");
 
-        Cliente cliente = new Cliente(idCliente2, nomeCliente, cpf, tipoFesta);//instanciando classe do tipo cliente
+        if (idCliente2 != 0) { //verifica se existe idCliente
+
+            Cliente cliente = new Cliente(idCliente2, nomeCliente, cpf, tipoFesta);//instanciando classe do tipo cliente            
+            request.setAttribute("cliente", cliente); // coloca instancia como atributo da proxima página
+        }
 
         //Endereço
         String idEnderecos = request.getParameter("idEnderecos");
-        int idEnderecos2 = Integer.parseInt(idEnderecos);
+
+        if (idEnderecos != null) { //verifica se existe idEnderecos
+
+            if (!idEnderecos.equals("")) {
+
+                idEnderecos2 = Integer.parseInt(idEnderecos);
+
+            }
+
+        }
 
         String cep = request.getParameter("cep");
         String cidade = request.getParameter("cidade");
@@ -58,7 +82,11 @@ public class ClienteControllerEditar2 extends HttpServlet {
         String numero = request.getParameter("numero");
         String complemento = request.getParameter("complemento");
 
-        Enderecos endereco = new Enderecos(idEnderecos2, cep, cidade, bairro, rua, numero, complemento);//instanciando classe do tipo endereco
+        if (idEnderecos2 != 0) {
+
+            Enderecos endereco = new Enderecos(idEnderecos2, cep, cidade, bairro, rua, numero, complemento);//instanciando classe do tipo endereco
+            request.setAttribute("endereco", endereco); //coloca instancia endereco como atributo da proxima pagina
+        }
 
         //instanciando classe do banco de dados
         ClienteSQL clienteBanco = new ClienteSQL();
@@ -67,23 +95,35 @@ public class ClienteControllerEditar2 extends HttpServlet {
         CriancaSQL criancaBanco = new CriancaSQL();
 
         try {
-            //chama método de update do banco
-            clienteBanco.editarCadastroCliente(idCliente2, nomeCliente, cpf, tipoFesta);
-            enderecoBanco.editarEnderecoCliente(idEnderecos2, cep, cidade, bairro, rua, numero, complemento);
+              
+            if (idCliente2 != 0) { //verifica se existe cliente
+                //chama método de update do banco
+                clienteBanco.editarCadastroCliente(idCliente2, nomeCliente, cpf, tipoFesta);
 
-            //chama método que pega os valores , para retornarem em tela dps que o usuario editar o cadastro
-            listaTelefoneCliente = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista de telefone , todos os telefones do cliente
-            listaCriancaCliente = criancaBanco.getCrianca(idCliente2); // recebendo na lista todas as crianças do cliente
+                //chama método que pega os valores , para retornarem em tela dps que o usuario editar o cadastro
+                listaTelefoneCliente = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista de telefone , todos os telefones do cliente
+                listaCriancaCliente = criancaBanco.getCrianca(idCliente2); // recebendo na lista todas as crianças do cliente
 
-            //set de atributo para outra página
-            request.setAttribute("msg", msg);
-            request.setAttribute("cliente", cliente);
-            request.setAttribute("listaTelefoneCliente", listaTelefoneCliente);
-            request.setAttribute("listaCriancaCliente", listaCriancaCliente);
-            request.setAttribute("endereco", endereco);
+            }
+
+            if (idEnderecos2 != 0) {//verifica se existe endereco
+
+                enderecoBanco.editarEnderecoCliente(idEnderecos2, cep, cidade, bairro, rua, numero, complemento);
+
+            }
+
+            if (idCliente2 != 0 || idEnderecos2 != 0) {
+
+                //set de atributo para outra página
+                request.setAttribute("msg", msg);
+                request.setAttribute("listaTelefoneCliente", listaTelefoneCliente);
+                request.setAttribute("listaCriancaCliente", listaCriancaCliente);
+
+            }
 
             //dispara os atributos setados para outra página
             request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
+            
         } catch (Exception ex) {
             Logger.getLogger(ClienteControllerEditar2.class.getName()).log(Level.SEVERE, null, ex);
         }

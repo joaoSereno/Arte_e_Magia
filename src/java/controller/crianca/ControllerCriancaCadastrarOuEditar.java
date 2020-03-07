@@ -21,35 +21,54 @@ public class ControllerCriancaCadastrarOuEditar extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idCrianca2 = 0;
+        int idCliente2 = 0;
 
         //pegando valores do formulario que chamou o controller
         String idCliente = request.getParameter("idClienteCrianca");
-        int idCliente2 = Integer.parseInt(idCliente);
+        if (idCliente != null) { //se existir cliente
+
+            if (!idCliente.equals("")) {
+
+                idCliente2 = Integer.parseInt(idCliente);
+
+            }
+        }
 
         String idCrianca = request.getParameter("idCrianca");
-        if (idCrianca != null) {
-            idCrianca2 = Integer.parseInt(idCrianca);
+        if (idCrianca != null) { //se existir criança
+
+            if (!idCrianca.equals("")) {
+
+                idCrianca2 = Integer.parseInt(idCrianca);
+
+            }
+
         }
         String nomeCrianca = request.getParameter("nomeCrianca");
         String sexo = request.getParameter("sexo");
         String dataNascimento = request.getParameter("dataNascimento");
 
         //set de atributo para outra página
-        request.setAttribute("idClienteE", idCliente2);
-        if (idCrianca != null) {
+        if (idCliente2 != 0) {
+            request.setAttribute("idClienteE", idCliente2);
+        }
+        if (idCrianca2 != 0) {
             request.setAttribute("idCriancaE", idCrianca2);
         }
         if (nomeCrianca != null) {
             request.setAttribute("nomeCriancaE", nomeCrianca);
         }
         if (sexo != null) {
-            request.setAttribute("sexoE", sexo);           
+            request.setAttribute("sexoE", sexo);
         }
         if (dataNascimento != null) {
             request.setAttribute("dataNascimentoE", dataNascimento);
+        } 
+        
+        if(idCliente2 != 0){ //se tiver cliente dispara os atributos setados para outra página
+            request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);            
+        }else{
+            request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);              
         }
-
-        //dispara os atributos setados para outra página
-        request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);
     }
 }

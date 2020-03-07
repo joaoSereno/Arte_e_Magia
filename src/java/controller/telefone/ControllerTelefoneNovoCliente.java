@@ -29,7 +29,12 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
 
         String idCliente = request.getParameter("idCliente");
         if (idCliente != null) {
-            idCliente2 = Integer.parseInt(idCliente);
+
+            if (!idCliente.equals("")) {
+
+                idCliente2 = Integer.parseInt(idCliente);
+
+            }
         }
 
         String contato = request.getParameter("contato");
@@ -51,7 +56,13 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
         }
 
         if (idCliente != null) {
-            telefoneNovo.setIdCliente(idCliente2);   // seta na fk "IdCliente" o cliente pego.              
+
+            if (!idCliente.equals("")) {
+
+                telefoneNovo.setIdCliente(idCliente2);   // seta na fk "IdCliente" o cliente pego.              
+
+            }
+
         }
 
         if (telefonePrincipal.equals("sim")) { // se o usuário determinou como principal
@@ -63,8 +74,14 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
         TelefoneSQL telefoneBanco = new TelefoneSQL();//instanciando classe do banco de dados para fazer a inserção no banco
 
         try {
-            telefoneBanco.createNovo(telefoneNovo);//chamando método de inserir da classe TelefoneSQL e passando telefone como parametro
-            request.setAttribute("msg", "Telefone cadastrado com sucesso!!");
+            if (telefoneNovo.getIdFuncionario() != null || telefoneNovo.getIdCliente() != null) { // verifica se existe idCliente ou idFuncionario
+                
+                telefoneBanco.createNovo(telefoneNovo);//chamando método de inserir da classe TelefoneSQL e passando telefone como parametro
+                request.setAttribute("msg", "Telefone cadastrado com sucesso!!");
+                
+            }
+            
+            // dispacha para tela
             request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(ControllerTelefoneNovoCliente.class.getName()).log(Level.SEVERE, null, ex);
