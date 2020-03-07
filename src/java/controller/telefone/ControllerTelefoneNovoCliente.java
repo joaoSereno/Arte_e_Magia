@@ -5,8 +5,12 @@
  */
 package controller.telefone;
 
+import entidades.Cliente;
+import entidades.Crianca;
+import entidades.Enderecos;
 import entidades.Telefone;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -14,6 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.ClienteSQL;
+import persistence.CriancaSQL;
+import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
 
 /**
@@ -26,6 +33,8 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idCliente2 = 0;
+        List<Telefone> listaTelefone;
+        List<Crianca> listaCrianca;
 
         String idCliente = request.getParameter("idCliente");
         if (idCliente != null) {
@@ -71,16 +80,39 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
             telefoneNovo.setIsPrincipal(0);
         }
 
-        TelefoneSQL telefoneBanco = new TelefoneSQL();//instanciando classe do banco de dados para fazer a inserção no banco
+        //instanciando classe de comunicão com o banco de dados
+        TelefoneSQL telefoneBanco = new TelefoneSQL();
+        ClienteSQL clienteBanco = new ClienteSQL();
+        EnderecoSQL enderecoBanco = new EnderecoSQL();
+        CriancaSQL criancaBanco = new CriancaSQL();
 
         try {
             if (telefoneNovo.getIdFuncionario() != null || telefoneNovo.getIdCliente() != null) { // verifica se existe idCliente ou idFuncionario
-                
+
                 telefoneBanco.createNovo(telefoneNovo);//chamando método de inserir da classe TelefoneSQL e passando telefone como parametro
-                request.setAttribute("msg", "Telefone cadastrado com sucesso!!");
+
+                //instanciando classe do tipo enderecos
+                Cliente cliente = new Cliente();
+                cliente = clienteBanco.getClienteEspecifico(idCliente2); //recebendo dados da criança 
+
+                //instanciando classe do tipo enderecos
+                Enderecos endereco = new Enderecos();
+                endereco = enderecoBanco.getEnderecoCliente(idCliente2); //recebendo endereco do cliente
+
+                //recebendo lista de crianças do cliente
+                listaCrianca = criancaBanco.getCrianca(idCliente2);
+                       
+                //recebendo lista de telefone atual do cliente
+                listaTelefone =  telefoneBanco.getTelefone(0, idCliente2);
                 
+                request.setAttribute("cliente", cliente);
+                request.setAttribute("endereco", endereco);
+                request.setAttribute("listaCriancaCliente", listaCrianca);
+                request.setAttribute("listaTelefoneCliente", listaTelefone);
+                request.setAttribute("msg", "Telefone cadastrado com sucesso!!");
+
             }
-            
+
             // dispacha para tela
             request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
         } catch (Exception ex) {

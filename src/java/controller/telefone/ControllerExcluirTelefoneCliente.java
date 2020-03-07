@@ -5,6 +5,9 @@
  */
 package controller.telefone;
 
+import entidades.Cliente;
+import entidades.Crianca;
+import entidades.Enderecos;
 import entidades.Telefone;
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.ClienteSQL;
+import persistence.CriancaSQL;
+import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
 
 /**
@@ -28,12 +34,18 @@ public class ControllerExcluirTelefoneCliente extends HttpServlet {
         int idCliente2 = 0;
         int countTelefone = 0;
         List<Telefone> listaTelefone;
+        List<Crianca> listaCrianca;
 
         String idCliente = request.getParameter("idClienteTelefone");
-        if (idCliente != null) {
-            idCliente2 = Integer.parseInt(idCliente);
-        }
+        if (idCliente != null) {//verifa se tem cliente
 
+            if (!idCliente.equals("")) {
+
+                idCliente2 = Integer.parseInt(idCliente);
+
+            }
+        }
+        
         String isPrincipal = request.getParameter("isPrincipal");
         int isPrincipal2 = Integer.parseInt(isPrincipal);
 
@@ -42,7 +54,7 @@ public class ControllerExcluirTelefoneCliente extends HttpServlet {
 
         Telefone telefone = new Telefone(); //instanciando classe de telefone
 
-        if (idCliente != null) {
+        if (idCliente2 != 0) {
             telefone.setIdCliente(idCliente2);   // seta na fk "IdCliente" o cliente pego.  
             telefone.setIdFuncionario(0);
         }
@@ -52,19 +64,46 @@ public class ControllerExcluirTelefoneCliente extends HttpServlet {
 
         //instanciando classe de comunicão com o banco de dados
         TelefoneSQL telefoneBanco = new TelefoneSQL();
+        ClienteSQL clienteBanco = new ClienteSQL();
+        EnderecoSQL enderecoBanco = new EnderecoSQL();
+        CriancaSQL criancaBanco = new CriancaSQL();
 
         try {
 
-            if (idCliente != null) {
+            if (idCliente2 != 0) {
                 listaTelefone = telefoneBanco.getTelefone(0, idCliente2);//recebe lista
                 countTelefone = listaTelefone.size();  //pega quantidade da lista
+                
+                Cliente cliente = new Cliente();//instanciando classe do tipo cliente
+                cliente = clienteBanco.getClienteEspecifico(idCliente2);//chamando método para retoranr dados do cliente, para enviar para a tela de ediçao novamente
+                
+                Enderecos endereco = new Enderecos();
+                endereco = enderecoBanco.getEnderecoCliente(idCliente2);
+                
+                //set de atributo para outra página
+                request.setAttribute("cliente", cliente);
+                request.setAttribute("endereco", endereco);
+
             }
 
             if (countTelefone > 1) {
                 telefoneBanco.excluirTelefone(telefone);//chamando método de delete da classe TelefoneSQL e passando telefone como parametro
+                listaTelefone = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista telefone , os telefones do cliente
+                listaCrianca = criancaBanco.getCrianca(idCliente2); //recebendo lista de crianças do cliente
+                
+                
+                request.setAttribute("listaCriancaCliente", listaCrianca);
+                request.setAttribute("listaTelefoneCliente", listaTelefone);
                 request.setAttribute("msg", "Telefone excluido com sucesso!!");
                 request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
             } else {
+                
+                listaTelefone = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista telefone , os telefones do cliente
+                listaCrianca = criancaBanco.getCrianca(idCliente2); //recebendo lista de crianças do cliente
+                
+                
+                request.setAttribute("listaCriancaCliente", listaCrianca);                
+                request.setAttribute("listaTelefoneCliente", listaTelefone);
                 request.setAttribute("msg", "Não é possível ficar sem nenhum telefone no cadastro, por favor realize um novo cadastro de telefone e tente excluir este novamente!!");
                 request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
             }
