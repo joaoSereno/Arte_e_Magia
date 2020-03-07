@@ -40,6 +40,13 @@ public class Cliente implements Serializable {
         this.tipoFesta = tipoFesta;
         this.ativo = ativo;
     }
+    
+    public Cliente(Integer idCliente, String nomeCliente, String cpf, String tipoFesta) {
+        this.idCliente = idCliente;
+        this.nomeCliente = nomeCliente;
+        this.cpf = cpf;
+        this.tipoFesta = tipoFesta;
+    }
 
     public Integer getIdCliente() {
         return idCliente;

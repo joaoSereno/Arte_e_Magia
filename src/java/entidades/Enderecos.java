@@ -38,6 +38,16 @@ public class Enderecos implements Serializable {
         this.rua = rua;
         this.isFesta = isFesta;
     }
+    
+    public Enderecos(Integer idEnderecos, String cep, String cidade, String bairro, String rua, String numero, String complemento) {
+        this.idEnderecos = idEnderecos;
+        this.cep = cep;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+    }
 
     public Integer getIdEnderecos() {
         return idEnderecos;
