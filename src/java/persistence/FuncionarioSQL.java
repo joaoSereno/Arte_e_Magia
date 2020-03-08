@@ -207,5 +207,44 @@ public class FuncionarioSQL extends Conexao { //extende classe de conexão com o
         }
         
     }
+    
+    public ArrayList<Funcionario> getFuncionarioNaoTemUsuario() throws Exception { //método de retorno arrayList de funcionario
+        
+        try {
+            open(); //abre conexão com o banco
+            ArrayList<Funcionario> listaFuncionario = new ArrayList(); //instancia uma arrayList de funcionario
+
+            stmt = con.prepareStatement("SELECT idFuncionario, nomeFuncionario\n" +
+                                        "FROM funcionario\n" +
+                                        "WHERE idFuncionario not in (SELECT idFuncionario\n" +
+                                        "		             FROM usuario\n" +
+                                        "		             WHERE idFuncionario is not null)\n" +
+                                        "AND ativo = 1"); //executa query na base
+
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+                Funcionario funcionario = new Funcionario(); //toda vez que passar no while vai criar uma variavel do tipo funcionario
+
+                funcionario.setIdFuncionario(resultadoConsulta.getInt("idFuncionario"));//seta na variavel criada a cima do tipo funcionario o id
+                funcionario.setNomeFuncionario(resultadoConsulta.getString("nomeFuncionario"));//seta na variavel criada a cima do tipo funcionario o nome
+
+                listaFuncionario.add(funcionario);// add na lista de funcionario
+            }
+            close(); // fecha conexão com o banco
+            return listaFuncionario;//retorna a lista de funcionario para onde foi chamado
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+        
+    }
 
 }

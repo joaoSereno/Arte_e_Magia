@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -45,5 +47,68 @@
         </nav>
         <br>
         <h1>Pagina cadastrar usuario</h1>
+        <br>
+        <!-- form para cadastrar funcionario-->
+        <div>
+            <button type="button" onclick="Adm('func')"/>ADM</button>
+            <br>
+            <br>
+            <!--   form para listar os funcionarios no campo "funcionario" -->
+            <form method="GET" action="usuarioFuncListar">
+                <button type="submit" onclick="Func('func')"/>FUNC</button> 
+            </form>           
+            <br>
+            <br>
+            <form method="POST" action="cadastrarUsuario"> <%-- joga formulario para o controllerUsuarioCadastrar --%>
+                Login:
+                <input type="text" name="login" value="${login}">
+                <br>
+                <br>
+                Senha:
+                <input type="password" name="senha">
+                <br>
+                <br>
+                Confirmação de senha:
+                <input type="password" name="confirmacaoSenha">
+                <br>
+                <br>
+                <div id="func" style="display: none">
+                    <input type="hidden" id="valorDisplay" value="${valorDisplay}">
+                    Funcionario:
+                    <select type="select" name="idFuncionario" >
+                        <option value="">Clique para selecionar</option>
+                            <c:forEach var="item" items="${funcionarios}">
+                                <option value="${item.idFuncionario}">
+                                    ${item.nomeFuncionario}
+                                </option>
+                            </c:forEach>
+                    </select>                                
+                </div>
+                <br>
+                <br>
+                <button type="submit" value="Cadastrar"/>Cadastrar</button>                    
+            </form>
+        <div>
+        <h3>${msg}</h3>    
+            
+        <script>
+            
+            //sempre que carregar a página vai verificar se o valorDisplay é == 1 , se for vai habilitar o campo
+            var valorDisplay = document.getElementById('valorDisplay').value;
+            if(valorDisplay == 1){
+                document.getElementById('func').style.display = 'block';                
+            }
+            
+            //se clicar no botão ADM vai ocultar a div com id "func"
+            function Adm(el) {
+                document.getElementById(el).style.display = 'none';
+            }; 
+            //se clicar no botão FUNC nocultar a div com id "func"
+            function Func(el) {
+                document.getElementById(el).style.display = 'block';
+            };   
+            
+        </script>
     </body>
 </html>
+
