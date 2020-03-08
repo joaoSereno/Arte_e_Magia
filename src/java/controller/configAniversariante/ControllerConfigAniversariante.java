@@ -6,21 +6,52 @@
 package controller.configAniversariante;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.ConfigAniversarianteSQL;
 
 /**
  *
  * @author João Pedro
  */
 @WebServlet("/paginasDeCadastro/configAniversariante")
-public class ControllerConfigAniversariante extends HttpServlet{
+public class ControllerConfigAniversariante extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
+        int qtdDias2 =0;
+        
+        String qtdDias = request.getParameter("qtdDias");
+        if (qtdDias != null) {
+
+            if (!qtdDias.equals("")) {
+
+                qtdDias2 = Integer.parseInt(qtdDias);
+
+            }
+
+        }
+        
+        ConfigAniversarianteSQL configAniversarianteBanco = new ConfigAniversarianteSQL();
+        
+        try {
+
+            if(qtdDias2 != 0){
+                
+                configAniversarianteBanco.editarConfigAniversariante(qtdDias2);
+            
+            }
+
+            request.getRequestDispatcher("cadastros.jsp").forward(request, response);
+
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerConfigAniversariante.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+
     }
-    
+
 }

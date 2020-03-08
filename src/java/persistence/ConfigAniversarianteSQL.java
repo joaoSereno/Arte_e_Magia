@@ -31,7 +31,7 @@ public class ConfigAniversarianteSQL extends Conexao{
 
     }    
     
-    public void editarCadastroCliente(int idConfigNotificacaoAniversariante, int dias) throws Exception {
+    public void editarConfigAniversariante(int dias) throws Exception {
 
         open(); // abre a conexão com o banco de dados
 
@@ -39,7 +39,7 @@ public class ConfigAniversarianteSQL extends Conexao{
 
         //seta valores para comando sql
         stmt.setInt(1, dias);
-        stmt.setInt(2, idConfigNotificacaoAniversariante);
+        stmt.setInt(2, 1);
 
         stmt.execute();//executa comando sql
 
