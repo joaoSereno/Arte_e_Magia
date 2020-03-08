@@ -34,7 +34,7 @@ public class ControllerListaFuncUsuario extends HttpServlet {
 
         try {
             
-            listaFuncionario = funcionarioBanco.getFuncionarioNaoTemUsuario(); // recebe na lista os funcionarios pelo método de get do banco
+            listaFuncionario = funcionarioBanco.getFuncionarioNaoTemUsuario();// recebe na lista os funcionarios pelo método de get do banco
             
             request.setAttribute("valorDisplay", valorDisplay);
             request.setAttribute("funcionarios", listaFuncionario); // atribui a lista na marcação "funcionario"
