@@ -63,11 +63,15 @@ public class ControllerTelefoneNovoFuncionario extends HttpServlet {
         if (idFuncionario2 != 0) { //se vier idFuncionario 
             telefoneNovo.setIdFuncionario(idFuncionario2); // seta na fk "IdFuncionario" o funcionario pego. 
         }
+        
+        if(telefonePrincipal != null){
 
-        if (telefonePrincipal.equals("sim")) { // se o usuário determinou como principal
-            telefoneNovo.setIsPrincipal(1);
-        } else { // se não
-            telefoneNovo.setIsPrincipal(0);
+            if (telefonePrincipal.equals("sim")) { // se o usuário determinou como principal
+                telefoneNovo.setIsPrincipal(1);
+            } else { // se não
+                telefoneNovo.setIsPrincipal(0);
+            }
+
         }
 
         TelefoneSQL telefoneBanco = new TelefoneSQL();//instanciando classe do banco de dados para fazer a inserção no banco
