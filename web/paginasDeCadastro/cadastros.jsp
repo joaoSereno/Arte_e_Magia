@@ -83,7 +83,7 @@
                   </div>
                   <br> 
                   <div>
-                    <!-- form para adicionar novo contato --> 
+                    <!-- form para config aniversario --> 
                     <form method="GET" action="configAniversariante"> <%-- joga formulario para o controllerConfigAniversariante --%>
                         Quantidade de dias:
                         <input type="text" name="qtdDias">
