@@ -217,9 +217,10 @@ public class FuncionarioSQL extends Conexao { //extende classe de conexão com o
             stmt = con.prepareStatement("SELECT idFuncionario, nomeFuncionario\n" +
                                         "FROM funcionario\n" +
                                         "WHERE idFuncionario not in (SELECT idFuncionario\n" +
-                                        "		             FROM usuario\n" +
-                                        "		             WHERE idFuncionario is not null)\n" +
-                                        "AND ativo = 1"); //executa query na base
+                                        "			     FROM usuario\n" +
+                                        "			     WHERE idFuncionario is not null\n" +
+                                        "                            AND ativo = 1)\n" +
+                                        "AND ativo = 1;"); //executa query na base
 
             ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
 

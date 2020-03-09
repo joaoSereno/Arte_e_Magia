@@ -58,6 +58,7 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
 
         //valida se o campo senha é igual ao campo confirmação de senha
         if (!senha.equals(confirmacaoSenha)) {
+            contador = 1;
 
             msg = "Senha e confirmação de senha não iguais!";
 
@@ -110,16 +111,53 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
 
             }
 
-            if (contador != 1) { //verifica se passou pela validação de usuario iguais
+        } catch (Exception ex) {
+
+            Logger.getLogger(ControllerUsuarioCadastrar.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+        try {
+
+            if (contador != 1) { //verifica se passou pela validação de usuario iguais ou senha igual
+
+                Usuario usuario = new Usuario(); //instancia do tipo usuario , para passar de parametro no método de cadastrar do banco
 
                 //verifica se é cadastro de usuario é ADM ou FUNC
-                if (idFuncionario2 != 0) {
+                if (idFuncionario2 != 0) { //func
 
-                } else {
+                    //setando os parametros pegos pelo usuario na instancia do tipo usuario
+                    usuario.setUsuario(login);
+                    usuario.setSenha(senha);;
+                    usuario.setIdFuncionario(idFuncionario2);
+
+                    //chamando método que faz o cadastro no banco, passando como parametro a instancia do tipo usuario
+                    usuarioBanco.create(usuario);
+
+                    //para continuar listando os funcionarios 
+                    valorDisplay = 1;
+                    request.setAttribute("valorDisplay", valorDisplay);
+                    
+
+                } else { //adm
+
+                    //setando os parametros pegos pelo usuario na instancia do tipo usuario
+                    usuario.setUsuario(login);
+                    usuario.setSenha(senha);
+
+                    //chamando método que faz o cadastro no banco, passando como parametro a instancia do tipo usuario
+                    usuarioBanco.create(usuario);
 
                 }
 
             }
+
+            msg = "Usuário cadastrado com sucesso!!";
+
+            request.setAttribute("msg", msg);
+
+            //dispara os atributos setados para outra página
+            request.getRequestDispatcher("usuarioCadastrar.jsp").forward(request, response);
 
         } catch (Exception ex) {
 

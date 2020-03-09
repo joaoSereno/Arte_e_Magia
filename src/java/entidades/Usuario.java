@@ -17,7 +17,7 @@ public class Usuario{
     private String senha;
     private int ativo;
     private int tipoUsuario;
-    private int idFuncionario;
+    private Integer idFuncionario;
     private String nomeFuncionario;
 
     public Usuario() {
@@ -75,20 +75,20 @@ public class Usuario{
         this.tipoUsuario = tipoUsuario;
     }
 
-    public int getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
-
     public String getNomeFuncionario() {
         return nomeFuncionario;
     }
 
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
+    }
+
+    public Integer getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
 }
