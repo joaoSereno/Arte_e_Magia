@@ -52,27 +52,15 @@
             <form method="GET" action="editarCadastroFuncionario2"> <%-- joga formulario para o controllerFuncionarioEditar --%>              
                 <input type="hidden" name="listaTelefoneFuncionario" value="${listaTelefoneFuncionario}">
                 <input type="hidden" name="idFuncionario" value="${idFuncionario}">
+                <input type="hidden" id="sexo2" name="sexo2" value="${sexo}">
                 Nome do funcionário:
                 <input type="text" name="nomeFuncionario" value="${nomeFuncionario}">
                 <br>
                 <br>
                 Sexo:
-                <select type="select" name="sexo">
+                <select type="select" name="sexo">  <!--select controlado por js no final da pagina -->
                     <option value="${sexo}">${sexo}</option>
-                    <%  
-                        String sexo = request.getParameter("sexo");
-                        if(sexo != null){
-                            if(sexo.equals("M")){
-                                %>
-                                <option value="F">F</option>
-                                <%                            
-                            }else{
-                                %>
-                                <option value="M">M</option>
-                                <%   
-                            }
-                        }        
-                    %>
+                    <option id="sexo3" value="">F/M</option>
                 </select> 
                 <br>
                 <br>
@@ -203,6 +191,23 @@
                 <button type="submit" value="ListarFuncionarios"/>Voltar</button>
             </form>                        
         </div>
+        <script>
+                        
+            var sexo = document.getElementById('sexo2').value; //pega o valor do select dos sexos
+            if(sexo == ""){   //se estiver vazio, deixa o outro vazio também
+                  document.getElementById("sexo3").value = "";
+                  document.getElementById("sexo3").innerHTML = "";                
+            }else{ //se não tiver
+                if(sexo == "M"){//se o sexo for M , na outro campo vai mostra F
+                  document.getElementById("sexo3").value = "F";
+                  document.getElementById("sexo3").innerHTML = "F";
+                }else{ // se não vai mostra M
+                  document.getElementById("sexo3").value = "M";
+                  document.getElementById("sexo3").innerHTML = "M";
+                }  
+            }
+            
+        </script>
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
