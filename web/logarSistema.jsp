@@ -10,7 +10,15 @@
         
         session.setAttribute("usuarioLogado", usuarioLogado);//seta o usuario retornado pelo banco na session
         
-        response.sendRedirect("paginaInicial.jsp"); //redireciona para a pagina de inicial
+        //se for usuario do tipo ADMIN
+        if(usuarioLogado.getTipoUsuario() == 1){
+            
+            response.sendRedirect("paginaInicial.jsp"); //redireciona para a pagina de inicial
+            
+        }else{ //se for usuario do tipo FUNC
+            
+        }
+        
     }else{ //se não aqui
         response.sendRedirect("index.jsp?usarioInvalido=USUARIO_NAO_EXISTE"); //redireciona para a página de login novamente
     }

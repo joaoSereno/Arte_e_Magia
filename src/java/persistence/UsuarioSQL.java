@@ -23,26 +23,24 @@ public class UsuarioSQL extends Conexao {
             open();
             ArrayList<Usuario> listaUsuario = new ArrayList();
 
-            stmt = con.prepareStatement("SELECT u.usuario,\n"
-                    + "	   u.senha,\n"
-                    + "       u.tipoUsuario,\n"
-                    + "       u.idFuncionario,\n"
-                    + "       f.nomeFuncionario\n"
-                    + "FROM usuario u,\n"
-                    + "	 funcionario f\n"
-                    + "WHERE u.idFuncionario = f.idFuncionario\n"
-                    + "AND u.ativo = 1");
+            stmt = con.prepareStatement("SELECT idusuario,\n" +
+                                        "	usuario,\n" +
+                                        "       senha,\n" +
+                                        "       tipoUsuario,\n" +
+                                        "       idFuncionario\n" +
+                                        "FROM usuario\n" +
+                                        "WHERE ativo = 1");
 
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Usuario usuario = new Usuario();
-
-                usuario.setUsuario(rs.getString("u.usuario"));
-                usuario.setSenha(rs.getString("u.senha"));
-                usuario.setTipoUsuario(rs.getInt("u.tipoUsuario"));
-                usuario.setIdFuncionario(rs.getInt("u.idFuncionario"));
-                usuario.setNomeFuncionario(rs.getString("f.nomeFuncionario"));
+                
+                usuario.setIdusuario(rs.getInt("idusuario"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setTipoUsuario(rs.getInt("tipoUsuario"));
+                usuario.setIdFuncionario(rs.getInt("idFuncionario"));
 
                 listaUsuario.add(usuario);
             }
@@ -93,7 +91,7 @@ public class UsuarioSQL extends Conexao {
             stmt.setString(2, usuario.getSenha());
             stmt.setInt(3, 1);
             stmt.setInt(4, 2); // 2 = FUNC
-            stmt.setInt(5, usuario.getIdFuncionario()); // 2 = FUNC
+            stmt.setInt(5, usuario.getIdFuncionario()); 
 
         } else { //se não é do tipo ADM
 
