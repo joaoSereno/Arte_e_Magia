@@ -50,7 +50,7 @@
         <br>
         <!-- form para cadastrar funcionario-->
         <div>
-            <button type="button" onclick="Adm('func')"/>ADM</button>
+            <button type="button" onclick="Adm('func','nomeUsuario')"/>ADM</button>
             <br>
             <br>
             <!--   form para listar os funcionarios no campo "funcionario" -->
@@ -72,7 +72,13 @@
                 <input type="password" name="confirmacaoSenha">
                 <br>
                 <br>
-                <div id="func" style="display: none">
+                <div id="nomeUsuario">
+                    Nome do usuário:
+                    <input type="text" name="nomeUsuario">
+                </div>
+                <br>
+                <br>
+                <div id="func" style="display: none"> 
                     <input type="hidden" id="valorDisplay" value="${valorDisplay}">
                     Funcionario:
                     <select type="select" name="idFuncionario" >
@@ -89,24 +95,32 @@
                 <button type="submit" value="Cadastrar"/>Cadastrar</button>                    
             </form>
         <div>
-        <h3>${msg}</h3>    
+        <h3>${msg}</h3>
+        <br>
+        <br>
+        <div>
+            <!-- form para listar os usuarios cadastrados -->
+            <form method="GET" action="listaUsuarios"> <%-- joga formulario para o controllerUsuarioListar --%>
+                <button type="submit" value="ListaUsuarios">Listar funcionários</button>
+            </form>                        
+        </div>
+        <br>
+        <br>
+        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
+        
             
-        <script>
-            
-            //sempre que carregar a página vai verificar se o valorDisplay é == 1 , se for vai habilitar o campo
+        <script>            
+            //sempre que carregar a página vai verificar se o valorDisplay é == 1 
             var valorDisplay = document.getElementById('valorDisplay').value;
             if(valorDisplay == 1){
-                document.getElementById('func').style.display = 'block';                
-            }
-            
-            //se clicar no botão ADM vai ocultar a div com id "func"
-            function Adm(el) {
-                document.getElementById(el).style.display = 'none';
+                document.getElementById('func').style.display = 'block';  //habilita a div com id "func"              
+                document.getElementById('nomeUsuario').style.display = 'none'; //desabilita a div com id "nomeUsuario"       
+            }           
+            //se clicar no botão ADM vai ocultar a div com id "func" e desocultar a div com id "nomeUsuario"
+            function Adm() {
+                document.getElementById('func').style.display = 'none';               
+                document.getElementById('nomeUsuario').style.display = 'block';                  
             }; 
-            //se clicar no botão FUNC nocultar a div com id "func"
-            function Func(el) {
-                document.getElementById(el).style.display = 'block';
-            };   
             
         </script>
     </body>

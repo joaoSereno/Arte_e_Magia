@@ -27,7 +27,8 @@ public class UsuarioSQL extends Conexao {
                                         "	usuario,\n" +
                                         "       senha,\n" +
                                         "       tipoUsuario,\n" +
-                                        "       idFuncionario\n" +
+                                        "       idFuncionario,\n" +
+                                        "       nomeUsuario \n" +
                                         "FROM usuario\n" +
                                         "WHERE ativo = 1");
 
@@ -41,6 +42,7 @@ public class UsuarioSQL extends Conexao {
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setTipoUsuario(rs.getInt("tipoUsuario"));
                 usuario.setIdFuncionario(rs.getInt("idFuncionario"));
+                usuario.setNomeUsuario(rs.getString("nomeUsuario"));
 
                 listaUsuario.add(usuario);
             }
@@ -84,7 +86,7 @@ public class UsuarioSQL extends Conexao {
         if (usuario.getIdFuncionario() != null) { //se for != null é cadastro do tipo FUNC
 
             //define comando para o banco de dados
-            stmt = con.prepareStatement("INSERT INTO usuario(usuario, senha, ativo, tipoUsuario, idFuncionario) VALUES (?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO usuario(usuario, senha, ativo, tipoUsuario, idFuncionario, nomeUsuario) VALUES (?,?,?,?,?,?)");
 
             //atribui os valores das marcações do comando acima 
             stmt.setString(1, usuario.getUsuario());
@@ -92,17 +94,19 @@ public class UsuarioSQL extends Conexao {
             stmt.setInt(3, 1);
             stmt.setInt(4, 2); // 2 = FUNC
             stmt.setInt(5, usuario.getIdFuncionario()); 
+            stmt.setString(6, usuario.getNomeUsuario()); 
 
         } else { //se não é do tipo ADM
 
             //define comando para o banco de dados
-            stmt = con.prepareStatement("INSERT INTO usuario (usuario, senha, ativo, tipoUsuario) VALUES (?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO usuario (usuario, senha, ativo, tipoUsuario, nomeUsuario) VALUES (?,?,?,?,?)");
 
             //atribui os valores das marcações do comando acima 
             stmt.setString(1, usuario.getUsuario());
             stmt.setString(2, usuario.getSenha());
             stmt.setInt(3, 1);
             stmt.setInt(4, 1); // 1 = ADM
+            stmt.setString(5, usuario.getNomeUsuario()); 
             
         }
 

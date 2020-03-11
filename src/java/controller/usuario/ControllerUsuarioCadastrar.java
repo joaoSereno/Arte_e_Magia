@@ -58,6 +58,9 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
             }
 
         }
+        
+        String nomeUsuario = request.getParameter("nomeUsuario");
+        
 
         //valida se o campo senha é igual ao campo confirmação de senha
         if (!senha.equals(confirmacaoSenha)) {
@@ -136,10 +139,20 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
             Usuario usuario = new Usuario(); //instancia do tipo usuario , para passar de parametro no método de cadastrar do banco
 
             if (idFuncionario2 != 0) { //se for cadastro de conta tipo FUNC
+                
+                Funcionario funcionario = new Funcionario(); //instanciando classe do funcionario, para receber os dados do banco do método funcionario especifico
+                
+                try {
+                    funcionario = funcionarioBanco.getFuncionarioEspecifico(idFuncionario2); //recebendo do banco os dados do funcionario que foi selecionado no cadastro
+                } catch (Exception ex) {
+                    Logger.getLogger(ControllerUsuarioCadastrar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 //setando os parametros pegos pelo usuario na instancia do tipo usuario
                 usuario.setUsuario(login);
-                usuario.setSenha(senha);;
+                usuario.setSenha(senha);
                 usuario.setIdFuncionario(idFuncionario2);
+                usuario.setNomeUsuario(funcionario.getNomeFuncionario());
 
                 try {
                     //chamando método que faz o cadastro no banco, passando como parametro a instancia do tipo usuario
@@ -160,7 +173,8 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
                 //setando os parametros pegos pelo usuario na instancia do tipo usuario
                 usuario.setUsuario(login);
                 usuario.setSenha(senha);
-
+                usuario.setNomeUsuario(nomeUsuario);
+                
                 try {
                     //chamando método que faz o cadastro no banco, passando como parametro a instancia do tipo usuario
                     usuarioBanco.create(usuario);

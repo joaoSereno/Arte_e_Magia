@@ -44,32 +44,26 @@
             </div>
         </nav>
         <br><br>
-        <!-- botão/form de listar os usuários do sistema-->  
-        <form method="GET" action="usuariosListar"> 
-            <button type="submit" class="btn btn-primary">Listar usuários</button>
-        </form>
-        <br>
         <!-- div de listagem usuários do sistemaa-->          
         <div>
             <table id="tabela" class="table table-secondary">
                 <thead> 
                     <tr>    
-                        <th scope="col">Nome</th>
                         <th scope="col">Login</th>
                         <th scope="col">Tipo usuário</th>
+                        <th scope="col">Nome funcionario</th>
                     </tr>
                 </thead> 
                 <tbody>
                     <c:forEach items="${listaUsuarios}" var="item"> 
                         <tr>
                             <td>${item.nomeDespesa}</td>
-                            <td>${item.nomeDespesa}</td>
-                            <td>${item.nomeDespesa}</td>
-                            <!-- botão/form para editar registro tipo despesa , envia para ControllerTipoDespesaEditar  --> 
+                            <td>${item.tipoUsuario}</td>
+                            <td>${item.nomeFuncionario}</td>
+                            <!-- botão/form para editar registro tipo despesa , envia para ControllerUsuarioEditar  --> 
                             <td>
-                                <form method="GET" action="usuarioEditar"> 
-                                    <input type="hidden" name="idTipoDeDespesa" value="${item.idTipoDeDespesa}">
-                                    <input type="hidden" name="nomeDespesa" value="${item.nomeDespesa}">
+                                <form method="GET" action="usuarioEditar">
+                                    <input type="hidden" name="idUsuario" value="${item.idusuario}">
                                     <button class="btn btn-warning"> Editar </button>
                                 </form> 
                             </td>

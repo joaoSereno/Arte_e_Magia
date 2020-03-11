@@ -18,7 +18,7 @@ public class Usuario{
     private int ativo;
     private int tipoUsuario;
     private Integer idFuncionario;
-    private String nomeFuncionario;
+    private String nomeUsuario;
 
     public Usuario() {
     }
@@ -75,14 +75,6 @@ public class Usuario{
         this.tipoUsuario = tipoUsuario;
     }
 
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
-    }
-
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
-    }
-
     public Integer getIdFuncionario() {
         return idFuncionario;
     }
@@ -90,5 +82,15 @@ public class Usuario{
     public void setIdFuncionario(Integer idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+    
+    
 
 }
