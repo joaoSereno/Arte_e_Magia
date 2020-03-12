@@ -1,12 +1,10 @@
 <%-- 
-    Document   : usuarioCadastrar
-    Created on : 07/03/2020, 21:16:18
+    Document   : usuarioEditar
+    Created on : 11/03/2020, 22:56:53
     Author     : João Pedro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -46,36 +44,15 @@
             </div>
         </nav>
         <br>
-        <h1>Pagina cadastrar usuario</h1>
+        <h3>Edição de usuário</h3>
         <br>
-        <!-- form para cadastrar funcionario-->
-        <div>
-            <button type="button" onclick="Adm('func','nomeUsuario')"/>ADM</button>
-            <br>
-            <br>
-            <!--   form para listar os funcionarios no campo "funcionario" -->
-            <form method="GET" action="usuarioFuncListar">
-                <button type="submit" onclick="Func('func')"/>FUNC</button> 
-            </form>           
-            <br>
-            <br>
-            <form method="POST" action="cadastrarUsuario"> <%-- joga formulario para o controllerUsuarioCadastrar --%>
+        <form method="POST" action="usuarioEditar2"> 
                 Login:
-                <input type="text" name="login" value="${login}">
+                <input type="text" name="login" value="${usuario.usuario}">
                 <br>
                 <br>
-                Senha:
-                <input type="password" name="senha">
-                <br>
-                <br>
-                Confirmação de senha:
-                <input type="password" name="confirmacaoSenha">
-                <br>
-                <br>
-                <div id="nomeUsuario">
-                    Nome do usuário:
-                    <input type="text" name="nomeUsuario">
-                </div>
+                Nome do usuário:
+                <input type="text" name="nomeUsuario" value="${usuario.nomeUsuario}">
                 <br>
                 <br>
                 <div id="func" style="display: none"> 
@@ -92,37 +69,17 @@
                 </div>
                 <br>
                 <br>
-                <button type="submit" value="Cadastrar"/>Cadastrar</button>                    
-            </form>
-        <div>
+                <button type="submit">Confirmar</button>                    
+        </form>
+        <br>
+        <form method="POST" action="trocarSenhaUsuario"> 
+            <button type="submit">Alterar Senha</button>                    
+        </form>
+        <br>
+        <form method="GET" action="inativarUsuario"> 
+            <button type="submit">Excluir</button>                    
+        </form>        
+
         <h3>${msg}</h3>
-        <br>
-        <br>
-        <div>
-            <!-- form para listar os usuarios cadastrados -->
-            <form method="GET" action="listaUsuarios"> <%-- joga formulario para o controllerUsuarioListar --%>
-                <button type="submit" value="ListaUsuarios">Listar usuário</button>
-            </form>                        
-        </div>
-        <br>
-        <br>
-        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
-        
-            
-        <script>            
-            //sempre que carregar a página vai verificar se o valorDisplay é == 1 
-            var valorDisplay = document.getElementById('valorDisplay').value;
-            if(valorDisplay == 1){
-                document.getElementById('func').style.display = 'block';  //habilita a div com id "func"              
-                document.getElementById('nomeUsuario').style.display = 'none'; //desabilita a div com id "nomeUsuario"       
-            }           
-            //se clicar no botão ADM vai ocultar a div com id "func" e desocultar a div com id "nomeUsuario"
-            function Adm() {
-                document.getElementById('func').style.display = 'none';               
-                document.getElementById('nomeUsuario').style.display = 'block';                  
-            }; 
-            
-        </script>
     </body>
 </html>
-

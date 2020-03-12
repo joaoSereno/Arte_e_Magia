@@ -34,10 +34,10 @@ public class ControllerFuncionarioListar extends HttpServlet {
 
         try {
             
-            
             listaFuncionario = funcionarioBanco.getFuncionario(); // recebe na lista os funcionarios pelo método de get do banco 
             request.setAttribute("funcionarios", listaFuncionario); // atribui a lista na marcação "funcionario"
             request.getRequestDispatcher("funcionarioPrincipal.jsp").forward(request, response); // dispara para essa página
+            
         } catch (Exception ex) {
             Logger.getLogger(ControllerFuncionarioListar.class.getName()).log(Level.SEVERE, null, ex);
             ex.getMessage();

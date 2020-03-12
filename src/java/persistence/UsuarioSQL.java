@@ -23,20 +23,21 @@ public class UsuarioSQL extends Conexao {
             open();
             ArrayList<Usuario> listaUsuario = new ArrayList();
 
-            stmt = con.prepareStatement("SELECT idusuario,\n" +
-                                        "	usuario,\n" +
-                                        "       senha,\n" +
-                                        "       tipoUsuario,\n" +
-                                        "       idFuncionario,\n" +
-                                        "       nomeUsuario \n" +
-                                        "FROM usuario\n" +
-                                        "WHERE ativo = 1");
+            stmt = con.prepareStatement("SELECT idusuario,\n"
+                                        + "	usuario,\n"
+                                        + "     senha,\n"
+                                        + "     tipoUsuario,\n"
+                                        + "     idFuncionario,\n"
+                                        + "     nomeUsuario \n"
+                                        + "FROM usuario\n"
+                                        + "WHERE ativo = 1 \n"
+                                        + "ORDER BY tipoUsuario");
 
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Usuario usuario = new Usuario();
-                
+
                 usuario.setIdusuario(rs.getInt("idusuario"));
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setSenha(rs.getString("senha"));
@@ -93,8 +94,8 @@ public class UsuarioSQL extends Conexao {
             stmt.setString(2, usuario.getSenha());
             stmt.setInt(3, 1);
             stmt.setInt(4, 2); // 2 = FUNC
-            stmt.setInt(5, usuario.getIdFuncionario()); 
-            stmt.setString(6, usuario.getNomeUsuario()); 
+            stmt.setInt(5, usuario.getIdFuncionario());
+            stmt.setString(6, usuario.getNomeUsuario());
 
         } else { //se não é do tipo ADM
 
@@ -106,12 +107,75 @@ public class UsuarioSQL extends Conexao {
             stmt.setString(2, usuario.getSenha());
             stmt.setInt(3, 1);
             stmt.setInt(4, 1); // 1 = ADM
-            stmt.setString(5, usuario.getNomeUsuario()); 
-            
+            stmt.setString(5, usuario.getNomeUsuario());
+
         }
 
         stmt.execute();//executa  insert no banco de dados
         close();//fecha conexão com o banco de dados
 
     }
+
+    public void inativaUsuario(int idusuario) throws Exception {
+
+        open(); //abre conexão com o banco de dados
+
+        stmt = con.prepareStatement("UPDATE usuario SET ativo = 0 WHERE idusuario = ?");
+
+        stmt.setInt(1, idusuario); //seta idusuario no ?
+
+        stmt.execute(); // executa update no banco de dados
+        close(); // fecha conexão com o banco de dados
+    }
+
+//    public void editarUsuario(Usuario usuario) throws Exception {
+//
+//        open(); //abre conexão com o banco de dados
+//
+//        stmt = con.prepareStatement("UPDATE usuario SET ativo = 0 WHERE idusuario = ?");
+//        
+//        stmt.setInt(1, idusuario); //seta idusuario no ?
+//
+//        stmt.execute(); // executa update no banco de dados
+//        close(); // fecha conexão com o banco de dados
+//        
+//    }
+    public Usuario getUsuarioEspecifico(int idUsuario) throws Exception {
+
+        try {
+            open();
+
+            stmt = con.prepareStatement("SELECT idusuario, usuario, senha, ativo, tipoUsuario, idFuncionario, nomeUsuario FROM usuario WHERE idusuario = ?");
+            
+            stmt.setInt(1, idUsuario); //seta idusuario no ?
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            Usuario usuario = new Usuario();
+            
+            while (rs.next()) {
+                
+                usuario.setIdusuario(rs.getInt("idusuario"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setTipoUsuario(rs.getInt("tipoUsuario"));
+                usuario.setIdFuncionario(rs.getInt("idFuncionario"));
+                usuario.setNomeUsuario(rs.getString("nomeUsuario"));
+                
+            }
+            close();
+            return usuario;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
+
 }

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -43,7 +45,7 @@
                 </ul>
             </div>
         </nav>
-        <br><br>
+        <br>
         <!-- div de listagem usuários do sistemaa-->          
         <div>
             <table id="tabela" class="table table-secondary">
@@ -51,15 +53,15 @@
                     <tr>    
                         <th scope="col">Login</th>
                         <th scope="col">Tipo usuário</th>
-                        <th scope="col">Nome funcionario</th>
+                        <th scope="col">Nome usuário</th>
                     </tr>
                 </thead> 
                 <tbody>
                     <c:forEach items="${listaUsuarios}" var="item"> 
                         <tr>
-                            <td>${item.nomeDespesa}</td>
+                            <td>${item.usuario}</td>
                             <td>${item.tipoUsuario}</td>
-                            <td>${item.nomeFuncionario}</td>
+                            <td>${item.nomeUsuario}</td>
                             <!-- botão/form para editar registro tipo despesa , envia para ControllerUsuarioEditar  --> 
                             <td>
                                 <form method="GET" action="usuarioEditar">
@@ -71,6 +73,9 @@
                     </c:forEach>
                 </tbody>
             </table>
-        </div>         
+        </div>
+        <br>
+        <br>
+        <a href="usuarioCadastrar.jsp" class="btn btn-primary" >Voltar</a>
     </body>
 </html>
