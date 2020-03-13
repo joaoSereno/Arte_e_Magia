@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : login
     Created on : 27/01/2020, 23:55:34
     Author     : João Pedro
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="custom/css/paginaLogin.css" />
     </head>
-    <body>            
+    <body>
         <form class="formulario" method="POST" action="logarSistema.jsp"> <%--chama a página que valida o usuário --%>
             <div class="card">
                 <div class="card-img">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-group">
                     <label>Usuário:</label>
-                <input type="text" name="usuario" placeholder="Digite seu usuário">
+                    <input type="text" name="usuario" placeholder="Digite seu usuário">
                 </div>
                 <div class="card-group">
                     <label>Senha:</label>
@@ -39,23 +39,23 @@
                 <br>
                 <div class="login-msg">
                     <%
-                    String usarioInvalido = request.getParameter("usarioInvalido"); //se caiu no else do logarSistema.jsp recebe esse parametro
-                    if(usarioInvalido != null){
-                        if (usarioInvalido.equals("USUARIO_NAO_EXISTE")) {//exibe mensagem de usuario invalido
-                        %>    
-                        Usuário ou senha inválido!
-                        <%
+                        String usarioInvalido = request.getParameter("usarioInvalido"); //se caiu no else do logarSistema.jsp recebe esse parametro
+                        if (usarioInvalido != null) {
+                            if (usarioInvalido.equals("USUARIO_NAO_EXISTE")) {//exibe mensagem de usuario invalido
+                    %>
+                    Usuário ou senha inválido!
+                    <%
+                            }
                         }
-                    }
                     %>
                 </div>
             </div>
             <br>
-            <br>        
+            <br>
         </form>
         <br>
         <form method="GET" action="conexao">
-            <input type="hidden" class="btn btn-info"  value="Testar Conexão"/>
+            <input type="submit" class="btn btn-info"  value="Testar Conexão"/>
         </form>
         <br>
         <h3>${msg}</h3>
