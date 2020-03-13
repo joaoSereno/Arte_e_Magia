@@ -21,32 +21,30 @@
     <body>
         <!-- NavBar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a class="navbar-brand" href="/Arte-E-Magia_tst/paginaInicial.jsp">Arte e Magia</a>
+            <a class="navbar-brand h1 mb-0" href="/Arte-E-Magia_tst/paginaInicial.jsp">Arte e Magia</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon"></span></button>
-
             <div class="collapse navbar-collapse" id="NavbarSite">
-                <ul class="navbar-nav">
-                    <!-- botão sair -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp">Página Inicial</a>
+                <ul class="navbar-nav mr-auto mb-0">
+                    <!-- Botão sair -->
+                    <li class="nav-item h6 mb-0">
+                        <a class="nav-link" href="paginaInicial.jsp">Página Inicial</a>
                     </li>
-                    <!-- botão cadastros -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/paginasDeCadastro.jsp">Cadastros</a>
+                    <!-- Botão cadastros -->
+                    <li class="nav-item h6 mb-0">
+                        <a class="nav-link" href="paginasDeCadastro/cadastros.jsp">Cadastros</a>
                     </li>
-                    <!-- botão relatorios -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/paginasDeRelatorio.jsp">Relatórios</a>
-                    </li>
-                    <!-- botão sair que redireciona para a página deslogar.jsp -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp">Sair</a>
+                    <!-- Botão relatorios -->
+                    <li class="nav-item h6 mb-0">
+                        <a class="nav-link">Relatórios</a>
                     </li>
                 </ul>
+                <!-- Botão Sair -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="deslogar.jsp">Sair</a>
+                    </li>
+                </ul>
+                <!-- Fim navbar da página-->
             </div>
         </nav>
-        <!-- fim navbar da página-->
-        <br>
-    </body>
 </html>
