@@ -13,13 +13,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Página de login</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="custom/css/paginaLogin.css" />
+        <link rel="stylesheet" type="text/css" href="custom/css/paginaDeLogin/paginaLogin.css" />
     </head>
     <body>
         <form class="formulario" method="POST" action="logarSistema.jsp"> <%--chama a página que valida o usuário --%>
             <div class="card">
                 <div class="card-img">
-                    <img src="custom/img/logoFundoLogin.jpg" class="imagem-login">
+                    <img src="custom/img/paginaDeLogin/logoFundoLogin.jpg" class="imagem-login">
                     <h3>Gerencie seu Negócio</h3>
                 </div>
                 <div class="card-group">

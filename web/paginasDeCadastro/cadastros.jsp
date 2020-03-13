@@ -12,6 +12,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastros</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </head>
     <body>
         <!-- NavBar -->
@@ -20,23 +23,23 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
                 <ul class="navbar-nav mr-auto mb-0">
-                    <!-- Botão sair -->
+                    <!-- Botão página inicial -->
                     <li class="nav-item h6 mb-0">
-                        <a class="nav-link" href="paginaInicial.jsp">Página Inicial</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp">Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
                     <li class="nav-item h6 mb-0">
-                        <a class="nav-link" href="paginasDeCadastro/cadastros.jsp">Cadastros</a>
+                        <a class="nav-link" href="cadastros.jsp">Cadastros</a>
                     </li>
                     <!-- Botão relatorios -->
                     <li class="nav-item h6 mb-0">
-                        <a class="nav-link" href="paginasDeRelatorios/relatorios.jsp">Relatórios</a>
+                        <a class="nav-link" href="../paginasDeRelatorios/relatorios.jsp">Relatórios</a>
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="deslogar.jsp">Sair</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp">Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->
@@ -96,7 +99,4 @@
             <!-- fim Modal -->
         </div>
     </body>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>

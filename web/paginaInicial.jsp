@@ -25,9 +25,9 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
                 <ul class="navbar-nav mr-auto mb-0">
-                    <!-- Botão sair -->
+                    <!-- Botão página inicial -->
                     <li class="nav-item h6 mb-0">
-                        <a class="nav-link" href="paginaInicial.jsp">Página Inicial</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp">Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
                     <li class="nav-item h6 mb-0">
@@ -35,13 +35,13 @@
                     </li>
                     <!-- Botão relatorios -->
                     <li class="nav-item h6 mb-0">
-                        <a class="nav-link">Relatórios</a>
+                        <a class="nav-link" href="paginasDeRelatorios/relatorios.jsp">Relatórios</a>
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="deslogar.jsp">Sair</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp">Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->

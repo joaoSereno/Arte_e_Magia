@@ -49,7 +49,7 @@ public class ControllerUsuarioEditar extends HttpServlet {
 
             usuario = usuarioBanco.getUsuarioEspecifico(idUsuario2); //recebe usuario do banco na instancia do usuario
             
-            if(usuario.getIdFuncionario() != null){ //se o usuario editado for tipo FUNC 
+            if(usuario.getIdFuncionario() != 0){ //se o usuario editado for tipo FUNC 
                 
                 FuncionarioSQL funcionarioBanco = new FuncionarioSQL(); //instancia a classe de comunicação com o banco de dados de funcionario
                 
