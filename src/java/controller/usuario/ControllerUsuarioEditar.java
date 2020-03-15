@@ -52,11 +52,14 @@ public class ControllerUsuarioEditar extends HttpServlet {
             if(usuario.getIdFuncionario() != 0){ //se o usuario editado for tipo FUNC 
                 
                 FuncionarioSQL funcionarioBanco = new FuncionarioSQL(); //instancia a classe de comunicação com o banco de dados de funcionario
+                Funcionario funcionarioDoUsuario = new Funcionario();
                 
                 listaFuncionario = funcionarioBanco.getFuncionarioNaoTemUsuario(); //recebe na lista os usuarios para ser editado
+                funcionarioDoUsuario = funcionarioBanco.getFuncionarioEspecifico(usuario.getIdFuncionario()); //recebe na instancia funcionario, o funcionario do usuario
                 valorDisplay = 1;
                 
                 //seta os atributos necessarios para listar os funcionarios disponiveis caso for cadastro do tipo FUNC
+                request.setAttribute("funcionarioDoUsuario", funcionarioDoUsuario);
                 request.setAttribute("listaFuncionario", listaFuncionario);
                 request.setAttribute("valorDisplay", valorDisplay);
                 

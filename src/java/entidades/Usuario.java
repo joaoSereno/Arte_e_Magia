@@ -27,6 +27,34 @@ public class Usuario{
         this.idusuario = idusuario;
     }
 
+    public Usuario(Integer idusuario, String usuario, String senha, String nomeUsuario) {
+        this.idusuario = idusuario;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.nomeUsuario = nomeUsuario;
+    }
+    
+    public Usuario(Integer idusuario, String usuario, String nomeUsuario) {
+        this.idusuario = idusuario;
+        this.usuario = usuario;
+        this.nomeUsuario = nomeUsuario;
+    }
+ 
+    public Usuario(Integer idusuario, String usuario, String senha, int idFuncionario, String nomeUsuario) {
+        this.idusuario = idusuario;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.idFuncionario = idFuncionario;
+        this.nomeUsuario = nomeUsuario;
+    }
+    
+    public Usuario(Integer idusuario, String usuario, int idFuncionario, String nomeUsuario) {
+        this.idusuario = idusuario;
+        this.usuario = usuario;
+        this.idFuncionario = idFuncionario;
+        this.nomeUsuario = nomeUsuario;
+    }
+    
     public Usuario(Integer idusuario, String usuario, String senha, int ativo, int tipoUsuario) {
         this.idusuario = idusuario;
         this.usuario = usuario;

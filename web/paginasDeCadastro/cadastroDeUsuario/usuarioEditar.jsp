@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -48,7 +49,8 @@
         <br>
         <h3>Edição de usuário</h3>
         <br>
-        <form method="POST" action="usuarioEditar2"> 
+        <form method="GET" action="usuarioEditar2"> 
+                <input type="hidden" name="idusuario" value="${usuario.idusuario}">           
                 Login:
                 <input type="text" name="login" value="${usuario.usuario}">
                 <br>
@@ -58,14 +60,12 @@
                 <br>
                 <br>
                 <div id="func" style="display: none"> 
-                    <input type="hidden" id="valorDisplay" value="${valorDisplay}">
+                    <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
                     Funcionario:
                     <select type="select" name="idFuncionario" >
-                        <option value="">Clique para selecionar</option>
-                            <c:forEach var="item" items="${funcionarios}">
-                                <option value="${item.idFuncionario}">
-                                    ${item.nomeFuncionario}
-                                </option>
+                        <option value="${funcionarioDoUsuario.idFuncionario}">${funcionarioDoUsuario.nomeFuncionario}</option>
+                            <c:forEach var="item" items="${listaFuncionario}">
+                                <option value="${item.idFuncionario}">${item.nomeFuncionario}</option>
                             </c:forEach>
                     </select>                                
                 </div>
@@ -74,11 +74,15 @@
                 <button type="submit">Confirmar</button>                    
         </form>
         <br>
-        <form method="POST" action="trocarSenhaUsuario"> 
+        <form method="POST" action="trocarSenhaUsuario">
+            <input type="hidden" name="idusuario" value="${usuario.idusuario}"> 
+            <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
             <button type="submit">Alterar Senha</button>                    
         </form>
         <br>
-        <form method="GET" action="inativarUsuario"> 
+        <form method="GET" action="inativarUsuario">
+            <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">  
+            <input type="hidden" name="idusuario" value="${usuario.idusuario}"> 
             <button type="submit">Excluir</button>                    
         </form>        
         <br>

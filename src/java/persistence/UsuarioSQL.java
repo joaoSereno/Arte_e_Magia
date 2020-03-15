@@ -128,18 +128,36 @@ public class UsuarioSQL extends Conexao {
         close(); // fecha conexão com o banco de dados
     }
 
-//    public void editarUsuario(Usuario usuario) throws Exception {
-//
-//        open(); //abre conexão com o banco de dados
-//
-//        stmt = con.prepareStatement("UPDATE usuario SET ativo = 0 WHERE idusuario = ?");
-//        
-//        stmt.setInt(1, idusuario); //seta idusuario no ?
-//
-//        stmt.execute(); // executa update no banco de dados
-//        close(); // fecha conexão com o banco de dados
-//        
-//    }
+    public void editarUsuario(Usuario usuario) throws Exception {
+
+        open(); //abre conexão com o banco de dados
+
+        if(usuario.getIdFuncionario() != 0){ //se for cadastro do tipo FUNC
+            
+        }else{ //se for cadastro do tipo ADM
+            
+        }
+        stmt = con.prepareStatement("UPDATE usuario SET usuario = ?, idFuncionario =?, nomeUsuario =? WHERE idusuario = ?");
+        stmt = con.prepareStatement("UPDATE usuario SET usuario = ?, nomeUsuario =? WHERE idusuario = ?");
+        
+        //setando valores do update
+        stmt.setString(1, usuario.getUsuario());
+        stmt.setInt(2, usuario.getIdFuncionario()); 
+        stmt.setString(3, usuario.getNomeUsuario()); 
+        stmt.setInt(4, usuario.getIdusuario()); 
+        
+        //setando valores do update
+        stmt.setString(1, usuario.getUsuario());
+        stmt.setString(2, usuario.getNomeUsuario()); 
+        stmt.setInt(3, usuario.getIdusuario()); 
+
+ 
+
+        stmt.execute(); // executa update no banco de dados
+        close(); // fecha conexão com o banco de dados
+        
+    }
+    
     public Usuario getUsuarioEspecifico(int idUsuario) throws Exception {
 
         try {
