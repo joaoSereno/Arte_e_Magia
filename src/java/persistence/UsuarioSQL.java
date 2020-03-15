@@ -24,14 +24,14 @@ public class UsuarioSQL extends Conexao {
             ArrayList<Usuario> listaUsuario = new ArrayList();
 
             stmt = con.prepareStatement("SELECT idusuario,\n"
-                                        + "	usuario,\n"
-                                        + "     senha,\n"
-                                        + "     tipoUsuario,\n"
-                                        + "     idFuncionario,\n"
-                                        + "     nomeUsuario \n"
-                                        + "FROM usuario\n"
-                                        + "WHERE ativo = 1 \n"
-                                        + "ORDER BY tipoUsuario");
+                    + "	usuario,\n"
+                    + "     senha,\n"
+                    + "     tipoUsuario,\n"
+                    + "     idFuncionario,\n"
+                    + "     nomeUsuario \n"
+                    + "FROM usuario\n"
+                    + "WHERE ativo = 1 \n"
+                    + "ORDER BY tipoUsuario");
 
             ResultSet rs = stmt.executeQuery();
 
@@ -132,58 +132,58 @@ public class UsuarioSQL extends Conexao {
 
         open(); //abre conexão com o banco de dados
 
-        if(usuario.getIdFuncionario() != 0){ //se for cadastro do tipo FUNC
-            
-        }else{ //se for cadastro do tipo ADM
-            
-        }
-        stmt = con.prepareStatement("UPDATE usuario SET usuario = ?, idFuncionario =?, nomeUsuario =? WHERE idusuario = ?");
-        stmt = con.prepareStatement("UPDATE usuario SET usuario = ?, nomeUsuario =? WHERE idusuario = ?");
-        
-        //setando valores do update
-        stmt.setString(1, usuario.getUsuario());
-        stmt.setInt(2, usuario.getIdFuncionario()); 
-        stmt.setString(3, usuario.getNomeUsuario()); 
-        stmt.setInt(4, usuario.getIdusuario()); 
-        
-        //setando valores do update
-        stmt.setString(1, usuario.getUsuario());
-        stmt.setString(2, usuario.getNomeUsuario()); 
-        stmt.setInt(3, usuario.getIdusuario()); 
+        if (usuario.getIdFuncionario() != null) { //se for cadastro do tipo FUNC
 
- 
+            stmt = con.prepareStatement("UPDATE usuario SET usuario = ?, idFuncionario =?, nomeUsuario =? WHERE idusuario = ?");
+
+            //setando valores do update
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setInt(2, usuario.getIdFuncionario());
+            stmt.setString(3, usuario.getNomeUsuario());
+            stmt.setInt(4, usuario.getIdusuario());
+
+        } else { //se for cadastro do tipo ADM
+
+            stmt = con.prepareStatement("UPDATE usuario SET usuario = ?, nomeUsuario =? WHERE idusuario = ?");
+
+            //setando valores do update
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setString(2, usuario.getNomeUsuario());
+            stmt.setInt(3, usuario.getIdusuario());
+
+        }
 
         stmt.execute(); // executa update no banco de dados
         close(); // fecha conexão com o banco de dados
-        
+
     }
-    
+
     public Usuario getUsuarioEspecifico(int idUsuario) throws Exception {
 
         try {
             open();
 
             stmt = con.prepareStatement("SELECT idusuario, usuario, senha, ativo, tipoUsuario, idFuncionario, nomeUsuario FROM usuario WHERE idusuario = ?");
-            
+
             stmt.setInt(1, idUsuario); //seta idusuario no ?
-            
+
             ResultSet rs = stmt.executeQuery();
-            
+
             Usuario usuario = new Usuario();
-            
+
             while (rs.next()) {
-                
+
                 usuario.setIdusuario(rs.getInt("idusuario"));
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setTipoUsuario(rs.getInt("tipoUsuario"));
                 usuario.setIdFuncionario(rs.getInt("idFuncionario"));
                 usuario.setNomeUsuario(rs.getString("nomeUsuario"));
-                
+
             }
             close();
             return usuario;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

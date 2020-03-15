@@ -52,11 +52,14 @@
         <form method="GET" action="usuarioEditar2"> 
                 <input type="hidden" name="idusuario" value="${usuario.idusuario}">           
                 Login:
+                <input type="hidden" name="loginAtual" value="${usuario.usuario}">
                 <input type="text" name="login" value="${usuario.usuario}">
                 <br>
                 <br>
-                Nome do usuário:
-                <input type="text" name="nomeUsuario" value="${usuario.nomeUsuario}">
+                <div id="nomeUsuario">
+                    Nome do usuário:
+                    <input type="text" name="nomeUsuario" value="${usuario.nomeUsuario}">
+                </div>
                 <br>
                 <br>
                 <div id="func" style="display: none"> 
@@ -101,12 +104,6 @@
             document.getElementById('func').style.display = 'block';  //habilita a div com id "func"              
             document.getElementById('nomeUsuario').style.display = 'none'; //desabilita a div com id "nomeUsuario"       
         }           
-        //se clicar no botão ADM vai ocultar a div com id "func" e desocultar a div com id "nomeUsuario"
-        function Adm() {
-            document.getElementById('func').style.display = 'none';               
-            document.getElementById('nomeUsuario').style.display = 'block';                  
-        }; 
-
     </script>
     </body>
 </html>
