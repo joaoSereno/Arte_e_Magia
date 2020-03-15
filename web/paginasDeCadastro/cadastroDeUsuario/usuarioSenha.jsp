@@ -1,11 +1,11 @@
 <%-- 
-    Document   : usuarioEditar
-    Created on : 11/03/2020, 22:56:53
+    Document   : usuarioSenha
+    Created on : 15/03/2020, 20:10:10
     Author     : João Pedro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -47,62 +47,26 @@
             </div>
         </nav>
         <br>
-        <h3>Edição de usuário</h3>
+        <h3>Edição de senha usuário</h3>
         <br>
-        <form method="GET" action="usuarioEditar2"> 
-                <input type="hidden" name="idusuario" value="${usuario.idusuario}">           
-                Login:
-                <input type="hidden" name="loginAtual" value="${usuario.usuario}">
-                <input type="text" name="login" value="${usuario.usuario}">
-                <br>
-                <br>
-                <div id="nomeUsuario">
-                    Nome do usuário:
-                    <input type="text" name="nomeUsuario" value="${usuario.nomeUsuario}">
-                </div>
-                <br>
-                <br>
-                <div id="func" style="display: none"> 
-                    <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
-                    Funcionario:
-                    <select type="select" name="idFuncionario" >
-                        <option value="${funcionarioDoUsuario.idFuncionario}">${funcionarioDoUsuario.nomeFuncionario}</option>
-                            <c:forEach var="item" items="${listaFuncionario}">
-                                <option value="${item.idFuncionario}">${item.nomeFuncionario}</option>
-                            </c:forEach>
-                    </select>                                
-                </div>
-                <br>
-                <br>
-                <button type="submit">Confirmar</button>                    
+        <form method="POST" action="alterarSenha">   
+            <input type="hidden" name="idUsuario" value="${idUsuario}">
+            Nova senha:
+            <input type="text" name="senha" value="">
+            Confirmação de senha:
+            <input type="text" name="confirmacaoDeSenha" value="">
         </form>
         <br>
-        <form method="POST" action="trocarSenhaUsuario">
-            <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
-            <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
-            <button type="submit">Alterar Senha</button>                    
-        </form>
-        <br>
-        <form method="GET" action="inativarUsuario">
-            <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
-            <button type="submit">Excluir</button>                    
-        </form>        
         <br>
         <h3>${msg}</h3>
         <br>
         <div>
-            <!-- form para voltar a pagina e listar os usuarios cadastrados -->
-            <form method="GET" action="listaUsuarios"> <%-- joga formulario para o controllerUsuarioListar --%>
+            <!-- form para voltar a pagina  -->
+            <form method="GET" action="usuarioEditar"> 
+                <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
+                <input type="hidden" name="idUsuario" value="${idUsuario}">
                 <button type="submit" value="ListaUsuarios">Voltar</button>
             </form>                        
         </div> 
-    <script>            
-        //sempre que carregar a página vai verificar se o valorDisplay é == 1 
-        var valorDisplay = document.getElementById('valorDisplay').value;
-        if(valorDisplay == 1){
-            document.getElementById('func').style.display = 'block';  //habilita a div com id "func"              
-            document.getElementById('nomeUsuario').style.display = 'none'; //desabilita a div com id "nomeUsuario"       
-        }           
-    </script>
     </body>
 </html>
