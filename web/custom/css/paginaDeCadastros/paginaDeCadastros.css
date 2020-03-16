@@ -12,8 +12,9 @@ body {
     background-color: #d9dbd4;
 }
 
+/*css da nav da nav tem que ser no css em */
 .navbar-css {
-    background-color: #DB7093 !important;
+    background-color: #ff9dbd !important;
 }
 
 #card-deck {
