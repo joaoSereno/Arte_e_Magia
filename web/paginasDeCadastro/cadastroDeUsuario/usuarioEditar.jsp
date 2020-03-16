@@ -77,7 +77,7 @@
                 <button type="submit">Confirmar</button>                    
         </form>
         <br>
-        <form method="POST" action="trocarSenhaUsuario">
+        <form method="GET" action="trocarSenhaUsuario">
             <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
             <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
             <button type="submit">Alterar Senha</button>                    

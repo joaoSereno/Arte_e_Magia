@@ -49,12 +49,15 @@
         <br>
         <h3>Edição de senha usuário</h3>
         <br>
-        <form method="POST" action="alterarSenha">   
+        <form method="POST" action="trocarSenhaUsuario">   
+            <input type="hidden" name="valorDisplay" value="${valorDisplay}">
             <input type="hidden" name="idUsuario" value="${idUsuario}">
             Nova senha:
-            <input type="text" name="senha" value="">
+            <input type="password" name="senha" value="">
             Confirmação de senha:
-            <input type="text" name="confirmacaoDeSenha" value="">
+            <input type="password" name="confirmacaoDeSenha" value="">
+            <br>
+            <button type="submit">Confirmar</button> 
         </form>
         <br>
         <br>
@@ -63,7 +66,7 @@
         <div>
             <!-- form para voltar a pagina  -->
             <form method="GET" action="usuarioEditar"> 
-                <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
+                <input type="hidden" name="valorDisplay" value="${valorDisplay}">
                 <input type="hidden" name="idUsuario" value="${idUsuario}">
                 <button type="submit" value="ListaUsuarios">Voltar</button>
             </form>                        

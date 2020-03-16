@@ -196,4 +196,18 @@ public class UsuarioSQL extends Conexao {
         }
     }
 
+    public void novaSenha(int idUsuario) throws Exception {
+
+        open(); //abre conexão com o banco de dados
+
+        stmt = con.prepareStatement("UPDATE usuario SET senha = ? WHERE idusuario = ?");
+
+        //setando valores do update
+        stmt.setInt(1, idUsuario);
+
+        stmt.execute(); // executa update no banco de dados
+        close(); // fecha conexão com o banco de dados
+        
+    }
+
 }
