@@ -9,12 +9,7 @@ and open the template in the editor.
 */
 
 body {
-    background-color: #d9dbd4;
-}
-
-/*css da nav da nav tem que ser no css em */
-.navbar-css {
-    background-color: #ff9dbd !important;
+    background-color: #ccd4b82b;
 }
 
 #card-deck {

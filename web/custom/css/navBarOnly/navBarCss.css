@@ -12,3 +12,7 @@ and open the template in the editor.
     width: 120px;
     border-radius: 10px;
 }
+
+.navbar-css {
+    background-color: #ff9dbd !important;
+}
