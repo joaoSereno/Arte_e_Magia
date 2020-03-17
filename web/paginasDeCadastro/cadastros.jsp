@@ -22,7 +22,6 @@
         <!-- NavBar -->
         <nav class="navbar navbar-expand-lg navbar-light navbar-css">
             <img src="../custom/img/logoArte_E_Magia.png" id="logo-navbar">
-            <a class="navbar-brand h1 mb-0" href="/Arte-E-Magia_tst/paginaInicial.jsp"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
                 <ul class="navbar-nav ml-auto mb-0">
@@ -75,14 +74,14 @@
             <div class="card" id="cards" style="width: 14rem;">
                 <img src="../custom/img/avatares-cards/cadastrar-cliente.jpg" class="car-img-top" alt="Funcionarios" id="imagens-cards">
                 <div class="card-body">
-                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn btn-primary" id="botoes-card">Pagamento</a>
+                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn btn-primary" id="botoes-card">Forma de pagamento</a>
                 </div>
             </div>
             <!-- CardTipoDespesa -->
             <div class="card" id="cards" style="width: 14rem;">
                 <img src="../custom/img/avatares-cards/cadastrar-cliente.jpg" class="car-img-top" alt="Tipo-Despesas" id="imagens-cards">
                 <div class="card-body">
-                    <a href="cadastroTipoDespesa/tipoDespesaPrincipal.jsp" type="button" class="btn btn-primary" id="botoes-card">Despesa</a>
+                    <a href="cadastroTipoDespesa/tipoDespesaPrincipal.jsp" type="button" class="btn btn-primary" id="botoes-card">Tipo de despesa</a>
                 </div>
             </div>
         </div>

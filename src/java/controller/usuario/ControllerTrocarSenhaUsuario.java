@@ -77,6 +77,7 @@ public class ControllerTrocarSenhaUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idUsuario2 = 0;
         int valorDisplay2 = 0;
+        String msg = "";
 
         //pega os parametros do form
         String idUsuario = request.getParameter("idUsuario");
@@ -98,9 +99,54 @@ public class ControllerTrocarSenhaUsuario extends HttpServlet {
         String senha = request.getParameter("senha");
         String confirmacaoDeSenha = request.getParameter("confirmacaoDeSenha");
 
-        if (idUsuario2 != 0) {
-            
-            
+        if (idUsuario2 != 0) { //se existir usuário
+
+            if (!senha.equals("")) { //se a senha for diferente de vazia
+
+                if (senha.equals(confirmacaoDeSenha)) {//se a senha de confirmação e senha forem iguais
+
+                    UsuarioSQL usuarioBanco = new UsuarioSQL();//instanciando classe de comunicação com o banco de dados
+
+                    try {
+
+                        usuarioBanco.novaSenha(idUsuario2, senha); //chama método que realiza a alteração na senha do usuario
+
+                        msg = "Senha do usuário alterada com sucesso!";
+
+                        //setando usuário editado que será jogados para outra página
+                        request.setAttribute("idUsuario", idUsuario2);
+                        request.setAttribute("valorDisplay", valorDisplay2);
+                        request.setAttribute("msg", msg);
+
+                        request.getRequestDispatcher("usuarioSenha.jsp").forward(request, response);
+                        
+                    } catch (Exception ex) {
+                        Logger.getLogger(ControllerTrocarSenhaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else { //se não igual
+
+                    msg = "Senha e senha de confirmação não são iguais!";
+
+                    //setando usuário editado que será jogados para outra página
+                    request.setAttribute("idUsuario", idUsuario2);
+                    request.setAttribute("valorDisplay", valorDisplay2);
+                    request.setAttribute("msg", msg);
+
+                    request.getRequestDispatcher("usuarioSenha.jsp").forward(request, response);
+                }
+
+            } else { //se não for diferente de vazia
+
+                msg = "Senha não pode ser em branco";
+
+                //setando usuário editado que será jogados para outra página
+                request.setAttribute("idUsuario", idUsuario2);
+                request.setAttribute("valorDisplay", valorDisplay2);
+                request.setAttribute("msg", msg);
+
+                request.getRequestDispatcher("usuarioSenha.jsp").forward(request, response);
+            }
 
         } else {//se não existir usuario, só despacha de volta para a página
 
