@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.FuncionarioSQL;
 import persistence.TelefoneSQL;
+import persistence.UsuarioSQL;
 
 /**
  *
@@ -40,6 +41,7 @@ public class ControllerInativarFuncionario extends HttpServlet {
 
         FuncionarioSQL funcionarioBanco = new FuncionarioSQL();//instanciando classe do banco de dados para fazer o update no banco
         TelefoneSQL telefoneBanco = new TelefoneSQL(); //instanciando classe de comunicação com o banco para fazer delete
+        UsuarioSQL usuarioBanco = new UsuarioSQL(); //instanciando classe de comunicação com o banco de dados para inativar a conta de usuario que esteja vinculado ao funcionario
         
         try {
 
@@ -47,6 +49,7 @@ public class ControllerInativarFuncionario extends HttpServlet {
 
                 funcionarioBanco.inativarCadastro(idFuncionario2);//chama metodo que faz update para inativar o funcionario e passa o idFuncionario pego no request
                 telefoneBanco.excluirTelFuncionario(idFuncionario2);//chama método que delete os telefonedo funcionario
+                usuarioBanco.inativaUsuarioDeFuncionario(idFuncionario2); //chama método que inativa conta de usuario do funcionario
                 
                 request.setAttribute("msg", msg);
 

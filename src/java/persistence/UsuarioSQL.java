@@ -127,6 +127,18 @@ public class UsuarioSQL extends Conexao {
         stmt.execute(); // executa update no banco de dados
         close(); // fecha conexão com o banco de dados
     }
+    
+    public void inativaUsuarioDeFuncionario(int idFuncionario) throws Exception {
+
+        open(); //abre conexão com o banco de dados
+
+        stmt = con.prepareStatement("UPDATE usuario SET ativo = 0 WHERE idFuncionario = ?");
+
+        stmt.setInt(1, idFuncionario); //seta idFuncionario no ?
+
+        stmt.execute(); // executa update no banco de dados
+        close(); // fecha conexão com o banco de dados
+    }
 
     public void editarUsuario(Usuario usuario) throws Exception {
 

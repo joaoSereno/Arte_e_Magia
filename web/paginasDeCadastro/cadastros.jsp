@@ -104,15 +104,14 @@
             <div class="card" id="cards" style="width: 14rem;">
                 <img src="../custom/img/avatares-cards/cadastrar-cliente.jpg" class="car-img-top" alt="ContaAcesso" id="imagens-cards">
                 <div class="card-body">
-                    <a href="cadastroDeUsuario/usuarioCadastrar.jsp" type="button "class="btn btn-primary" id="botoes-card">Acesso</a>
+                    <a href="cadastroDeUsuario/usuarioCadastrar.jsp" type="button "class="btn btn-primary" id="botoes-card">Conta de acesso</a>
                 </div>
             </div>
             <!-- Div Botão Modal Aniversariante -->
             <div class="card" id="cards" style="width: 14rem;">
                 <img src="../custom/img/avatares-cards/cadastrar-cliente.jpg" class="car-img-top" alt="Modal" id="imagens-cards">
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary" id="botoes-card" data-toggle="modal" data-target="#novoTelefone">
-                        Notificação</button>
+                    <button type="button" class="btn btn-primary" id="botoes-card" data-toggle="modal" data-target="#novoTelefone">Config. Aniversariante</button>
                 </div>
             </div>
         </div>

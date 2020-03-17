@@ -83,10 +83,37 @@
             <button type="submit">Alterar Senha</button>                    
         </form>
         <br>
-        <form method="GET" action="inativarUsuario">
-            <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
-            <button type="submit">Excluir</button>                    
-        </form>        
+        <!-- botão que abre o modal de confirmação de exclusão -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
+            Excluir
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Excluir usuário</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja realizar a exclusão do cadastro?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <!-- form realizar a exclusão do usuario -->
+                        <form method="POST" action="inativarUsuario">
+                            <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
+                            <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
+                            <button type="submit">Excluir</button>                    
+                        </form>     
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fim Modal de exclusão-->      
         <br>
         <h3>${msg}</h3>
         <br>
