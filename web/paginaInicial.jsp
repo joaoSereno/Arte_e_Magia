@@ -34,6 +34,10 @@
                     <li class="nav-item h5 mb-0">
                         <a class="nav-link" href="paginasDeCadastro/cadastros.jsp">Cadastros</a>
                     </li>
+                    <!-- Config aniversariante -->
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="../configAniversariante/relatorios.jsp">Config. Aniversáriante</a>
+                    </li>                    
                     <!-- Botão relatorios -->
                     <li class="nav-item h5 mb-0">
                         <a class="nav-link" href="paginasDeRelatorios/relatorios.jsp">Relatórios</a>

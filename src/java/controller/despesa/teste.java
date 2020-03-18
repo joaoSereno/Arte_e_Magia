@@ -18,20 +18,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author João Pedro
  */
-
 @WebServlet("/paginasDeCadastro/cadastroDeDespesa/teste")
-public class teste extends HttpServlet{
+public class teste extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int a = 1;
-        
-        List<Integer> qtdDespesa = null; //lista que vai receber os dados do cliente
-        
-        
-        
-        request.setAttribute("qtdDespesa", qtdDespesa);
-        request.getRequestDispatcher("despesaCadastrar.jsp").forward(request, response);
-        
+
+        String teste = request.getParameter("teste");
+        String teste2 = request.getParameter("teste");
+
+
     }
-    
+
 }

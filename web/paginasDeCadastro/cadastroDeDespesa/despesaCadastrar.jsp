@@ -15,6 +15,7 @@
         <title>Cadastros</title>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
@@ -47,15 +48,21 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <br>
         <h3>Tela cadastro despesa</h3>
         <br>
-        CPF:
-        <input type="text" name="teste">
-        <!-- form voltar para a página de funcionario -->
         <form method="GET" action="teste">
-            <input type="hidden" name="teste" value="1">
-            <button class="btn btn-warning"> + </button>
+            <button type="button" id="add_valorEpagamento"> + </button> 
+            <div id="divValorEpagamento">
+                Valor:
+                <input id="teste" type="text" name="teste">
+                <br>
+            </div>
+            <button type="submit" value="Cadastrar"/>Cadastrar</button> 
         </form>
     </body>
+    <script>
+        $( "#add_valorEpagamento" ).click(function() {
+            $( "#divValorEpagamento" ).append( '<div id="divValorEpagamento">Valor:<input type="text" name="teste"><br></div>' );
+        });
+    </script>
 </html>
