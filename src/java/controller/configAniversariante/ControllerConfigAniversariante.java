@@ -19,7 +19,7 @@ import persistence.ConfigAniversarianteSQL;
  *
  * @author João Pedro
  */
-@WebServlet("/paginasDeCadastro/configAniversariante")
+@WebServlet("/paginasDeCadastro/configAniversariante/configAniversariante")
 public class ControllerConfigAniversariante extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,7 +46,9 @@ public class ControllerConfigAniversariante extends HttpServlet {
             
             }
 
-            request.getRequestDispatcher("cadastros.jsp").forward(request, response);
+            //set de atributo para outra página
+            request.setAttribute("msg", "Configurado para "+qtdDias2+" dias com sucesso!");   
+            request.getRequestDispatcher("telaConfigAniversariante.jsp").forward(request, response);
 
         } catch (Exception ex) {
             Logger.getLogger(ControllerConfigAniversariante.class.getName()).log(Level.SEVERE, null, ex);

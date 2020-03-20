@@ -3,8 +3,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/*
-    Created on : 15/03/2020, 13:48:13
+/* 
+    Created on : 19/03/2020, 23:50:53
     Author     : João Pedro
 */
 
@@ -49,4 +49,5 @@ body {
 .botoes-card:hover{
     background-color: #0099c5e0 !important;
 }
+
 
