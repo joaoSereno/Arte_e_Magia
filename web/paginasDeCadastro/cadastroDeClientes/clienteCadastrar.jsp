@@ -15,25 +15,32 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../custom/css/cadastroDeClientes/cadastroDeClientes.css">
+        <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
     </head>
     <body>
         <!-- NavBar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand h1 mb-0" href="/Arte-E-Magia_tst/paginaInicial.jsp">Arte e Magia</a>
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-lg navbar-light navbar-css">
+            <img src="../../custom/img/logoArte_E_Magia.png" id="logo-navbar">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
-                <ul class="navbar-nav mr-auto mb-0">
+                <ul class="navbar-nav ml-auto mb-0">
                     <!-- Botão página inicial -->
-                    <li class="nav-item h6 mb-0">
+                    <li class="nav-item h5 mb-0">
                         <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp">Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
-                    <li class="nav-item h6 mb-0">
+                    <li class="nav-item h5 mb-0">
                         <a class="nav-link" href="../cadastros.jsp">Cadastros</a>
                     </li>
-                    <!-- Botão relatorios -->
-                    <li class="nav-item h6 mb-0">
+                    <!-- Config aniversariante -->
+                    <li class="nav-item h5 mb-0">
                         <a class="nav-link" href="../../paginasDeRelatorios/relatorios.jsp">Relatórios</a>
+                    </li>                    
+                    <!-- Botão relatorios -->
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="paginasDeCadastro/configAniversariante/telaConfigAniversariante.jsp">Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
@@ -45,63 +52,77 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <br>
-        <h3>Tela cadastrar cliente</h3>
-        <br>
-        <br>
         <!-- form para cadastrar cliente-->
-        <div>
-            <form method="GET" action="cadastrarCliente"> <%-- joga formulario para o controllerClienteCadastrar --%>
-                Nome do cliente:
-                <input type="text" name="nomeCliente">
-                <br>
-                <br>
-                CPF:
-                <input type="text" name="cpf">
-                <br>
-                <br>
-                Tipo de Festa:
-                <input type="text" name="tipoFesta">
-                <br>
-                <br>
-                Contato:
-                <input type="text" name="contato">
-                <select type="select" name="tipoTelefone">
-                    <option value="Celular">Celular</option>
-                    <option value="Fixo">Fixo</option>
-                </select> 
-                <br>
-                <br>
-                <h6>Endereço:</h6>
-                CEP:
-                <input type="text" name="cep">
-                CIDADE:
-                <input type="text" name="cidade">
-                BAIRRO:
-                <input type="text" name="bairro">
-                RUA:
-                <input type="text" name="rua">
-                NUMERO:
-                <input type="text" name="numero">
-                COMPLEMENTO:
-                <input type="text" name="complemento">
-                <br>
-                <br>
-                <button type="submit" value="Cadastrar"/>Cadastrar</button>
-            </form>
+        <hr/>
+            <h4>Dados do Cliente</h4>
+            <form class="form-group" id="formgroup" method="GET" action="cadastrarCliente"><%-- joga formulario para o controllerClienteCadastrar --%>
+                <div class="row formularios">
+                    <div class="col">
+                        <label for="cadastrarCliente">Nome do Cliente</label>
+                        <input type="text" class="form-control" name="nomeCliente" id="validationTooltip01" placeholder="Nome do Cliente" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="cpfCliente">CPF Cliente</label>
+                        <input type="txt" class="form-control" name="cpf" id="cpfCliente" placeholder="CPF do Cliente">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipoFesta">Tipo de Festa</label>
+                        <input type="txt" class="form-control" name="tipoFesta" id="tipoFesta" placeholder="Tipo Festa">
+                    </div>
+                </div>
+                <div class="row formularios2">
+                    <div class="col-md-2">
+                        <label for="contatoCliente" id="lables">Contato</label>
+                        <input type="txt" class="form-control" name="contato" id="contato" placeholder="Contato">
+                        <select class='form-control'>
+                            <option>Celular</option>
+                            <option>Fixo</option>
+                        </select>
+                    </div>
+                </div>
+                <hr/>
+                <h4>Dados Residenciais</h4>
+                <div class="row formularios3">
+                    <div class="col">
+                        <label for="cep">Logradouro</label>
+                        <input type="text" class="form-control" name="rua" id="logradouro" placeholder="Nome Logradouro">
+                    </div>
+                    <div class="col">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade">
+                    </div>
+                    <div class="col">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro">
+                    </div>
+                    <div class="row formularios4">    
+                        <div class="col">
+                            <label for="cep">CEP</label>
+                            <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP Logradouro">
+                        </div>
+                        <div class="col">
+                            <label for="numero">Número</label>
+                            <input type="text" class="form-control" name="numero" id="numero" placeholder="Número residência">
+                        </div>
+                        <div class="col">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento">
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <button class="btn btn-primary" type="submit" value="Finaliza Cadastro">Finalizar Cadastro</button>
+            </form>  
             <!-- fim do form para cadastrar cliente-->    
-        <div>
-        <h3>${msg}</h3>
-        <br>
-        <br>
-        <div>
+            <h3>${msg}</h3>
             <!-- form para listar os clientes cadastrados -->
-            <form method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
-                <button type="submit" value="ListarFuncionarios"/>Listar Clientes</button>
-            </form>                        
-        </div>   
-        <br>
-        <br>
-        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
+            <div class="row botoes-inf">
+                <div class="col offset-md-4">
+                    <form class="form-inline botoes-form" method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
+                        <button class="btn btn-primary" type="submit" value="ListarFuncionarios"/>Listar Clientes</button>
+                        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
+                    </form>
+                </div>
+            </div>
     </body>
 </html>

@@ -15,4 +15,10 @@ and open the template in the editor.
 
 .navbar-css {
     background-color: #0099c5 !important;
+    color: white !important;
+}
+
+
+li > a{
+    color: white !important;
 }
