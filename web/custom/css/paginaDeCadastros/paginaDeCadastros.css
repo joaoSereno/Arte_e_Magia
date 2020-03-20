@@ -22,32 +22,31 @@ body {
 }
 
 
-#imagens-cards {
+.imagens-cards {
     width: 100%;
     margin: auto;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
 }
 
-#cards {
+.cards {
     border-radius: 25px;
-    box-shadow: 0px 0px 4px #DB7093;
+    box-shadow: 0px 0px 4px #0099c5;
     margin: auto;
-
+    width: 14rem;
 }
 
-#botoes-card {
+.botoes-card {
     width: 100%;
-    border-color: #DB7093 !important;
+    border-color: #0099c5!important;
     box-shadow: 0px 0px 4px !important;
-    background-color: #DB7093;
+    background-color: #0099c5;
     border-radius: 30px;
     padding: 5px;
     color: white;
-
 }
 
-#botoes-card:hover{
-    background-color: #ffc1c1 !important;
+.botoes-card:hover{
+    background-color: #0099c5e0 !important;
 }
 
