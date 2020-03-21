@@ -60,23 +60,17 @@
             <form method="POST" action="cadastrarFuncionario"> <%-- joga formulario para o controllerFuncionarioCadastrar --%>
                 Nome do funcionário:
                 <input type="text" name="nomeFuncionario">
-                <br>
-                <br>
                 Sexo:
                 <select type="select" name="sexoFuncionario">
                     <option value="M">M</option>
                     <option value="F">F</option>
                 </select> 
-                <br>
-                <br>
                 Contato:
                 <input type="text" name="contato">
                 <select type="select" name="tipoTelefone">
                     <option value="Celular">Celular</option>
                     <option value="Fixo">Fixo</option>
                 </select> 
-                <br>
-                <br>
                 <button type="submit" value="Cadastrar"/>Cadastrar</button>
             </form>            
         <div>

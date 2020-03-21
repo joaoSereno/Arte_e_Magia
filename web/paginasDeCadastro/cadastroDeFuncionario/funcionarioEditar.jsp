@@ -63,15 +63,11 @@
                 <input type="hidden" id="sexo2" name="sexo2" value="${sexo}">
                 Nome do funcionário:
                 <input type="text" name="nomeFuncionario" value="${nomeFuncionario}">
-                <br>
-                <br>
                 Sexo:
                 <select type="select" name="sexo">  <!--select controlado por js no final da pagina -->
                     <option value="${sexo}">${sexo}</option>
                     <option id="sexo3" value="">F/M</option>
                 </select> 
-                <br>
-                <br>
                 <button type="submit" value="SalvarEdicoes"/>Salvar</button>
             </form>    
             <br>

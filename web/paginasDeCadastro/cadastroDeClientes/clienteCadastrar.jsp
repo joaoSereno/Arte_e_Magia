@@ -53,7 +53,6 @@
             </div>
         </nav>
         <!-- form para cadastrar cliente-->
-        <hr/>
             <h4>Dados do Cliente</h4>
             <form class="form-group" id="formgroup" method="GET" action="cadastrarCliente"><%-- joga formulario para o controllerClienteCadastrar --%>
                 <div class="row formularios">

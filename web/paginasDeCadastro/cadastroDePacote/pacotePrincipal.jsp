@@ -65,7 +65,7 @@
                 <input type="text" name="nomePacote" value="${nomePacoteE}">
                 Valor Pacote:
                 <input type="text" name="valorPacoteVenda" value="${valorPacoteVendaE}">
-                <button class="btn btn-warning"> Confirmar </button>
+                <button type="submit"> Confirmar </button>
             </form> 
 
             <!-- botão que abre o modal de confirmação de exclusão -->

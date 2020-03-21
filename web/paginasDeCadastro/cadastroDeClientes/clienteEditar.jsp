@@ -63,16 +63,10 @@
                 <input type="hidden" name="idCliente" value="${cliente.idCliente}">
                 Nome do cliente:
                 <input type="text" name="nomeCliente" value="${cliente.nomeCliente}">
-                <br>
-                <br>
                 CPF:
                 <input type="text" name="cpf" value="${cliente.cpf}">
-                <br>
-                <br>
                 Tipo de Festa:
                 <input type="text" name="tipoFesta" value="${cliente.tipoFesta}">
-                <br>
-                <br>
                 <h6>Endereço:</h6>
                 <input type="hidden" name="idEnderecos" value="${endereco.idEnderecos}">
                 CEP:
@@ -89,7 +83,7 @@
                 <input type="text" name="complemento" value="${endereco.complemento}">
                 <br>
                 <br>
-                <button type="submit" value="Cadastrar" />Salvar</button>
+                <button type="submit">Salvar</button>
             </form>
         <!-- fim do form para editar cliente-->
         </div>
@@ -167,7 +161,6 @@
                             Telefone Principal? 
                             <input type="radio" value="sim" name="telefonePrincipal"> Sim                        
                             <input type="radio" value="nao" name="telefonePrincipal"> Não                        
-                            <br>
                             <button type="submit" class="btn btn-primary" value="Confirmar">Adicionar</button>
                         </form> 
                         <!-- fim form para adicionar novo contato --> 

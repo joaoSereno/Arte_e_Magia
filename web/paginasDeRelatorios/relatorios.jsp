@@ -63,7 +63,7 @@
             </div>
             <!-- CardFuncionários -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFunc.png" class="card-img-top imagens-cards" alt="Tipo de Despesa" >
+                <img src="../custom/img/avatares-cards/relatorioTD.png" class="card-img-top imagens-cards" alt="Tipo de Despesa" >
                 <div class="card-body">
                     <a href="cadastroDeFuncionario/funcionarioCadastrar.jsp" class="btn botoes-card">Relatório - Tipo de Despesa</a>
                 </div>
@@ -77,7 +77,7 @@
             </div>
             <!-- Card FormaPgto -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFP.png" class="car-img-top imagens-cards" alt="Forma de pagamento">
+                <img src="../custom/img/avatares-cards/relatorioPacote.png" class="car-img-top imagens-cards" alt="Forma de pagamento">
                 <div class="card-body">
                     <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Relatório - Pacote</a>
                 </div>
