@@ -56,19 +56,36 @@
         </nav>
         <h3>Tela cadastro despesa</h3>
         <br>
-        <form method="GET" action="teste">
-            <button type="button" id="add_valorEpagamento"> + </button> 
-            <div id="divValorEpagamento">
-                Valor:
-                <input id="teste" type="text" name="teste">
-                <br>
-            </div>
-            <button type="submit" value="Cadastrar"/>Cadastrar</button> 
+        <form method="GET" id="cadastrarDespesaForm" action="teste">
+            <input type="hidden" id="countDespesa" name="countDespesa" value="0">
+            <button type="submit" value="Cadastrar"/>Cadastrar</button>
+        </form>
+        <table id="tabelaDespesas">
+            <thead> 
+                <tr>    
+                    <th>Valor</th>
+                    <th>Data de Pamento</th>
+                    <th>Pago?</th>
+                    <th></th>
+                </tr>
+            </thead> 
+            <tbody id="tbodyDespesas">
+            </tbody>
+        </table>        
+        <br>
+        <br>
+        <form id="formAddDespesa">
+            Valor:
+            <input type="text" name="jsValorDepesa" value="">
+            Data de pagamento:
+            <input type="text" name="jsDataPagamento" value="">
+            Despesa paga?
+            <select name="jsDespesaPpaga">
+                <option>Sim</option>
+                <option>Não</option>
+            </select>
+            <button type="button" id="add-despesa">+</button> 
         </form>
     </body>
-    <script>
-        $( "#add_valorEpagamento" ).click(function() {
-            $( "#divValorEpagamento" ).append( '<div id="divValorEpagamento">Valor:<input type="text" name="teste"><br></div>' );
-        });
-    </script>
+    <script src="../../javascripts/cadastrarDespesa.js"></script>
 </html>

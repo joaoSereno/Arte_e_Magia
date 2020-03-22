@@ -14,12 +14,11 @@ import java.io.Serializable;
 
 public class PagamentoDespesasDetalhe implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     private Integer idPagamentoDespesas;
     private float valor;
     private String dataPagamento;
     private int status;
-    private Despesas idDespesas;
+    private Integer idDespesas;
 
     public PagamentoDespesasDetalhe() {
     }
@@ -67,12 +66,14 @@ public class PagamentoDespesasDetalhe implements Serializable {
         this.status = status;
     }
 
-    public Despesas getIdDespesas() {
+    public Integer getIdDespesas() {
         return idDespesas;
     }
 
-    public void setIdDespesas(Despesas idDespesas) {
+    public void setIdDespesas(Integer idDespesas) {
         this.idDespesas = idDespesas;
     }
+
+
     
 }
