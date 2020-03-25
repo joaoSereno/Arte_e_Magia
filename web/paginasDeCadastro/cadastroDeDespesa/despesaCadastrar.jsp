@@ -56,23 +56,11 @@
         </nav>
         <h3>Tela cadastro despesa</h3>
         <br>
-        <form method="GET" id="cadastrarDespesaForm" action="teste">
-            <input type="hidden" id="countDespesa" name="countDespesa" value="0">
-            <button type="submit" value="Cadastrar"/>Cadastrar</button>
+        <button type="button" onclick="tipoDespesa()"/>DESCRIÇÃO MANUAL</button>
+        <!--   form para listar os tipos de despesa no campo "tipoDespesa" -->
+        <form method="GET" action="listarTipoDespesa">
+            <button type="submit">TIPO DE DESPESA</button> 
         </form>
-        <table id="tabelaDespesas">
-            <thead> 
-                <tr>    
-                    <th>Valor</th>
-                    <th>Data de Pamento</th>
-                    <th>Pago?</th>
-                    <th></th>
-                </tr>
-            </thead> 
-            <tbody id="tbodyDespesas">
-            </tbody>
-        </table>        
-        <br>
         <br>
         <form id="formAddDespesa">
             Valor:
@@ -85,7 +73,57 @@
                 <option>Não</option>
             </select>
             <button type="button" id="add-despesa">+</button> 
-        </form>
+        </form> 
+        <br>
+        <div> 
+            <table id="tabelaDespesas">
+                <thead> 
+                    <tr>    
+                        <th>Valor</th>
+                        <th>Data de Pamento</th>
+                        <th>Pago?</th>
+                        <th></th>
+                    </tr>
+                </thead> 
+                <tbody id="tbodyDespesas">
+                </tbody>
+            </table> 
+        </div>
+        <br>
+        <!-- form para cadastrar despesa -->
+        <form method="POST" id="cadastrarDespesaForm" action="cadastrarDespesa">
+            <input type="hidden" id="countDespesa" name="countDespesa" value="0">
+            <div id="divDescricao">
+                Descrição da despesa:
+                <input type="text" name="descricaoDespesa">            
+            </div>
+            <div id="divTipoDespesa" style="display: none"> 
+                <input type="hidden" id="valorDisplay" value="${valorDisplay}">
+                Tipo de despesa:
+                <select type="select" name="tipoDespesa" >
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaTipoDespesas}">
+                            <option value="${item.idTipoDeDespesa}">
+                                ${item.nomeDespesa}
+                            </option>
+                        </c:forEach>
+                </select>                                
+            </div>
+            <br>
+            Observação:
+            <input type="text" name="obsDespesa">
+            <br>
+            <br>
+            Despesa fechada?
+            <select name="despesaFechada">
+                <option>Não</option>
+                <option>Sim</option>
+            </select>
+            <br>
+            <br>
+            <button type="submit">Cadastrar Despesa</button>
+        </form>        
     </body>
-    <script src="../../javascripts/cadastrarDespesa.js"></script>
+    <script src="../../javascripts/cadastroDeDespesa/cadastrarDespesa.js"></script>
+    <script src="../../javascripts/cadastroDeDespesa/cadastrarDespesa2.js"></script>
 </html>
