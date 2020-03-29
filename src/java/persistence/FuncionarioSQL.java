@@ -121,7 +121,7 @@ public class FuncionarioSQL extends Conexao { //extende classe de conexão com o
                 throw new Exception(e.getMessage());
             }
         }
-
+        
     }
 
     /**

@@ -90,4 +90,40 @@ public class TipoDespesaSQL extends Conexao {
         stmt.execute(); // executa update no banco de dados
         close(); // fecha conexão com o banco de dados
     }
+    
+    public TipoDeDespesa getTipoDeDespesaEspecifico(int idTipoDeDespesa) throws Exception {
+        
+        try {
+            open(); //abre conexão com o banco
+            
+            TipoDeDespesa tipoDeDespesa = new TipoDeDespesa(); //instanciando classe que representa o tipo de despesa
+
+            stmt = con.prepareStatement("SELECT idTipoDeDespesa, nomeDespesa FROM tipoDeDespesa WHERE idTipoDeDespesa = ?"); //executa query na base               
+            stmt.setInt(1, idTipoDeDespesa); //seta idTipoDeDespesa no ?
+            
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+
+                //seta valores retornados pelo banco na variavel do tipo despesa
+                tipoDeDespesa.setIdTipoDeDespesa(resultadoConsulta.getInt("idTipoDeDespesa"));
+                tipoDeDespesa.setNomeDespesa(resultadoConsulta.getString("nomeDespesa"));
+
+            }
+            
+            close(); // fecha conexão com o banco
+            return tipoDeDespesa;//retorna o tipo de despesa para onde foi chamado
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
+    
 }

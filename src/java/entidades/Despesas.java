@@ -19,7 +19,7 @@ public class Despesas implements Serializable {
     private String obs;
     private int statusDespesa;
     private List<PagamentoDespesasDetalhe> pagamentodespesasdetalheList;
-    private TipoDeDespesa idTipoDeDespesa;
+    private Integer idTipoDeDespesa;
 
     public Despesas() {
     }
@@ -73,12 +73,12 @@ public class Despesas implements Serializable {
         this.pagamentodespesasdetalheList = pagamentodespesasdetalheList;
     }
 
-    public TipoDeDespesa getIdTipoDeDespesa() {
+    public Integer getIdTipoDeDespesa() {
         return idTipoDeDespesa;
     }
 
-    public void setIdTipoDeDespesa(TipoDeDespesa idTipoDeDespesa) {
+    public void setIdTipoDeDespesa(Integer idTipoDeDespesa) {
         this.idTipoDeDespesa = idTipoDeDespesa;
     }
-  
+    
 }

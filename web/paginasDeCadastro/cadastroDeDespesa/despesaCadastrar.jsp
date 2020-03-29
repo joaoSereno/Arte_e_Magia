@@ -95,7 +95,7 @@
             <input type="hidden" id="countDespesa" name="countDespesa" value="0">
             <div id="divDescricao">
                 Descrição da despesa:
-                <input type="text" name="descricaoDespesa">            
+                <input type="text" name="descricaoDespesa" value="${descricaoDespesa}">            
             </div>
             <div id="divTipoDespesa" style="display: none"> 
                 <input type="hidden" id="valorDisplay" value="${valorDisplay}">
@@ -111,18 +111,13 @@
             </div>
             <br>
             Observação:
-            <input type="text" name="obsDespesa">
+            <input type="text" name="obsDespesa" value="${obsDespesa}">
             <br>
             <br>
-            Despesa fechada?
-            <select name="despesaFechada">
-                <option>Não</option>
-                <option>Sim</option>
-            </select>
-            <br>
-            <br>
-            <button type="submit">Cadastrar Despesa</button>
-        </form>        
+            <button type="submit">Cadastrar</button>
+        </form> 
+        <br>
+        <h3>${msg}</h3>
     </body>
     <script src="../../javascripts/cadastroDeDespesa/cadastrarDespesa.js"></script>
     <script src="../../javascripts/cadastroDeDespesa/cadastrarDespesa2.js"></script>

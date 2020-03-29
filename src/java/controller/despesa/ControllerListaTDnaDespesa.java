@@ -36,7 +36,7 @@ public class ControllerListaTDnaDespesa extends HttpServlet {
             listaTipoDespesas = tipoDespesaBanco.getTipoDeDespesa();
             
             request.setAttribute("valorDisplay", valorDisplay);
-            request.setAttribute("listaTipoDespesas", listaTipoDespesas); // atribui a lista na marcação "funcionario"
+            request.setAttribute("listaTipoDespesas", listaTipoDespesas); // atribui a lista na marcação "listaTipoDespesas"
             
             request.getRequestDispatcher("despesaCadastrar.jsp").forward(request, response); // dispara para essa página
             
