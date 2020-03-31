@@ -1,11 +1,10 @@
 <%-- 
-    Document   : despesaCadastrar
-    Created on : 07/03/2020, 19:56:08
+    Document   : despesaPrincipal
+    Created on : 30/03/2020, 20:22:57
     Author     : João Pedro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
@@ -54,74 +53,55 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela cadastro despesa</h3>
-        <br>
-        <button type="button" onclick="tipoDespesa()"/>DESCRIÇÃO MANUAL</button>
-        <!--   form para listar os tipos de despesa no campo "tipoDespesa" -->
-        <form method="GET" action="listarTipoDespesa">
-            <button type="submit">TIPO DE DESPESA</button> 
-        </form>
-        <br>
-        <form id="formAddDespesa">
-            Valor:
-            <input type="text" name="jsValorDepesa" value="">
-            Data de pagamento:
-            <input type="text" name="jsDataPagamento" value="">
-            Despesa paga?
-            <select name="jsDespesaPpaga">
-                <option>Sim</option>
-                <option>Não</option>
+        <h3>Listar despesa</h3>
+        <form method="GET" action="listarDespesas">
+            Origem Despesa
+            <select name="origem">
+                <option value="1">Cadastro de Despesa</option>
+                <option value="2">Cadastro de Festa</option>
             </select>
-            <button type="button" id="add-despesa">+</button> 
-        </form> 
+            Exibir
+            <select name="exibir">
+                <option value="1">Somente abertas</option>
+                <option value="2">Somente fechadas</option>
+                <option value="3">Todas</option>
+            </select>
+            <button type="submit">Listar</button>
+        </form>         
         <br>
-        <div> 
-            <table id="tabelaDespesas">
+        <br>
+        <!-- div de listagem despesas-->          
+        <div>
+            <table id="tabela" class="table table-secondary">
                 <thead> 
                     <tr>    
-                        <th>Valor</th>
-                        <th>Data de Pamento</th>
-                        <th>Pago?</th>
-                        <th></th>
+                        <th scope="col">Origem despesa</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead> 
-                <tbody id="tbodyDespesas">
+                <tbody>
+                    <c:forEach items="${listaDespesas}" var="item"> 
+                        <tr>
+                            <td>${item.origem}</td>
+                            <td>${item.descricao}</td>
+                            <td>${item.status}</td>
+                            <!-- botão/form para editar registro cliente --> 
+                            <td>
+                                <form method="GET" action="edicaoDespesa">
+                                    <input type="hidden" name="idDespesas" value="${item.idDespesas}">
+                                    <button class="btn btn-warning"> + </button>
+                                </form> 
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
-            </table> 
-        </div>
-        <br>
-        <!-- form para cadastrar despesa -->
-        <form method="POST" id="cadastrarDespesaForm" action="cadastrarDespesa">
-            <input type="hidden" id="countDespesa" name="countDespesa" value="0">
-            <div id="divDescricao">
-                Descrição da despesa:
-                <input type="text" name="descricaoDespesa" value="${descricaoDespesa}">            
-            </div>
-            <div id="divTipoDespesa" style="display: none"> 
-                <input type="hidden" id="valorDisplay" value="${valorDisplay}">
-                Tipo de despesa:
-                <select type="select" name="tipoDespesa" >
-                    <option value="">Clique para selecionar</option>
-                        <c:forEach var="item" items="${listaTipoDespesas}">
-                            <option value="${item.idTipoDeDespesa}">
-                                ${item.nomeDespesa}
-                            </option>
-                        </c:forEach>
-                </select>                                
-            </div>
-            <br>
-            Observação:
-            <input type="text" name="obsDespesa" value="${obsDespesa}">
-            <br>
-            <br>
-            <button type="submit">Cadastrar</button>
-        </form> 
-        <br>
-        <h3>${msg}</h3>
+            </table>
+        </div>         
+        <a  class="btn btn-primary" href="despesaCadastrar.jsp">Cadastrar Despesa</a>
         <br>
         <br>
-        <a class="btn btn-primary"  href="despesaPrincipal.jsp">Voltar</a>
+        <a  class="btn btn-primary" href="../cadastros.jsp">Voltar</a> 
+        <br>
     </body>
-    <script src="../../javascripts/cadastroDeDespesa/cadastrarDespesa.js"></script>
-    <script src="../../javascripts/cadastroDeDespesa/cadastrarDespesa2.js"></script>
 </html>

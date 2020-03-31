@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class DespesaFesta implements Serializable {
 
-    private Integer idDespesaFesta;
+    private Integer idDespesas;
     private String descricao;
     private float valorDespesa;
     private int isFuncionariaPag;
@@ -22,27 +22,28 @@ public class DespesaFesta implements Serializable {
     private TipoDeDespesa idTipoDeDespesa;
     private Festa idFesta;
     private Funcionario idFuncionario;
-
+    private String origem;
+        
     public DespesaFesta() {
     }
 
-    public DespesaFesta(Integer idDespesaFesta) {
-        this.idDespesaFesta = idDespesaFesta;
+    public DespesaFesta(Integer idDespesas) {
+        this.idDespesas = idDespesas;
     }
 
-    public DespesaFesta(Integer idDespesaFesta, float valorDespesa, int isFuncionariaPag, int statusPagamento) {
-        this.idDespesaFesta = idDespesaFesta;
+    public DespesaFesta(Integer idDespesas, float valorDespesa, int isFuncionariaPag, int statusPagamento) {
+        this.idDespesas = idDespesas;
         this.valorDespesa = valorDespesa;
         this.isFuncionariaPag = isFuncionariaPag;
         this.statusPagamento = statusPagamento;
     }
 
     public Integer getIdDespesaFesta() {
-        return idDespesaFesta;
+        return idDespesas;
     }
 
-    public void setIdDespesaFesta(Integer idDespesaFesta) {
-        this.idDespesaFesta = idDespesaFesta;
+    public void setIdDespesaFesta(Integer idDespesas) {
+        this.idDespesas = idDespesas;
     }
 
     public String getDescricao() {
@@ -107,6 +108,14 @@ public class DespesaFesta implements Serializable {
 
     public void setIdFuncionario(Funcionario idFuncionario) {
         this.idFuncionario = idFuncionario;
+    }
+
+    public String getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(String origem) {
+        this.origem = origem;
     }
     
 }

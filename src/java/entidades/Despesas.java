@@ -20,6 +20,8 @@ public class Despesas implements Serializable {
     private int statusDespesa;
     private List<PagamentoDespesasDetalhe> pagamentodespesasdetalheList;
     private Integer idTipoDeDespesa;
+    private String origem;
+    
 
     public Despesas() {
     }
@@ -79,6 +81,14 @@ public class Despesas implements Serializable {
 
     public void setIdTipoDeDespesa(Integer idTipoDeDespesa) {
         this.idTipoDeDespesa = idTipoDeDespesa;
+    }
+
+    public String getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(String origem) {
+        this.origem = origem;
     }
     
 }

@@ -95,7 +95,7 @@
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconDespesa.png" class="car-img-top imagens-cards" alt="Despesas" >
                 <div class="card-body">
-                    <a href="cadastroDeDespesa/despesaCadastrar.jsp" type="button "class="btn botoes-card" >Despesa</a>
+                    <a href="cadastroDeDespesa/despesaPrincipal.jsp" type="button "class="btn botoes-card" >Despesa</a>
                 </div>
             </div>
             <!-- CardPacotes -->
