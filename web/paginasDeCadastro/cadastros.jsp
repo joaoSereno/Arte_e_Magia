@@ -72,7 +72,7 @@
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Festa">
                 <div class="card-body">
-                    <a href="cadastroDeFesta/clientePrincipal.jsp" type="button" class="btn botoes-card">Festa</a>
+                    <a href="cadastroDeFesta/festaCadastrar.jsp" type="button" class="btn botoes-card">Festa</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->

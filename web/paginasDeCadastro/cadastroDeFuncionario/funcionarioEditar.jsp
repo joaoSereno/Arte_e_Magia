@@ -156,7 +156,7 @@
             
             <!-- div de listagem listagem telefone funcionario-->          
             <div>
-                <table id="tabela" class="table table-secondary">
+                <table  class="table table-secondary">
                     <thead> 
                         <tr>    
                             <th scope="col">Número</th>
@@ -165,9 +165,9 @@
                     </thead> 
                     <tbody>
                         <c:forEach items="${listaTelefoneFuncionario}" var="item"> 
-                            <tr>
-                                <td>${item.numero}</td>
-                                <td>${item.tipoTelefone}</td>
+                            <tr id="tabelaTelefone">
+                                <td name="numero">${item.numero}</td>
+                                <td name="telefone">${item.tipoTelefone}</td>
                                 <td>
                                     <!-- form para excluir contato --> 
                                     <form method="GET" action="excluirTelefoneFunc">
@@ -213,4 +213,5 @@
             
         </script>
     </body>
+    <script src="../../javascripts/telefones/destacarTelefone.js"></script>  
 </html>

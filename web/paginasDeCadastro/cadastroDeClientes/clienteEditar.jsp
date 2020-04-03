@@ -175,7 +175,7 @@
             
             <!-- div de listagem listagem telefone cliente-->          
             <div>
-                <table id="tabela" class="table table-secondary">
+                <table id="tabelaTelefone" class="table table-secondary"> 
                     <thead> 
                         <tr>    
                             <th scope="col">Número</th>
@@ -257,4 +257,5 @@
             </form>                        
         </div>                            
     </body>
+    <script src="../../javascripts/telefones/destacarTelefone.js"></script>    
 </html>

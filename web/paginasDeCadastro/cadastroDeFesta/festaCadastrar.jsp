@@ -1,0 +1,209 @@
+<%-- 
+    Document   : cadastroDeFesta
+    Created on : 02/04/2020, 16:54:11
+    Author     : João Pedro
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastros - Festa</title>
+        <link rel="shortcut icon" href="../../custom/img/favicon.jpg">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/festaCadastrar.css">
+    </head>
+    <body>
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-lg navbar-light navbar-css">
+            <img src="../../custom/img/logoArte_E_Magia.png" id="logo-navbar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="NavbarSite">
+                <ul class="navbar-nav ml-auto mb-0">
+                    <!-- Botão página inicial -->
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp">Página Inicial</a>
+                    </li>
+                    <!-- Botão cadastros -->
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="../cadastros.jsp">Cadastros</a>
+                    </li>
+                    <!-- Config aniversariante -->
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="../../paginasDeRelatorios/relatorios.jsp">Relatórios</a>
+                    </li>                    
+                    <!-- Botão relatorios -->
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="../configAniversariante/telaConfigAniversariante.jsp">Configuração</a>                        
+                    </li>
+                </ul>
+                <!-- Botão Sair -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item h5 mb-0">
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp">Sair</a>
+                    </li>
+                </ul>
+                <!-- Fim navbar da página-->
+            </div>
+        </nav>
+        <h3>tela cadastrar festa</h3>
+        <br>
+        <div>
+            <form method="GET" action="listarOpcoes">
+                <input type="hidden" name="countCliente" value="${countCliente}">
+                <button type="submit">Selecionar cliente</button>
+            </form>            
+            <h5> Cliente: </h5> ${nomeCliente}
+        </div>
+        <br>
+        <form id="formAniversariante">
+            <h6> Aniversariantes: </h6>
+            <select type="select" name="jsAniversariante" >
+                <option value="">Selecionar Aniversariante</option>
+                    <c:forEach var="item" items="${listaAniversariantes}">
+                        <option value="${item.idCrianca}">
+                            ${item.nomeCrianca}
+                        </option>
+                    </c:forEach>
+            </select> 
+            <button type="button" id="add-aniversariante">+</button> 
+        </form>
+        <br>
+        <form id="formFuncionario">
+            <h6> Funcionario: </h6>
+            <select type="select" name="jsFuncionarios">
+                <option value="">Clique para selecionar</option>
+                    <c:forEach var="item" items="${listaFuncionarios}">
+                        <option value="${item.idFuncionario}">
+                            ${item.nomeFuncionario}
+                        </option>
+                    </c:forEach>
+            </select>
+            Cache: <input type="text" name="jsCache">
+            <button type="button" id="add-funcionario">+</button> 
+        </form>         
+        <br>
+        <form id="formHorario">
+            <h6> Horários </h6>
+            Horario:
+            <input type="text" name="jsHorario" value="">
+            Descrição horario:
+            <input type="text" name="jsDescricaoH" value="">
+            <button type="button" id="add-horario">+</button> 
+        </form>         
+        <br> 
+        <form id="formAddDespesaFesta">
+            <h6> Despesas da Festa </h6>
+            Despesas da Festa:
+            <input type="text" name="jsValorDepesa" value="">
+            Data de pagamento:
+            <input type="text" name="jsDataPagamento" value="">
+            Despesa paga?
+            <select name="jsDespesaPpaga">
+                <option>Sim</option>
+                <option>Não</option>
+            </select>
+            <button type="button" id="add-DespesaFesta">+</button> 
+        </form>         
+        <br> 
+        <form id="formValorAdicional">
+            <h6> Valor Adicional </h6>
+            Valor:
+            <input type="text" name="jsValorAdicional" value="">
+            Descrição:
+            <input type="text" name="jsDescricaoValorAdicional" value="">
+            <button type="button" id="add-valorAdicional">+</button> 
+        </form>         
+        <br> 
+        <form id="formFormaPagamento">
+            <h6> Formas de pagamento </h6>
+            Forma de Pagamento:
+            <select type="select" name="jsFormaPagamento">
+                <option value="">Clique para selecionar</option>
+                    <c:forEach var="item" items="${listaFormaDePagamento}">
+                        <option value="${item.idFormaPagamento}">
+                            ${item.nomePagamento}
+                        </option>
+                    </c:forEach>
+            </select>
+            <button type="button" id="add-formPagamento">+</button> 
+        </form>         
+        <br>
+        <form id="formPagamentoAdiantado">
+            <h6> Pagamento Adiantado</h6>
+            Valor:
+            <input type="text" name="jsValorPagamentoAdiantado" value="">
+            Forma de Pagamento:
+            <select type="select" name="jsFormaPagamentoAdiantado">
+                <option value="">Clique para selecionar</option>
+                    <c:forEach var="item" items="${listaFormaDePagamento}">
+                        <option value="${item.idFormaPagamento}">
+                            ${item.nomePagamento}
+                        </option>
+                    </c:forEach>
+            </select>
+            <button type="button" id="add-pagamentoAdiantado">+</button> 
+        </form>         
+        <br> 
+        <form id="formPacoteAdicional">
+            <h6> Pacotes Adicionais </h6>
+            <select type="select" name="jsPacotesAdicionais">
+                <option value="">Selecionar Pacote Adicional</option>
+                    <c:forEach var="item" items="${listaPacoteAdicionais}">
+                        <option value="${item.idPacotesAdicionaisFesta}">
+                            ${item.nomePagamento}
+                        </option>
+                    </c:forEach>
+            </select>
+            Valor:
+            <input type="text" name="jsValorPacoteAdicional" value="">
+            <button type="button" id="add-pacoteAdicional">+</button> 
+        </form>         
+        <br>     
+        <form method="POST" id="cadastrarDespesaForm" action="cadastrarFesta">
+            <input type="hidden" name="idCliente" value="${idCliente}">
+            Pacote:
+            <select type="select" name="pacote">
+                <option value="">Clique para selecionar</option>
+                    <c:forEach var="item" items="${listaPacote}">
+                        <option value="${item.idPacote}">
+                            ${item.nomePacote}
+                        </option>
+                    </c:forEach>
+            </select>
+            <br>
+            <br>
+            Quantidade de crianças: <input type="text" name="qtdCrianca" value="${qtdCrianca}">
+            <br>
+            <br>
+            Data da festa: <input type="text" name="dataFesta" value="${dataFesta}">
+            <br>
+            <br>
+            Observação: <input type="text" name="obs" value="${obs}">
+            <br>
+            <br>
+            <h5>Endereço da Festa</h5>
+            CEP: <input type="text" name="cep"  placeholder="CEP Logradouro" value="${cep}">
+            Cidade: <input type="text" name="cidade" placeholder="Cidade" value="${cidade}" >
+            Bairro: <input type="text" name="bairro"  placeholder="Bairro" value="${bairro}">
+            Rua: <input type="text" name="rua"  placeholder="Nome Logradouro" value="${rua}">
+            N° <input type="text" name="numero"  placeholder="Número residência" value="${numero}">
+            Complemento: <input type="text" name="complemento" placeholder="Complemento" value="${complemento}">
+            <br>    
+            <br>
+            Festa realizada?
+            <select name="festaRealida">
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+        </form>        
+        <br>
+        <a class="btn btn-primary"  href="../cadastros.jsp">Voltar</a>      
+    </body>
+</html>
