@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class Festa implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     private Integer idFesta;
     private String descricaoFesta;
     private String dataFesta;
@@ -26,6 +25,7 @@ public class Festa implements Serializable {
     private Enderecos idEnderecos;
     private Cliente idCliente;
     private Pacote idPacote;
+    private int qtdCriancas;
     private List<DespesaFesta> despesafestaList;
     private List<TabelaAgendamentoFesta> tabelaagendamentofestaList;
     private List<ValorAdicionalFesta> valoradicionalfestaList;
@@ -191,5 +191,16 @@ public class Festa implements Serializable {
     public void setFestacriancaList(List<FestaCrianca> festacriancaList) {
         this.festacriancaList = festacriancaList;
     }
+
+    public int getQtdCriancas() {
+        return qtdCriancas;
+    }
+
+    public void setQtdCriancas(int qtdCriancas) {
+        this.qtdCriancas = qtdCriancas;
+    }
+    
+    
+    
 
 }

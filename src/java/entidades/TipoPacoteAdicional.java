@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class TipoPacoteAdicional implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     private Integer idTipoPacoteAdicional;
     private String descricaoPacoteAdd;
+    private int ativo;
     private List<PacotesAdicionaisFesta> pacotesadicionaisfestaList;
 
     public TipoPacoteAdicional() {
@@ -52,6 +52,14 @@ public class TipoPacoteAdicional implements Serializable {
 
     public void setPacotesadicionaisfestaList(List<PacotesAdicionaisFesta> pacotesadicionaisfestaList) {
         this.pacotesadicionaisfestaList = pacotesadicionaisfestaList;
+    }
+
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
     }
     
 }

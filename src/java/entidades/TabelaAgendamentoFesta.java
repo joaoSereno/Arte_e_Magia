@@ -21,6 +21,7 @@ public class TabelaAgendamentoFesta implements Serializable {
     private String cacheFuncionarios;
     private String horarios;
     private String pacote;
+    private int qtdCriancas;
     private String pacotesAdicionais;
     private String lucroFesta;
     private String valorReceber;
@@ -138,4 +139,13 @@ public class TabelaAgendamentoFesta implements Serializable {
         this.idFesta = idFesta;
     }
 
+    public int getQtdCriancas() {
+        return qtdCriancas;
+    }
+
+    public void setQtdCriancas(int qtdCriancas) {
+        this.qtdCriancas = qtdCriancas;
+    }
+
+    
 }

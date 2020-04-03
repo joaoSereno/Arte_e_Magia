@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -59,27 +60,30 @@
                 <input type="hidden" name="countCliente" value="${countCliente}">
                 <button type="submit">Selecionar cliente</button>
             </form>            
-            <h5> Cliente: </h5> ${nomeCliente}
+            <h5> Cliente: </h5> <h6>${nomeCliente}</h6>
         </div>
         <br>
-        <form id="formAniversariante">
-            <h6> Aniversariantes: </h6>
-            <select type="select" name="jsAniversariante" >
-                <option value="">Selecionar Aniversariante</option>
-                    <c:forEach var="item" items="${listaAniversariantes}">
-                        <option value="${item.idCrianca}">
-                            ${item.nomeCrianca}
-                        </option>
-                    </c:forEach>
-            </select> 
-            <button type="button" id="add-aniversariante">+</button> 
-        </form>
+        <div>
+            <form id="formAniversariante">
+                <input type="hidden" name="countCrianca" value="${countCrianca}">
+                <h6> Aniversariantes: </h6>
+                <select type="select" name="jsAniversariante" >
+                    <option value="">Selecionar Aniversariante</option>
+                        <c:forEach var="item" items="${listaCrianca}">
+                            <option value="${item.idCrianca}">
+                                ${item.nomeCrianca}
+                            </option>
+                        </c:forEach>
+                </select> 
+                <button type="button" id="add-aniversariante">+</button> 
+            </form>            
+        </div>
         <br>
         <form id="formFuncionario">
             <h6> Funcionario: </h6>
             <select type="select" name="jsFuncionarios">
                 <option value="">Clique para selecionar</option>
-                    <c:forEach var="item" items="${listaFuncionarios}">
+                    <c:forEach var="item" items="${listaFuncionario}">
                         <option value="${item.idFuncionario}">
                             ${item.nomeFuncionario}
                         </option>
@@ -112,6 +116,20 @@
             <button type="button" id="add-DespesaFesta">+</button> 
         </form>         
         <br> 
+        <form id="formFormaPagamento">
+            <h6> Formas de pagamento da Festa</h6>
+            Forma de Pagamento:
+            <select type="select" name="jsFormaPagamento">
+                <option value="">Clique para selecionar</option>
+                    <c:forEach var="item" items="${listaFormaPagamento}">
+                        <option value="${item.idFormaPagamento}">
+                            ${item.nomePagamento}
+                        </option>
+                    </c:forEach>
+            </select>
+            <button type="button" id="add-formPagamento">+</button> 
+        </form>         
+        <br>        
         <form id="formValorAdicional">
             <h6> Valor Adicional </h6>
             Valor:
@@ -121,20 +139,6 @@
             <button type="button" id="add-valorAdicional">+</button> 
         </form>         
         <br> 
-        <form id="formFormaPagamento">
-            <h6> Formas de pagamento </h6>
-            Forma de Pagamento:
-            <select type="select" name="jsFormaPagamento">
-                <option value="">Clique para selecionar</option>
-                    <c:forEach var="item" items="${listaFormaDePagamento}">
-                        <option value="${item.idFormaPagamento}">
-                            ${item.nomePagamento}
-                        </option>
-                    </c:forEach>
-            </select>
-            <button type="button" id="add-formPagamento">+</button> 
-        </form>         
-        <br>
         <form id="formPagamentoAdiantado">
             <h6> Pagamento Adiantado</h6>
             Valor:
@@ -142,7 +146,7 @@
             Forma de Pagamento:
             <select type="select" name="jsFormaPagamentoAdiantado">
                 <option value="">Clique para selecionar</option>
-                    <c:forEach var="item" items="${listaFormaDePagamento}">
+                    <c:forEach var="item" items="${listaFormaPagamento}">
                         <option value="${item.idFormaPagamento}">
                             ${item.nomePagamento}
                         </option>
@@ -155,9 +159,9 @@
             <h6> Pacotes Adicionais </h6>
             <select type="select" name="jsPacotesAdicionais">
                 <option value="">Selecionar Pacote Adicional</option>
-                    <c:forEach var="item" items="${listaPacoteAdicionais}">
-                        <option value="${item.idPacotesAdicionaisFesta}">
-                            ${item.nomePagamento}
+                    <c:forEach var="item" items="${listaTipoPacoteAdicional}">
+                        <option value="${item.idTipoPacoteAdicional}">
+                            ${item.descricaoPacoteAdd}
                         </option>
                     </c:forEach>
             </select>
