@@ -67,8 +67,11 @@
                 <input type="text" name="cpf" value="${cliente.cpf}">
                 Tipo de Festa:
                 <input type="text" name="tipoFesta" value="${cliente.tipoFesta}">
+                <h6>E-mail</h6>
+                <input type="hidden" name="idEmail" value="${email.idEmail}">
+                <input type="text" name="email" value="${email.email}">
                 <h6>Endereço:</h6>
-                <input type="hidden" name="idEnderecos" value="${endereco.idEnderecos}">
+                <input type="hidden" name="idEnderecos" value="${endereco.idEnderecos}">                
                 CEP:
                 <input type="text" name="cep" value="${endereco.cep}">
                 CIDADE:

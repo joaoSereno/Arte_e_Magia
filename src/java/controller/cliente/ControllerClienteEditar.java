@@ -7,6 +7,7 @@ package controller.cliente;
 
 import entidades.Cliente;
 import entidades.Crianca;
+import entidades.Email;
 import entidades.Enderecos;
 import entidades.Telefone;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ClienteSQL;
 import persistence.CriancaSQL;
+import persistence.EmailSQL;
 import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
 
@@ -41,6 +43,9 @@ public class ControllerClienteEditar extends HttpServlet {
 
         List<Telefone> listaTelefoneCliente = null; //lista de telefone
         TelefoneSQL telefoneBanco = new TelefoneSQL(); //instancia classe de banco do telefone
+        
+        List<Email> listaEmailCliente = null; //lista de email
+        EmailSQL emailBanco = new EmailSQL(); //instancia classe de banco do email
 
         EnderecoSQL enderecoBanco = new EnderecoSQL();//instancia classe de banco do endereco
         Enderecos endereco = new Enderecos();
@@ -52,11 +57,20 @@ public class ControllerClienteEditar extends HttpServlet {
 
             cliente = clienteBanco.getClienteEspecifico(idCliente2); //recebendo na instancia cliente , o cliente que será editado
             listaTelefoneCliente = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista de telefone , todos os telefones do cliente
+            listaEmailCliente = emailBanco.getEmailCliente(idCliente2); //recebendo na lista de EMAIL , todos os email do cliente
             endereco = enderecoBanco.getEnderecoCliente(idCliente2); // recebendo endereco do cliente na variavel endereco
             listaCriancaCliente = criancaBanco.getCrianca(idCliente2); // recebendo na lista todas as crianças do cliente
 
+            //pegando o email do cliente , pq talvez sempre vai ser 1
+            Email email = new Email();
+            for(int i = 0; i < listaEmailCliente.size(); i++){
+                email.setIdEmail(listaEmailCliente.get(i).getIdEmail());
+                email.setEmail(listaEmailCliente.get(i).getEmail());
+            }
+            
             //set de atributo para outra página
             request.setAttribute("cliente", cliente);
+            request.setAttribute("email", email);
             request.setAttribute("listaTelefoneCliente", listaTelefoneCliente);
             request.setAttribute("endereco", endereco);
             request.setAttribute("listaCriancaCliente", listaCriancaCliente);

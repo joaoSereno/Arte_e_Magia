@@ -6,6 +6,7 @@
 package controller.cliente;
 
 import entidades.Cliente;
+import entidades.Email;
 import entidades.Enderecos;
 import entidades.Telefone;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ClienteSQL;
+import persistence.EmailSQL;
 import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
 
@@ -39,6 +41,8 @@ public class ControllerClienteCadastrar extends HttpServlet {
         //dados do telefone do cliente
         String contatoCliente = request.getParameter("contato");
         String tipoTelefone = request.getParameter("tipoTelefone");
+        //dados do email
+        String emailInserido = request.getParameter("email");
         //dados endereço
         String cep = request.getParameter("cep");
         String cidade = request.getParameter("cidade");
@@ -57,6 +61,7 @@ public class ControllerClienteCadastrar extends HttpServlet {
         //instanciando classe que faz a comunicação com o banco de dados do cliente
         ClienteSQL clienteBanco = new ClienteSQL();
         
+        
         try {
             clienteBanco.create(cliente); //chamando método de inserir da classe ClienteSQL e passando cliente como parametro
             idCliente = clienteBanco.getUltimoIdCliente(); //chama metodo do banco que retorna o ultimo idCliente registrado para inserir na tabela do telefone e endereço
@@ -65,8 +70,14 @@ public class ControllerClienteCadastrar extends HttpServlet {
             ex.getMessage();
         }
         
-        //instanciando variavel do tipo telefone
+        //instanciando variavel do tipo telefone e email
         Telefone telefone = new Telefone(); 
+        Email email = new Email();
+        
+        //setando os valores pego no email
+        email.setEmail(emailInserido);
+        email.setIdCliente(idCliente);
+        
         //setando os valores pego "telefone do cliente"
         telefone.setNumero(contatoCliente);
         if ("Celular".equals(tipoTelefone)) { //se o usuario celular "Celular" na pagina vai criar assim
@@ -81,9 +92,11 @@ public class ControllerClienteCadastrar extends HttpServlet {
 
         //instanciando classe do banco de dados para fazer a inserção no banco
         TelefoneSQL telefoneBanco = new TelefoneSQL();
+        EmailSQL emailBanco = new EmailSQL();
 
         try {
             telefoneBanco.create(telefone); //chamando método de inserir da classe TelefoneSQL e passando telefone como parametro
+            emailBanco.createEmail(email); //chamando método de inserir da classe EmailSQL e passando email como parametro
         } catch (Exception ex) {
             Logger.getLogger(ControllerClienteCadastrar.class.getName()).log(Level.SEVERE, null, ex);
             ex.getMessage();

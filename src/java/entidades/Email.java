@@ -15,7 +15,7 @@ public class Email implements Serializable {
 
     private Integer idEmail;
     private String email;
-    private Cliente idCliente;
+    private Integer idCliente;
 
     public Email() {
     }
@@ -45,11 +45,11 @@ public class Email implements Serializable {
         this.email = email;
     }
 
-    public Cliente getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 

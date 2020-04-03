@@ -62,21 +62,25 @@
                     </div>
                     <div class="col-md-3">
                         <label for="cpfCliente">CPF Cliente</label>
-                        <input type="txt" class="form-control" name="cpf" id="cpfCliente" placeholder="CPF do Cliente">
+                        <input type="text" class="form-control" name="cpf" id="cpfCliente" placeholder="CPF do Cliente">
                     </div>
                     <div class="col-md-3">
                         <label for="tipoFesta">Tipo de Festa</label>
-                        <input type="txt" class="form-control" name="tipoFesta" id="tipoFesta" placeholder="Tipo Festa">
+                        <input type="text" class="form-control" name="tipoFesta" id="tipoFesta" placeholder="Tipo Festa">
                     </div>
                 </div>
                 <div class="row formularios2">
                     <div class="col-md-2">
                         <label for="contatoCliente" id="lables">Contato</label>
-                        <input type="txt" class="form-control" name="contato" id="contato" placeholder="Contato">
+                        <input type="text" class="form-control" name="contato" id="contato" placeholder="Contato">
                         <select class='form-control'>
                             <option>Celular</option>
                             <option>Fixo</option>
                         </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="email">E-mail</label>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="exemplo@hotmail.com">
                     </div>
                 </div>
                 <hr/>

@@ -7,6 +7,7 @@ package controller.cliente;
 
 import entidades.Cliente;
 import entidades.Crianca;
+import entidades.Email;
 import entidades.Enderecos;
 import entidades.Telefone;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ClienteSQL;
 import persistence.CriancaSQL;
+import persistence.EmailSQL;
 import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
 
@@ -36,6 +38,7 @@ public class ClienteControllerEditar2 extends HttpServlet {
         List<Telefone> listaTelefoneCliente = null; //lista de telefone
         int idCliente2 = 0;
         int idEnderecos2 = 0;
+        int idEmail2 = 0;
         String msg = "Cliente editado com sucesso!";
 
         //pega os parametros do form
@@ -61,7 +64,27 @@ public class ClienteControllerEditar2 extends HttpServlet {
             Cliente cliente = new Cliente(idCliente2, nomeCliente, cpf, tipoFesta);//instanciando classe do tipo cliente            
             request.setAttribute("cliente", cliente); // coloca instancia como atributo da proxima página
         }
+        
+        //Email
+        String idEmail = request.getParameter("idEmail");
 
+        if (idEmail != null) { //verifica se existe idEmail
+
+            if (!idEmail.equals("")) {
+
+                idEmail2 = Integer.parseInt(idEmail);
+
+            }
+
+        }
+        String emailInserido = request.getParameter("email"); 
+        
+        if(idEmail2 != 0){
+            Email email = new Email(idEmail2, emailInserido);
+            request.setAttribute("email", email);
+        }
+
+        
         //Endereço
         String idEnderecos = request.getParameter("idEnderecos");
 
@@ -93,6 +116,7 @@ public class ClienteControllerEditar2 extends HttpServlet {
         EnderecoSQL enderecoBanco = new EnderecoSQL();
         TelefoneSQL telefoneBanco = new TelefoneSQL();
         CriancaSQL criancaBanco = new CriancaSQL();
+        EmailSQL emailBanco = new EmailSQL();
 
         try {
               
@@ -110,6 +134,10 @@ public class ClienteControllerEditar2 extends HttpServlet {
 
                 enderecoBanco.editarEnderecoCliente(idEnderecos2, cep, cidade, bairro, rua, numero, complemento);
 
+            }
+            
+            if(idEmail2 != 0){
+                emailBanco.editarEmailCliente(idEmail2, emailInserido);
             }
 
             if (idCliente2 != 0 || idEnderecos2 != 0) {
