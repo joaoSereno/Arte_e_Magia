@@ -57,16 +57,18 @@
         <br>
         <div>
             <form method="GET" action="listarOpcoes">
-                <input type="hidden" name="countCliente" value="${countCliente}">
+                <input type="hidden" id="countCliente" name="countCliente" value="${countCliente}">
                 <button type="submit">Selecionar cliente</button>
             </form>            
-            <h5> Cliente: </h5> <h6>${nomeCliente}</h6>
+            <h5> Cliente: </h5> 
+            <h6>${nomeCliente}</h6>
         </div>
         <br>
-        <div>
+<!--        div aniversariante-->
+        <div id="divAniversariante" style="display: none">
             <form id="formAniversariante">
-                <input type="hidden" name="countCrianca" value="${countCrianca}">
-                <h6> Aniversariantes: </h6>
+                <input type="hidden" id="countCrianca" name="countCrianca" value="${countCrianca}">
+                Aniversariantes:
                 <select type="select" name="jsAniversariante" >
                     <option value="">Selecionar Aniversariante</option>
                         <c:forEach var="item" items="${listaCrianca}">
@@ -76,99 +78,223 @@
                         </c:forEach>
                 </select> 
                 <button type="button" id="add-aniversariante">+</button> 
-            </form>            
+            </form> 
+            <br>
+            <div> 
+                <table id="tabelaAniversariantes" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Nome aniveráriante</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyAniversariantes">
+                    </tbody>
+                </table> 
+            </div> 
+            <br>
+        </div>
+<!--        div funcionario-->
+        <div>
+            <form id="formFuncionario">
+                Funcionario:
+                <select type="select" name="jsFuncionarios">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaFuncionario}">
+                            <option value="${item.idFuncionario}">
+                                ${item.nomeFuncionario}
+                            </option>
+                        </c:forEach>
+                </select>
+                Cache: <input type="text" name="jsCache">
+                <button type="button" id="add-funcionario">+</button> 
+            </form>         
+            <br>
+            <div> 
+                <table id="tabelaFuncionario" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Funcionario</th>
+                            <th>Cache</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyFuncionario">
+                    </tbody>
+                </table> 
+            </div>    
         </div>
         <br>
-        <form id="formFuncionario">
-            <h6> Funcionario: </h6>
-            <select type="select" name="jsFuncionarios">
-                <option value="">Clique para selecionar</option>
-                    <c:forEach var="item" items="${listaFuncionario}">
-                        <option value="${item.idFuncionario}">
-                            ${item.nomeFuncionario}
-                        </option>
-                    </c:forEach>
-            </select>
-            Cache: <input type="text" name="jsCache">
-            <button type="button" id="add-funcionario">+</button> 
-        </form>         
+<!--        div horario-->        
+        <div>
+            <form id="formHorario">
+                Horario:
+                <input type="text" name="jsHorario" value="">
+                Descrição horario:
+                <input type="text" name="jsDescricaoH" value="">
+                <button type="button" id="add-horario">+</button> 
+            </form>
+            <br>
+            <div> 
+                <table id="tabelaHorario" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Horário</th>
+                            <th>Descrição</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyHorario">
+                    </tbody>
+                </table> 
+            </div>               
+        </div>
+        <br> 
+<!--        div forma pagamento--> 
+        <div>
+            <form id="formFormaPagamento">
+                Forma de Pagamento:
+                <select type="select" name="jsFormaPagamento">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaFormaPagamento}">
+                            <option value="${item.idFormaPagamento}">
+                                ${item.nomePagamento}
+                            </option>
+                        </c:forEach>
+                </select>
+                <button type="button" id="add-formPagamento">+</button> 
+            </form>
+            <br>
+            <div> 
+                <table id="tabelaFP" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Forma de pagamento</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyFP">
+                    </tbody>
+                </table> 
+            </div>              
+        </div>
+        <br> 
+<!--        div valor adicional-->
+        <h6>Valor Adicional</h6>
+        <button onclick="habilitaValorAdicional()">Sim</button>
+        <button onclick="desabilitaValorAdicional()">Não</button>
         <br>
-        <form id="formHorario">
-            <h6> Horários </h6>
-            Horario:
-            <input type="text" name="jsHorario" value="">
-            Descrição horario:
-            <input type="text" name="jsDescricaoH" value="">
-            <button type="button" id="add-horario">+</button> 
-        </form>         
+        <div id="divValorAdicional" style="display: none">
+            <form id="formValorAdicional">
+                Valor:
+                <input type="text" name="jsValorAdicional" value="">
+                Descrição:
+                <input type="text" name="jsDescricaoValorAdicional" value="">
+                <button type="button" id="add-valorAdicional">+</button> 
+            </form>
+            <br>
+            <div> 
+                <table id="tabelaValorAdicional" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Valor</th>
+                            <th>Descrição</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyValorAdicional">
+                    </tbody>
+                </table> 
+            </div>              
+        </div>            
+        </div>    
         <br> 
-        <form id="formAddDespesaFesta">
-            <h6> Despesas da Festa </h6>
-            Despesas da Festa:
-            <input type="text" name="jsValorDepesa" value="">
-            Data de pagamento:
-            <input type="text" name="jsDataPagamento" value="">
-            Despesa paga?
-            <select name="jsDespesaPpaga">
-                <option>Sim</option>
-                <option>Não</option>
-            </select>
-            <button type="button" id="add-DespesaFesta">+</button> 
-        </form>         
-        <br> 
-        <form id="formFormaPagamento">
-            <h6> Formas de pagamento da Festa</h6>
-            Forma de Pagamento:
-            <select type="select" name="jsFormaPagamento">
-                <option value="">Clique para selecionar</option>
-                    <c:forEach var="item" items="${listaFormaPagamento}">
-                        <option value="${item.idFormaPagamento}">
-                            ${item.nomePagamento}
-                        </option>
-                    </c:forEach>
-            </select>
-            <button type="button" id="add-formPagamento">+</button> 
-        </form>         
-        <br>        
-        <form id="formValorAdicional">
-            <h6> Valor Adicional </h6>
-            Valor:
-            <input type="text" name="jsValorAdicional" value="">
-            Descrição:
-            <input type="text" name="jsDescricaoValorAdicional" value="">
-            <button type="button" id="add-valorAdicional">+</button> 
-        </form>         
-        <br> 
-        <form id="formPagamentoAdiantado">
-            <h6> Pagamento Adiantado</h6>
-            Valor:
-            <input type="text" name="jsValorPagamentoAdiantado" value="">
-            Forma de Pagamento:
-            <select type="select" name="jsFormaPagamentoAdiantado">
-                <option value="">Clique para selecionar</option>
-                    <c:forEach var="item" items="${listaFormaPagamento}">
-                        <option value="${item.idFormaPagamento}">
-                            ${item.nomePagamento}
-                        </option>
-                    </c:forEach>
-            </select>
-            <button type="button" id="add-pagamentoAdiantado">+</button> 
-        </form>         
-        <br> 
-        <form id="formPacoteAdicional">
-            <h6> Pacotes Adicionais </h6>
-            <select type="select" name="jsPacotesAdicionais">
-                <option value="">Selecionar Pacote Adicional</option>
-                    <c:forEach var="item" items="${listaTipoPacoteAdicional}">
-                        <option value="${item.idTipoPacoteAdicional}">
-                            ${item.descricaoPacoteAdd}
-                        </option>
-                    </c:forEach>
-            </select>
-            Valor:
-            <input type="text" name="jsValorPacoteAdicional" value="">
-            <button type="button" id="add-pacoteAdicional">+</button> 
-        </form>         
+<!--        div pagamento adiantado-->
+        <h6> Pagamento Adiantado</h6>
+        <button onclick="habilitaPagamentoAdiantado()">Sim</button>
+        <button onclick="desabilitaPagamentoAdiantado()">Não</button>
+        <br>
+        <div id="divPagamentoAdiantado" style="display: none">
+            <form id="formPagamentoAdiantado">
+                Valor:
+                <input type="text" name="jsValorPagamentoAdiantado" value="">
+                Forma de Pagamento:
+                <select type="select" name="jsFormaPagamentoAdiantado">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaFormaPagamento}">
+                            <option value="${item.idFormaPagamento}">
+                                ${item.nomePagamento}
+                            </option>
+                        </c:forEach>
+                </select>
+                <button type="button" id="add-pagamentoAdiantado">+</button> 
+            </form>
+            <br>
+            <div> 
+                <table id="tabelaPagamentoAdiantado" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Valor</th>
+                            <th>Forma de Pagamento</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyPagamentoAdiantado">
+                    </tbody>
+                </table> 
+            </div>             
+        </div>
+        <br>
+<!--        div despesa-->        
+        <div>
+            <form id="formAddDespesaFesta">
+                Despesas da Festa:
+                <input type="text" name="jsValorDepesa" value="">
+                Data de pagamento:
+                <input type="text" name="jsDataPagamento" value="">
+                Despesa paga?
+                <select name="jsDespesaPpaga">
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+                <button type="button" id="add-DespesaFesta">+</button> 
+            </form>                 
+        </div>   
+        <br>         
+<!--        div pacote adicional-->
+        <h6> Pacotes Adicionais </h6>
+        <button onclick="habilitaPacoteAdicional()">Sim</button>
+        <button onclick="desabilitaPacoteAdicional()">Não</button>
+        <br>
+        <div id="divPacoteAdicional" style="display: none">
+            <form id="formPacoteAdicional">
+                <select type="select" name="jsPacotesAdicionais">
+                    <option value="">Selecionar Pacote Adicional</option>
+                        <c:forEach var="item" items="${listaTipoPacoteAdicional}">
+                            <option value="${item.idTipoPacoteAdicional}">
+                                ${item.descricaoPacoteAdd}
+                            </option>
+                        </c:forEach>
+                </select>
+                Valor:
+                <input type="text" name="jsValorPacoteAdicional" value="">
+                <button type="button" id="add-pacoteAdicional">+</button> 
+            </form>
+            <br>
+            <div> 
+                <table id="tabelaPacoteAdicional" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Pacote Adicional</th>
+                            <th>Valor</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyPacoteAdicional">
+                    </tbody>
+                </table> 
+            </div>             
+        </div>
         <br>     
         <form method="POST" id="cadastrarDespesaForm" action="cadastrarFesta">
             <input type="hidden" name="idCliente" value="${idCliente}">
@@ -210,4 +336,5 @@
         <br>
         <a class="btn btn-primary"  href="../cadastros.jsp">Voltar</a>      
     </body>
+    <script src="../../javascripts/cadastroDeFesta/festaCadastrar.js"></script>
 </html>
