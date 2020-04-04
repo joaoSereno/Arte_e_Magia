@@ -72,7 +72,7 @@
                 <select type="select" name="jsAniversariante" >
                     <option value="">Selecionar Aniversariante</option>
                         <c:forEach var="item" items="${listaCrianca}">
-                            <option value="${item.idCrianca}">
+                            <option value="${item.idCrianca}+${item.nomeCrianca}">
                                 ${item.nomeCrianca}
                             </option>
                         </c:forEach>
@@ -101,7 +101,7 @@
                 <select type="select" name="jsFuncionarios">
                     <option value="">Clique para selecionar</option>
                         <c:forEach var="item" items="${listaFuncionario}">
-                            <option value="${item.idFuncionario}">
+                            <option value="${item.idFuncionario}+${item.nomeFuncionario}">
                                 ${item.nomeFuncionario}
                             </option>
                         </c:forEach>
@@ -162,7 +162,7 @@
                             </option>
                         </c:forEach>
                 </select>
-                <button type="button" id="add-formPagamento">+</button> 
+                <button type="button" id="add-formaPagamento">+</button> 
             </form>
             <br>
             <div> 
@@ -337,4 +337,5 @@
         <a class="btn btn-primary"  href="../cadastros.jsp">Voltar</a>      
     </body>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrar.js"></script>
+    <script src="../../javascripts/cadastroDeFesta/festaCadastrar2.js"></script>
 </html>

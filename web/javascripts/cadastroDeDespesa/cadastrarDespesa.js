@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var jsCountDespesa = 0;
+var jsCountDespesa = 0; //variavel para contar a quantidade de despesas inseridas e vai ser puxado no back-end
+var jsCountDespesa2 = 0; //variavel que controla a ocultação da div da tabela de despesas inseridas
 
 var botaoAdicionar = document.querySelector("#add-despesa");
 botaoAdicionar.addEventListener("click", function (event) {
@@ -11,6 +12,7 @@ botaoAdicionar.addEventListener("click", function (event) {
 
     //toda vez que add, vai somar 1 no count para saber quantas despesas foram adicionadas
     jsCountDespesa++;
+    jsCountDespesa2++;
 
     //pega o elemento form inteiro do html
     var form = document.querySelector("#formAddDespesa");
@@ -19,7 +21,10 @@ botaoAdicionar.addEventListener("click", function (event) {
     var valor = form.jsValorDepesa.value;
     var data = form.jsDataPagamento.value;
     var isPago = form.jsDespesaPpaga.value;
-
+    
+    //habilita a div da tabela
+    document.getElementById('divTabelaDespesa').style.display = 'block';
+    
     //cria um elemento do tipo TR e salva ele em uma variavel
     var despesasTr = document.createElement("tr");
     despesasTr.id = "tdDespesas" + jsCountDespesa;
@@ -40,13 +45,19 @@ botaoAdicionar.addEventListener("click", function (event) {
 
     //criando função on clik para remover a despesa adicionada
     removerDespesaBotao.onclick = function () {
+        jsCountDespesa2--; //toda vez que remove diminui
+        
         //pega o id da tr e remove
         document.getElementById(despesasTr.id).remove();
         //pega os controladores da despesa e remove tbm
         document.getElementById(inputDespesaValor.id).remove();
         document.getElementById(inputDespesaData.id).remove();
         document.getElementById(inputDespesaIsPago.id).remove();
-
+        
+        if(jsCountDespesa2 == 0){ //se for igual a zero
+            //desabilita a div da tabela
+            document.getElementById('divTabelaDespesa').style.display = 'none';            
+        }
     };
 
     //colocando o botão de remover dentro do td

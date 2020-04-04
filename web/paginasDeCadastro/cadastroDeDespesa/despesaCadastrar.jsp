@@ -76,7 +76,7 @@
             <button type="button" id="add-despesa">+</button> 
         </form> 
         <br>
-        <div> 
+        <div id="divTabelaDespesa" style="display: none"> 
             <table id="tabelaDespesas">
                 <thead> 
                     <tr>    

@@ -60,12 +60,6 @@ public class ControllerCadastrarDespesa extends HttpServlet {
 
         String obsDespesa = request.getParameter("obsDespesa");
 
-//        String despesaFechada = request.getParameter("despesaFechada");
-//        if (despesaFechada.equals("Sim")) {
-//            despesaFechada2 = 1;
-//        } else {
-//            despesaFechada2 = 0;
-//        }
         //aqui começa a pegar os detalhes da despesas cadastradas... valores, quantidade etc
         String countDespesa = request.getParameter("countDespesa");
         if (countDespesa != null) {
