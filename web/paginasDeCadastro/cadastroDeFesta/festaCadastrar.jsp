@@ -157,7 +157,7 @@
                 <select type="select" name="jsFormaPagamento">
                     <option value="">Clique para selecionar</option>
                         <c:forEach var="item" items="${listaFormaPagamento}">
-                            <option value="${item.idFormaPagamento}">
+                            <option value="${item.idFormaPagamento}+${item.nomePagamento}">
                                 ${item.nomePagamento}
                             </option>
                         </c:forEach>
@@ -222,7 +222,7 @@
                 <select type="select" name="jsFormaPagamentoAdiantado">
                     <option value="">Clique para selecionar</option>
                         <c:forEach var="item" items="${listaFormaPagamento}">
-                            <option value="${item.idFormaPagamento}">
+                            <option value="${item.idFormaPagamento}+${item.nomePagamento}">
                                 ${item.nomePagamento}
                             </option>
                         </c:forEach>
@@ -271,7 +271,7 @@
                 <select type="select" name="jsPacotesAdicionais">
                     <option value="">Selecionar Pacote Adicional</option>
                         <c:forEach var="item" items="${listaTipoPacoteAdicional}">
-                            <option value="${item.idTipoPacoteAdicional}">
+                            <option value="${item.idTipoPacoteAdicional}+${item.descricaoPacoteAdd}">
                                 ${item.descricaoPacoteAdd}
                             </option>
                         </c:forEach>

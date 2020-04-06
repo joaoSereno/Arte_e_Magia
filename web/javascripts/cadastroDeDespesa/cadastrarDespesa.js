@@ -35,7 +35,7 @@ botaoAdicionar.addEventListener("click", function (event) {
     var isPagoTd = document.createElement("td");
     var removerDespesaTd = document.createElement("td");
 
-    //criando elemento button para remover e colocando ele no td "removerDespesaTd"
+    //criando elemento button para remover 
     var removerDespesaBotao = document.createElement("button");
 
     removerDespesaBotao.textContent = "Remover";
