@@ -27,7 +27,7 @@ public class DespesaSQL extends Conexao{
         //define comando para o banco de dados
         if(despesa.getIdTipoDeDespesa() == null ){ //se não tiver idTipoDeDespesa
             
-            stmt = con.prepareStatement("INSERT INTO despesas(descricaoDespesa, obs, statusDespesa) VALUES (?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO despesas(descricao, obs, status) VALUES (?,?,?)");
        
             //atribui os valores das marcações do comando acima 
             stmt.setString(1, despesa.getDescricaoDespesa());
@@ -36,7 +36,7 @@ public class DespesaSQL extends Conexao{
             
         }else{ //se tiver
             
-            stmt = con.prepareStatement("INSERT INTO despesas(descricaoDespesa, idTipoDeDespesa, obs, statusDespesa) VALUES (?,?,?,?)");               
+            stmt = con.prepareStatement("INSERT INTO despesas(descricao, idTipoDeDespesa, obs, status) VALUES (?,?,?,?)");               
 
             //atribui os valores das marcações do comando acima 
             stmt.setString(1, despesa.getDescricaoDespesa());

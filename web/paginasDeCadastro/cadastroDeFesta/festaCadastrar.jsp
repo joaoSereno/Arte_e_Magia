@@ -210,7 +210,7 @@
         </div>    
         <br> 
 <!--        div pagamento adiantado-->
-        <h6> Pagamento Adiantado</h6>
+        <h6>Pagamento Adiantado</h6>
         <button onclick="habilitaPagamentoAdiantado()">Sim</button>
         <button onclick="desabilitaPagamentoAdiantado()">Não</button>
         <br>
