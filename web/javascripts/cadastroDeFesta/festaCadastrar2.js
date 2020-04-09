@@ -108,7 +108,7 @@ btnAddAniversariante.addEventListener("click", function (event) {
             //pega o id da tr e remove
             document.getElementById(aniversariantesTr.id).remove();
 
-            //pega os controladores da despesa e remove tbm
+            //pega os controladores do anversariante e remove tbm
             document.getElementById(inputIdAniversariante.id).remove();
 
             if (jsAniversariante2 == 0) { //se for igual a zero
@@ -150,9 +150,17 @@ btnAddAniversariante.addEventListener("click", function (event) {
         //setando id para os controladores(inputs)
         inputIdAniversariante.id = "idAniversariante" + jsAniversariante;
 
-        console.log(idAniversariante);
-        console.log(nomeAniversariante);
-        console.log(inputIdAniversariante);
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputIdAniversariante);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS ANIVERSARIANTES ADD
+
+        //seta no controler hidden o valor das vezes que foi add aniversariante
+        document.getElementById('countAniversariante').value = jsAniversariante;
+
+        //limpa os valores do input
+        form.jsAniversariante.value = "";
+    
     }
 
 });
@@ -224,10 +232,9 @@ btnAddFuncionario.addEventListener("click", function (event) {
             //pega o id da tr e remove
             document.getElementById(funcionarioTr.id).remove();
 
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(aniversariantesTr.id).remove();
-//            document.getElementById(aniversariantesTr.id).remove();
-//            document.getElementById(aniversariantesTr.id).remove();
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputIdFuncionario.id).remove();
+            document.getElementById(inputCacheFuncionario.id).remove();
 
             if (jsCountFuncionario2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
@@ -276,11 +283,19 @@ btnAddFuncionario.addEventListener("click", function (event) {
         inputIdFuncionario.id = "idFuncionario" + jsCountFuncionario;
         inputCacheFuncionario.id = "cacheFuncionario" + jsCountFuncionario;
 
-        console.log(idFuncionario);
-        console.log(nomeFuncionario);
-        console.log(cache);
-        console.log(inputIdFuncionario);
-        console.log(inputCacheFuncionario);
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputIdFuncionario);
+        formCadastrarFesta.appendChild(inputCacheFuncionario);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
+
+        //seta no controler hidden o valor das vezes que foi add despesa
+        document.getElementById('countFuncionario').value = jsCountFuncionario;
+
+        //limpa os valores do input
+        form.jsFuncionarios.value = "";
+        form.jsCache.value = "";
+        
     }
 
 });
@@ -331,9 +346,9 @@ btnAddHorario.addEventListener("click", function (event) {
             //pega o id da tr e remove
             document.getElementById(horarioTr.id).remove();
 
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputHorario.id).remove();
-//            document.getElementById(inputHorarioDescricao.id).remove();
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputHorario.id).remove();
+            document.getElementById(inputHorarioDescricao.id).remove();
 
             if (jsCountHorario2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
@@ -382,10 +397,18 @@ btnAddHorario.addEventListener("click", function (event) {
         inputHorario.id = "horario" + jsCountHorario;
         inputHorarioDescricao.id = "horarioDesricao" + jsCountHorario;
 
-        console.log(horario);
-        console.log(descricaoHorario);
-        console.log(inputHorario);
-        console.log(inputHorarioDescricao);
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputHorario);
+        formCadastrarFesta.appendChild(inputHorarioDescricao);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
+
+        //seta no controler hidden o valor das vezes que foi add despesa
+        document.getElementById('countHorario').value = jsCountHorario;
+
+        //limpa os valores do input
+        form.jsHorario.value = "";
+        form.jsDescricaoH.value = "";
 
     }
 
@@ -455,8 +478,8 @@ btnAddFormaDePagamento.addEventListener("click", function (event) {
             //pega o id da tr e remove
             document.getElementById(formaPagamentoTr.id).remove();
 
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputIdFormaPagamento.id).remove();
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputIdFormaPagamento.id).remove();
 
             if (jsCountFormaDePagamento2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
@@ -497,9 +520,17 @@ btnAddFormaDePagamento.addEventListener("click", function (event) {
         //setando id para os controladores(inputs)
         inputIdFormaPagamento.id = "formaPagamento" + jsCountFormaDePagamento;
 
-        console.log(idFormaDePagamento);
-        console.log(nomePagamento);
-        console.log(inputIdFormaPagamento);
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputIdFormaPagamento);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
+
+        //seta no controler hidden o valor das vezes que foi add despesa
+        document.getElementById('countFormaDePagamento').value = jsCountFormaDePagamento;
+
+        //limpa os valores do input
+        form.jsFormaPagamento.value = "";
+        
     }
 
 });
@@ -550,9 +581,9 @@ btnAddValorAdicional.addEventListener("click", function (event) {
             //pega o id da tr e remove
             document.getElementById(valorAdicionalTr.id).remove();
 
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputValorAdicional.id).remove();
-//            document.getElementById(inputDescricaoValorAdicional.id).remove();
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputValorAdicional.id).remove();
+            document.getElementById(inputDescricaoValorAdicional.id).remove();
 
             if (jsCountValorAdicional2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
@@ -601,10 +632,19 @@ btnAddValorAdicional.addEventListener("click", function (event) {
         inputValorAdicional.id = "valorAdicional" + jsCountValorAdicional;
         inputDescricaoValorAdicional.id = "descricaoValorAdicional" + jsCountValorAdicional;
 
-        console.log(valorAdicional);
-        console.log(descricaoValorAdicional);
-        console.log(inputValorAdicional);
-        console.log(inputDescricaoValorAdicional);
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputValorAdicional);
+        formCadastrarFesta.appendChild(inputDescricaoValorAdicional);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
+
+        //seta no controler hidden o valor das vezes que foi add despesa
+        document.getElementById('countValorAdicional').value = jsCountValorAdicional;
+
+        //limpa os valores do input
+        form.jsValorAdicional.value = "";
+        form.jsDescricaoValorAdicional.value = "";
+                
     }
 
 });
@@ -676,9 +716,9 @@ btnAddPagamentoAdiantado.addEventListener("click", function (event) {
             //pega o id da tr e remove
             document.getElementById(pagamentoAdiantadoTr.id).remove();
 
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputValorPagamentoAdiantado.id).remove();
-//            document.getElementById(inputIdFPadiantado.id).remove();
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputValorPagamentoAdiantado.id).remove();
+            document.getElementById(inputIdFPadiantado.id).remove();
 
             if (jsCountPagamentoAdiantado2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
@@ -727,12 +767,19 @@ btnAddPagamentoAdiantado.addEventListener("click", function (event) {
         inputValorPagamentoAdiantado.id = "valorPagamentoAdiantado" + jsCountPagamentoAdiantado;
         inputIdFPadiantado.id = "formaPagamentoAdiantado" + jsCountPagamentoAdiantado;
 
-        console.log(valorPagamentoAdiantado);
-        console.log(idFormaDePagamento);
-        console.log(nomePagamento);
-        console.log(inputValorPagamentoAdiantado);
-        console.log(inputIdFPadiantado);
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputValorPagamentoAdiantado);
+        formCadastrarFesta.appendChild(inputIdFPadiantado);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
 
+        //seta no controler hidden o valor das vezes que foi add despesa
+        document.getElementById('countPagamentoAdiantado').value = jsCountPagamentoAdiantado;
+
+        //limpa os valores do input
+        form.jsValorPagamentoAdiantado.value = "";
+        form.jsFormaPagamentoAdiantado.value = "";
+        
     }
 
 });
@@ -804,9 +851,9 @@ btnAddPacotesAdicionais.addEventListener("click", function (event) {
             //pega o id da tr e remove
             document.getElementById(pacotesAdicionaisTr.id).remove();
 
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputIdPacoteAdicional.id).remove();
-//            document.getElementById(inputValorPacoteAdicional.id).remove();
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputIdPacoteAdicional.id).remove();
+            document.getElementById(inputValorPacoteAdicional.id).remove();
 
             if (jsCountPacotesAdicionais2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
@@ -855,11 +902,19 @@ btnAddPacotesAdicionais.addEventListener("click", function (event) {
         inputIdPacoteAdicional.id = "idPacoteAdicional" + jsCountPacotesAdicionais;
         inputValorPacoteAdicional.id = "valorPacoteAdicional" + jsCountPacotesAdicionais;
 
-        console.log(idTipoPacoteAdicional);
-        console.log(descricaoPacoteAdd);
-        console.log(valorPacoteAdicional);
-        console.log(inputIdPacoteAdicional);
-        console.log(inputValorPacoteAdicional);
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputIdPacoteAdicional);
+        formCadastrarFesta.appendChild(inputValorPacoteAdicional);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
+
+        //seta no controler hidden o valor das vezes que foi add despesa
+        document.getElementById('countPacotesAdicionais').value = jsCountPacotesAdicionais;
+
+        //limpa os valores do input
+        form.jsPacotesAdicionais.value = "";
+        form.jsValorPacoteAdicional.value = "";
+               
     }
 
 });

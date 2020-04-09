@@ -296,8 +296,18 @@
             </div>             
         </div>
         <br>     
-        <form method="POST" id="cadastrarDespesaForm" action="cadastrarFesta">
-            <input type="hidden" name="idCliente" value="${idCliente}">
+        <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
+            <input type="hidden" id="temValorAdicional" name="temValorAdicional" value="0">
+            <input type="hidden" id="temPagamentoAdiantado" name="temPagamentoAdiantado" value="0">
+            <input type="hidden" id="temPacotesAdicionais" name="temPacotesAdicionais" value="0">
+            <input type="hidden" id="countAniversariante" name="countAniversariante" value="0">
+            <input type="hidden" id="countFuncionario" name="CountFuncionario" value="0">
+            <input type="hidden" id="countHorario" name="countHorario" value="0">
+            <input type="hidden" id="countFormaDePagamento" name="countFormaDePagamento" value="0">
+            <input type="hidden" id="countValorAdicional" name="countValorAdicional" value="0">
+            <input type="hidden" id="countPagamentoAdiantado" name="countPagamentoAdiantado" value="0">
+            <input type="hidden" id="countPacotesAdicionais" name="countPacotesAdicionais" value="0">
+            <input type="hidden" id="" name="count" value="0">
             Pacote:
             <select type="select" name="pacote">
                 <option value="">Clique para selecionar</option>
