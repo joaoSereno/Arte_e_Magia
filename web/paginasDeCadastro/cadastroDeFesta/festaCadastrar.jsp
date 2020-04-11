@@ -17,6 +17,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/festaCadastrar.css">
     </head>
@@ -107,6 +108,15 @@
                         </c:forEach>
                 </select>
                 Cache: <input type="text" name="jsCache">
+                Forma de Pagamento:
+                <select type="select" name="jsFormaPagamentoFuncionario">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaFormaPagamento}">
+                            <option value="${item.idFormaPagamento}+${item.nomePagamento}">
+                                ${item.nomePagamento}
+                            </option>
+                        </c:forEach>
+                </select>                
                 <button type="button" id="add-funcionario">+</button> 
             </form>         
             <br>
@@ -116,6 +126,7 @@
                         <tr>    
                             <th>Funcionario</th>
                             <th>Cache</th>
+                            <th>Forma de Pagamento</th>
                             <th></th>
                         </tr>
                     </thead> 
@@ -149,9 +160,60 @@
                 </table> 
             </div>               
         </div>
-        <br> 
-<!--        div forma pagamento--> 
+        <br>
+<!--    div despesa  -->     
         <div>
+            <h5>Despesas da Festa</h5>
+            <button type="button" onclick="tipoDespesa()"/>TIPO DE DESPESA</button>
+            <button type="button" onclick="descricaoManual()"/>DESCRIÇÃO MANUAL</button>
+            <form id="formAddDespesaFesta">
+                Despesa:
+                <input type="text" id="jsDescricaoDespesa" name="jsDescricaoDespesa" value="" style="display: none">
+                <select type="select" id="jsTipoDespesa" name="jsTipoDespesa">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaTipoDeDespesa}">
+                            <option value="${item.idTipoDeDespesa}+${item.nomeDespesa}">
+                                ${item.nomeDespesa}
+                            </option>
+                        </c:forEach>
+                </select>
+                Valor:
+                <input type="text" name="jsValorDepesa" value="">
+                Forma de Pagamento:
+                <select type="select" name="jsFormaPagamentoDespesa">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaFormaPagamento}">
+                            <option value="${item.idFormaPagamento}+${item.nomePagamento}">
+                                ${item.nomePagamento}
+                            </option>
+                        </c:forEach>
+                </select>                
+                Despesa paga?
+                <select name="jsDespesaPaga">
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+                <button type="button" id="add-despesaFesta">+</button> 
+            </form> 
+            <div> 
+                <table id="tabelaDespesas" style="display: none">
+                    <thead> 
+                        <tr>    
+                            <th>Despesa</th>
+                            <th>Valor</th>
+                            <th>Forma de Pagamento</th>
+                            <th>Pago?</th>
+                            <th></th>
+                        </tr>
+                    </thead> 
+                    <tbody id="tbodyDespesas">
+                    </tbody>
+                </table> 
+            </div>
+        </div>   
+        <br>           
+<!--        div forma pagamento--> 
+<!--        <div>
             <form id="formFormaPagamento">
                 Forma de Pagamento:
                 <select type="select" name="jsFormaPagamento">
@@ -164,7 +226,6 @@
                 </select>
                 <button type="button" id="add-formaPagamento">+</button> 
             </form>
-            <br>
             <div> 
                 <table id="tabelaFP" style="display: none">
                     <thead> 
@@ -178,7 +239,7 @@
                 </table> 
             </div>              
         </div>
-        <br> 
+        <br> -->
 <!--        div valor adicional-->
         <h6>Valor Adicional</h6>
         <button onclick="habilitaValorAdicional()">Sim</button>
@@ -210,7 +271,7 @@
         </div>    
         <br> 
 <!--        div pagamento adiantado-->
-        <h6>Pagamento Adiantado</h6>
+<!--        <h6>Pagamento Adiantado</h6>
         <button onclick="habilitaPagamentoAdiantado()">Sim</button>
         <button onclick="desabilitaPagamentoAdiantado()">Não</button>
         <br>
@@ -244,23 +305,7 @@
                 </table> 
             </div>             
         </div>
-        <br>
-<!--        div despesa-->        
-        <div>
-            <form id="formAddDespesaFesta">
-                Despesas da Festa:
-                <input type="text" name="jsValorDepesa" value="">
-                Data de pagamento:
-                <input type="text" name="jsDataPagamento" value="">
-                Despesa paga?
-                <select name="jsDespesaPpaga">
-                    <option>Sim</option>
-                    <option>Não</option>
-                </select>
-                <button type="button" id="add-DespesaFesta">+</button> 
-            </form>                 
-        </div>   
-        <br>         
+        <br>      -->
 <!--        div pacote adicional-->
         <h6> Pacotes Adicionais </h6>
         <button onclick="habilitaPacoteAdicional()">Sim</button>
@@ -298,15 +343,16 @@
         <br>     
         <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
             <input type="hidden" id="temValorAdicional" name="temValorAdicional" value="0">
-            <input type="hidden" id="temPagamentoAdiantado" name="temPagamentoAdiantado" value="0">
+<!--            <input type="hidden" id="temPagamentoAdiantado" name="temPagamentoAdiantado" value="0">-->
             <input type="hidden" id="temPacotesAdicionais" name="temPacotesAdicionais" value="0">
             <input type="hidden" id="countAniversariante" name="countAniversariante" value="0">
             <input type="hidden" id="countFuncionario" name="CountFuncionario" value="0">
             <input type="hidden" id="countHorario" name="countHorario" value="0">
-            <input type="hidden" id="countFormaDePagamento" name="countFormaDePagamento" value="0">
+<!--            <input type="hidden" id="countFormaDePagamento" name="countFormaDePagamento" value="0">-->
             <input type="hidden" id="countValorAdicional" name="countValorAdicional" value="0">
             <input type="hidden" id="countPagamentoAdiantado" name="countPagamentoAdiantado" value="0">
             <input type="hidden" id="countPacotesAdicionais" name="countPacotesAdicionais" value="0">
+            <input type="hidden" id="countDespesaFesta" name="countDespesaFesta" value="0">
             <input type="hidden" id="" name="count" value="0">
             Pacote:
             <select type="select" name="pacote">
@@ -329,10 +375,10 @@
             <br>
             <br>
             <h5>Endereço da Festa</h5>
-            CEP: <input type="text" name="cep"  placeholder="CEP Logradouro" value="${cep}">
-            Cidade: <input type="text" name="cidade" placeholder="Cidade" value="${cidade}" >
-            Bairro: <input type="text" name="bairro"  placeholder="Bairro" value="${bairro}">
-            Rua: <input type="text" name="rua"  placeholder="Nome Logradouro" value="${rua}">
+            CEP: <input type="text" name="cep" id="cep" placeholder="CEP Logradouro" value="${cep}">
+            Cidade: <input type="text" name="cidade" id="cidade" placeholder="Cidade" value="${cidade}" >
+            Bairro: <input type="text" name="bairro" id="bairro" placeholder="Bairro" value="${bairro}">
+            Rua: <input type="text" name="rua" id="rua" placeholder="Nome Logradouro" value="${rua}">
             N° <input type="text" name="numero"  placeholder="Número residência" value="${numero}">
             Complemento: <input type="text" name="complemento" placeholder="Complemento" value="${complemento}">
             <br>    
@@ -348,4 +394,5 @@
     </body>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrar.js"></script>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrar2.js"></script>
+    <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  
 </html>

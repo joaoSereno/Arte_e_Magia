@@ -16,6 +16,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>        
         <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeClientes/clienteCadastrar.css">
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
     </head>
@@ -87,9 +88,9 @@
                 <h4>Dados Residenciais</h4>
                 <div class="row formularios3">
                     <div class="col">
-                        <label for="cep">Logradouro</label>
-                        <input type="text" class="form-control" name="rua" id="logradouro" placeholder="Nome Logradouro">
-                    </div>
+                        <label for="cep">CEP</label>
+                        <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP Logradouro">
+                    </div>                    
                     <div class="col">
                         <label for="cidade">Cidade</label>
                         <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade">
@@ -98,11 +99,11 @@
                         <label for="bairro">Bairro</label>
                         <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro">
                     </div>
-                    <div class="row formularios4">    
+                    <div class="row formularios4">  
                         <div class="col">
-                            <label for="cep">CEP</label>
-                            <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP Logradouro">
-                        </div>
+                            <label for="cep">Logradouro</label>
+                            <input type="text" class="form-control" name="rua" id="rua" placeholder="Nome Logradouro">
+                        </div>                        
                         <div class="col">
                             <label for="numero">Número</label>
                             <input type="text" class="form-control" name="numero" id="numero" placeholder="Número residência">
@@ -128,4 +129,5 @@
                 </div>
             </div>
     </body>
+    <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>      
 </html>

@@ -32,6 +32,10 @@ var jsCountPagamentoAdiantado2 = 0;
 var jsCountPacotesAdicionais = 0;
 var jsCountPacotesAdicionais2 = 0;
 
+//var das pacotes adicionais
+var jsCountDespesa = 0;
+var jsCountDespesa2 = 0;
+
 //recebendo em uma variavel o botão de + 
 var btnAddAniversariante = document.querySelector("#add-aniversariante");
 var btnAddFuncionario = document.querySelector("#add-funcionario");
@@ -40,8 +44,270 @@ var btnAddFormaDePagamento = document.querySelector("#add-formaPagamento");
 var btnAddValorAdicional = document.querySelector("#add-valorAdicional");
 var btnAddPagamentoAdiantado = document.querySelector("#add-pagamentoAdiantado");
 var btnAddPacotesAdicionais = document.querySelector("#add-pacoteAdicional");
+var btnAddDespesa = document.querySelector("#add-despesaFesta");
 
 //aqui é os eventos (funções quando clicar no botão + )
+
+//evento do despesa
+btnAddDespesa.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    //pega o controlador para ver se já foi inserido o cliente , caso foi , ai executa a função
+    var countCliente = document.getElementById('countCliente').value;
+    if (countCliente > 0) {
+
+        //toda vez que add, vai somar 1 no count para saber quantos despesas foram adicionados
+        jsCountDespesa++;
+        jsCountDespesa2++;
+
+        //pega o elemento form inteiro do html
+        var form = document.querySelector("#formAddDespesaFesta");
+
+        //mapea todos os inputs pelo nome e salva nas variaveis os valores
+        var descricaoDespesa = form.jsDescricaoDespesa.value;
+        var tipoDespesa = form.jsTipoDespesa.value;
+        var valorDespesa = form.jsValorDepesa.value;
+        var formaDePagamento = form.jsFormaPagamentoDespesa.value;
+        var despesaPaga = form.jsDespesaPaga.value;
+
+        if (descricaoDespesa === "") {
+            //para os values que são dropsdows e listado dinamicamente
+            //cria as variavel
+            var idTipoDespesa = 0;
+            var nomeDespesa = "";
+            var countResultado = 0;
+
+            //recebe o id + o nome e usa a função split para separar e coloca em uma lista
+            resultado = tipoDespesa.split("+");
+
+            //percorre essa lista
+            resultado.forEach((valorAtual) => {
+                countResultado++;
+                //se é a primeira vez que passa na lista, pega o id e adiciona na variavel idTipoDespesa
+                if (countResultado == 1) {
+                    idTipoDespesa = valorAtual;
+                } else {//se não é , pega o nome e adiciona na variavel atual
+                    nomeDespesa = valorAtual;
+                    countResultado = 0;
+                }
+            });
+        }
+
+        //para os values que são dropsdows e listado dinamicamente
+        //cria as variavel
+        var idFormaDePagamento = 0;
+        var nomePagamento = "";
+        var countResultado2 = 0;
+
+        //recebe o id + o nome e usa a função split para separar e coloca em uma lista
+        resultado2 = formaDePagamento.split("+");
+
+        //percorre essa lista
+        resultado2.forEach((valorAtual2) => {
+            countResultado2++;
+            //se é a primeira vez que passa na lista, pega o id e adiciona na variavel idFormaDePagamento
+            if (countResultado2 == 1) {
+                idFormaDePagamento = valorAtual2;
+            } else {//se não é , pega o nome e adiciona na variavel atual
+                nomePagamento = valorAtual2;
+                countResultado2 = 0;
+            }
+        });
+
+        //habilita a div da tabela
+        document.getElementById('tabelaDespesas').style.display = 'block';
+
+        //cria um elemento do tipo TR e salva ele em uma variavel
+        var despesaTr = document.createElement("tr");
+        despesaTr.id = "trDespesa" + jsCountDespesa;
+
+        //cria elementos do tipo TD e salva eles em uma variavel
+        var despesaTd = document.createElement("td");
+        var valorDespesaTd = document.createElement("td");
+        var formaPagamentoDespesaTd = document.createElement("td");
+        var despesaPagaTd = document.createElement("td");
+        var removerDespesaTd = document.createElement("td");
+
+        //criando elemento button para remover
+        var removerDespesaBotao = document.createElement("button");
+
+        removerDespesaBotao.textContent = "Remover";
+        removerDespesaBotao.type = "button";
+        removerDespesaBotao.id = "idRemoverDespesaBotao";
+        removerDespesaBotao.name = "nameRemoverDespesaBotao" + jsCountDespesa;
+
+        //criando função on clik para remover o aniversariante adicionado
+        removerDespesaBotao.onclick = function () {
+            jsCountDespesa2--; //toda vez que remove diminui
+
+            //pega o id da tr e remove
+            document.getElementById(despesaTr.id).remove();
+
+            //pega os controladores do anversariante e remove tbm
+            if (descricaoDespesa !== "") {
+                document.getElementById(inputDescricaoDespesa.id).remove();
+            } else {
+                document.getElementById(inputIdTipoDespesa.id).remove();
+            }
+            document.getElementById(inputValorDespesa.id).remove();
+            document.getElementById(inputFormaDePagamentoDespesa.id).remove();            
+            document.getElementById(inputDespesaPaga.id).remove();
+            document.getElementById(inputManualOuTipoDespesa.id).remove();
+
+
+            if (jsCountDespesa2 == 0) { //se for igual a zero
+                //desabilita a div da tabela
+                document.getElementById('tabelaDespesas').style.display = 'none';
+                document.getElementById('countDespesaFesta').value = jsCountDespesa2;
+            }
+        };
+
+        //colocando o botão de remover dentro do td
+        removerDespesaTd.appendChild(removerDespesaBotao);
+
+        //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
+        if (descricaoDespesa !== "") {
+            despesaTd.textContent = descricaoDespesa;
+        } else {
+            despesaTd.textContent = nomeDespesa;
+        }
+
+        valorDespesaTd.textContent = valorDespesa;
+        formaPagamentoDespesaTd.textContent = nomePagamento;
+        despesaPagaTd.textContent = despesaPaga;
+
+        //coloca os TDS criados que estão com os valores do form dentro do TR
+        despesaTr.appendChild(despesaTd);
+        despesaTr.appendChild(valorDespesaTd);
+        despesaTr.appendChild(formaPagamentoDespesaTd);
+        despesaTr.appendChild(despesaPagaTd);
+        despesaTr.appendChild(removerDespesaTd);
+
+        //pega o elemento table do html através do id e seta nele o TR criado
+        var tabelaTbodyAniversariante = document.querySelector("#tbodyDespesas");
+        tabelaTbodyAniversariante.appendChild(despesaTr);
+
+        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DOS ANIVERSARIANTE ADD
+        //cria um controlador(input) para os aniversariantes toda vez que adiciona um aniversariante
+        if (descricaoDespesa !== "") {
+
+            //cria input da descricao
+            var inputDescricaoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputDescricaoDespesa.type = "hidden";
+            inputDescricaoDespesa.value = descricaoDespesa;
+            inputDescricaoDespesa.id = "descricaoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameDescricaoDespesa = "descricaoDespesa" + jsCountDespesa;
+            inputDescricaoDespesa.name = nameDescricaoDespesa;
+
+            //criação do input controlador para ver se é manual ou por tipo de despesa
+            var inputManualOuTipoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputManualOuTipoDespesa.type = "hidden";
+            inputManualOuTipoDespesa.value = 0; //0 é manual
+            inputManualOuTipoDespesa.id = "manualOuTipoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameManualOuTipoDespesa = "manualOuTipoDespesa" + jsCountDespesa;
+            inputManualOuTipoDespesa.name = nameManualOuTipoDespesa;
+
+
+        } else {
+            //cria input do id tipo de despesa selecionado
+            var inputIdTipoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputIdTipoDespesa.type = "hidden";
+            inputIdTipoDespesa.value = idTipoDespesa;
+            inputIdTipoDespesa.id = "idTipoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameIdTipoDespesa = "idTipoDespesa" + jsCountDespesa;
+            inputIdTipoDespesa.name = nameIdTipoDespesa;
+
+            //criação do input controlador para ver se é manual ou por tipo de despesa
+            var inputDescricaoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputDescricaoDespesa.type = "hidden";
+            inputDescricaoDespesa.value = descricaoDespesa;
+            inputDescricaoDespesa.id = "descricaoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameDescricaoDespesa = "descricaoDespesa" + jsCountDespesa;
+            inputDescricaoDespesa.name = nameDescricaoDespesa;
+
+            //criação do input controlador para ver se é manual ou por tipo de despesa
+            var inputManualOuTipoDespesa = document.createElement("input");
+
+            //seta type, valor e id
+            inputManualOuTipoDespesa.type = "hidden";
+            inputManualOuTipoDespesa.value = 1; //id de despesa
+            inputManualOuTipoDespesa.id = "manualOuTipoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameManualOuTipoDespesa = "manualOuTipoDespesa" + jsCountDespesa;
+            inputManualOuTipoDespesa.name = nameManualOuTipoDespesa;
+
+        }
+        //cria input do valor
+        var inputValorDespesa = document.createElement("input");
+        //seta type, valor e id
+        inputValorDespesa.type = "hidden";
+        inputValorDespesa.value = valorDespesa;
+        inputValorDespesa.id = "valorDespesa" + jsCountDespesa;
+
+        //seta o nome
+        var nameValorDespesa = "valorDespesa" + jsCountDespesa;
+        inputValorDespesa.name = nameValorDespesa;
+
+        //cria input do valor
+        var inputDespesaPaga = document.createElement("input");
+        //seta type, valor e id        
+        inputDespesaPaga.type = "hidden";
+        inputDespesaPaga.value = despesaPaga;
+        inputDespesaPaga.id = "despesaPaga" + jsCountDespesa;
+
+        //seta o nome
+        var nameDespesaPaga = "despesaPaga" + jsCountDespesa;
+        inputDespesaPaga.name = nameDespesaPaga;
+
+        //cria input da forma de pagamento
+        var inputFormaDePagamentoDespesa = document.createElement("input");
+        //seta type, valor e id
+        inputFormaDePagamentoDespesa.type = "hidden";
+        inputFormaDePagamentoDespesa.value = idFormaDePagamento;
+        inputFormaDePagamentoDespesa.id = "formaPagamentoDespesa" + jsCountDespesa;
+
+        //seta o nome
+        var nameFormaDePagamentoDespesa = "formaPagamentoDespesa" + jsCountDespesa;
+        inputFormaDePagamentoDespesa.name = nameFormaDePagamentoDespesa;        
+        
+        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        if (descricaoDespesa !== "") {
+            formCadastrarFesta.appendChild(inputDescricaoDespesa);
+        } else {
+            formCadastrarFesta.appendChild(inputIdTipoDespesa);
+        }
+        formCadastrarFesta.appendChild(inputManualOuTipoDespesa);
+        formCadastrarFesta.appendChild(inputValorDespesa);
+        formCadastrarFesta.appendChild(inputFormaDePagamentoDespesa);
+        formCadastrarFesta.appendChild(inputDespesaPaga);
+        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS ANIVERSARIANTES ADD
+
+        //seta no controler hidden o valor das vezes que foi add aniversariante
+        document.getElementById('countDespesaFesta').value = jsCountDespesa;
+
+        //limpa os valores do input
+        form.jsDescricaoDespesa.value = "";
+        form.jsTipoDespesa.value = "";
+        form.jsFormaPagamentoDespesa.value = "";
+        form.jsValorDepesa.value = "";
+
+    }
+
+});
 
 //evento do aniversariante
 btnAddAniversariante.addEventListener("click", function (event) {
@@ -114,6 +380,7 @@ btnAddAniversariante.addEventListener("click", function (event) {
             if (jsAniversariante2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
                 document.getElementById('tabelaAniversariantes').style.display = 'none';
+                document.getElementById('countAniversariante').value = jsAniversariante2;
             }
         };
 
@@ -160,7 +427,7 @@ btnAddAniversariante.addEventListener("click", function (event) {
 
         //limpa os valores do input
         form.jsAniversariante.value = "";
-    
+
     }
 
 });
@@ -183,6 +450,7 @@ btnAddFuncionario.addEventListener("click", function (event) {
         //mapea todos os inputs pelo nome e salva nas variaveis os valores
         var funcionario = form.jsFuncionarios.value;
         var cache = form.jsCache.value;
+        var formaDePagamento = form.jsFormaPagamentoFuncionario.value;
 
         //para os values que são dropsdows e listado dinamicamente
         //cria as variavel
@@ -190,8 +458,13 @@ btnAddFuncionario.addEventListener("click", function (event) {
         var nomeFuncionario = "";
         var countResultado = 0;
 
+        var idFormaDePagamento = 0;
+        var nomePagamento = "";
+        var countResultado2 = 0;
+
         //recebe o id + o nome e usa a função split para separar e coloca em uma lista
         resultado = funcionario.split("+");
+        resultado2 = formaDePagamento.split("+");
 
         //percorre essa lista
         resultado.forEach((valorAtual) => {
@@ -205,6 +478,17 @@ btnAddFuncionario.addEventListener("click", function (event) {
             }
         });
 
+        resultado2.forEach((valorAtual2) => {
+            countResultado2++;
+            //se é a primeira vez que passa na lista, pega o id e adiciona na variavel idFormaDePagamento
+            if (countResultado2 == 1) {
+                idFormaDePagamento = valorAtual2;
+            } else {//se não é , pega o nome e adiciona na variavel atual
+                nomePagamento = valorAtual2;
+                countResultado2 = 0;
+            }
+        });
+
         //habilita a div da tabela
         document.getElementById('tabelaFuncionario').style.display = 'block';
 
@@ -215,6 +499,7 @@ btnAddFuncionario.addEventListener("click", function (event) {
         //cria elementos do tipo TD e salva eles em uma variavel
         var funcionarioTd = document.createElement("td");
         var cacheTd = document.createElement("td");
+        var formaPagamentoFuncionarioTd = document.createElement("td");
         var removerfuncionarioTd = document.createElement("td");
 
         //criando elemento button para remover 
@@ -235,10 +520,12 @@ btnAddFuncionario.addEventListener("click", function (event) {
             //pega os controladores da despesa e remove tbm
             document.getElementById(inputIdFuncionario.id).remove();
             document.getElementById(inputCacheFuncionario.id).remove();
+            document.getElementById(inputIdFormaDePagamentoFuncionario.id).remove();
 
             if (jsCountFuncionario2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
                 document.getElementById('tabelaFuncionario').style.display = 'none';
+                document.getElementById('countFuncionario').value = jsCountFuncionario2;
             }
         };
 
@@ -248,10 +535,12 @@ btnAddFuncionario.addEventListener("click", function (event) {
         //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
         funcionarioTd.textContent = nomeFuncionario;
         cacheTd.textContent = cache;
+        formaPagamentoFuncionarioTd.textContent = nomePagamento;
 
         //coloca os TDS criados que estão com os valores do form dentro do TR
         funcionarioTr.appendChild(funcionarioTd);
         funcionarioTr.appendChild(cacheTd);
+        funcionarioTr.appendChild(formaPagamentoFuncionarioTd);
         funcionarioTr.appendChild(removerfuncionarioTd);
 
         //pega o elemento table do html através do id e seta nele o TR criado
@@ -262,31 +551,38 @@ btnAddFuncionario.addEventListener("click", function (event) {
         //cria um controlador(input) para as funcionario toda vez que adiciona uma funcionario
         var inputIdFuncionario = document.createElement("input");
         var inputCacheFuncionario = document.createElement("input");
+        var inputIdFormaDePagamentoFuncionario = document.createElement("input");
 
         //seta como tipo hidden os controladores(inputs) criados para funcionario
         inputIdFuncionario.type = "hidden";
         inputCacheFuncionario.type = "hidden";
+        inputIdFormaDePagamentoFuncionario.type = "hidden";
 
         //setando os valores digitos pelo usuário, nos values dos controladores
         inputIdFuncionario.value = idFuncionario;
         inputCacheFuncionario.value = cache;
+        inputIdFormaDePagamentoFuncionario.value = idFormaDePagamento;
 
         //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountFuncionario
         var nameIdFuncionario = "idFuncionario" + jsCountFuncionario;
         var nameCacheFuncionario = "cacheFuncionario" + jsCountFuncionario;
+        var nameIdFormaDePagamentoFuncionario = "idFormaDePagamentoFuncionario" + jsCountFuncionario;
 
         //seta no name dos controladores(input) o valor das variaveis
         inputIdFuncionario.name = nameIdFuncionario;
         inputCacheFuncionario.name = nameCacheFuncionario;
+        inputIdFormaDePagamentoFuncionario.name = nameIdFormaDePagamentoFuncionario;
 
         //setando id para os controladores(inputs)
         inputIdFuncionario.id = "idFuncionario" + jsCountFuncionario;
         inputCacheFuncionario.id = "cacheFuncionario" + jsCountFuncionario;
+        inputIdFormaDePagamentoFuncionario.id = "idFormaDePagamentoFuncionario" + jsCountFuncionario;
 
         //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
         formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
         formCadastrarFesta.appendChild(inputIdFuncionario);
         formCadastrarFesta.appendChild(inputCacheFuncionario);
+        formCadastrarFesta.appendChild(inputIdFormaDePagamentoFuncionario);
         //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
 
         //seta no controler hidden o valor das vezes que foi add despesa
@@ -295,7 +591,8 @@ btnAddFuncionario.addEventListener("click", function (event) {
         //limpa os valores do input
         form.jsFuncionarios.value = "";
         form.jsCache.value = "";
-        
+        form.jsFormaPagamentoFuncionario.value = "";
+
     }
 
 });
@@ -353,6 +650,7 @@ btnAddHorario.addEventListener("click", function (event) {
             if (jsCountHorario2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
                 document.getElementById('tabelaHorario').style.display = 'none';
+                document.getElementById('countHorario').value = jsCountHorario2;
             }
         };
 
@@ -414,126 +712,127 @@ btnAddHorario.addEventListener("click", function (event) {
 
 });
 
-//evento da fp
-btnAddFormaDePagamento.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    //pega o controlador para ver se já foi inserido o cliente , caso foi , ai executa a função
-    var countCliente = document.getElementById('countCliente').value;
-    if (countCliente > 0) {
-
-        //toda vez que add, vai somar 1 no count para saber quantas formas de pagamento foram adicionados
-        jsCountFormaDePagamento++;
-        jsCountFormaDePagamento2++;
-
-        //pega o elemento form inteiro do html
-        var form = document.querySelector("#formFormaPagamento");
-
-        //mapea todos os inputs pelo nome e salva nas variaveis os valores
-        var formaDePagamento = form.jsFormaPagamento.value;
-
-        //para os values que são dropsdows e listado dinamicamente
-        //cria as variavel
-        var idFormaDePagamento = 0;
-        var nomePagamento = "";
-        var countResultado = 0;
-
-        //recebe o id + o nome e usa a função split para separar e coloca em uma lista
-        resultado = formaDePagamento.split("+");
-
-        //percorre essa lista
-        resultado.forEach((valorAtual) => {
-            countResultado++;
-            //se é a primeira vez que passa na lista, pega o id e adiciona na variavel idFuncionario
-            if (countResultado == 1) {
-                idFormaDePagamento = valorAtual;
-            } else {//se não é , pega o nome e adiciona na variavel atual
-                nomePagamento = valorAtual;
-                countResultado = 0;
-            }
-        });
-        //habilita a div da tabela
-        document.getElementById('tabelaFP').style.display = 'block';
-
-        //cria um elemento do tipo TR e salva ele em uma variavel
-        var formaPagamentoTr = document.createElement("tr");
-        formaPagamentoTr.id = "tdFormaPagamento" + jsCountFormaDePagamento;
-
-        //cria elementos do tipo TD e salva eles em uma variavel
-        var formaPagamentoTd = document.createElement("td");
-        var removerFormaPagamentoTd = document.createElement("td");
-
-        //criando elemento button para remover 
-        var removerFormaPagamentoBotao = document.createElement("button");
-
-        removerFormaPagamentoBotao.textContent = "Remover";
-        removerFormaPagamentoBotao.type = "button";
-        removerFormaPagamentoBotao.id = "idRemoverFormaPagamentoBotao";
-        removerFormaPagamentoBotao.name = "nameRemoverFormaPagamentoBotao" + jsCountFormaDePagamento;
-
-        //criando função on clik para remover a forma de pagamento adicionado
-        removerFormaPagamentoBotao.onclick = function () {
-            jsCountFormaDePagamento2--; //toda vez que remove diminui
-
-            //pega o id da tr e remove
-            document.getElementById(formaPagamentoTr.id).remove();
-
-            //pega os controladores da despesa e remove tbm
-            document.getElementById(inputIdFormaPagamento.id).remove();
-
-            if (jsCountFormaDePagamento2 == 0) { //se for igual a zero
-                //desabilita a div da tabela
-                document.getElementById('tabelaFP').style.display = 'none';
-            }
-        };
-
-        //colocando o botão de remover dentro do td
-        removerFormaPagamentoTd.appendChild(removerFormaPagamentoBotao);
-
-        //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
-        formaPagamentoTd.textContent = nomePagamento;
-
-        //coloca os TDS criados que estão com os valores do form dentro do TR
-        formaPagamentoTr.appendChild(formaPagamentoTd);
-        formaPagamentoTr.appendChild(removerFormaPagamentoTd);
-
-        //pega o elemento table do html através do id e seta nele o TR criado
-        var tabelaTbodyFP = document.querySelector("#tbodyFP");
-        tabelaTbodyFP.appendChild(formaPagamentoTr);
-
-        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS FP ADD
-        //cria um controlador(input) para as fp toda vez que adiciona uma fp
-        var inputIdFormaPagamento = document.createElement("input");
-
-        //seta como tipo hidden os controladores(inputs) criados para fp
-        inputIdFormaPagamento.type = "hidden";
-
-        //setando os valores digitos pelo usuário, nos values dos controladores
-        inputIdFormaPagamento.value = idFormaDePagamento;
-
-        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountFormaDePagamento
-        var nameIdFormaPagamento = "formaPagamento" + jsCountFormaDePagamento;
-
-        //seta no name dos controladores(input) o valor das variaveis
-        inputIdFormaPagamento.name = nameIdFormaPagamento;
-
-        //setando id para os controladores(inputs)
-        inputIdFormaPagamento.id = "formaPagamento" + jsCountFormaDePagamento;
-
-        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-        formCadastrarFesta.appendChild(inputIdFormaPagamento);
-        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
-
-        //seta no controler hidden o valor das vezes que foi add despesa
-        document.getElementById('countFormaDePagamento').value = jsCountFormaDePagamento;
-
-        //limpa os valores do input
-        form.jsFormaPagamento.value = "";
-        
-    }
-
-});
+////evento da fp
+//btnAddFormaDePagamento.addEventListener("click", function (event) {
+//    event.preventDefault();
+//
+//    //pega o controlador para ver se já foi inserido o cliente , caso foi , ai executa a função
+//    var countCliente = document.getElementById('countCliente').value;
+//    if (countCliente > 0) {
+//
+//        //toda vez que add, vai somar 1 no count para saber quantas formas de pagamento foram adicionados
+//        jsCountFormaDePagamento++;
+//        jsCountFormaDePagamento2++;
+//
+//        //pega o elemento form inteiro do html
+//        var form = document.querySelector("#formFormaPagamento");
+//
+//        //mapea todos os inputs pelo nome e salva nas variaveis os valores
+//        var formaDePagamento = form.jsFormaPagamento.value;
+//
+//        //para os values que são dropsdows e listado dinamicamente
+//        //cria as variavel
+//        var idFormaDePagamento = 0;
+//        var nomePagamento = "";
+//        var countResultado = 0;
+//
+//        //recebe o id + o nome e usa a função split para separar e coloca em uma lista
+//        resultado = formaDePagamento.split("+");
+//
+//        //percorre essa lista
+//        resultado.forEach((valorAtual) => {
+//            countResultado++;
+//            //se é a primeira vez que passa na lista, pega o id e adiciona na variavel idFuncionario
+//            if (countResultado == 1) {
+//                idFormaDePagamento = valorAtual;
+//            } else {//se não é , pega o nome e adiciona na variavel atual
+//                nomePagamento = valorAtual;
+//                countResultado = 0;
+//            }
+//        });
+//        //habilita a div da tabela
+//        document.getElementById('tabelaFP').style.display = 'block';
+//
+//        //cria um elemento do tipo TR e salva ele em uma variavel
+//        var formaPagamentoTr = document.createElement("tr");
+//        formaPagamentoTr.id = "tdFormaPagamento" + jsCountFormaDePagamento;
+//
+//        //cria elementos do tipo TD e salva eles em uma variavel
+//        var formaPagamentoTd = document.createElement("td");
+//        var removerFormaPagamentoTd = document.createElement("td");
+//
+//        //criando elemento button para remover 
+//        var removerFormaPagamentoBotao = document.createElement("button");
+//
+//        removerFormaPagamentoBotao.textContent = "Remover";
+//        removerFormaPagamentoBotao.type = "button";
+//        removerFormaPagamentoBotao.id = "idRemoverFormaPagamentoBotao";
+//        removerFormaPagamentoBotao.name = "nameRemoverFormaPagamentoBotao" + jsCountFormaDePagamento;
+//
+//        //criando função on clik para remover a forma de pagamento adicionado
+//        removerFormaPagamentoBotao.onclick = function () {
+//            jsCountFormaDePagamento2--; //toda vez que remove diminui
+//
+//            //pega o id da tr e remove
+//            document.getElementById(formaPagamentoTr.id).remove();
+//
+//            //pega os controladores da despesa e remove tbm
+//            document.getElementById(inputIdFormaPagamento.id).remove();
+//
+//            if (jsCountFormaDePagamento2 == 0) { //se for igual a zero
+//                //desabilita a div da tabela
+//                document.getElementById('tabelaFP').style.display = 'none';
+//                document.getElementById('countFormaDePagamento').value = jsCountFormaDePagamento2;
+//            }
+//        };
+//
+//        //colocando o botão de remover dentro do td
+//        removerFormaPagamentoTd.appendChild(removerFormaPagamentoBotao);
+//
+//        //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
+//        formaPagamentoTd.textContent = nomePagamento;
+//
+//        //coloca os TDS criados que estão com os valores do form dentro do TR
+//        formaPagamentoTr.appendChild(formaPagamentoTd);
+//        formaPagamentoTr.appendChild(removerFormaPagamentoTd);
+//
+//        //pega o elemento table do html através do id e seta nele o TR criado
+//        var tabelaTbodyFP = document.querySelector("#tbodyFP");
+//        tabelaTbodyFP.appendChild(formaPagamentoTr);
+//
+//        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS FP ADD
+//        //cria um controlador(input) para as fp toda vez que adiciona uma fp
+//        var inputIdFormaPagamento = document.createElement("input");
+//
+//        //seta como tipo hidden os controladores(inputs) criados para fp
+//        inputIdFormaPagamento.type = "hidden";
+//
+//        //setando os valores digitos pelo usuário, nos values dos controladores
+//        inputIdFormaPagamento.value = idFormaDePagamento;
+//
+//        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountFormaDePagamento
+//        var nameIdFormaPagamento = "formaPagamento" + jsCountFormaDePagamento;
+//
+//        //seta no name dos controladores(input) o valor das variaveis
+//        inputIdFormaPagamento.name = nameIdFormaPagamento;
+//
+//        //setando id para os controladores(inputs)
+//        inputIdFormaPagamento.id = "formaPagamento" + jsCountFormaDePagamento;
+//
+//        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+//        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+//        formCadastrarFesta.appendChild(inputIdFormaPagamento);
+//        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
+//
+//        //seta no controler hidden o valor das vezes que foi add despesa
+//        document.getElementById('countFormaDePagamento').value = jsCountFormaDePagamento;
+//
+//        //limpa os valores do input
+//        form.jsFormaPagamento.value = "";
+//
+//    }
+//
+//});
 
 //evento do valor adicional
 btnAddValorAdicional.addEventListener("click", function (event) {
@@ -588,6 +887,8 @@ btnAddValorAdicional.addEventListener("click", function (event) {
             if (jsCountValorAdicional2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
                 document.getElementById('tabelaValorAdicional').style.display = 'none';
+                document.getElementById('countValorAdicional').value = 0;
+                document.getElementById('temValorAdicional').value = 0;
             }
         };
 
@@ -644,145 +945,147 @@ btnAddValorAdicional.addEventListener("click", function (event) {
         //limpa os valores do input
         form.jsValorAdicional.value = "";
         form.jsDescricaoValorAdicional.value = "";
-                
+
     }
 
 });
 
-//evento do pagamento adiantado
-btnAddPagamentoAdiantado.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    //pega o controlador para ver se já foi inserido o cliente , caso foi , ai executa a função
-    var countCliente = document.getElementById('countCliente').value;
-    if (countCliente > 0) {
-
-        //toda vez que add, vai somar 1 no count para saber quantos pagamento adiantados foram adicionados
-        jsCountPagamentoAdiantado++;
-        jsCountPagamentoAdiantado2++;
-
-        //pega o elemento form inteiro do html
-        var form = document.querySelector("#formPagamentoAdiantado");
-
-        //mapea todos os inputs pelo nome e salva nas variaveis os valores
-        var valorPagamentoAdiantado = form.jsValorPagamentoAdiantado.value;
-        var formaPagamentoAdiantado = form.jsFormaPagamentoAdiantado.value;
-
-        //para os values que são dropsdows e listado dinamicamente
-        //cria as variavel
-        var idFormaDePagamento = 0;
-        var nomePagamento = "";
-        var countResultado = 0;
-
-        //recebe o id + o nome e usa a função split para separar e coloca em uma lista
-        resultado = formaPagamentoAdiantado.split("+");
-
-        //percorre essa lista
-        resultado.forEach((valorAtual) => {
-            countResultado++;
-            //se é a primeira vez que passa na lista, pega o id e adiciona na variavel idFuncionario
-            if (countResultado == 1) {
-                idFormaDePagamento = valorAtual;
-            } else {//se não é , pega o nome e adiciona na variavel atual
-                nomePagamento = valorAtual;
-                countResultado = 0;
-            }
-        });
-
-        //habilita a div da tabela
-        document.getElementById('tabelaPagamentoAdiantado').style.display = 'block';
-
-        //cria um elemento do tipo TR e salva ele em uma variavel
-        var pagamentoAdiantadoTr = document.createElement("tr");
-        pagamentoAdiantadoTr.id = "tdPagamentoAdiantado" + jsCountPagamentoAdiantado;
-
-        //cria elementos do tipo TD e salva eles em uma variavel
-        var valorTd = document.createElement("td");
-        var formaPagamentoTd = document.createElement("td");
-        var removerPagamentoAdiantadoTd = document.createElement("td");
-
-        //criando elemento button para remover e colocando ele no td "removerDespesaTd"
-        var removerPagamentoAdiantadoBotao = document.createElement("button");
-
-        removerPagamentoAdiantadoBotao.textContent = "Remover";
-        removerPagamentoAdiantadoBotao.type = "button";
-        removerPagamentoAdiantadoBotao.id = "idRemoverPagamentoAdiantadoBotao";
-        removerPagamentoAdiantadoBotao.name = "nameRemoverPagamentoAdiantadoBotao" + jsCountPagamentoAdiantado;
-
-        //criando função on clik para remover o pagamento adiantado adicionado
-        removerPagamentoAdiantadoBotao.onclick = function () {
-            jsCountPagamentoAdiantado2--; //toda vez que remove diminui
-
-            //pega o id da tr e remove
-            document.getElementById(pagamentoAdiantadoTr.id).remove();
-
-            //pega os controladores da despesa e remove tbm
-            document.getElementById(inputValorPagamentoAdiantado.id).remove();
-            document.getElementById(inputIdFPadiantado.id).remove();
-
-            if (jsCountPagamentoAdiantado2 == 0) { //se for igual a zero
-                //desabilita a div da tabela
-                document.getElementById('tabelaPagamentoAdiantado').style.display = 'none';
-            }
-        };
-
-        //colocando o botão de remover dentro do td
-        removerPagamentoAdiantadoTd.appendChild(removerPagamentoAdiantadoBotao);
-
-        //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
-        valorTd.textContent = valorPagamentoAdiantado;
-        formaPagamentoTd.textContent = nomePagamento;
-
-        //coloca os TDS criados que estão com os valores do form dentro do TR
-        pagamentoAdiantadoTr.appendChild(valorTd);
-        pagamentoAdiantadoTr.appendChild(formaPagamentoTd);
-        pagamentoAdiantadoTr.appendChild(removerPagamentoAdiantadoTd);
-
-        //pega o elemento table do html através do id e seta nele o TR criado
-        var tabelaTbodyPagamentoAdiantado = document.querySelector("#tbodyPagamentoAdiantado");
-        tabelaTbodyPagamentoAdiantado.appendChild(pagamentoAdiantadoTr);
-
-        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS DOS PAGAMENTO ADIANTADO ADD
-        //cria um controlador(input) para as pag adiantado toda vez que adiciona uma pag adiantados
-        var inputValorPagamentoAdiantado = document.createElement("input");
-        var inputIdFPadiantado = document.createElement("input");
-
-        //seta como tipo hidden os controladores(inputs) criados para pag adiantado
-        inputValorPagamentoAdiantado.type = "hidden";
-        inputIdFPadiantado.type = "hidden";
-
-        //setando os valores digitos pelo usuário, nos values dos controladores
-        inputValorPagamentoAdiantado.value = valorPagamentoAdiantado;
-        inputIdFPadiantado.value = idFormaDePagamento;
-
-        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountPagamentoAdiantado
-        var nameValorPagamentoAdiantado = "valorPagamentoAdiantado" + jsCountPagamentoAdiantado;
-        var nameFormaPagamentoAdiantado = "formaPagamentoAdiantado" + jsCountPagamentoAdiantado;
-
-        //seta no name dos controladores(input) o valor das variaveis
-        inputValorPagamentoAdiantado.name = nameValorPagamentoAdiantado;
-        inputIdFPadiantado.name = nameFormaPagamentoAdiantado;
-
-        //setando id para os controladores(inputs)
-        inputValorPagamentoAdiantado.id = "valorPagamentoAdiantado" + jsCountPagamentoAdiantado;
-        inputIdFPadiantado.id = "formaPagamentoAdiantado" + jsCountPagamentoAdiantado;
-
-        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-        formCadastrarFesta.appendChild(inputValorPagamentoAdiantado);
-        formCadastrarFesta.appendChild(inputIdFPadiantado);
-        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
-
-        //seta no controler hidden o valor das vezes que foi add despesa
-        document.getElementById('countPagamentoAdiantado').value = jsCountPagamentoAdiantado;
-
-        //limpa os valores do input
-        form.jsValorPagamentoAdiantado.value = "";
-        form.jsFormaPagamentoAdiantado.value = "";
-        
-    }
-
-});
+////evento do pagamento adiantado
+//btnAddPagamentoAdiantado.addEventListener("click", function (event) {
+//    event.preventDefault();
+//
+//    //pega o controlador para ver se já foi inserido o cliente , caso foi , ai executa a função
+//    var countCliente = document.getElementById('countCliente').value;
+//    if (countCliente > 0) {
+//
+//        //toda vez que add, vai somar 1 no count para saber quantos pagamento adiantados foram adicionados
+//        jsCountPagamentoAdiantado++;
+//        jsCountPagamentoAdiantado2++;
+//
+//        //pega o elemento form inteiro do html
+//        var form = document.querySelector("#formPagamentoAdiantado");
+//
+//        //mapea todos os inputs pelo nome e salva nas variaveis os valores
+//        var valorPagamentoAdiantado = form.jsValorPagamentoAdiantado.value;
+//        var formaPagamentoAdiantado = form.jsFormaPagamentoAdiantado.value;
+//
+//        //para os values que são dropsdows e listado dinamicamente
+//        //cria as variavel
+//        var idFormaDePagamento = 0;
+//        var nomePagamento = "";
+//        var countResultado = 0;
+//
+//        //recebe o id + o nome e usa a função split para separar e coloca em uma lista
+//        resultado = formaPagamentoAdiantado.split("+");
+//
+//        //percorre essa lista
+//        resultado.forEach((valorAtual) => {
+//            countResultado++;
+//            //se é a primeira vez que passa na lista, pega o id e adiciona na variavel idFuncionario
+//            if (countResultado == 1) {
+//                idFormaDePagamento = valorAtual;
+//            } else {//se não é , pega o nome e adiciona na variavel atual
+//                nomePagamento = valorAtual;
+//                countResultado = 0;
+//            }
+//        });
+//
+//        //habilita a div da tabela
+//        document.getElementById('tabelaPagamentoAdiantado').style.display = 'block';
+//
+//        //cria um elemento do tipo TR e salva ele em uma variavel
+//        var pagamentoAdiantadoTr = document.createElement("tr");
+//        pagamentoAdiantadoTr.id = "tdPagamentoAdiantado" + jsCountPagamentoAdiantado;
+//
+//        //cria elementos do tipo TD e salva eles em uma variavel
+//        var valorTd = document.createElement("td");
+//        var formaPagamentoTd = document.createElement("td");
+//        var removerPagamentoAdiantadoTd = document.createElement("td");
+//
+//        //criando elemento button para remover e colocando ele no td "removerDespesaTd"
+//        var removerPagamentoAdiantadoBotao = document.createElement("button");
+//
+//        removerPagamentoAdiantadoBotao.textContent = "Remover";
+//        removerPagamentoAdiantadoBotao.type = "button";
+//        removerPagamentoAdiantadoBotao.id = "idRemoverPagamentoAdiantadoBotao";
+//        removerPagamentoAdiantadoBotao.name = "nameRemoverPagamentoAdiantadoBotao" + jsCountPagamentoAdiantado;
+//
+//        //criando função on clik para remover o pagamento adiantado adicionado
+//        removerPagamentoAdiantadoBotao.onclick = function () {
+//            jsCountPagamentoAdiantado2--; //toda vez que remove diminui
+//
+//            //pega o id da tr e remove
+//            document.getElementById(pagamentoAdiantadoTr.id).remove();
+//
+//            //pega os controladores da despesa e remove tbm
+//            document.getElementById(inputValorPagamentoAdiantado.id).remove();
+//            document.getElementById(inputIdFPadiantado.id).remove();
+//
+//            if (jsCountPagamentoAdiantado2 == 0) { //se for igual a zero
+//                //desabilita a div da tabela
+//                document.getElementById('tabelaPagamentoAdiantado').style.display = 'none';
+//                document.getElementById('countPagamentoAdiantado').value = 0;
+//                document.getElementById('temPagamentoAdiantado').value = 0;
+//            }
+//        };
+//
+//        //colocando o botão de remover dentro do td
+//        removerPagamentoAdiantadoTd.appendChild(removerPagamentoAdiantadoBotao);
+//
+//        //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
+//        valorTd.textContent = valorPagamentoAdiantado;
+//        formaPagamentoTd.textContent = nomePagamento;
+//
+//        //coloca os TDS criados que estão com os valores do form dentro do TR
+//        pagamentoAdiantadoTr.appendChild(valorTd);
+//        pagamentoAdiantadoTr.appendChild(formaPagamentoTd);
+//        pagamentoAdiantadoTr.appendChild(removerPagamentoAdiantadoTd);
+//
+//        //pega o elemento table do html através do id e seta nele o TR criado
+//        var tabelaTbodyPagamentoAdiantado = document.querySelector("#tbodyPagamentoAdiantado");
+//        tabelaTbodyPagamentoAdiantado.appendChild(pagamentoAdiantadoTr);
+//
+//        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS DOS PAGAMENTO ADIANTADO ADD
+//        //cria um controlador(input) para as pag adiantado toda vez que adiciona uma pag adiantados
+//        var inputValorPagamentoAdiantado = document.createElement("input");
+//        var inputIdFPadiantado = document.createElement("input");
+//
+//        //seta como tipo hidden os controladores(inputs) criados para pag adiantado
+//        inputValorPagamentoAdiantado.type = "hidden";
+//        inputIdFPadiantado.type = "hidden";
+//
+//        //setando os valores digitos pelo usuário, nos values dos controladores
+//        inputValorPagamentoAdiantado.value = valorPagamentoAdiantado;
+//        inputIdFPadiantado.value = idFormaDePagamento;
+//
+//        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountPagamentoAdiantado
+//        var nameValorPagamentoAdiantado = "valorPagamentoAdiantado" + jsCountPagamentoAdiantado;
+//        var nameFormaPagamentoAdiantado = "formaPagamentoAdiantado" + jsCountPagamentoAdiantado;
+//
+//        //seta no name dos controladores(input) o valor das variaveis
+//        inputValorPagamentoAdiantado.name = nameValorPagamentoAdiantado;
+//        inputIdFPadiantado.name = nameFormaPagamentoAdiantado;
+//
+//        //setando id para os controladores(inputs)
+//        inputValorPagamentoAdiantado.id = "valorPagamentoAdiantado" + jsCountPagamentoAdiantado;
+//        inputIdFPadiantado.id = "formaPagamentoAdiantado" + jsCountPagamentoAdiantado;
+//
+//        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+//        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+//        formCadastrarFesta.appendChild(inputValorPagamentoAdiantado);
+//        formCadastrarFesta.appendChild(inputIdFPadiantado);
+//        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
+//
+//        //seta no controler hidden o valor das vezes que foi add despesa
+//        document.getElementById('countPagamentoAdiantado').value = jsCountPagamentoAdiantado;
+//
+//        //limpa os valores do input
+//        form.jsValorPagamentoAdiantado.value = "";
+//        form.jsFormaPagamentoAdiantado.value = "";
+//
+//    }
+//
+//});
 
 //evento do pacote adicional
 btnAddPacotesAdicionais.addEventListener("click", function (event) {
@@ -858,6 +1161,8 @@ btnAddPacotesAdicionais.addEventListener("click", function (event) {
             if (jsCountPacotesAdicionais2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
                 document.getElementById('tabelaPacoteAdicional').style.display = 'none';
+                document.getElementById('countPacotesAdicionais').value = 0;
+                document.getElementById('temPacotesAdicionais').value = 0;
             }
         };
 
@@ -914,7 +1219,7 @@ btnAddPacotesAdicionais.addEventListener("click", function (event) {
         //limpa os valores do input
         form.jsPacotesAdicionais.value = "";
         form.jsValorPacoteAdicional.value = "";
-               
+
     }
 
 });
