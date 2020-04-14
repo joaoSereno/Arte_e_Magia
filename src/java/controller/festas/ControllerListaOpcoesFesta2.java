@@ -120,12 +120,22 @@ public class ControllerListaOpcoesFesta2 extends HttpServlet {
             request.setAttribute("nomeCliente", nomeCliente);
             request.setAttribute("idCliente", idCliente2);
             
-            
-            
             request.getRequestDispatcher("festaCadastrar.jsp").forward(request, response);
             
         }else{ //se não é
+            countCliente2 = 1;
             
+            //seta atributos no response , dados do cliente e se já passou por aqui alguma vez
+            request.setAttribute("countCliente", countCliente2);
+            request.setAttribute("nomeCliente", nomeCliente);
+            request.setAttribute("idCliente", idCliente2);
+            
+            String listaCriancaString = request.getParameter("listaCriancaString");
+            if(!listaCriancaString.equals("")){
+                request.setAttribute("listaCriancaString", listaCriancaString);
+            }
+            
+            request.getRequestDispatcher("festaCadastrar.jsp").forward(request, response);            
             
         }
         

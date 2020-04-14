@@ -54,11 +54,22 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>tela cadastrar festa</h3>
+        <h3>Cadastro de Festa - Etapa 1</h3>
         <br>
         <div>
-            <form method="GET" action="listarOpcoes">
-                <input type="hidden" id="countCliente" name="countCliente" value="${countCliente}">
+            <form method="GET" id="listarOpcoes" action="listarOpcoes">
+                <input type="hidden" id="countCliente" name="countCliente" value="${countCliente}"><!--
+                <input type="hidden" id="temValorAdicional" name="temValorAdicional" value="0">-->
+    <!--            <input type="hidden" id="temPagamentoAdiantado" name="temPagamentoAdiantado" value="0">-->
+<!--                <input type="hidden" id="temPacotesAdicionais" name="temPacotesAdicionais" value="0">
+                <input type="hidden" id="countAniversariante" name="countAniversariante" value="0">
+                <input type="hidden" id="countFuncionario" name="countFuncionario" value="0">
+                <input type="hidden" id="countHorario" name="countHorario" value="0">-->
+    <!--            <input type="hidden" id="countFormaDePagamento" name="countFormaDePagamento" value="0">-->
+<!--                <input type="hidden" id="countValorAdicional" name="countValorAdicional" value="0">-->
+    <!--            <input type="hidden" id="countPagamentoAdiantado" name="countPagamentoAdiantado" value="0">-->
+<!--                <input type="hidden" id="countPacotesAdicionais" name="countPacotesAdicionais" value="0">
+                <input type="hidden" id="countDespesaFesta" name="countDespesaFesta" value="0">                -->
                 <button type="submit">Selecionar cliente</button>
             </form>            
             <h5> Cliente: </h5> 
@@ -67,7 +78,7 @@
         <br>
 <!--        div aniversariante-->
         <div id="divAniversariante" style="display: none">
-            <form id="formAniversariante">
+            <form id="formAniversariante">                
                 <input type="hidden" id="countCrianca" name="countCrianca" value="${countCrianca}">
                 Aniversariantes:
                 <select type="select" name="jsAniversariante" >
@@ -346,11 +357,11 @@
 <!--            <input type="hidden" id="temPagamentoAdiantado" name="temPagamentoAdiantado" value="0">-->
             <input type="hidden" id="temPacotesAdicionais" name="temPacotesAdicionais" value="0">
             <input type="hidden" id="countAniversariante" name="countAniversariante" value="0">
-            <input type="hidden" id="countFuncionario" name="CountFuncionario" value="0">
+            <input type="hidden" id="countFuncionario" name="countFuncionario" value="0">
             <input type="hidden" id="countHorario" name="countHorario" value="0">
 <!--            <input type="hidden" id="countFormaDePagamento" name="countFormaDePagamento" value="0">-->
             <input type="hidden" id="countValorAdicional" name="countValorAdicional" value="0">
-            <input type="hidden" id="countPagamentoAdiantado" name="countPagamentoAdiantado" value="0">
+<!--            <input type="hidden" id="countPagamentoAdiantado" name="countPagamentoAdiantado" value="0">-->
             <input type="hidden" id="countPacotesAdicionais" name="countPacotesAdicionais" value="0">
             <input type="hidden" id="countDespesaFesta" name="countDespesaFesta" value="0">
             <input type="hidden" id="" name="count" value="0">
@@ -388,11 +399,14 @@
                 <option value="Não">Não</option>
                 <option value="Sim">Sim</option>
             </select>
+            <button type="submit">Próxima Etapa -></button>            
         </form>        
         <br>
-        <a class="btn btn-primary"  href="../cadastros.jsp">Voltar</a>      
+        <a class="btn btn-primary"  href="../cadastros.jsp">Voltar</a> 
+        <input type="hidden" id="listaCriancaString" name="listaCriancaString"  value="${listaCriancaString}">
     </body>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrar.js"></script>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrar2.js"></script>
+    <script src="../../javascripts/cadastroDeFesta/festaCadastrar3.js"></script>
     <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  
 </html>

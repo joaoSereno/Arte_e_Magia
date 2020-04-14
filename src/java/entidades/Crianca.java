@@ -19,8 +19,8 @@ public class Crianca implements Serializable {
     private String nomeCrianca;
     private String sexo;
     private String dataNascimento;
-    private int ativo;
-    private int idCliente;
+    private Integer ativo;
+    private Integer idCliente;
     private List<FestaCrianca> festacriancaList;
 
     public Crianca() {

@@ -26,14 +26,14 @@ function desabilitaValorAdicional() {
 }; 
 
 
-//se clicar no botão Sim do pagamento adiantado
-function habilitaPagamentoAdiantado() {
-    var countCliente = document.getElementById('countCliente').value;
-    if(countCliente > 0){
-        document.getElementById('divPagamentoAdiantado').style.display = 'block';  //habilita a div com id "divPagamentoAdiantado"         
-        document.getElementById('temPagamentoAdiantado').value = 1;
-    }   
-}; 
+////se clicar no botão Sim do pagamento adiantado
+//function habilitaPagamentoAdiantado() {
+//    var countCliente = document.getElementById('countCliente').value;
+//    if(countCliente > 0){
+//        document.getElementById('divPagamentoAdiantado').style.display = 'block';  //habilita a div com id "divPagamentoAdiantado"         
+//        document.getElementById('temPagamentoAdiantado').value = 1;
+//    }   
+//}; 
 ////se clicar no botão Não do pagamento adiantado
 //function desabilitaPagamentoAdiantado() {             
 //    document.getElementById('divPagamentoAdiantado').style.display = 'none';  //desabilita a div com id "divPagamentoAdiantado"                 
@@ -42,14 +42,14 @@ function habilitaPagamentoAdiantado() {
 //}; 
 //
 //
-////se clicar no botão Sim do pacote adicional
-//function habilitaPacoteAdicional() {
-//    var countCliente = document.getElementById('countCliente').value;
-//    if(countCliente > 0){
-//        document.getElementById('divPacoteAdicional').style.display = 'block';  //habilita a div com id "divPacoteAdicional"
-//        document.getElementById('temPacotesAdicionais').value = 1;
-//    }                
-//}; 
+//se clicar no botão Sim do pacote adicional
+function habilitaPacoteAdicional() {
+    var countCliente = document.getElementById('countCliente').value;
+    if(countCliente > 0){
+        document.getElementById('divPacoteAdicional').style.display = 'block';  //habilita a div com id "divPacoteAdicional"
+        document.getElementById('temPacotesAdicionais').value = 1;
+    }                
+}; 
 //se clicar no botão Não do pacote adicional
 function desabilitaPacoteAdicional() {             
     document.getElementById('divPacoteAdicional').style.display = 'none';  //desabilita a div com id "divPacoteAdicional"                 

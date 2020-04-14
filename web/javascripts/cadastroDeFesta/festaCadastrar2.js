@@ -285,15 +285,25 @@ btnAddDespesa.addEventListener("click", function (event) {
         
         //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
         formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formSelecionarCliente = document.querySelector('#listarOpcoes');
+        
         if (descricaoDespesa !== "") {
             formCadastrarFesta.appendChild(inputDescricaoDespesa);
+            formSelecionarCliente.appendChild(inputDescricaoDespesa);
         } else {
             formCadastrarFesta.appendChild(inputIdTipoDespesa);
+            formSelecionarCliente.appendChild(inputIdTipoDespesa);
         }
         formCadastrarFesta.appendChild(inputManualOuTipoDespesa);
         formCadastrarFesta.appendChild(inputValorDespesa);
         formCadastrarFesta.appendChild(inputFormaDePagamentoDespesa);
         formCadastrarFesta.appendChild(inputDespesaPaga);
+        
+        formSelecionarCliente.appendChild(inputManualOuTipoDespesa);
+        formSelecionarCliente.appendChild(inputValorDespesa);
+        formSelecionarCliente.appendChild(inputFormaDePagamentoDespesa);
+        formSelecionarCliente.appendChild(inputDespesaPaga);
+               
         //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS ANIVERSARIANTES ADD
 
         //seta no controler hidden o valor das vezes que foi add aniversariante
@@ -376,6 +386,7 @@ btnAddAniversariante.addEventListener("click", function (event) {
 
             //pega os controladores do anversariante e remove tbm
             document.getElementById(inputIdAniversariante.id).remove();
+            document.getElementById(inputNomeAniversariante.id).remove();
 
             if (jsAniversariante2 == 0) { //se for igual a zero
                 //desabilita a div da tabela
@@ -401,25 +412,40 @@ btnAddAniversariante.addEventListener("click", function (event) {
         //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DOS ANIVERSARIANTE ADD
         //cria um controlador(input) para os aniversariantes toda vez que adiciona um aniversariante
         var inputIdAniversariante = document.createElement("input");
+        var inputNomeAniversariante = document.createElement("input");
 
         //seta como tipo hidden os controladores(inputs) criados para aniversariante
         inputIdAniversariante.type = "hidden";
+        inputNomeAniversariante.type = "hidden";
 
         //setando os valores digitos pelo usuário, nos values dos controladores
         inputIdAniversariante.value = idAniversariante;
+        inputNomeAniversariante.value = nomeAniversariante;
 
         //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsAniversariante
         var nameIdAniversariante = "idAniversariante" + jsAniversariante;
+        var nameAniversariante = "nomeAniversariante" + jsAniversariante;
 
         //seta no name dos controladores(input) o valor das variaveis
         inputIdAniversariante.name = nameIdAniversariante;
+        inputNomeAniversariante.name = nameAniversariante;
 
         //setando id para os controladores(inputs)
         inputIdAniversariante.id = "idAniversariante" + jsAniversariante;
+        inputNomeAniversariante.id = "nomeAniversariante" + jsAniversariante;
 
         //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
         formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
         formCadastrarFesta.appendChild(inputIdAniversariante);
+        formCadastrarFesta.appendChild(inputNomeAniversariante);
+        
+        
+//        var inputIdAniversariante2 = inputIdAniversariante;
+//        var inputNomeAniversariante2 = inputNomeAniversariante;
+//
+//        formSelecionarCliente = document.querySelector('#listarOpcoes');
+//        formSelecionarCliente.appendChild(inputIdAniversariante2);
+//        formSelecionarCliente.appendChild(inputNomeAniversariante2);        
         //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS ANIVERSARIANTES ADD
 
         //seta no controler hidden o valor das vezes que foi add aniversariante
