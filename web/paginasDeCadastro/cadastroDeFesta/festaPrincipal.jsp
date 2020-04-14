@@ -1,15 +1,11 @@
 <%-- 
-    Document   : paginaSelecionarCliente
-    Created on : 02/04/2020, 17:25:22
+    Document   : festaCadastrar3
+    Created on : 11/04/2020, 15:33:38
     Author     : João Pedro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    int contadorCliente = 0;
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +17,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
-        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/paginaSelecionarCliente.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/festaCadastrar3.css">
     </head>
     <body>
         <!-- NavBar -->
@@ -53,51 +49,13 @@
                         <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp">Sair</a>
                     </li>
                 </ul>
-                <!-- Fim navbar da página-->                
+                <!-- Fim navbar da página-->
             </div>
         </nav>
+        <h3>Tela Principal Festa</h3>
+        <form method="GET" action="preCadastroFesta">
+            <button class="btn btn-primary" type="submit">Cadastrar de evento</button>        
+        </form>
         <br>
-        <div>
-            <h3 id="tituloDaEtapa">1º Etapa - Selecionar Cliente</h3>
-        </div>
-        <!-- div de listagem cliente-->
-        <div id="confirmacaoCliente"  style="display: none">
-            <h4 id="clienteSelecionado"></h4>
-            <br>
-            <button id="btn-trocarCliente"  class="btn btn-warning" onclick="trocarCliente()"> Trocar cliente </button>
-            <button id="btn-2etapa"  class="btn btn-warning" onclick="etapa2()"> 2º Etapa </button>
-        </div>
-        <br>
-        <div id="listagemDeCliente">
-            <table  class="table table-secondary">
-                <thead> 
-                    <tr>    
-                        <th scope="col">Nome</th>
-                        <th scope="col">CPF/CNPJ</th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${listaClientes}" var="item">                
-                        <tr>
-                            <td>${item.nomeCliente}</td>
-                            <td>${item.cpf}</td>
-                            <!-- botão/form para editar registro cliente --> 
-                            <td>
-                                <input type="hidden" id="nomeCliente${item.idCliente}" value="${item.nomeCliente}">
-                                <button id="btnSelecionarCliente" onclick="selecionarCliente(${item.idCliente})" class="btn btn-warning"> Selecionar </button>                                    
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
-        <div id="selecionarAniversariantes" style="display: none">
-            <br>
-            <button class="btn btn-warning" onclick="voltarEtapa1()"> Voltar </button>
-            <button class="btn btn-warning" onclick="etapa3()"> 3º Etapa </button>            
-        </div>
-        <br>
-        <a href="festaPrincipal.jsp" type="button" class="btn btn-primary">Voltar</a>
     </body>
-    <script src="../../javascripts/cadastroDeFesta/festaCadastrarF.js"></script>
 </html>

@@ -6,6 +6,7 @@
 package controller.festas;
 
 import entidades.Cliente;
+import entidades.Crianca;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ClienteSQL;
+import persistence.CriancaSQL;
 
 /**
  *
@@ -27,15 +29,18 @@ public class ControllerPreCadastroFesta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+        //instanciando as classes necessarias para a listagem de cliente
         ClienteSQL clienteBanco = new ClienteSQL();
         List<Cliente> listaClientes;
-
+        
         try {
             listaClientes = clienteBanco.getClientes();
-
+                       
+            //setando os atributos que será enviandopara o front
             request.setAttribute("listaClientes", listaClientes);
-
-            request.getRequestDispatcher("paginaSelecionarClienteFesta.jsp").forward(request, response); // dispara para essa página
+            
+            //dispachando para a página
+            request.getRequestDispatcher("festaCadastrarF.jsp").forward(request, response); // dispara para essa página
 
         } catch (Exception ex) {
             Logger.getLogger(ControllerListaOpcoesFesta.class.getName()).log(Level.SEVERE, null, ex);

@@ -136,5 +136,4 @@ public class Cliente implements Serializable {
         this.telefonePrincipal = telefonePrincipal;
     }
 
-    
 }
