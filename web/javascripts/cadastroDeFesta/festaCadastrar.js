@@ -4,25 +4,25 @@
  * and open the template in the editor.
  */
 
-//se não existir crinça vinculado ao cliente oculta o campo criança
-var countCrianca = document.getElementById('countCrianca').value;
-if (countCrianca > 0) { 
-    document.getElementById('divAniversariante').style.display = 'block';  //habilita a div com id "Aniversariante"                 
-}
+////se não existir crinça vinculado ao cliente oculta o campo criança
+//var countCrianca = document.getElementById('countCrianca').value;
+//if (countCrianca > 0) { 
+//    document.getElementById('divAniversariante').style.display = 'block';  //habilita a div com id "Aniversariante"                 
+//}
 
 //se clicar no botão Sim do valor adicional 
 function habilitaValorAdicional() {
-    var countCliente = document.getElementById('countCliente').value;
-    if(countCliente > 0){
+//    var countCliente = document.getElementById('countCliente').value;
+//    if(countCliente > 0){
         document.getElementById('divValorAdicional').style.display = 'block';  //habilita a div com id "divValorAdicional" 
         document.getElementById('temValorAdicional').value = 1;
-    }
+//    }
 }; 
 //se clicar no botão Não do valor adicional 
 function desabilitaValorAdicional() {          
     document.getElementById('divValorAdicional').style.display = 'none';  //desabilita a div com id "divValorAdicional"                 
-    document.getElementById('temValorAdicional').value = 0;
-    document.getElementById('countValorAdicional').value = 0;
+//    document.getElementById('temValorAdicional').value = 0;
+//    document.getElementById('countValorAdicional').value = 0;
 }; 
 
 
@@ -58,22 +58,22 @@ function desabilitaPacoteAdicional() {
 }; 
 
 
-function tipoDespesa() {  
-    
-    var countCliente = document.getElementById('countCliente').value;
-    if(countCliente > 0){
-        document.getElementById('jsDescricaoDespesa').style.display = 'none';  //desabilita o input com id "jsDescricaoDespesa"                 
-        document.getElementById('jsTipoDespesa').style.display = '';  //habilita o input com id "jsTipoDespesa"                    
-    }
-    
-}; 
-
-function descricaoManual() { 
-    
-    var countCliente = document.getElementById('countCliente').value;
-    if(countCliente > 0){
-        document.getElementById('jsDescricaoDespesa').style.display = '';  //habilita o input com id "jsDescricaoDespesa"                  
-        document.getElementById('jsTipoDespesa').style.display = 'none';  //desabilita o input com id "jsTipoDespesa"           
-    }
-    
-}; 
+//function tipoDespesa() {  
+//    
+//    var countCliente = document.getElementById('countCliente').value;
+//    if(countCliente > 0){
+//        document.getElementById('jsDescricaoDespesa').style.display = 'none';  //desabilita o input com id "jsDescricaoDespesa"                 
+//        document.getElementById('jsTipoDespesa').style.display = '';  //habilita o input com id "jsTipoDespesa"                    
+//    }
+//    
+//}; 
+//
+//function descricaoManual() { 
+//    
+//    var countCliente = document.getElementById('countCliente').value;
+//    if(countCliente > 0){
+//        document.getElementById('jsDescricaoDespesa').style.display = '';  //habilita o input com id "jsDescricaoDespesa"                  
+//        document.getElementById('jsTipoDespesa').style.display = 'none';  //desabilita o input com id "jsTipoDespesa"           
+//    }
+//    
+//}; 

@@ -92,7 +92,43 @@ public class CriancaSQL extends Conexao {
             }
         }
     }
+    
+    public ArrayList<Crianca> getTodasCriancasAtivas() throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            ArrayList<Crianca> listaCrianca = new ArrayList(); //instancia uma arrayList de Crianca
 
+            stmt = con.prepareStatement("SELECT idCrianca, nomeCrianca, sexo, dataNascimento, idCliente FROM crianca WHERE ativo = 1"); //executa query na base               
+
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+                Crianca crianca = new Crianca(); //toda vez que passar no while vai criar uma variavel do tipo Crianca
+
+                //seta valores retornados pelo banco na variavel do tipo crianca
+                crianca.setIdCrianca(resultadoConsulta.getInt("idCrianca"));
+                crianca.setNomeCrianca(resultadoConsulta.getString("nomeCrianca"));
+                crianca.setSexo(resultadoConsulta.getString("sexo"));
+                crianca.setDataNascimento(resultadoConsulta.getString("dataNascimento"));
+                crianca.setIdCliente(resultadoConsulta.getInt("idCliente"));
+
+                listaCrianca.add(crianca);// add na lista de forma de pagamento
+            }
+            close(); // fecha conexão com o banco
+            return listaCrianca;//retorna a lista de crianca para onde foi chamado
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
+    
     public void inativarCadastro(int idCrianca) throws Exception {
 
         open(); //abre conexão com o banco de dados
