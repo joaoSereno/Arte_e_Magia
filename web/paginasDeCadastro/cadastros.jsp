@@ -70,9 +70,9 @@
             </div>
             <!-- CardFestas -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Festa">
+                <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Evento">
                 <div class="card-body">
-                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Festa</a>
+                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Evento</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->

@@ -58,22 +58,22 @@ function desabilitaPacoteAdicional() {
 }; 
 
 
-//function tipoDespesa() {  
-//    
-//    var countCliente = document.getElementById('countCliente').value;
-//    if(countCliente > 0){
-//        document.getElementById('jsDescricaoDespesa').style.display = 'none';  //desabilita o input com id "jsDescricaoDespesa"                 
-//        document.getElementById('jsTipoDespesa').style.display = '';  //habilita o input com id "jsTipoDespesa"                    
-//    }
-//    
-//}; 
-//
-//function descricaoManual() { 
-//    
-//    var countCliente = document.getElementById('countCliente').value;
-//    if(countCliente > 0){
-//        document.getElementById('jsDescricaoDespesa').style.display = '';  //habilita o input com id "jsDescricaoDespesa"                  
-//        document.getElementById('jsTipoDespesa').style.display = 'none';  //desabilita o input com id "jsTipoDespesa"           
-//    }
-//    
-//}; 
+function tipoDespesa() {  
+    
+    var countCliente = document.getElementById('countCliente').value;
+    if(countCliente > 0){
+        document.getElementById('jsDescricaoDespesa').style.display = 'none';  //desabilita o input com id "jsDescricaoDespesa"                 
+        document.getElementById('jsTipoDespesa').style.display = '';  //habilita o input com id "jsTipoDespesa"                    
+    }
+    
+}; 
+
+function descricaoManual() { 
+    
+    var countCliente = document.getElementById('countCliente').value;
+    if(countCliente > 0){
+        document.getElementById('jsDescricaoDespesa').style.display = '';  //habilita o input com id "jsDescricaoDespesa"                  
+        document.getElementById('jsTipoDespesa').style.display = 'none';  //desabilita o input com id "jsTipoDespesa"           
+    }
+    
+}; 

@@ -10,6 +10,7 @@ import entidades.Crianca;
 import entidades.FormaPagamento;
 import entidades.Funcionario;
 import entidades.Pacote;
+import entidades.TipoDeDespesa;
 import entidades.TipoPacoteAdicional;
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +26,7 @@ import persistence.CriancaSQL;
 import persistence.FuncionarioSQL;
 import persistence.PacoteAdicionalSQL;
 import persistence.PacoteSQL;
+import persistence.TipoDespesaSQL;
 import persistence.TipoPagamentoSQL;
 
 /**
@@ -135,7 +137,7 @@ public class ControllerPreCadastroFesta extends HttpServlet {
         List<TipoPacoteAdicional> listaTipoPacoteAdicional; 
         
         try {
-            //recebendo registros de fpacote adicionais do banco 
+            //recebendo registros de pacote adicionais do banco 
             listaTipoPacoteAdicional = pacoteAdicionalBanco.getTipoPacoteAdicional();
             
             //setando os atributos que será enviando para o front
@@ -143,7 +145,22 @@ public class ControllerPreCadastroFesta extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(ControllerPreCadastroFesta.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        //TIPO DE DESPESA
+        //instanciando as classes necessarias para a listagem de tipo de despesa
+        TipoDespesaSQL tipoDespesaBanco = new TipoDespesaSQL();
+        List<TipoDeDespesa> listaTipoDeDespesa;
+        
+        try {
+            //recebendo registros de tipo de despesa do banco 
+            listaTipoDeDespesa = tipoDespesaBanco.getTipoDeDespesa();
+            
+            //setando os atributos que será enviando para o front
+            request.setAttribute("listaTipoDeDespesa", listaTipoDeDespesa);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPreCadastroFesta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         //dispachando para a página
         request.getRequestDispatcher("festaCadastrarF.jsp").forward(request, response); // dispara para essa página

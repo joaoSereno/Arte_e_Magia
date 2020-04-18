@@ -247,7 +247,6 @@ var countEtapa2 = 0;
 //FIM FUNÇÕES PRESENTES NA ETAPA 3
 
 //FUNÇÕES PRESENTES NA ETAPA 4
-
     //se clicar no botão Sim do pacote adicional
     function habilitaPacoteAdicional() {
         document.getElementById('divPacoteAdicional').style.display = 'block';  //habilita a div com id "divPacoteAdicional"
@@ -269,19 +268,191 @@ var countEtapa2 = 0;
         tituloDaEtapa.textContent = "3º Etapa - Selecionar Animadoras/Animadores";
 
         document.getElementById('selecionarPacotes').style.display = 'none'; //desabilita a etapa 4
-        document.getElementById('selecionarFuncionarios').style.display = ''; //habilita a etapa ,3
+        document.getElementById('selecionarFuncionarios').style.display = ''; //habilita a etapa 3
 
     };
 
-    //quando clicar em etapa 4
+    //quando clicar em etapa 5
     function etapa5() {
 
-    //    //recebendo H3 e setando nela o texto com o nome do cliente
-    //    var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-    //    tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";
-    //
-    //    document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
-    //    document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "5º Etapa - Valores Adicionais";
+    
+        document.getElementById('inserirValorAdicional').style.display = ''; //habilita a etapa 5
+        document.getElementById('selecionarPacotes').style.display = 'none'; //desabilita a etapa 4
 
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 4
+
+//FUNÇÕES PRESENTES NA ETAPA 5
+    //quando clicar para voltar etapa 4
+    function voltarEtapa4() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";
+
+        document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
+        document.getElementById('inserirValorAdicional').style.display = 'none'; //desabilita a etapa 5
+
+    };
+
+    //quando clicar em etapa 6
+    function etapa6() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "6º Etapa - Despesas da Festa";
+    
+        document.getElementById('inserirDespesas').style.display = ''; //habilita a etapa 6
+        document.getElementById('inserirValorAdicional').style.display = 'none'; //desabilita a etapa 5
+
+    };
+//FIM FUNÇÕES PRESENTES NA ETAPA 5
+
+//FUNÇÕES PRESENTES NA ETAPA 6
+    //quando clicar no botão tipo despesa
+    function tipoDespesa() {  
+
+        document.getElementById('jsDescricaoDespesa').style.display = 'none';  //desabilita o input com id "jsDescricaoDespesa"                 
+        document.getElementById('jsTipoDespesa').style.display = '';  //habilita o input com id "jsTipoDespesa"                    
+
+    }; 
+
+    //quando clicar no botão descricao manual
+    function descricaoManual() { 
+
+        document.getElementById('jsDescricaoDespesa').style.display = '';  //habilita o input com id "jsDescricaoDespesa"                  
+        document.getElementById('jsTipoDespesa').style.display = 'none';  //desabilita o input com id "jsTipoDespesa"           
+
+    }; 
+    
+    //quando clicar para voltar etapa 5
+    function voltarEtapa5() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "5º Etapa - Valores Adicionais";
+
+        document.getElementById('inserirValorAdicional').style.display = ''; //habilita a etapa 5
+        document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
+
+    };
+
+    //quando clicar em etapa 7
+    function etapa7() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+    
+        document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
+        document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
+
+    };
+//FIM FUNÇÕES PRESENTES NA ETAPA 6
+
+//FUNÇÕES PRESENTES NA ETAPA 7
+    //quando clicar para voltar etapa 6
+    function voltarEtapa6() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "6º Etapa - Despesas da Festa";
+
+        document.getElementById('inserirDespesas').style.display = ''; //habilita a etapa 6
+        document.getElementById('valoresEformaPagamento').style.display = 'none'; //desabilita a etapa 7
+
+    };
+
+    //quando clicar em etapa 8
+    function etapa8() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "8º Etapa - Horários do Evento";
+    
+        document.getElementById('inserirHorarios').style.display = ''; //habilita a etapa 8
+        document.getElementById('valoresEformaPagamento').style.display = 'none'; //desabilita a etapa 7
+
+    };
+//FIM FUNÇÕES PRESENTES NA ETAPA 7
+
+//FUNÇÕES PRESENTES NA ETAPA 8
+    //quando clicar para voltar etapa 7
+    function voltarEtapa7() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+
+        document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
+        document.getElementById('inserirHorarios').style.display = 'none'; //desabilita a etapa 8
+
+    };
+
+    //quando clicar em etapa 9
+    function etapa9() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";
+    
+        document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 9
+        document.getElementById('inserirHorarios').style.display = 'none'; //desabilita a etapa 8
+
+    };
+//FIM FUNÇÕES PRESENTES NA ETAPA 8
+
+//FIM FUNÇÕES PRESENTES NA ETAPA 9
+    //quando clicar para voltar etapa 8
+    function voltarEtapa8() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "8º Etapa - Horários do Evento";
+
+        document.getElementById('inserirHorarios').style.display = ''; //habilita a etapa 8
+        document.getElementById('inserirEndereco').style.display = 'none'; //desabilita a etapa 9
+
+    };
+
+    //quando clicar em etapa etapa final
+    function etapa10() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
+    
+        document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
+        document.getElementById('inserirEndereco').style.display = 'none'; //desabilita a etapa 9
+
+    };
+//FIM FUNÇÕES PRESENTES NA ETAPA 9
+
+//FUNÇÕES PRESENTES NA ETAPA 10
+    //quando clicar para voltar etapa 9
+    function voltarEtapa9() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";
+
+        document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 8
+        document.getElementById('inserirInfoAdicionais').style.display = 'none'; //desabilita a etapa 9
+
+    };
+
+    //quando clicar em etapa etapa final
+    function etapaFinal() {
+
+//        //recebendo H3 e setando nela o texto com o nome do cliente
+//        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+//        tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
+//    
+//        document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
+//        document.getElementById('inserirEndereco').style.display = 'none'; //desabilita a etapa 9
+
+    };
+//FIM FUNÇÕES PRESENTES NA ETAPA 10

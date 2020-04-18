@@ -20,6 +20,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/paginaSelecionarCliente.css">
     </head>
@@ -152,6 +153,7 @@
             <button class="btn btn-warning" onclick="voltarEtapa2()"> Voltar </button>
             <button class="btn btn-warning" onclick="etapa4()"> 4º Etapa </button>            
         </div> 
+        <!-- div de selecionar pacote e pacote adicional ( 4 etapa )-->        
         <div id="selecionarPacotes" style="display: none">
             <h5> Selecione o pacote do evento: </h5>
             Pacote:
@@ -196,14 +198,175 @@
                     <tbody id="tbodyPacoteAdicional">
                     </tbody>
                 </table>                  
-            </div>      
+            </div>            
             <br>
             <button class="btn btn-warning" onclick="voltarEtapa3()"> Voltar </button>
             <button class="btn btn-warning" onclick="etapa5()"> 5º Etapa </button>            
         </div>
+        <!-- div de inserir valores adiconais ( 5 etapa )-->          
+        <div id="inserirValorAdicional" style="display: none">
+            <h5>O evento possui valores adicionais? Caso não tenha siga para a próxima etapa, caso tenha adicione a baixo:</h5>
+            <form id="formValorAdicional">
+                Valor:
+                <input type="text" name="jsValorAdicional" value="">
+                Descrição:
+                <input type="text" name="jsDescricaoValorAdicional" value="">
+                <button type="button" id="add-valorAdicional">Adicionar</button> 
+            </form>
+            <br>
+            <table id="tabelaValorAdicional" class="table table-secondary" style="display: none">
+                <thead> 
+                    <tr>    
+                        <th>Valor</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                </thead> 
+                <tbody id="tbodyValorAdicional">
+                </tbody>
+            </table>
+            <br>
+            <button class="btn btn-warning" onclick="voltarEtapa4()"> Voltar </button>
+            <button class="btn btn-warning" onclick="etapa6()"> 6º Etapa </button>                
+        </div>
+        <!-- div de inserir as despesas da festa ( 6 etapa )-->          
+        <div id="inserirDespesas" style="display: none">
+            <h5>Adicione as despesas do evento:</h5>
+            Selecione a opção de cadastro:
+            <button type="button" onclick="tipoDespesa()"/>TIPO DE DESPESA</button>
+            <button type="button" onclick="descricaoManual()"/>DESCRIÇÃO MANUAL</button>
+            <br>
+            <br>
+            <form id="formAddDespesaFesta">
+                Despesa:
+                <input type="text" id="jsDescricaoDespesa" name="jsDescricaoDespesa" value="" style="display: none">
+                <select type="select" id="jsTipoDespesa" name="jsTipoDespesa">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaTipoDeDespesa}">
+                            <option value="${item.idTipoDeDespesa}+${item.nomeDespesa}">
+                                ${item.nomeDespesa}
+                            </option>
+                        </c:forEach>
+                </select>
+                Valor:
+                <input type="text" name="jsValorDepesa" value="">
+                Forma de Pagamento:
+                <select type="select" name="jsFormaPagamentoDespesa">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaFormaPagamento}">
+                            <option value="${item.idFormaPagamento}+${item.nomePagamento}">
+                                ${item.nomePagamento}
+                            </option>
+                        </c:forEach>
+                </select>                
+                Despesa paga?
+                <select name="jsDespesaPaga">
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+                <button type="button" id="add-despesaFesta">+</button> 
+            </form> 
+            <table id="tabelaDespesas" class="table table-secondary" style="display: none">
+                <thead> 
+                    <tr>    
+                        <th>Despesa</th>
+                        <th>Valor</th>
+                        <th>Forma de Pagamento</th>
+                        <th>Pago?</th>
+                        <th></th>
+                    </tr>
+                </thead> 
+                <tbody id="tbodyDespesas">
+                </tbody>
+            </table>
+            <br>
+            <button class="btn btn-warning" onclick="voltarEtapa5()"> Voltar </button>
+            <button class="btn btn-warning" onclick="etapa7()"> 7º Etapa </button>   
+        </div>        
+        <!-- div de calculos do valores e formas de pagamento ( 7 etapa )-->          
+        <div id="valoresEformaPagamento" style="display: none">
+            <h5>AQUI VAI FICA OS CALCULOS DO VALORES</h5>
+            <br>
+            <button class="btn btn-warning" onclick="voltarEtapa6()"> Voltar </button>
+            <button class="btn btn-warning" onclick="etapa8()"> 8º Etapa </button>   
+        </div>
+        <!-- div de inserir os horarios ( 8 etapa )-->         
+        <div id="inserirHorarios" style="display: none">
+            <h5>Adicione os horários do evento:</h5>
+            <form id="formHorario">
+                Horario:
+                <input type="text" name="jsHorario" value="">
+                Descrição horario:
+                <input type="text" name="jsDescricaoH" value="">
+                <button type="button" id="add-horario">Adicionar</button> 
+            </form>
+            <table id="tabelaHorario" class="table table-secondary" style="display: none">
+                <thead> 
+                    <tr>    
+                        <th>Horário</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                </thead> 
+                <tbody id="tbodyHorario">
+                </tbody>
+            </table>
+            <br>
+            <button class="btn btn-warning" onclick="voltarEtapa7()"> Voltar </button>
+            <button class="btn btn-warning" onclick="etapa9()"> 9º Etapa </button>              
+        </div>       
+        <!-- div de endereço da festa ( 9 etapa )-->         
+        <div id="inserirEndereco" style="display: none">
+            <h5>Insira o endereço do evento:</h5>
+            CEP: <input type="text" name="cep" id="cep" placeholder="CEP Logradouro">
+            Cidade: <input type="text" name="cidade" id="cidade" placeholder="Cidade">
+            Bairro: <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+            Rua: <input type="text" name="rua" id="rua" placeholder="Nome Logradouro">
+            N° <input type="text" name="numero"  placeholder="Número residência">
+            Complemento: <input type="text" name="complemento" placeholder="Complemento">
+            <br>
+            <br>
+            <button class="btn btn-warning" onclick="voltarEtapa8()"> Voltar </button>
+            <button class="btn btn-warning" onclick="etapa10()"> 10º Etapa </button>              
+        </div>       
+        <!-- div de informações adicionais ( 10 etapa )-->         
+        <div id="inserirInfoAdicionais" style="display: none">
+            <h5>Insira as informações finais para o cadastro:</h5>
+            <br>
+            Quantidade de crianças: <input type="text" name="qtdCrianca">
+            Data da festa: <input type="text" name="dataFesta">
+            Observação: <input type="text" name="obs">
+            Festa realizada?
+            <select name="festaRealida">
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <br>
+            <br>
+            <button class="btn btn-warning" onclick="voltarEtapa9()"> Voltar </button>
+            <button class="btn btn-warning" onclick="etapaFinal()"> Etapa Final </button>              
+        </div>       
+        <!-- div confirmar informações ( etapa final etapa )-->         
+        <div id="inserirInfoAdicionais" style="display: none">
+            <h5>Insira as informações finais para o cadastro:</h5>
+            <br>
+            Quantidade de crianças: <input type="text" name="qtdCrianca">
+            Data da festa: <input type="text" name="dataFesta">
+            Observação: <input type="text" name="obs">
+            Festa realizada?
+            <select name="festaRealida">
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <br>
+            <br>
+            <button class="btn btn-warning" onclick="voltarEtapa9()"> Voltar </button>
+            <button class="btn btn-warning"> Etapa Final </button>              
+        </div>       
         <br>
         <a href="festaPrincipal.jsp" type="button" class="btn btn-primary">Voltar</a>
     </body>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrarF.js"></script>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrarF2.js"></script>
+    <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  
 </html>
