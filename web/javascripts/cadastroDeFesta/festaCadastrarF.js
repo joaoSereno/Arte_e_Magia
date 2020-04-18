@@ -11,6 +11,14 @@ var nomeCliente;
 //variavel que verifica se já passou pela etapa 2 para não criar duplicado
 var countEtapa2 = 0;
 
+//varivel que recebe a quantidade de crianças adicionadas no form
+var quantidadeCrianca = 0;
+var quantidadeCriancaBotaoRemover = 0;
+
+//variaveis que controlam o texto de confirmação da criança na ultima etapa
+let listaNomeCrianca = [];
+var textoConfirmacaoCrianca = "";
+
 //FUNÇÕES PRESENTES NA ETAPA 1
     //quando clicar no selecionar cliente
     function selecionarCliente(idClienteP) { //recebe por parametro o idCliente
@@ -26,7 +34,28 @@ var countEtapa2 = 0;
 
         document.getElementById('listagemDeCliente').style.display = 'none'; //desabilita a tabela de listagem dos clientes
         document.getElementById('confirmacaoCliente').style.display = ''; //habilita a confirmação da etapa 1
-
+        
+        //seta informação do cliente na ultima etapa
+        var confirmacaoInfCliente = document.querySelector("#clienteInf");
+        confirmacaoInfCliente.textContent = "Cliente: " + nomeCliente;        
+        
+    //COMEÇO DA CRIAÇÃO O INPUT DO CADASTRO DE FESTA
+    
+        //cria um elento html input
+        var inputCliente = document.createElement("input"); 
+        
+        //setando atributos do input
+        inputCliente.type = "hidden";
+        inputCliente.name = "idCliente";
+        inputCliente.id = "idCliente";
+        inputCliente.value = idCliente;
+        
+        //buscando o form de cadastro e setando nele o input criado
+        var formCadastroDeFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastroDeFesta.appendChild(inputCliente);
+        
+    //FIM DA CRIAÇÃO O INPUT DO CADASTRO DE FESTA
+    
     }; 
 
     //quando clicar para trocar cliente
@@ -36,6 +65,9 @@ var countEtapa2 = 0;
         idCliente = 0;
         nomeCliente = "";
 
+        //apaga o input criado na "function selecionarCliente"
+        document.getElementById('idCliente').remove();
+        
         document.getElementById('listagemDeCliente').style.display = ''; //habilita a tabela de listagem do cliente
         document.getElementById('confirmacaoCliente').style.display = 'none'; //desabilita a confirmação da etapa 1
         document.getElementById('confirmacaoCliente').style.display = 'none'; //desabilita a confirmação da etapa 1
@@ -46,14 +78,28 @@ var countEtapa2 = 0;
             document.getElementById('tabelaAniversariante').style.display = 'none'; //desabilita a tabela de listagem de criança
             countEtapa2 = 0;
         }
-
-
+        
+        //apaga os inputs criados na etapa 2 e zera a variavel global "quantidadeCrianca"
+        for(var i=0; i < quantidadeCriancaBotaoRemover; i++){
+            var idCrianca = "idCrianca"+(i+1);
+            
+            var inputCrianca = document.querySelector("#"+idCrianca);
+            
+            //recebe o input e remove
+            if(inputCrianca !== null){   
+                document.getElementById(idCrianca).remove();     
+            }
+        }
+        //limpando/zerando as variaveis relacionadas a criança
+        quantidadeCrianca = 0;
+        quantidadeCriancaBotaoRemover = 0;
+        textoConfirmacaoCrianca = "";
+        listaNomeCrianca = [];
     };
 
     //quando clicar em etapa 2
     function etapa2() {
         countEtapa2++;
-        var quantidadeCrianca = 0; //varivel que verifica se o cliente seleciona possui criança
 
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
@@ -120,7 +166,28 @@ var countEtapa2 = 0;
                     removerAniversarianteBotao.type = "button";
                     removerAniversarianteBotao.id = "idRemoverAniversarianteBotao";
                     removerAniversarianteBotao.name = "nameRemoverAniversarianteBotao" + quantidadeCrianca;
-
+                    
+                    //criando atributo onclick para o botão remover
+                    removerAniversarianteBotao.onclick = function (){
+                        quantidadeCrianca--; //remove 1 da quantidade de criança
+                        
+                        //remove o elemento tr da table
+                        document.getElementById(aniversariantesTr.id).remove();
+                        
+                        //remove o input 
+                        document.getElementById(inputCrianca.id).remove();
+                        
+                        //remove da lista de nome a criança removida
+                        listaNomeCrianca.splice(listaNomeCrianca.indexOf(nomeCrianca), 1);                                      
+                                              
+                        //se não ficou nenhuma criança oculta a table
+                        if(quantidadeCrianca == 0){
+                            document.getElementById('tabelaAniversariante').style.display = 'none';
+                            quantidadeCriancaBotaoRemover = 0;
+                            textoConfirmacaoCrianca = "";
+                        }
+                    };
+                    
                     //colocando o botão de remover dentro do td de remover
                     removerAniversarianteTd.appendChild(removerAniversarianteBotao);
 
@@ -135,52 +202,31 @@ var countEtapa2 = 0;
                     var tabelaTbodyAniversariante = document.querySelector("#tbodyAniversariantes");
                     tabelaTbodyAniversariante.appendChild(aniversariantesTr);
                     //FIM DA CRIAÇÃO DA TABELA DAS CRIANÇAS
-
-                    console.log(idCrianca);
-                    console.log(nomeCrianca);
-                    console.log(idClienteCrianca);                  
+                    
+                    //COMEÇO DA CRIAÇÃO O INPUT DO CADASTRO DE FESTA
+                    //cria um elemento html input
+                    var inputCrianca = document.createElement("input");
+                    
+                    //seta os atributos do input
+                    inputCrianca.type = "hidden";
+                    inputCrianca.value = idCrianca;
+                    inputCrianca.name = "idCrianca"+quantidadeCrianca;
+                    inputCrianca.id = "idCrianca"+quantidadeCrianca;
+                    
+                    //buscando o form de cadastro e setando nele o input criado
+                    var formCadastroDeFesta = document.querySelector('#cadastrarFestaForm');
+                    formCadastroDeFesta.appendChild(inputCrianca);
+                    //FIM DA CRIAÇÃO O INPUT DO CADASTRO DE FESTA
+                    
+                    //adiciona o nome da criança na lista de nome da criança
+                    listaNomeCrianca.push(nomeCrianca);
+                   
                 }
-
+                               
             }
-
-
-    //        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS DOS ANIVERSARIANTE ADD
-    //        //cria um controlador(input) para os aniversariantes toda vez que adiciona um aniversariante
-    //        var inputIdAniversariante = document.createElement("input");
-    //        var inputNomeAniversariante = document.createElement("input");
-    //
-    //        //seta como tipo hidden os controladores(inputs) criados para aniversariante
-    //        inputIdAniversariante.type = "hidden";
-    //        inputNomeAniversariante.type = "hidden";
-    //
-    //        //setando os valores digitos pelo usuário, nos values dos controladores
-    //        inputIdAniversariante.value = idAniversariante;
-    //        inputNomeAniversariante.value = nomeAniversariante;
-    //
-    //        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsAniversariante
-    //        var nameIdAniversariante = "idAniversariante" + controladorDeInputsCriado;
-    //        var nameAniversariante = "nomeAniversariante" + controladorDeInputsCriado;
-    //
-    //        //seta no name dos controladores(input) o valor das variaveis
-    //        inputIdAniversariante.name = nameIdAniversariante;
-    //        inputNomeAniversariante.name = nameAniversariante;
-    //
-    //        //setando id para os controladores(inputs)
-    //        inputIdAniversariante.id = "idAniversariante" + controladorDeInputsCriado;
-    //        inputNomeAniversariante.id = "nomeAniversariante" + controladorDeInputsCriado;
-    //
-    //        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-    //        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-    //        formCadastrarFesta.appendChild(inputIdAniversariante);
-    //        formCadastrarFesta.appendChild(inputNomeAniversariante);
-    //
-    //        formSelecionarCliente = document.querySelector('#listarOpcoes');
-    //        formSelecionarCliente.appendChild(inputIdAniversariante);
-    //        formSelecionarCliente.appendChild(inputNomeAniversariante);
-    //        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS ANIVERSARIANTES ADD
-
+            
         });
-
+        quantidadeCriancaBotaoRemover = quantidadeCrianca;
         //se o cliente não tiver criança
         if(quantidadeCrianca < 1){
 
@@ -188,8 +234,7 @@ var countEtapa2 = 0;
             subTituloEtapa2.textContent = "O cliente selecionado não possui criança vinculada ao seu cadastro. Por favor pule para a próxima etapa!";        
 
         }
-        console.log(quantidadeCrianca);
-
+       
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 1
 
@@ -204,11 +249,12 @@ var countEtapa2 = 0;
 
         document.getElementById('confirmacaoCliente').style.display = ''; //habilita a confirmação da etapa 1
         document.getElementById('selecionarAniversariantes').style.display = 'none'; //desabilita a etapa 2
-
+        
     };
 
     //quando clicar em etapa 3
     function etapa3() {
+        countListaNomeCrianca = 0; //count de quantas vezes passou na lista de crianças
 
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
@@ -216,7 +262,32 @@ var countEtapa2 = 0;
 
         document.getElementById('selecionarFuncionarios').style.display = ''; //habilita a etapa 3
         document.getElementById('selecionarAniversariantes').style.display = 'none'; //desabilita a etapa 2
+        
+        //seta a quantidade de criança que foi definida no input de controle "qtdCrianca"
+        document.getElementById('qtdCrianca').value = quantidadeCrianca;
+        
+        //percorre a lista de nomes das crianças e monta o texto de confirmação para as crianças
+        var tamanhoListaNomeCrianca = listaNomeCrianca.length; //recebe o tamanho da lista em uma variavel
 
+        listaNomeCrianca.forEach((valorAtualLista) => {
+            if(countListaNomeCrianca == 0){
+                textoConfirmacaoCrianca = "Aniversariantes: "
+            }
+            countListaNomeCrianca++;
+            
+            if(countListaNomeCrianca == tamanhoListaNomeCrianca){
+                textoConfirmacaoCrianca = textoConfirmacaoCrianca + valorAtualLista;
+            }else{
+                textoConfirmacaoCrianca = textoConfirmacaoCrianca + valorAtualLista + " / ";
+            }
+            
+        }); 
+        countListaNomeCrianca = 0;
+        
+        //seta o texto informação da crianças na ultima etapa
+        var confirmacaoInfCrianca = document.querySelector("#criancasInf");
+        confirmacaoInfCrianca.textContent = textoConfirmacaoCrianca;             
+      
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 2
 
@@ -230,7 +301,8 @@ var countEtapa2 = 0;
 
         document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3
         document.getElementById('selecionarAniversariantes').style.display = ''; //habilita a etapa 2
-
+        
+        textoConfirmacaoCrianca = "";
     };
 
     //quando clicar em etapa 4
@@ -447,12 +519,26 @@ var countEtapa2 = 0;
     //quando clicar em etapa etapa final
     function etapaFinal() {
 
-//        //recebendo H3 e setando nela o texto com o nome do cliente
-//        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-//        tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
-//    
-//        document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
-//        document.getElementById('inserirEndereco').style.display = 'none'; //desabilita a etapa 9
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "ETAPA FINAL - Confirmar Informações";
+    
+        document.getElementById('confirmarInformacoes').style.display = ''; //habilita a etapa final
+        document.getElementById('inserirInfoAdicionais').style.display = 'none'; //desabilita a etapa 10
 
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 10
+//
+//FUNÇÕES PRESENTES NA ETAPA FINAL
+    //quando clicar para voltar etapa 10
+    function voltarEtapa10() {
+
+        //recebendo H3 e setando nela o texto com o nome do cliente
+        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+        tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
+
+        document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
+        document.getElementById('confirmarInformacoes').style.display = 'none'; //desabilita a etapa final
+
+    };
+//FIM FUNÇÕES PRESENTES NA ETAPA FINAL

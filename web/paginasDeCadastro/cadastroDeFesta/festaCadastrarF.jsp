@@ -65,7 +65,7 @@
         <div id="confirmacaoCliente"  style="display: none">
             <h4 id="clienteSelecionado"></h4>
             <br>
-            <button id="btn-trocarCliente"  class="btn btn-warning" onclick="trocarCliente()"> Trocar cliente </button>
+            <button id="btn-trocarCliente" class="btn btn-warning" onclick="trocarCliente()"> Trocar cliente </button>
             <button id="btn-2etapa"  class="btn btn-warning" onclick="etapa2()"> 2º Etapa </button>
         </div>
         <br>
@@ -160,7 +160,7 @@
             <select type="select" name="jsPacote">
                 <option value="">Clique para selecionar</option>
                     <c:forEach var="item" items="${listaPacote}">
-                        <option value="${item.idPacote}">
+                        <option value="${item.idPacote}+${valorPacoteVenda}">
                             ${item.nomePacote}
                         </option>
                     </c:forEach>
@@ -347,22 +347,19 @@
             <button class="btn btn-warning" onclick="etapaFinal()"> Etapa Final </button>              
         </div>       
         <!-- div confirmar informações ( etapa final etapa )-->         
-        <div id="inserirInfoAdicionais" style="display: none">
-            <h5>Insira as informações finais para o cadastro:</h5>
+        <div id="confirmarInformacoes" style="display: none">
+            <h5>Por favor confira as informações inseridas, caso estejam corretas clique em "Finalizar cadastro"</h5>
             <br>
-            Quantidade de crianças: <input type="text" name="qtdCrianca">
-            Data da festa: <input type="text" name="dataFesta">
-            Observação: <input type="text" name="obs">
-            Festa realizada?
-            <select name="festaRealida">
-                <option value="Não">Não</option>
-                <option value="Sim">Sim</option>
-            </select>
+            <h6 id="clienteInf"></h6>
+            <h6 id="criancasInf"></h6>
             <br>
+            <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
+                <input type="hidden" name="qtdCrianca" id="qtdCrianca" value="0">
+                <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
+            </form>
             <br>
-            <button class="btn btn-warning" onclick="voltarEtapa9()"> Voltar </button>
-            <button class="btn btn-warning"> Etapa Final </button>              
-        </div>       
+            <button class="btn btn-warning" onclick="voltarEtapa10()"> Voltar </button>        
+        </div>        
         <br>
         <a href="festaPrincipal.jsp" type="button" class="btn btn-primary">Voltar</a>
     </body>
