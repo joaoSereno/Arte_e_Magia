@@ -273,7 +273,7 @@ var textoConfirmacaoCrianca = "";
 
         listaNomeCrianca.forEach((valorAtualLista) => {
             if(countListaNomeCrianca == 0){
-                textoConfirmacaoCrianca = "Aniversariantes: "
+                textoConfirmacaoCrianca = "Aniversariante/s: "
             }
             countListaNomeCrianca++;
             

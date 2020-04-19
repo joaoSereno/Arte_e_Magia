@@ -19,6 +19,11 @@ var jsCountPacotesAdicionais2 = 0;
 var jsCountValorAdicional = 0;
 var jsCountValorAdicional2 = 0;
 
+//variaveis que controlam o texto de confirmação dos valores adicionais na ultima etapa
+let listaValoresAdicionais = [];
+var controleTextoConfirmacaoValoresAdicionais = "";
+var countValoresAdicionais = 0;
+
 //var das despesas
 var jsCountDespesa = 0;
 var jsCountDespesa2 = 0;
@@ -143,7 +148,7 @@ btnAddFuncionario.addEventListener("click", function (event) {
                         textoParagrafoFuncionario = "Animador/a: "+valorAtualLista2;
                         countResultadoSplit++;
                     }else{
-                        textoParagrafoFuncionario = textoParagrafoFuncionario+"    Cache: R$"+valorAtualLista2;
+                        textoParagrafoFuncionario = textoParagrafoFuncionario+"   -   Cache: R$"+valorAtualLista2;
                         countResultadoSplit = 0;
                     }
 
@@ -214,7 +219,7 @@ btnAddFuncionario.addEventListener("click", function (event) {
                     textoParagrafoFuncionario = "Animador/a: "+valorAtualLista2;
                     countResultadoSplit++;
                 }else{
-                    textoParagrafoFuncionario = textoParagrafoFuncionario+"    Cache: R$"+valorAtualLista2;
+                    textoParagrafoFuncionario = textoParagrafoFuncionario+"   -   Cache: R$"+valorAtualLista2;
                     countResultadoSplit = 0;
                 }
                 
@@ -449,21 +454,64 @@ btnAddValorAdicional.addEventListener("click", function (event) {
 
         //criando função on clik para remover o valor adicional adicionado
         removerValorAdicionalBotao.onclick = function () {
-//            jsCountValorAdicional2--; //toda vez que remove diminui
-//
-//            //pega o id da tr e remove
-//            document.getElementById(valorAdicionalTr.id).remove();
-//
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputValorAdicional.id).remove();
-//            document.getElementById(inputDescricaoValorAdicional.id).remove();
-//
-//            if (jsCountValorAdicional2 == 0) { //se for igual a zero
-//                //desabilita a div da tabela
-//                document.getElementById('tabelaValorAdicional').style.display = 'none';
-//                document.getElementById('countValorAdicional').value = 0;
-//                document.getElementById('temValorAdicional').value = 0;
-//            }
+            jsCountValorAdicional2--; //toda vez que remove diminui
+
+            //pega o id da tr e remove
+            document.getElementById(valorAdicionalTr.id).remove();
+
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputValorAdicional.id).remove();
+            document.getElementById(inputDescricaoValorAdicional.id).remove();
+
+            //removendo da lista de valores adicionais que forma o texto de confirmação da ultima etapa
+            listaValoresAdicionais.splice(listaValoresAdicionais.indexOf(valorAdicional+"+"+descricaoValorAdicional), 1);
+
+            //recebe o elemento html que está as inf dos valores adicionais e apaga tudo, pois vai ser montado novamente
+            var confirmacaoInfValoresAdicionais = document.querySelector("#valoresAddInf");
+            confirmacaoInfValoresAdicionais.innerHTML = "";
+
+            //percorre a lista e monta o texto de confirmação da ultima etapa
+            listaValoresAdicionais.forEach((valorAtualLista) => {
+                countValoresAdicionais++;
+
+                //realiza um split no valor atual e salva na variavel resultado
+                var resultado = valorAtualLista.split("+");  
+
+                //variaveis utilizadas para montagem do texto
+                var textoParagrafoValoresAdd = "";
+                var countResultadoSplit = 0; 
+
+                //percorre o resultado do split
+                resultado.forEach((valorAtualLista2) => {
+                    if(countResultadoSplit == 0){
+                        textoParagrafoValoresAdd = "Valor adicional: R$"+valorAtualLista2;
+                        countResultadoSplit++;
+                    }else{
+                        textoParagrafoValoresAdd = textoParagrafoValoresAdd+"   -   Descrição: "+valorAtualLista2;
+                        countResultadoSplit = 0;
+                    } 
+                });
+
+                //cria um elento inpunt <p>
+                var paragrafoValorAdicional = document.createElement("p");
+
+                //define os atributos desse elemento
+                paragrafoValorAdicional.id = "pValorAdd"+countValoresAdicionais;
+
+                //define o texto dentro do paragrafo
+                paragrafoValorAdicional.textContent = textoParagrafoValoresAdd;
+
+                //adicona o <p> criado na informação dos valores adicionais na ultima etapa
+                confirmacaoInfValoresAdicionais.appendChild(paragrafoValorAdicional);                 
+
+            });
+            countValoresAdicionais = 0;
+
+            if (jsCountValorAdicional2 == 0) { //se for igual a zero
+                //desabilita a div da tabela
+                document.getElementById('tabelaValorAdicional').style.display = 'none';
+                document.getElementById('qtdValorAdicional').value = 0;
+            }
         };
 
         //colocando o botão de remover dentro do td
@@ -482,40 +530,83 @@ btnAddValorAdicional.addEventListener("click", function (event) {
         var tabelaTbodyValorAdicional = document.querySelector("#tbodyValorAdicional");
         tabelaTbodyValorAdicional.appendChild(valorAdicionalTr);
 
-//        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS VALOR ADICIONAL ADD
-//        //cria um controlador(input) para as valor adicional toda vez que adiciona um valor adicional
-//        var inputValorAdicional = document.createElement("input");
-//        var inputDescricaoValorAdicional = document.createElement("input");
-//
-//        //seta como tipo hidden os controladores(inputs) criados para valor adicional
-//        inputValorAdicional.type = "hidden";
-//        inputDescricaoValorAdicional.type = "hidden";
-//
-//        //setando os valores digitos pelo usuário, nos values dos controladores
-//        inputValorAdicional.value = valorAdicional;
-//        inputDescricaoValorAdicional.value = descricaoValorAdicional;
-//
-//        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountValorAdicional
-//        var nameValorAdicional = "valorAdicional" + jsCountValorAdicional;
-//        var nameDescricaoValorAdicional = "descricaoValorAdicional" + jsCountValorAdicional;
-//
-//        //seta no name dos controladores(input) o valor das variaveis
-//        inputValorAdicional.name = nameValorAdicional;
-//        inputDescricaoValorAdicional.name = nameDescricaoValorAdicional;
-//
-//        //setando id para os controladores(inputs)
-//        inputValorAdicional.id = "valorAdicional" + jsCountValorAdicional;
-//        inputDescricaoValorAdicional.id = "descricaoValorAdicional" + jsCountValorAdicional;
-//
-//        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-//        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-//        formCadastrarFesta.appendChild(inputValorAdicional);
-//        formCadastrarFesta.appendChild(inputDescricaoValorAdicional);
-//        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
-//
-//        //seta no controler hidden o valor das vezes que foi add despesa
-//        document.getElementById('countValorAdicional').value = jsCountValorAdicional;
+        //MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA O VALOR ADICIONAL NA ULTIMA ETAPAS
+        //adiciona na lista o valor + descrição do valor adiconal adicionado
+        listaValoresAdicionais.push(valorAdicional+"+"+descricaoValorAdicional);
+         
+        //recebe o elemento html que está as inf dos valores adicionais e apaga tudo, pois vai ser montado novamente
+        var confirmacaoInfValoresAdicionais = document.querySelector("#valoresAddInf");
+        confirmacaoInfValoresAdicionais.innerHTML = "";
+    
+        //percorre a lista e monta o texto de confirmação da ultima etapa
+        listaValoresAdicionais.forEach((valorAtualLista) => {
+            countValoresAdicionais++;
+            
+            //realiza um split no valor atual e salva na variavel resultado
+            var resultado = valorAtualLista.split("+");  
+            
+            //variaveis utilizadas para montagem do texto
+            var textoParagrafoValoresAdd = "";
+            var countResultadoSplit = 0; 
+            
+            //percorre o resultado do split
+            resultado.forEach((valorAtualLista2) => {
+                if(countResultadoSplit == 0){
+                    textoParagrafoValoresAdd = "Valor adicional: R$"+valorAtualLista2;
+                    countResultadoSplit++;
+                }else{
+                    textoParagrafoValoresAdd = textoParagrafoValoresAdd+"   -   Descrição: "+valorAtualLista2;
+                    countResultadoSplit = 0;
+                } 
+            });
 
+            //cria um elento inpunt <p>
+            var paragrafoValorAdicional = document.createElement("p");
+    
+            //define os atributos desse elemento
+            paragrafoValorAdicional.id = "pValorAdd"+countValoresAdicionais;
+            
+            //define o texto dentro do paragrafo
+            paragrafoValorAdicional.textContent = textoParagrafoValoresAdd;
+            
+            //adicona o <p> criado na informação dos valores adicionais na ultima etapa
+            confirmacaoInfValoresAdicionais.appendChild(paragrafoValorAdicional);                 
+            
+        });
+        countValoresAdicionais = 0;
+        // FIM MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA O VALOR ADICIONAL NA ULTIMA ETAPA
+        
+        //COMEÇO CRIAÇÃO DOS INPUTS
+        //cria os elementos html input
+        var inputValorAdicional = document.createElement("input");
+        var inputDescricaoValorAdicional = document.createElement("input");
+        
+        //define seus atributos
+        //tipo
+        inputValorAdicional.type = "hidden";
+        inputDescricaoValorAdicional.type = "hidden";
+        
+        //valor
+        inputValorAdicional.value = valorAdicional;
+        inputDescricaoValorAdicional.value = descricaoValorAdicional;
+        
+        //nome
+        inputValorAdicional.name = "valorAdicional" + jsCountValorAdicional;
+        inputDescricaoValorAdicional.name = "descricaoValorAdicional" + jsCountValorAdicional;
+        
+        //id
+        inputValorAdicional.id = "valorAdicional" + jsCountValorAdicional;
+        inputDescricaoValorAdicional.id = "descricaoValorAdicional" + jsCountValorAdicional;
+
+        //buscando o form de cadastro e setando nele os inputs criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputValorAdicional);
+        formCadastrarFesta.appendChild(inputDescricaoValorAdicional);
+        //FIM DA CRIAÇÃO DOS INPUTS
+
+        //define o valor do input qtdFuncionario
+        document.getElementById('qtdValorAdicional').value = jsCountValorAdicional;        
+        
         //limpa os valores do input
         form.jsValorAdicional.value = "";
         form.jsDescricaoValorAdicional.value = "";
