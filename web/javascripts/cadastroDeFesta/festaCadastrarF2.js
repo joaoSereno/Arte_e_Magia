@@ -6,6 +6,11 @@
 var jsCountFuncionario = 0;
 var jsCountFuncionario2 = 0;
 
+//variaveis que controlam o texto de confirmação dos funcionario na ultima etapa
+let listaFuncionarios = [];
+var controleTextoConfirmacaoFuncionario = "";
+var countListaFuncionario = 0;
+
 //var das pacotes adicionais
 var jsCountPacotesAdicionais = 0;
 var jsCountPacotesAdicionais2 = 0;
@@ -105,21 +110,65 @@ btnAddFuncionario.addEventListener("click", function (event) {
 
         //criando função on clik para remover o funcionario adicionado
         removerFuncionarioBotao.onclick = function () {
-//            jsCountFuncionario2--; //toda vez que remove diminui
-//
-//            //pega o id da tr e remove
-//            document.getElementById(funcionarioTr.id).remove();
-//
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputIdFuncionario.id).remove();
-//            document.getElementById(inputCacheFuncionario.id).remove();
-//            document.getElementById(inputIdFormaDePagamentoFuncionario.id).remove();
-//
-//            if (jsCountFuncionario2 == 0) { //se for igual a zero
-//                //desabilita a div da tabela
-//                document.getElementById('tabelaFuncionario').style.display = 'none';
-//                document.getElementById('countFuncionario').value = jsCountFuncionario2;
-//            }
+            jsCountFuncionario2--; //toda vez que remove diminui
+
+            //remove o tr (coluna)
+            document.getElementById(funcionarioTr.id).remove();
+
+            //remove os inputs
+            document.getElementById(inputIdFuncionario.id).remove();
+            document.getElementById(inputCacheFuncionario.id).remove();
+            document.getElementById(inputIdFormaDePagamentoFuncionario.id).remove();
+            
+            //removendo da lista de funcionarios que forma o texto de confirmação da ultima etapa
+            listaFuncionarios.splice(listaFuncionarios.indexOf(nomeFuncionario+"+"+cache), 1); 
+
+            //recebe o elemento html que está as inf do funcionario e apaga tudo, pois vai ser montado novamente
+            var confirmacaoInfFuncionario = document.querySelector("#funcionarioInf");
+            confirmacaoInfFuncionario.innerHTML = "";
+
+            listaFuncionarios.forEach((valorAtualLista) => {
+                countListaFuncionario++;
+
+                //realiza um split no valor atual
+                var resultado = valorAtualLista.split("+");
+
+                //variaveis utilizadas para montagem do texto
+                var textoParagrafoFuncionario = "";
+                var countResultadoSplit = 0;
+
+                //percorre o resultado do split
+                resultado.forEach((valorAtualLista2) => {
+                    if(countResultadoSplit == 0){
+                        textoParagrafoFuncionario = "Animador/a: "+valorAtualLista2;
+                        countResultadoSplit++;
+                    }else{
+                        textoParagrafoFuncionario = textoParagrafoFuncionario+"    Cache: R$"+valorAtualLista2;
+                        countResultadoSplit = 0;
+                    }
+
+                });
+
+                //cria um elento inpunt <p>
+                var paragrafoFuncionario = document.createElement("p");
+
+                //define os atributos desse elemento
+                paragrafoFuncionario.id = "pFuncionario"+countListaFuncionario;
+
+                //define o texto dentro do paragrafo
+                paragrafoFuncionario.textContent = textoParagrafoFuncionario;
+
+                //seta criado paragrafo na informação dos funcionarios na ultima etapa
+                confirmacaoInfFuncionario.appendChild(paragrafoFuncionario);         
+
+            }); 
+            countListaFuncionario = 0;
+        
+            if (jsCountFuncionario2 == 0) { //se for igual a zero
+                //desabilita a div da tabela
+                document.getElementById('tabelaFuncionario').style.display = 'none';
+                document.getElementById('qtdFuncioanrio').value = jsCountFuncionario2;
+            }
         };
 
         //colocando o botão de remover dentro do td
@@ -140,46 +189,90 @@ btnAddFuncionario.addEventListener("click", function (event) {
         var tabelaTbodyFuncionario = document.querySelector("#tbodyFuncionario");
         tabelaTbodyFuncionario.appendChild(funcionarioTr);
 
-//        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS DOS FUNCIONAIROS ADD
-//        //cria um controlador(input) para as funcionario toda vez que adiciona uma funcionario
-//        var inputIdFuncionario = document.createElement("input");
-//        var inputCacheFuncionario = document.createElement("input");
-//        var inputIdFormaDePagamentoFuncionario = document.createElement("input");
-//
-//        //seta como tipo hidden os controladores(inputs) criados para funcionario
-//        inputIdFuncionario.type = "hidden";
-//        inputCacheFuncionario.type = "hidden";
-//        inputIdFormaDePagamentoFuncionario.type = "hidden";
-//
-//        //setando os valores digitos pelo usuário, nos values dos controladores
-//        inputIdFuncionario.value = idFuncionario;
-//        inputCacheFuncionario.value = cache;
-//        inputIdFormaDePagamentoFuncionario.value = idFormaDePagamento;
-//
-//        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountFuncionario
-//        var nameIdFuncionario = "idFuncionario" + jsCountFuncionario;
-//        var nameCacheFuncionario = "cacheFuncionario" + jsCountFuncionario;
-//        var nameIdFormaDePagamentoFuncionario = "idFormaDePagamentoFuncionario" + jsCountFuncionario;
-//
-//        //seta no name dos controladores(input) o valor das variaveis
-//        inputIdFuncionario.name = nameIdFuncionario;
-//        inputCacheFuncionario.name = nameCacheFuncionario;
-//        inputIdFormaDePagamentoFuncionario.name = nameIdFormaDePagamentoFuncionario;
-//
-//        //setando id para os controladores(inputs)
-//        inputIdFuncionario.id = "idFuncionario" + jsCountFuncionario;
-//        inputCacheFuncionario.id = "cacheFuncionario" + jsCountFuncionario;
-//        inputIdFormaDePagamentoFuncionario.id = "idFormaDePagamentoFuncionario" + jsCountFuncionario;
-//
-//        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-//        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-//        formCadastrarFesta.appendChild(inputIdFuncionario);
-//        formCadastrarFesta.appendChild(inputCacheFuncionario);
-//        formCadastrarFesta.appendChild(inputIdFormaDePagamentoFuncionario);
-//        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
-//
-//        //seta no controler hidden o valor das vezes que foi add despesa
-//        document.getElementById('countFuncionario').value = jsCountFuncionario;
+        //MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA O FUNCIONARIO NA ULTIMA ETAPA
+        
+        //adiciona na lista o nome + cache do funcionario adicionado
+        listaFuncionarios.push(nomeFuncionario+"+"+cache);
+        
+        //recebe o elemento html que está as inf do funcionario e apaga tudo, pois vai ser montado novamente
+        var confirmacaoInfFuncionario = document.querySelector("#funcionarioInf");
+        confirmacaoInfFuncionario.innerHTML = "";
+        
+        listaFuncionarios.forEach((valorAtualLista) => {
+            countListaFuncionario++;
+    
+            //realiza um split no valor atual
+            var resultado = valorAtualLista.split("+");
+            
+            //variaveis utilizadas para montagem do texto
+            var textoParagrafoFuncionario = "";
+            var countResultadoSplit = 0;
+            
+            //percorre o resultado do split
+            resultado.forEach((valorAtualLista2) => {
+                if(countResultadoSplit == 0){
+                    textoParagrafoFuncionario = "Animador/a: "+valorAtualLista2;
+                    countResultadoSplit++;
+                }else{
+                    textoParagrafoFuncionario = textoParagrafoFuncionario+"    Cache: R$"+valorAtualLista2;
+                    countResultadoSplit = 0;
+                }
+                
+            });
+            
+            //cria um elento inpunt <p>
+            var paragrafoFuncionario = document.createElement("p");
+            
+            //define os atributos desse elemento
+            paragrafoFuncionario.id = "pFuncionario"+countListaFuncionario;
+            
+            //define o texto dentro do paragrafo
+            paragrafoFuncionario.textContent = textoParagrafoFuncionario;
+            
+            //seta criado paragrafo na informação dos funcionarios na ultima etapa
+            confirmacaoInfFuncionario.appendChild(paragrafoFuncionario);         
+
+        }); 
+        countListaFuncionario = 0;
+        //FIM MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA O FUNCIONARIO NA ULTIMA ETAPA
+
+        //COMEÇO DA CRIAÇÃO E DEFINIÇÃO DOS INPUTS
+        //cria elemento html input
+        var inputIdFuncionario = document.createElement("input"); //idFuncionario
+        var inputCacheFuncionario = document.createElement("input"); //cache do funcionario
+        var inputIdFormaDePagamentoFuncionario = document.createElement("input"); //fp do funcionario     
+        
+        //definindo os atributos dos inputs
+        //tipo
+        inputIdFuncionario.type = "hidden";
+        inputCacheFuncionario.type = "hidden";
+        inputIdFormaDePagamentoFuncionario.type = "hidden";  
+        
+        //value
+        inputIdFuncionario.value = idFuncionario;
+        inputCacheFuncionario.value = cache;
+        inputIdFormaDePagamentoFuncionario.value = idFormaDePagamento;        
+        
+        //name
+        inputIdFuncionario.name = "idFuncionario" + jsCountFuncionario;
+        inputCacheFuncionario.name = "cacheFuncionario" + jsCountFuncionario;
+        inputIdFormaDePagamentoFuncionario.name = "idFormaDePagamentoFuncionario" + jsCountFuncionario;   
+        
+        //id
+        inputIdFuncionario.id = "idFuncionario" + jsCountFuncionario;
+        inputCacheFuncionario.id = "cacheFuncionario" + jsCountFuncionario;
+        inputIdFormaDePagamentoFuncionario.id = "idFormaDePagamentoFuncionario" + jsCountFuncionario;        
+
+        //buscando o form de cadastro e setando nele o input criado
+        var formCadastroDeFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastroDeFesta.appendChild(inputIdFuncionario);
+        formCadastroDeFesta.appendChild(inputCacheFuncionario);
+        formCadastroDeFesta.appendChild(inputIdFormaDePagamentoFuncionario);
+        
+        //FIM DA CRIAÇÃO E DEFINIÇÃO DOS INPUTS
+        
+        //define o valor do input qtdFuncionario
+        document.getElementById('qtdFuncioanrio').value = jsCountFuncionario;
 
         //limpa os valores do input
         form.jsFuncionarios.value = "";

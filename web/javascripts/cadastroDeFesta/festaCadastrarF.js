@@ -226,7 +226,9 @@ var textoConfirmacaoCrianca = "";
             }
             
         });
+        
         quantidadeCriancaBotaoRemover = quantidadeCrianca;
+        
         //se o cliente não tiver criança
         if(quantidadeCrianca < 1){
 
@@ -312,9 +314,17 @@ var textoConfirmacaoCrianca = "";
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
         tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";
 
-        document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
-        document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3
-
+        //recebe a quantidade de funcionario selecionado
+        var qtdFuncionario = document.getElementById('qtdFuncioanrio').value;
+        
+        //verifica se tem pelo menos 1 funcionario
+        if(qtdFuncionario == 0){
+            alert("É obrigatório no mínimo 1 animador por evento !");         
+        }else{
+            document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
+            document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3    
+        }
+        
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 3
 
@@ -322,14 +332,13 @@ var textoConfirmacaoCrianca = "";
     //se clicar no botão Sim do pacote adicional
     function habilitaPacoteAdicional() {
         document.getElementById('divPacoteAdicional').style.display = 'block';  //habilita a div com id "divPacoteAdicional"
-        //document.getElementById('temPacotesAdicionais').value = 1;         
+        document.getElementById('temPacoteAdicional').value = 1;         
     }; 
 
     //se clicar no botão Não do pacote adicional
     function desabilitaPacoteAdicional() {             
         document.getElementById('divPacoteAdicional').style.display = 'none';  //desabilita a div com id "divPacoteAdicional"                 
-//        document.getElementById('temPacotesAdicionais').value = 0;
-//        document.getElementById('countPacotesAdicionais').value = 0;
+        document.getElementById('temPacoteAdicional').value = 0;
     }; 
     
     //quando clicar para voltar etapa 3

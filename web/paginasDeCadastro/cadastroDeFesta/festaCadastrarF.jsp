@@ -1,5 +1,5 @@
 <%-- 
-    Document   : paginaSelecionarCliente
+    Document   : festaCadastrar
     Created on : 02/04/2020, 17:25:22
     Author     : João Pedro
 --%>
@@ -7,9 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    int contadorCliente = 0;
-%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -148,7 +146,7 @@
                 </thead> 
                 <tbody id="tbodyFuncionario">
                 </tbody>
-            </table> 
+            </table>
             <br>
             <button class="btn btn-warning" onclick="voltarEtapa2()"> Voltar </button>
             <button class="btn btn-warning" onclick="etapa4()"> 4º Etapa </button>            
@@ -352,9 +350,13 @@
             <br>
             <h6 id="clienteInf"></h6>
             <h6 id="criancasInf"></h6>
+            <h6 id="funcionarioInf"></h6>
             <br>
             <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
                 <input type="hidden" name="qtdCrianca" id="qtdCrianca" value="0">
+                <input type="hidden" name="qtdFuncioanrio" id="qtdFuncioanrio" value="0">
+                <input type="hidden" name="qtdPacoteAdicional" id="qtdPacoteAdicional" value="0">
+                <input type="hidden" name="temPacoteAdicional" id="temPacoteAdicional" value="0">
                 <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
             </form>
             <br>
