@@ -3,34 +3,41 @@
  */
 
 //var dos funcionarios
-var jsCountFuncionario = 0;
-var jsCountFuncionario2 = 0;
-
-//variaveis que controlam o texto de confirmação dos funcionario na ultima etapa
-let listaFuncionarios = [];
-var controleTextoConfirmacaoFuncionario = "";
-var countListaFuncionario = 0;
+    //count
+    var jsCountFuncionario = 0;
+    var jsCountFuncionario2 = 0;
+    //variaveis que controlam o texto de confirmação dos funcionario na ultima etapa
+    let listaFuncionarios = [];
+    var controleTextoConfirmacaoFuncionario = "";
+    var countListaFuncionario = 0;
 
 //var das pacotes adicionais
 var jsCountPacotesAdicionais = 0;
 var jsCountPacotesAdicionais2 = 0;
 
 //var do valor adicional
-var jsCountValorAdicional = 0;
-var jsCountValorAdicional2 = 0;
+    //count
+    var jsCountValorAdicional = 0;
+    var jsCountValorAdicional2 = 0;
 
-//variaveis que controlam o texto de confirmação dos valores adicionais na ultima etapa
-let listaValoresAdicionais = [];
-var controleTextoConfirmacaoValoresAdicionais = "";
-var countValoresAdicionais = 0;
+    //variaveis que controlam o texto de confirmação dos valores adicionais na ultima etapa
+    let listaValoresAdicionais = [];
+    var controleTextoConfirmacaoValoresAdicionais = "";
+    var countValoresAdicionais = 0;
 
 //var das despesas
 var jsCountDespesa = 0;
 var jsCountDespesa2 = 0;
 
 //var dos horarios
-var jsCountHorario = 0;
-var jsCountHorario2 = 0;
+    //count
+    var jsCountHorario = 0;
+    var jsCountHorario2 = 0;
+
+    //variaveis que controlam o texto de confirmação dos valores adicionais na ultima etapa
+    let listaHorarios = [];
+    var controleTextoConfirmacaoHorarios = "";
+    var countHorarios = 0;
 
 //recebendo em uma variavel o botão de + 
 var btnAddFuncionario = document.querySelector("#add-funcionario");
@@ -916,20 +923,64 @@ btnAddHorario.addEventListener("click", function (event) {
 
         //criando função on clik para remover o horario adicionado
         removerHorarioBotao.onclick = function () {
-//            jsCountHorario2--; //toda vez que remove diminui
-//
-//            //pega o id da tr e remove
-//            document.getElementById(horarioTr.id).remove();
-//
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputHorario.id).remove();
-//            document.getElementById(inputHorarioDescricao.id).remove();
-//
-//            if (jsCountHorario2 == 0) { //se for igual a zero
-//                //desabilita a div da tabela
-//                document.getElementById('tabelaHorario').style.display = 'none';
-//                document.getElementById('countHorario').value = jsCountHorario2;
-//            }
+            jsCountHorario2--; //toda vez que remove diminui
+
+            //pega o id da tr e remove
+            document.getElementById(horarioTr.id).remove();
+
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputHorario.id).remove();
+            document.getElementById(inputHorarioDescricao.id).remove();
+            
+            //removendo da lista de horario que forma o texto de confirmação da ultima etapa
+            listaHorarios.splice(listaHorarios.indexOf(horario+"+"+descricaoHorario), 1);
+            
+            //recebe o elemento html que está as inf dos valores adicionais e apaga tudo, pois vai ser montado novamente
+            var confirmacaoInfHorarios = document.querySelector("#horariosInf");
+            confirmacaoInfHorarios.innerHTML = "";
+
+            //percorre a lista e monta o texto de confirmação da ultima etapa
+            listaHorarios.forEach((valorAtualLista) => {
+                countHorarios++;
+
+                //realiza um split no valor atual e salva na variavel resultado
+                var resultado = valorAtualLista.split("+");  
+
+                //variaveis utilizadas para montagem do texto
+                var textoParagrafoHorarios = "";
+                var countResultadoSplit = 0; 
+
+                //percorre o resultado do split
+                resultado.forEach((valorAtualLista2) => {
+                    if(countResultadoSplit == 0){
+                        textoParagrafoHorarios = "Horário: "+valorAtualLista2;
+                        countResultadoSplit++;
+                    }else{
+                        textoParagrafoHorarios = textoParagrafoHorarios+"   -   Descrição: "+valorAtualLista2;
+                        countResultadoSplit = 0;
+                    } 
+                });
+
+                //cria um elento inpunt <p>
+                var paragrafoHorario = document.createElement("p");
+
+                //define os atributos desse elemento
+                paragrafoHorario.id = "pHorario"+countHorarios;
+
+                //define o texto dentro do paragrafo
+                paragrafoHorario.textContent = textoParagrafoHorarios;
+
+                //adicona o <p> criado na informação dos horarios na ultima etapa
+                confirmacaoInfHorarios.appendChild(paragrafoHorario);                 
+
+            });
+            countHorarios = 0;    
+            
+            if (jsCountHorario2 == 0) { //se for igual a zero
+                //desabilita a div da tabela
+                document.getElementById('tabelaHorario').style.display = 'none';
+                document.getElementById('qtdHorario').value = jsCountHorario2;
+            }
         };
 
         //colocando o botão de remover dentro do td
@@ -948,39 +999,82 @@ btnAddHorario.addEventListener("click", function (event) {
         var tabelaTbodyHorario = document.querySelector("#tbodyHorario");
         tabelaTbodyHorario.appendChild(horarioTr);
 
-//        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS HORARIOS ADD
-//        //cria um controlador(input) para as despesa toda vez que adiciona um horario
-//        var inputHorario = document.createElement("input");
-//        var inputHorarioDescricao = document.createElement("input");
-//
-//        //seta como tipo hidden os controladores(inputs) criados para horario
-//        inputHorario.type = "hidden";
-//        inputHorarioDescricao.type = "hidden";
-//
-//        //setando os valores digitos pelo usuário, nos values dos controladores
-//        inputHorario.value = horario;
-//        inputHorarioDescricao.value = descricaoHorario;
-//
-//        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountHorario
-//        var nameHorario = "horario" + jsCountHorario;
-//        var nameHorarioDescricao = "horarioDesricao" + jsCountHorario;
-//
-//        //seta no name dos controladores(input) o valor das variaveis
-//        inputHorario.name = nameHorario;
-//        inputHorarioDescricao.name = nameHorarioDescricao;
-//
-//        //setando id para os controladores(inputs)
-//        inputHorario.id = "horario" + jsCountHorario;
-//        inputHorarioDescricao.id = "horarioDesricao" + jsCountHorario;
-//
-//        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-//        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-//        formCadastrarFesta.appendChild(inputHorario);
-//        formCadastrarFesta.appendChild(inputHorarioDescricao);
-//        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
-//
-//        //seta no controler hidden o valor das vezes que foi add despesa
-//        document.getElementById('countHorario').value = jsCountHorario;
+        //MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA OS HORARIOS NA ULTIMA ETAPAS
+        //adiciona na lista o horario + descricao do horario adicionado
+        listaHorarios.push(horario+"+"+descricaoHorario);
+         
+        //recebe o elemento html que está as inf dos valores adicionais e apaga tudo, pois vai ser montado novamente
+        var confirmacaoInfHorarios = document.querySelector("#horariosInf");
+        confirmacaoInfHorarios.innerHTML = "";
+    
+        //percorre a lista e monta o texto de confirmação da ultima etapa
+        listaHorarios.forEach((valorAtualLista) => {
+            countHorarios++;
+            
+            //realiza um split no valor atual e salva na variavel resultado
+            var resultado = valorAtualLista.split("+");  
+            
+            //variaveis utilizadas para montagem do texto
+            var textoParagrafoHorarios = "";
+            var countResultadoSplit = 0; 
+            
+            //percorre o resultado do split
+            resultado.forEach((valorAtualLista2) => {
+                if(countResultadoSplit == 0){
+                    textoParagrafoHorarios = "Horário: "+valorAtualLista2;
+                    countResultadoSplit++;
+                }else{
+                    textoParagrafoHorarios = textoParagrafoHorarios+"   -   Descrição: "+valorAtualLista2;
+                    countResultadoSplit = 0;
+                } 
+            });
+
+            //cria um elento inpunt <p>
+            var paragrafoHorario = document.createElement("p");
+    
+            //define os atributos desse elemento
+            paragrafoHorario.id = "pHorario"+countHorarios;
+            
+            //define o texto dentro do paragrafo
+            paragrafoHorario.textContent = textoParagrafoHorarios;
+            
+            //adicona o <p> criado na informação dos horarios na ultima etapa
+            confirmacaoInfHorarios.appendChild(paragrafoHorario);                 
+            
+        });
+        countHorarios = 0;
+        // FIM MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA OS HORARIOS NA ULTIMA ETAPA
+
+        //COMEÇO CRIAÇÃO DOS INPUTS
+        //cria os inputs
+        var inputHorario = document.createElement("input");
+        var inputHorarioDescricao = document.createElement("input");
+                
+        //define os atributos do input
+        //tipo
+        inputHorario.type = "hidden";
+        inputHorarioDescricao.type = "hidden";
+        
+        //valor
+        inputHorario.value = horario;
+        inputHorarioDescricao.value = descricaoHorario;  
+        
+        //nome
+        inputHorario.name = "horario" + jsCountHorario;
+        inputHorarioDescricao.name = "horarioDesricao" + jsCountHorario;
+        
+        //id
+        inputHorario.id = "horario" + jsCountHorario;
+        inputHorarioDescricao.id = "horarioDesricao" + jsCountHorario;        
+
+        //buscando o form de cadastro e setando nele os inputs criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputHorario);
+        formCadastrarFesta.appendChild(inputHorarioDescricao);
+        //FIM CRIAÇÃO DOS INPUTS
+
+        //seta no controler hidden o valor das vezes que foi add despesa
+        document.getElementById('qtdHorario').value = jsCountHorario;
 
         //limpa os valores do input
         form.jsHorario.value = "";

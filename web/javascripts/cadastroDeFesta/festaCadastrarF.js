@@ -37,7 +37,7 @@ var textoConfirmacaoCrianca = "";
         
         //seta informação do cliente na ultima etapa
         var confirmacaoInfCliente = document.querySelector("#clienteInf");
-        confirmacaoInfCliente.textContent = "Cliente: " + nomeCliente;        
+        confirmacaoInfCliente.textContent = "Contratante: " + nomeCliente;        
         
     //COMEÇO DA CRIAÇÃO O INPUT DO CADASTRO DE FESTA
     
@@ -479,9 +479,15 @@ var textoConfirmacaoCrianca = "";
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
         tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";
-    
-        document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 9
-        document.getElementById('inserirHorarios').style.display = 'none'; //desabilita a etapa 8
+
+        var qtdHorario = document.getElementById('qtdHorario').value;
+        
+        if(qtdHorario == 0){
+            alert("Para ir para 9ºEtapa, é obrigatório no mínimo 1 horário!");
+        }else{
+            document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 9
+            document.getElementById('inserirHorarios').style.display = 'none'; //desabilita a etapa 8
+        }
 
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 8
