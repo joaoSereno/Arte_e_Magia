@@ -351,6 +351,7 @@
             <h6 id="clienteInf"></h6>
             <h6 id="criancasInf"></h6>
             <h6 id="funcionarioInf"></h6>
+            <h6 id="pacoteAddInf"></h6>
             <h6 id="valoresAddInf"></h6>
             <h6 id="horariosInf"></h6>
             <br>

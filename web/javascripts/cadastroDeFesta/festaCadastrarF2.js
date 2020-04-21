@@ -6,15 +6,20 @@
     //count
     var jsCountFuncionario = 0;
     var jsCountFuncionario2 = 0;
+    
     //variaveis que controlam o texto de confirmação dos funcionario na ultima etapa
     let listaFuncionarios = [];
-    var controleTextoConfirmacaoFuncionario = "";
     var countListaFuncionario = 0;
 
 //var das pacotes adicionais
-var jsCountPacotesAdicionais = 0;
-var jsCountPacotesAdicionais2 = 0;
+    //count
+    var jsCountPacotesAdicionais = 0;
+    var jsCountPacotesAdicionais2 = 0;
 
+    //variaveis que controlam o texto de confirmação dos pacotes adicionais na ultima etapa
+    let listaPacotesAdicionais = [];
+    var countPacotesAdicionais = 0;
+    
 //var do valor adicional
     //count
     var jsCountValorAdicional = 0;
@@ -22,7 +27,6 @@ var jsCountPacotesAdicionais2 = 0;
 
     //variaveis que controlam o texto de confirmação dos valores adicionais na ultima etapa
     let listaValoresAdicionais = [];
-    var controleTextoConfirmacaoValoresAdicionais = "";
     var countValoresAdicionais = 0;
 
 //var das despesas
@@ -351,21 +355,64 @@ btnAddPacotesAdicionais.addEventListener("click", function (event) {
 
         //criando função on clik para remover o pacote adicional adicionado
         removerPacotesAdicionaisBotao.onclick = function () {
-//            jsCountPacotesAdicionais2--; //toda vez que remove diminui
-//
-//            //pega o id da tr e remove
-//            document.getElementById(pacotesAdicionaisTr.id).remove();
-//
-//            //pega os controladores da despesa e remove tbm
-//            document.getElementById(inputIdPacoteAdicional.id).remove();
-//            document.getElementById(inputValorPacoteAdicional.id).remove();
-//
-//            if (jsCountPacotesAdicionais2 == 0) { //se for igual a zero
-//                //desabilita a div da tabela
-//                document.getElementById('tabelaPacoteAdicional').style.display = 'none';
-//                document.getElementById('countPacotesAdicionais').value = 0;
-//                document.getElementById('temPacotesAdicionais').value = 0;
-//            }
+            jsCountPacotesAdicionais2--; //toda vez que remove diminui
+
+            //pega o id da tr e remove
+            document.getElementById(pacotesAdicionaisTr.id).remove();
+
+            //pega os controladores da despesa e remove tbm
+            document.getElementById(inputIdPacoteAdicional.id).remove();
+            document.getElementById(inputValorPacoteAdicional.id).remove();
+
+            //removendo da lista de pacotes add que forma o texto de confirmação da ultima etapa
+            listaPacotesAdicionais.splice(listaPacotesAdicionais.indexOf(descricaoPacoteAdd+"+"+valorPacoteAdicional), 1);
+
+            //recebe o elemento html que está as inf dos pacotes e apaga tudo, pois vai ser montado novamente
+            var confirmacaoInfPacoteAdd = document.querySelector("#pacoteAddInf");
+            confirmacaoInfPacoteAdd.innerHTML = "";
+
+            listaPacotesAdicionais.forEach((valorAtualLista) => { 
+                countPacotesAdicionais++;
+
+                //realiza um split no valor atual
+                var resultado = valorAtualLista.split("+");        
+
+                //variaveis utilizadas para montagem do texto
+                var textoParagrafoPacoteAdd = "";
+                var countResultadoSplit = 0;        
+
+                //percorre o resultado do split
+                resultado.forEach((valorAtualLista2) => {
+                    if(countResultadoSplit == 0){
+                        textoParagrafoPacoteAdd = "Pacote adicional : "+valorAtualLista2;
+                        countResultadoSplit++;
+                    }else{
+                        textoParagrafoPacoteAdd = textoParagrafoPacoteAdd+"   -   Valor: R$"+valorAtualLista2;
+                        countResultadoSplit = 0;
+                    }
+
+                });
+
+                //cria um elento inpunt <p>
+                var paragrafoPacoteAdd = document.createElement("p");
+
+                //define os atributos desse elemento
+                paragrafoPacoteAdd.id = "pPacoteAdd"+countPacotesAdicionais;
+
+                //define o texto dentro do paragrafo
+                paragrafoPacoteAdd.textContent = textoParagrafoPacoteAdd;
+
+                //seta criado paragrafo na informação dos funcionarios na ultima etapa
+                confirmacaoInfPacoteAdd.appendChild(paragrafoPacoteAdd);                
+
+            });
+            countPacotesAdicionais = 0;
+            if (jsCountPacotesAdicionais2 == 0) { //se for igual a zero
+                //desabilita a div da tabela
+                document.getElementById('tabelaPacoteAdicional').style.display = 'none';
+                document.getElementById('qtdPacoteAdicional').value = 0;
+                document.getElementById('temPacoteAdicional').value = 0;
+            }
         };
 
         //colocando o botão de remover dentro do td
@@ -384,40 +431,83 @@ btnAddPacotesAdicionais.addEventListener("click", function (event) {
         var tabelaTbodyPacoteAdicionais = document.querySelector("#tbodyPacoteAdicional");
         tabelaTbodyPacoteAdicionais.appendChild(pacotesAdicionaisTr);
 
-//        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DOS PACOTES ADICIONAIS ADD
-//        //cria um controlador(input) para as pacotes adicionais toda vez que adiciona uma pacotes adicionais
-//        var inputIdPacoteAdicional = document.createElement("input");
-//        var inputValorPacoteAdicional = document.createElement("input");
-//
-//        //seta como tipo hidden os controladores(inputs) criados para pacotes adicionais
-//        inputIdPacoteAdicional.type = "hidden";
-//        inputValorPacoteAdicional.type = "hidden";
-//
-//        //setando os valores digitos pelo usuário, nos values dos controladores
-//        inputIdPacoteAdicional.value = idTipoPacoteAdicional;
-//        inputValorPacoteAdicional.value = valorPacoteAdicional;
-//
-//        //variavel que vai ser o nome dos controladores(inputs) , recebe uma string + o valor da variavel jsCountPacotesAdicionais
-//        var nameIdPacoteAdicional = "idPacoteAdicional" + jsCountPacotesAdicionais;
-//        var nameValorPacoteAdicional = "valorPacoteAdicional" + jsCountPacotesAdicionais;
-//
-//        //seta no name dos controladores(input) o valor das variaveis
-//        inputIdPacoteAdicional.name = nameIdPacoteAdicional;
-//        inputValorPacoteAdicional.name = nameValorPacoteAdicional;
-//
-//        //setando id para os controladores(inputs)
-//        inputIdPacoteAdicional.id = "idPacoteAdicional" + jsCountPacotesAdicionais;
-//        inputValorPacoteAdicional.id = "valorPacoteAdicional" + jsCountPacotesAdicionais;
-//
-//        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-//        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-//        formCadastrarFesta.appendChild(inputIdPacoteAdicional);
-//        formCadastrarFesta.appendChild(inputValorPacoteAdicional);
-//        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS DESPESAS ADD
-//
-//        //seta no controler hidden o valor das vezes que foi add despesa
-//        document.getElementById('countPacotesAdicionais').value = jsCountPacotesAdicionais;
+        //MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA OS PACOTES ADD NA ULTIMA ETAPA
+     
+       //adiciona na lista o nome + valor do pacote add adicionado
+        listaPacotesAdicionais.push(descricaoPacoteAdd+"+"+valorPacoteAdicional);
 
+        //recebe o elemento html que está as inf dos pacotes e apaga tudo, pois vai ser montado novamente
+        var confirmacaoInfPacoteAdd = document.querySelector("#pacoteAddInf");
+        confirmacaoInfPacoteAdd.innerHTML = "";
+
+        listaPacotesAdicionais.forEach((valorAtualLista) => { 
+            countPacotesAdicionais++;
+        
+            //realiza um split no valor atual
+            var resultado = valorAtualLista.split("+");        
+        
+            //variaveis utilizadas para montagem do texto
+            var textoParagrafoPacoteAdd = "";
+            var countResultadoSplit = 0;        
+        
+            //percorre o resultado do split
+            resultado.forEach((valorAtualLista2) => {
+                if(countResultadoSplit == 0){
+                    textoParagrafoPacoteAdd = "Pacote adicional : "+valorAtualLista2;
+                    countResultadoSplit++;
+                }else{
+                    textoParagrafoPacoteAdd = textoParagrafoPacoteAdd+"   -   Valor: R$"+valorAtualLista2;
+                    countResultadoSplit = 0;
+                }
+                
+            });
+        
+            //cria um elento inpunt <p>
+            var paragrafoPacoteAdd = document.createElement("p");
+            
+            //define os atributos desse elemento
+            paragrafoPacoteAdd.id = "pPacoteAdd"+countPacotesAdicionais;
+            
+            //define o texto dentro do paragrafo
+            paragrafoPacoteAdd.textContent = textoParagrafoPacoteAdd;
+            
+            //seta criado paragrafo na informação dos funcionarios na ultima etapa
+            confirmacaoInfPacoteAdd.appendChild(paragrafoPacoteAdd);                
+        
+        });
+        countPacotesAdicionais = 0;
+        //FIM MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA OS PACOTES ADD NA ULTIMA ETAPA
+        
+        //COMEÇO DA CRIAÇÃO E DEFINIÇÃO DOS INPUTS
+        
+        //cria os inputs
+        var inputIdPacoteAdicional = document.createElement("input");
+        var inputValorPacoteAdicional = document.createElement("input");     
+        
+        //define seus atributos
+        //tipo
+        inputIdPacoteAdicional.type = "hidden";
+        inputValorPacoteAdicional.type = "hidden";
+        //valor
+        inputIdPacoteAdicional.value = idTipoPacoteAdicional;
+        inputValorPacoteAdicional.value = valorPacoteAdicional;
+        //nome
+        inputIdPacoteAdicional.name = "idPacoteAdicional" + jsCountPacotesAdicionais;
+        inputValorPacoteAdicional.name = "valorPacoteAdicional" + jsCountPacotesAdicionais;
+        //id
+        inputIdPacoteAdicional.id = "idPacoteAdicional" + jsCountPacotesAdicionais;
+        inputValorPacoteAdicional.id = "valorPacoteAdicional" + jsCountPacotesAdicionais;
+
+        //buscando o form de cadastro e setando nele os inputs criados
+        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        formCadastrarFesta.appendChild(inputIdPacoteAdicional);
+        formCadastrarFesta.appendChild(inputValorPacoteAdicional);
+        
+        //FIM DA CRIAÇÃO E DEFINIÇÃO DOS INPUTS
+
+        //define o valor do input qtdFuncionario
+        document.getElementById('qtdPacoteAdicional').value = jsCountPacotesAdicionais;
+        
         //limpa os valores do input
         form.jsPacotesAdicionais.value = "";
         form.jsValorPacoteAdicional.value = "";
