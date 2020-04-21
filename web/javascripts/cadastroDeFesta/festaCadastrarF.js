@@ -429,9 +429,18 @@ var textoConfirmacaoCrianca = "";
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
         tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
-    
-        document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
-        document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
+
+        //recebe a qtd de despesa em uma variavel
+        var qtdDespesa = document.getElementById('qtdDespesa').value; //habilita a etapa 7
+        
+        //verifica se adicionou pelo menos 1 despesa
+        if(qtdDespesa == 0){
+            alert("É obrigatório no mínimo uma despesa!");
+        }else{       
+            document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
+            document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
+        }
+        
 
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 6

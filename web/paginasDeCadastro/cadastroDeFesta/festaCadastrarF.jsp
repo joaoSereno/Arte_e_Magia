@@ -353,6 +353,7 @@
             <h6 id="funcionarioInf"></h6>
             <h6 id="pacoteAddInf"></h6>
             <h6 id="valoresAddInf"></h6>
+            <h6 id="despesasInf"></h6>
             <h6 id="horariosInf"></h6>
             <br>
             <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
@@ -362,6 +363,7 @@
                 <input type="hidden" name="temPacoteAdicional" id="temPacoteAdicional" value="0">
                 <input type="hidden" name="qtdValorAdicional" id="qtdValorAdicional" value="0">
                 <input type="hidden" name="qtdHorario" id="qtdHorario" value="0">
+                <input type="hidden" name="qtdDespesa" id="qtdDespesa" value="0">
                 <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
             </form>
             <br>

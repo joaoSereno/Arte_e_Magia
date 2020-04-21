@@ -30,8 +30,13 @@
     var countValoresAdicionais = 0;
 
 //var das despesas
-var jsCountDespesa = 0;
-var jsCountDespesa2 = 0;
+    //count
+    var jsCountDespesa = 0;
+    var jsCountDespesa2 = 0;
+    
+    //variaveis que controlam o texto de confirmação das despesas na ultima etapa
+    let listaDespesas = [];
+    var countDespesas = 0;
 
 //var dos horarios
     //count
@@ -40,7 +45,6 @@ var jsCountDespesa2 = 0;
 
     //variaveis que controlam o texto de confirmação dos valores adicionais na ultima etapa
     let listaHorarios = [];
-    var controleTextoConfirmacaoHorarios = "";
     var countHorarios = 0;
 
 //recebendo em uma variavel o botão de + 
@@ -797,28 +801,98 @@ btnAddDespesa.addEventListener("click", function (event) {
 
         //criando função on clik para remover o aniversariante adicionado
         removerDespesaBotao.onclick = function () {
-//            jsCountDespesa2--; //toda vez que remove diminui
-//
-//            //pega o id da tr e remove
-//            document.getElementById(despesaTr.id).remove();
-//
-//            //pega os controladores do anversariante e remove tbm
-//            if (descricaoDespesa !== "") {
-//                document.getElementById(inputDescricaoDespesa.id).remove();
-//            } else {
-//                document.getElementById(inputIdTipoDespesa.id).remove();
-//            }
-//            document.getElementById(inputValorDespesa.id).remove();
-//            document.getElementById(inputFormaDePagamentoDespesa.id).remove();            
-//            document.getElementById(inputDespesaPaga.id).remove();
-//            document.getElementById(inputManualOuTipoDespesa.id).remove();
-//
-//
-//            if (jsCountDespesa2 == 0) { //se for igual a zero
-//                //desabilita a div da tabela
-//                document.getElementById('tabelaDespesas').style.display = 'none';
-//                document.getElementById('countDespesaFesta').value = jsCountDespesa2;
-//            }
+            jsCountDespesa2--; //toda vez que remove diminui
+
+            //pega o id da tr e remove
+            document.getElementById(despesaTr.id).remove();
+
+            //pega os controladores da despesa e remove tbm
+            if (descricaoDespesa !== "") {
+                document.getElementById(inputDescricaoDespesa.id).remove();
+            } else {
+                document.getElementById(inputIdTipoDespesa.id).remove();
+            }
+            document.getElementById(inputValorDespesa.id).remove();
+            document.getElementById(inputFormaDePagamentoDespesa.id).remove();            
+            document.getElementById(inputDespesaPaga.id).remove();
+            document.getElementById(inputManualOuTipoDespesa.id).remove();
+
+            //removendo da lista de despesa que forma o texto de confirmação da ultima etapa
+            if(descricaoDespesa !== ""){
+                listaDespesas.splice(listaDespesas.indexOf(descricaoDespesa+"+"+valorDespesa+"+"+nomePagamento+"+"+despesaPaga), 1);            
+            }else{
+                listaDespesas.splice(listaDespesas.indexOf(nomeDespesa+"+"+valorDespesa+"+"+nomePagamento+"+"+despesaPaga), 1);             
+            }
+
+            //recebe o elemento html que está as inf das despesas e apaga tudo, pois vai ser montado novamente
+            var confirmacaoInfDespesas = document.querySelector("#despesasInf");
+            confirmacaoInfDespesas.innerHTML = "";        
+
+            listaDespesas.forEach((valorAtualLista) => {
+               countDespesas++; 
+
+                //realiza um split no valor atual e salva na variavel resultado
+                var resultado = valorAtualLista.split("+");
+
+                //variaveis utilizadas para montagem do texto
+                var textoParagrafoDespesa = "";
+                var countResultadoSplit = 0; 
+
+                //percorre o resultado do split
+                resultado.forEach((valorAtualLista2) => {
+
+                    switch(countResultadoSplit) {
+
+                      case 0:
+                        if(descricaoDespesa !== ""){
+                            textoParagrafoDespesa = "Descrição: "+valorAtualLista2;                        
+                        }else{
+                            textoParagrafoDespesa = "Descrição: "+valorAtualLista2;                        
+                        }
+                        countResultadoSplit++; 
+                        break;
+
+                      case 1:
+                        textoParagrafoDespesa = textoParagrafoDespesa+" - Valor: R$"+valorAtualLista2;
+                        countResultadoSplit++;
+                        break;   
+
+                      case 2:
+                        textoParagrafoDespesa = textoParagrafoDespesa+" - Forma de Pagamento: "+valorAtualLista2;
+                        countResultadoSplit++;
+                        break;    
+
+                      case 3:                      
+                        textoParagrafoDespesa = textoParagrafoDespesa+" - Paga? "+valorAtualLista2;
+                        countResultadoSplit++;
+                        break;
+
+                      default:
+                        console.log("Ops, ocorreu um erro!");
+                    }                
+
+                });
+
+                //cria um elento inpunt <p>
+                var paragrafoDespesa = document.createElement("p");
+
+                //define os atributos desse elemento
+                paragrafoDespesa.id = "pDespesa"+countDespesas;
+
+                //define o texto dentro do paragrafo
+                paragrafoDespesa.textContent = textoParagrafoDespesa;
+
+                //adicona o <p> criado na informação das despesas na ultima etapa
+                confirmacaoInfDespesas.appendChild(paragrafoDespesa);                
+
+            });
+            countDespesas = 0;
+
+            if (jsCountDespesa2 == 0) { //se for igual a zero
+                //desabilita a div da tabela
+                document.getElementById('tabelaDespesas').style.display = 'none';
+                document.getElementById('qtdDespesa').value = jsCountDespesa2;
+            }
         };
 
         //colocando o botão de remover dentro do td
@@ -843,137 +917,201 @@ btnAddDespesa.addEventListener("click", function (event) {
         despesaTr.appendChild(removerDespesaTd);
 
         //pega o elemento table do html através do id e seta nele o TR criado
-        var tabelaTbodyAniversariante = document.querySelector("#tbodyDespesas");
-        tabelaTbodyAniversariante.appendChild(despesaTr);
+        var tabelaTbodyDespesa = document.querySelector("#tbodyDespesas");
+        tabelaTbodyDespesa.appendChild(despesaTr);
 
-//        //COMEÇO DA CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DOS ANIVERSARIANTE ADD
-//        //cria um controlador(input) para os aniversariantes toda vez que adiciona um aniversariante
-//        if (descricaoDespesa !== "") {
-//
-//            //cria input da descricao
-//            var inputDescricaoDespesa = document.createElement("input");
-//            //seta type, valor e id
-//            inputDescricaoDespesa.type = "hidden";
-//            inputDescricaoDespesa.value = descricaoDespesa;
-//            inputDescricaoDespesa.id = "descricaoDespesa" + jsCountDespesa;
-//
-//            //seta o nome
-//            var nameDescricaoDespesa = "descricaoDespesa" + jsCountDespesa;
-//            inputDescricaoDespesa.name = nameDescricaoDespesa;
-//
-//            //criação do input controlador para ver se é manual ou por tipo de despesa
-//            var inputManualOuTipoDespesa = document.createElement("input");
-//            //seta type, valor e id
-//            inputManualOuTipoDespesa.type = "hidden";
-//            inputManualOuTipoDespesa.value = 0; //0 é manual
-//            inputManualOuTipoDespesa.id = "manualOuTipoDespesa" + jsCountDespesa;
-//
-//            //seta o nome
-//            var nameManualOuTipoDespesa = "manualOuTipoDespesa" + jsCountDespesa;
-//            inputManualOuTipoDespesa.name = nameManualOuTipoDespesa;
-//
-//
-//        } else {
-//            //cria input do id tipo de despesa selecionado
-//            var inputIdTipoDespesa = document.createElement("input");
-//            //seta type, valor e id
-//            inputIdTipoDespesa.type = "hidden";
-//            inputIdTipoDespesa.value = idTipoDespesa;
-//            inputIdTipoDespesa.id = "idTipoDespesa" + jsCountDespesa;
-//
-//            //seta o nome
-//            var nameIdTipoDespesa = "idTipoDespesa" + jsCountDespesa;
-//            inputIdTipoDespesa.name = nameIdTipoDespesa;
-//
-//            //criação do input controlador para ver se é manual ou por tipo de despesa
-//            var inputDescricaoDespesa = document.createElement("input");
-//            //seta type, valor e id
-//            inputDescricaoDespesa.type = "hidden";
-//            inputDescricaoDespesa.value = descricaoDespesa;
-//            inputDescricaoDespesa.id = "descricaoDespesa" + jsCountDespesa;
-//
-//            //seta o nome
-//            var nameDescricaoDespesa = "descricaoDespesa" + jsCountDespesa;
-//            inputDescricaoDespesa.name = nameDescricaoDespesa;
-//
-//            //criação do input controlador para ver se é manual ou por tipo de despesa
-//            var inputManualOuTipoDespesa = document.createElement("input");
-//
-//            //seta type, valor e id
-//            inputManualOuTipoDespesa.type = "hidden";
-//            inputManualOuTipoDespesa.value = 1; //id de despesa
-//            inputManualOuTipoDespesa.id = "manualOuTipoDespesa" + jsCountDespesa;
-//
-//            //seta o nome
-//            var nameManualOuTipoDespesa = "manualOuTipoDespesa" + jsCountDespesa;
-//            inputManualOuTipoDespesa.name = nameManualOuTipoDespesa;
-//
-//        }
-//        //cria input do valor
-//        var inputValorDespesa = document.createElement("input");
-//        //seta type, valor e id
-//        inputValorDespesa.type = "hidden";
-//        inputValorDespesa.value = valorDespesa;
-//        inputValorDespesa.id = "valorDespesa" + jsCountDespesa;
-//
-//        //seta o nome
-//        var nameValorDespesa = "valorDespesa" + jsCountDespesa;
-//        inputValorDespesa.name = nameValorDespesa;
-//
-//        //cria input do valor
-//        var inputDespesaPaga = document.createElement("input");
-//        //seta type, valor e id        
-//        inputDespesaPaga.type = "hidden";
-//        inputDespesaPaga.value = despesaPaga;
-//        inputDespesaPaga.id = "despesaPaga" + jsCountDespesa;
-//
-//        //seta o nome
-//        var nameDespesaPaga = "despesaPaga" + jsCountDespesa;
-//        inputDespesaPaga.name = nameDespesaPaga;
-//
-//        //cria input da forma de pagamento
-//        var inputFormaDePagamentoDespesa = document.createElement("input");
-//        //seta type, valor e id
-//        inputFormaDePagamentoDespesa.type = "hidden";
-//        inputFormaDePagamentoDespesa.value = idFormaDePagamento;
-//        inputFormaDePagamentoDespesa.id = "formaPagamentoDespesa" + jsCountDespesa;
-//
-//        //seta o nome
-//        var nameFormaDePagamentoDespesa = "formaPagamentoDespesa" + jsCountDespesa;
-//        inputFormaDePagamentoDespesa.name = nameFormaDePagamentoDespesa;        
-//        
-//        //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-//        formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
-//        formSelecionarCliente = document.querySelector('#listarOpcoes');
-//        
-//        if (descricaoDespesa !== "") {
-//            formCadastrarFesta.appendChild(inputDescricaoDespesa);
-//            formSelecionarCliente.appendChild(inputDescricaoDespesa);
-//        } else {
-//            formCadastrarFesta.appendChild(inputIdTipoDespesa);
-//            formSelecionarCliente.appendChild(inputIdTipoDespesa);
-//        }
-//        formCadastrarFesta.appendChild(inputManualOuTipoDespesa);
-//        formCadastrarFesta.appendChild(inputValorDespesa);
-//        formCadastrarFesta.appendChild(inputFormaDePagamentoDespesa);
-//        formCadastrarFesta.appendChild(inputDespesaPaga);
-//        
-//        formSelecionarCliente.appendChild(inputManualOuTipoDespesa);
-//        formSelecionarCliente.appendChild(inputValorDespesa);
-//        formSelecionarCliente.appendChild(inputFormaDePagamentoDespesa);
-//        formSelecionarCliente.appendChild(inputDespesaPaga);
-//               
-//        //FIM CRIAÇÃO E SETAMENTO DOS VALORES DOS INPUTS  DAS ANIVERSARIANTES ADD
-//
-//        //seta no controler hidden o valor das vezes que foi add aniversariante
-//        document.getElementById('countDespesaFesta').value = jsCountDespesa;
+        //INICIO MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA AS DESPESAS NA ULTIMA ETAPAS
+        //adiciona na lista da despesa adicionada
+        if(descricaoDespesa !== ""){
+            listaDespesas.push(descricaoDespesa+"+"+valorDespesa+"+"+nomePagamento+"+"+despesaPaga);             
+        }else{
+            listaDespesas.push(nomeDespesa+"+"+valorDespesa+"+"+nomePagamento+"+"+despesaPaga);             
+        }
+       
+        //recebe o elemento html que está as inf das despesas e apaga tudo, pois vai ser montado novamente
+        var confirmacaoInfDespesas = document.querySelector("#despesasInf");
+        confirmacaoInfDespesas.innerHTML = "";        
+        
+        listaDespesas.forEach((valorAtualLista) => {
+           countDespesas++; 
+            
+            //realiza um split no valor atual e salva na variavel resultado
+            var resultado = valorAtualLista.split("+");
+
+            //variaveis utilizadas para montagem do texto
+            var textoParagrafoDespesa = "";
+            var countResultadoSplit = 0; 
+
+            //percorre o resultado do split
+            resultado.forEach((valorAtualLista2) => {
+                
+                switch(countResultadoSplit) {
+                    
+                  case 0:
+                    if(descricaoDespesa !== ""){
+                        textoParagrafoDespesa = "Descrição: "+valorAtualLista2;                        
+                    }else{
+                        textoParagrafoDespesa = "Descrição: "+valorAtualLista2;                        
+                    }
+                    countResultadoSplit++; 
+                    break;
+                
+                  case 1:
+                    textoParagrafoDespesa = textoParagrafoDespesa+" - Valor: R$"+valorAtualLista2;
+                    countResultadoSplit++;
+                    break;   
+                
+                  case 2:
+                    textoParagrafoDespesa = textoParagrafoDespesa+" - Forma de Pagamento: "+valorAtualLista2;
+                    countResultadoSplit++;
+                    break;    
+                
+                  case 3:                      
+                    textoParagrafoDespesa = textoParagrafoDespesa+" - Paga? "+valorAtualLista2;
+                    countResultadoSplit++;
+                    break;
+                    
+                  default:
+                    console.log("Ops, ocorreu um erro!");
+                }                
+
+            });
+            
+            //cria um elento inpunt <p>
+            var paragrafoDespesa = document.createElement("p");
+    
+            //define os atributos desse elemento
+            paragrafoDespesa.id = "pDespesa"+countDespesas;
+            
+            //define o texto dentro do paragrafo
+            paragrafoDespesa.textContent = textoParagrafoDespesa;
+            
+            //adicona o <p> criado na informação das despesas na ultima etapa
+            confirmacaoInfDespesas.appendChild(paragrafoDespesa);                
+            
+        });
+        countDespesas = 0;        
+        //FIM MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA AS DESPESAS NA ULTIMA ETAPAS   
+
+        //COMEÇO CRIAÇÃO DOS INPUTS      
+        //criação do input e definição de seus atributos
+
+        if (descricaoDespesa !== "") {
+
+            //cria input da descricao
+            var inputDescricaoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputDescricaoDespesa.type = "hidden";
+            inputDescricaoDespesa.value = descricaoDespesa;
+            inputDescricaoDespesa.id = "descricaoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameDescricaoDespesa = "descricaoDespesa" + jsCountDespesa;
+            inputDescricaoDespesa.name = nameDescricaoDespesa;
+
+            //criação do input controlador para ver se é manual ou por tipo de despesa
+            var inputManualOuTipoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputManualOuTipoDespesa.type = "hidden";
+            inputManualOuTipoDespesa.value = 0; //0 é manual
+            inputManualOuTipoDespesa.id = "manualOuTipoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameManualOuTipoDespesa = "manualOuTipoDespesa" + jsCountDespesa;
+            inputManualOuTipoDespesa.name = nameManualOuTipoDespesa;
+
+
+        } else {
+            //cria input do id tipo de despesa selecionado
+            var inputIdTipoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputIdTipoDespesa.type = "hidden";
+            inputIdTipoDespesa.value = idTipoDespesa;
+            inputIdTipoDespesa.id = "idTipoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameIdTipoDespesa = "idTipoDespesa" + jsCountDespesa;
+            inputIdTipoDespesa.name = nameIdTipoDespesa;
+
+            //criação do input controlador para ver se é manual ou por tipo de despesa
+            var inputDescricaoDespesa = document.createElement("input");
+            //seta type, valor e id
+            inputDescricaoDespesa.type = "hidden";
+            inputDescricaoDespesa.value = descricaoDespesa;
+            inputDescricaoDespesa.id = "descricaoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameDescricaoDespesa = "descricaoDespesa" + jsCountDespesa;
+            inputDescricaoDespesa.name = nameDescricaoDespesa;
+
+            //criação do input controlador para ver se é manual ou por tipo de despesa
+            var inputManualOuTipoDespesa = document.createElement("input");
+
+            //seta type, valor e id
+            inputManualOuTipoDespesa.type = "hidden";
+            inputManualOuTipoDespesa.value = 1; //id de despesa
+            inputManualOuTipoDespesa.id = "manualOuTipoDespesa" + jsCountDespesa;
+
+            //seta o nome
+            var nameManualOuTipoDespesa = "manualOuTipoDespesa" + jsCountDespesa;
+            inputManualOuTipoDespesa.name = nameManualOuTipoDespesa;
+
+        }
+        //cria input do valor
+        var inputValorDespesa = document.createElement("input");
+        //seta type, valor e id
+        inputValorDespesa.type = "hidden";
+        inputValorDespesa.value = valorDespesa;
+        inputValorDespesa.id = "valorDespesa" + jsCountDespesa;
+
+        //seta o nome
+        var nameValorDespesa = "valorDespesa" + jsCountDespesa;
+        inputValorDespesa.name = nameValorDespesa;
+
+        //cria input do "despesa paga"
+        var inputDespesaPaga = document.createElement("input");
+        //seta type, valor e id        
+        inputDespesaPaga.type = "hidden";
+        inputDespesaPaga.value = despesaPaga;
+        inputDespesaPaga.id = "despesaPaga" + jsCountDespesa;
+
+        //seta o nome
+        var nameDespesaPaga = "despesaPaga" + jsCountDespesa;
+        inputDespesaPaga.name = nameDespesaPaga;
+
+        //cria input da forma de pagamento
+        var inputFormaDePagamentoDespesa = document.createElement("input");
+        //seta type, valor e id
+        inputFormaDePagamentoDespesa.type = "hidden";
+        inputFormaDePagamentoDespesa.value = idFormaDePagamento;
+        inputFormaDePagamentoDespesa.id = "formaPagamentoDespesa" + jsCountDespesa;
+
+        //seta o nome
+        var nameFormaDePagamentoDespesa = "formaPagamentoDespesa" + jsCountDespesa;
+        inputFormaDePagamentoDespesa.name = nameFormaDePagamentoDespesa;        
+        
+        //pegando o form de cadastro de festa
+        var formCadastrarFesta = document.querySelector('#cadastrarFestaForm');
+        
+        if (descricaoDespesa !== "") {
+            formCadastrarFesta.appendChild(inputDescricaoDespesa);
+        } else {
+            formCadastrarFesta.appendChild(inputIdTipoDespesa);
+        }
+        formCadastrarFesta.appendChild(inputManualOuTipoDespesa);
+        formCadastrarFesta.appendChild(inputValorDespesa);
+        formCadastrarFesta.appendChild(inputFormaDePagamentoDespesa);
+        formCadastrarFesta.appendChild(inputDespesaPaga);
+        //FIM CRIAÇÃO DOS INPUTS
+
+        //seta a quantidade de despesa no input qtdDespesas
+        document.getElementById('qtdDespesa').value = jsCountDespesa;  
 
         //limpa os valores do input
         form.jsDescricaoDespesa.value = "";
         form.jsTipoDespesa.value = "";
         form.jsFormaPagamentoDespesa.value = "";
         form.jsValorDepesa.value = "";
-
 
 });
 
