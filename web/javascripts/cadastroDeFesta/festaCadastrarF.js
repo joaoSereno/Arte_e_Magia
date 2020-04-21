@@ -332,13 +332,15 @@ var textoConfirmacaoCrianca = "";
     //se clicar no botão Sim do pacote adicional
     function habilitaPacoteAdicional() {
         document.getElementById('divPacoteAdicional').style.display = 'block';  //habilita a div com id "divPacoteAdicional"
-        document.getElementById('temPacoteAdicional').value = 1;         
+        document.getElementById('temPacoteAdicional').value = 1;
+        document.getElementById('pacoteAddInf').style.display = ''; //habilita o texto de confirmação da ultima etapa
     }; 
 
     //se clicar no botão Não do pacote adicional
     function desabilitaPacoteAdicional() {             
         document.getElementById('divPacoteAdicional').style.display = 'none';  //desabilita a div com id "divPacoteAdicional"                 
         document.getElementById('temPacoteAdicional').value = 0;
+        document.getElementById('pacoteAddInf').style.display = 'none'; //desabilita o texto de confirmação da ultima etapa
     }; 
     
     //quando clicar para voltar etapa 3

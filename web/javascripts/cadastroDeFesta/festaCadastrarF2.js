@@ -505,8 +505,9 @@ btnAddPacotesAdicionais.addEventListener("click", function (event) {
         
         //FIM DA CRIAÇÃO E DEFINIÇÃO DOS INPUTS
 
-        //define o valor do input qtdFuncionario
+        //define o valor do input qtdPacoteAdicional e seta como verdadeiro temPacoteAdicional
         document.getElementById('qtdPacoteAdicional').value = jsCountPacotesAdicionais;
+        document.getElementById('temPacoteAdicional').value = 1;
         
         //limpa os valores do input
         form.jsPacotesAdicionais.value = "";
