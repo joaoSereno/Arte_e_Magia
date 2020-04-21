@@ -8,6 +8,14 @@
 var idCliente;
 var nomeCliente;
 
+//dados globais do endereço inserido
+var cep = "";
+var cidade = "";
+var bairro = "";
+var rua = "";
+var numero = "";
+var complemento = "";
+
 //variavel que verifica se já passou pela etapa 2 para não criar duplicado
 var countEtapa2 = 0;
 
@@ -310,10 +318,6 @@ var textoConfirmacaoCrianca = "";
     //quando clicar em etapa 4
     function etapa4() {
 
-        //recebendo H3 e setando nela o texto com o nome do cliente
-        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";
-
         //recebe a quantidade de funcionario selecionado
         var qtdFuncionario = document.getElementById('qtdFuncioanrio').value;
         
@@ -321,6 +325,10 @@ var textoConfirmacaoCrianca = "";
         if(qtdFuncionario == 0){
             alert("É obrigatório no mínimo 1 animador por evento !");         
         }else{
+            //recebendo H3 e setando nela o texto com o nome do cliente
+            var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+            tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";            
+            
             document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
             document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3    
         }
@@ -425,23 +433,22 @@ var textoConfirmacaoCrianca = "";
 
     //quando clicar em etapa 7
     function etapa7() {
-
-        //recebendo H3 e setando nela o texto com o nome do cliente
-        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
-
+        
         //recebe a qtd de despesa em uma variavel
         var qtdDespesa = document.getElementById('qtdDespesa').value; //habilita a etapa 7
         
         //verifica se adicionou pelo menos 1 despesa
         if(qtdDespesa == 0){
             alert("É obrigatório no mínimo uma despesa!");
-        }else{       
+        }else{    
+            //recebendo H3 e setando nela o texto com o nome do cliente
+            var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+            tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+            
             document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
             document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
         }
         
-
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 6
 
@@ -487,15 +494,15 @@ var textoConfirmacaoCrianca = "";
     //quando clicar em etapa 9
     function etapa9() {
 
-        //recebendo H3 e setando nela o texto com o nome do cliente
-        var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";
-
         var qtdHorario = document.getElementById('qtdHorario').value;
         
         if(qtdHorario == 0){
             alert("Para ir para 9ºEtapa, é obrigatório no mínimo 1 horário!");
         }else{
+            //recebendo H3 e setando nela o texto com o nome do cliente
+            var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+            tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";            
+            
             document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 9
             document.getElementById('inserirHorarios').style.display = 'none'; //desabilita a etapa 8
         }
@@ -525,6 +532,20 @@ var textoConfirmacaoCrianca = "";
     
         document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
         document.getElementById('inserirEndereco').style.display = 'none'; //desabilita a etapa 9
+        
+//        cep = document.getElementById('cep').value;
+//        cidade = document.getElementById('cidade').value;
+//        bairro = document.getElementById('bairro').value;
+//        rua = document.getElementById('rua').value;
+//        numero = document.getElementById('numero').value;
+//        complemento = document.getElementById('complemento').value;
+//        
+//        console.log(cep);
+//        console.log(cidade);
+//        console.log(bairro);
+//        console.log(rua);
+//        console.log(numero);
+//        console.log(complemento);
 
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 9
