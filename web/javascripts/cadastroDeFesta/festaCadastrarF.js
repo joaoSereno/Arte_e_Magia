@@ -8,14 +8,6 @@
 var idCliente;
 var nomeCliente;
 
-//dados globais do endereço inserido
-var cep = "";
-var cidade = "";
-var bairro = "";
-var rua = "";
-var numero = "";
-var complemento = "";
-
 //variavel que verifica se já passou pela etapa 2 para não criar duplicado
 var countEtapa2 = 0;
 
@@ -372,6 +364,8 @@ var textoConfirmacaoCrianca = "";
     
         document.getElementById('inserirValorAdicional').style.display = ''; //habilita a etapa 5
         document.getElementById('selecionarPacotes').style.display = 'none'; //desabilita a etapa 4
+        
+        //
 
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 4
@@ -532,21 +526,61 @@ var textoConfirmacaoCrianca = "";
     
         document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
         document.getElementById('inserirEndereco').style.display = 'none'; //desabilita a etapa 9
-        
-//        cep = document.getElementById('cep').value;
-//        cidade = document.getElementById('cidade').value;
-//        bairro = document.getElementById('bairro').value;
-//        rua = document.getElementById('rua').value;
-//        numero = document.getElementById('numero').value;
-//        complemento = document.getElementById('complemento').value;
-//        
-//        console.log(cep);
-//        console.log(cidade);
-//        console.log(bairro);
-//        console.log(rua);
-//        console.log(numero);
-//        console.log(complemento);
 
+        //PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
+        //recebendo os valores os valores inseridos no input
+        var cep = document.getElementById('cep').value;
+        var cidade = document.getElementById('cidade').value;
+        var bairro = document.getElementById('bairro').value;
+        var rua = document.getElementById('rua').value;
+        var numero = document.getElementById('numero').value;
+        var complemento = document.getElementById('complemento').value;
+
+        //recebe o elemento que está o atual texto e apaga o conteudo dele
+        var confirmacaoInfEndereco = document.querySelector("#enderecoFestaInf");
+        confirmacaoInfEndereco.innerHTML = "";
+        
+        //cria um novo elemento <p> para cada input inserido
+        var paragrafoCep = document.createElement("p");
+        var paragrafoCidade = document.createElement("p");
+        var paragrafoBairro = document.createElement("p");
+        var paragrafoRua = document.createElement("p");
+        var paragrafoNumero = document.createElement("p");
+        var paragrafoComplemento = document.createElement("p");
+
+        //define os atributos dos elementos <p>
+        paragrafoCep.class = "paragrafoEndereco";
+        paragrafoCidade.class = "paragrafoEndereco";
+        paragrafoBairro.class = "paragrafoEndereco";
+        paragrafoRua.class = "paragrafoEndereco";
+        paragrafoNumero.class = "paragrafoEndereco";
+        paragrafoComplemento.class = "paragrafoEndereco";
+
+        //define o texto do <p> com a variavel que tem o valor do input
+        paragrafoCep.textContent = "CEP: " + cep;
+        paragrafoCidade.textContent = "CIDADE: " + cidade;
+        paragrafoBairro.textContent = "BAIRRO: " + bairro;
+        paragrafoRua.textContent = "RUA: " + rua;
+        paragrafoNumero.textContent = "NÚMERO: " + numero;
+        paragrafoComplemento.textContent = "COMPLEMENTO: " + complemento;
+
+        //adicona os <p> criados na informação do endereco na ultima etapa
+        confirmacaoInfEndereco.appendChild(paragrafoCep);  
+        confirmacaoInfEndereco.appendChild(paragrafoCidade);  
+        confirmacaoInfEndereco.appendChild(paragrafoBairro);  
+        confirmacaoInfEndereco.appendChild(paragrafoRua);  
+        confirmacaoInfEndereco.appendChild(paragrafoNumero);  
+        confirmacaoInfEndereco.appendChild(paragrafoComplemento);   
+        //FIM DO PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
+        
+        //SETANDO OS VALORES RECEBIDOS NO INPUT, NO INPUT DO FORM DE CADASTRO DE FESTA
+        document.getElementById('cepF').value = cep;
+        document.getElementById('cidadeF').value = cidade;   
+        document.getElementById('bairroF').value = bairro;
+        document.getElementById('ruaF').value = rua; 
+        document.getElementById('numeroF').value = numero ;
+        document.getElementById('complementoF').value = complemento;   
+        
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 9
 
@@ -572,7 +606,26 @@ var textoConfirmacaoCrianca = "";
     
         document.getElementById('confirmarInformacoes').style.display = ''; //habilita a etapa final
         document.getElementById('inserirInfoAdicionais').style.display = 'none'; //desabilita a etapa 10
-
+        
+        //PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
+        //recebendo os valores os valores inseridos no input
+        var qtdCriancaNaFesta = document.getElementById('qtdCriancaNaFesta').value;
+        var dataDaFesta = document.getElementById('dataFesta').value;
+        var observacao = document.getElementById('obs').value;
+        var festaRealizada = document.getElementById('festaRealizada').value;  
+        
+        //define o texto de confirmacao da ultima etapa com as variaveis que tem o valor do input
+        document.getElementById('qtdCriancaNaFestaInf').textContent = "Quantidade de crianças na festa: " + qtdCriancaNaFesta;
+        document.getElementById('dataDaFestaInf').textContent = "Data da Festa: " + dataDaFesta;
+        document.getElementById('ObsInf').textContent = "Observação: " + observacao;
+        document.getElementById('festaRealizadaInf').textContent = "Festa realizada? " + festaRealizada;        
+        //FIM DO PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
+        
+        //SETANDO OS VALORES RECEBIDOS NO INPUT, NO INPUT DO FORM DE CADASTRO DE FESTA
+        document.getElementById('festaRealizadaF').value = festaRealizada;
+        document.getElementById('observacaoF').value = observacao;
+        document.getElementById('dataFestaF').value = dataDaFesta;
+        document.getElementById('qtdCriancaNaFestaF').value = qtdCriancaNaFesta;
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA 10
 //

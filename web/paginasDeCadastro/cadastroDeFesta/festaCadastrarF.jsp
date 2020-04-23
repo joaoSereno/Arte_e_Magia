@@ -320,8 +320,8 @@
             Cidade: <input type="text" name="cidade" id="cidade" placeholder="Cidade">
             Bairro: <input type="text" name="bairro" id="bairro" placeholder="Bairro">
             Rua: <input type="text" name="rua" id="rua" placeholder="Nome Logradouro">
-            N° <input type="text" name="numero"  placeholder="Número residência">
-            Complemento: <input type="text" name="complemento" placeholder="Complemento">
+            N° <input type="text" name="numero" id="numero"  placeholder="Número residência">
+            Complemento: <input type="text" name="complemento" id="complemento" placeholder="Complemento">
             <br>
             <br>
             <button class="btn btn-warning" onclick="voltarEtapa8()"> Voltar </button>
@@ -331,11 +331,11 @@
         <div id="inserirInfoAdicionais" style="display: none">
             <h5>Insira as informações finais para o cadastro:</h5>
             <br>
-            Quantidade de crianças: <input type="text" name="qtdCrianca">
-            Data da festa: <input type="text" name="dataFesta">
-            Observação: <input type="text" name="obs">
+            Quantidade de crianças: <input type="text" name="qtdCriancaNaFesta" id="qtdCriancaNaFesta">
+            Data da festa: <input type="text" name="dataFesta" id="dataFesta">
+            Observação: <input type="text" name="obs" id="obs">
             Festa realizada?
-            <select name="festaRealida">
+            <select name="festaRealizada" id="festaRealizada">
                 <option value="Não">Não</option>
                 <option value="Sim">Sim</option>
             </select>
@@ -355,8 +355,24 @@
             <h6 id="valoresAddInf"></h6>
             <h6 id="despesasInf"></h6>
             <h6 id="horariosInf"></h6>
+            <h6 id="qtdCriancaNaFestaInf"></h6>
+            <h6 id="dataDaFestaInf"></h6>
+            <h6 id="ObsInf"></h6>
+            <h6 id="festaRealizadaInf"></h6>
+            <h6 id="enderecoFestaInf"></h6>
             <br>
             <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
+                <input type="hidden" name="cepF" id="cepF" value="">
+                <input type="hidden" name="cidadeF" id="cidadeF" value="">
+                <input type="hidden" name="bairroF" id="bairroF" value="">
+                <input type="hidden" name="ruaF" id="ruaF" value="">
+                <input type="hidden" name="numeroF" id="numeroF" value="">
+                <input type="hidden" name="complementoF" id="complementoF" value="">
+                <input type="hidden" name="idPacoteF" id="idPacoteF" value="">
+                <input type="hidden" name="festaRealizadaF" id="festaRealizadaF" value="">
+                <input type="hidden" name="observacaoF" id="observacaoF" value="">
+                <input type="hidden" name="dataFestaF" id="dataFestaF" value="">
+                <input type="hidden" name="qtdCriancaNaFestaF" id="qtdCriancaNaFestaF" value="">
                 <input type="hidden" name="qtdCrianca" id="qtdCrianca" value="0">
                 <input type="hidden" name="qtdFuncioanrio" id="qtdFuncioanrio" value="0">
                 <input type="hidden" name="qtdPacoteAdicional" id="qtdPacoteAdicional" value="0">
