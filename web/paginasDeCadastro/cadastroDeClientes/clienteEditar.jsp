@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -17,6 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeClientes/clienteEditar.css">
@@ -73,17 +73,17 @@
                 <h6>Endereço:</h6>
                 <input type="hidden" name="idEnderecos" value="${endereco.idEnderecos}">                
                 CEP:
-                <input type="text" name="cep" value="${endereco.cep}">
+                <input type="text" name="cep" id="cep" value="${endereco.cep}">
                 CIDADE:
-                <input type="text" name="cidade" value="${endereco.cidade}">
+                <input type="text" name="cidade" id="cidade" value="${endereco.cidade}">
                 BAIRRO:
-                <input type="text" name="bairro" value="${endereco.bairro}">
+                <input type="text" name="bairro" id="bairro" value="${endereco.bairro}">
                 RUA:
-                <input type="text" name="rua" value="${endereco.rua}">
+                <input type="text" name="rua" id="rua" value="${endereco.rua}">
                 NUMERO:
-                <input type="text" name="numero" value="${endereco.numero}">
+                <input type="text" name="numero" idnumero value="${endereco.numero}">
                 COMPLEMENTO:
-                <input type="text" name="complemento" value="${endereco.complemento}">
+                <input type="text" name="complemento" id="complemento" value="${endereco.complemento}">
                 <br>
                 <br>
                 <button type="submit">Salvar</button>
@@ -260,5 +260,6 @@
             </form>                        
         </div>                            
     </body>
-    <script src="../../javascripts/telefones/destacarTelefone.js"></script>    
+    <script src="../../javascripts/telefones/destacarTelefone.js"></script>
+    <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  
 </html>

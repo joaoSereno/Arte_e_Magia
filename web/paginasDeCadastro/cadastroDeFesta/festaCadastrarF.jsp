@@ -155,10 +155,10 @@
         <div id="selecionarPacotes" style="display: none">
             <h5> Selecione o pacote do evento: </h5>
             Pacote:
-            <select type="select" name="jsPacote">
+            <select type="select" name="jsPacote" id="jsPacote">
                 <option value="">Clique para selecionar</option>
                     <c:forEach var="item" items="${listaPacote}">
-                        <option value="${item.idPacote}+${valorPacoteVenda}">
+                        <option value="${item.idPacote}+${item.nomePacote}+${item.valorPacoteVenda}">
                             ${item.nomePacote}
                         </option>
                     </c:forEach>
@@ -283,7 +283,42 @@
         </div>        
         <!-- div de calculos do valores e formas de pagamento ( 7 etapa )-->          
         <div id="valoresEformaPagamento" style="display: none">
-            <h5>AQUI VAI FICA OS CALCULOS DO VALORES</h5>
+            <h5> Confirme os valores a baixo e informe as formas de pagamento do evento: </h5>
+            <h6 id="valorTotal"></h6>
+            <h6 id="totalDespesas"></h6>
+            <h6 id="lucro"></h6>
+            <br>
+            <form id="formAddValorEformaPagamento">
+                Valor:
+                <input type="text" name="jsValorFormaPagamento" value="">
+                Forma de Pagamento:
+                <select type="select" name="jsFormaPagamento">
+                    <option value="">Clique para selecionar</option>
+                        <c:forEach var="item" items="${listaFormaPagamento}">
+                            <option value="${item.idFormaPagamento}+${item.nomePagamento}">
+                                ${item.nomePagamento}
+                            </option>
+                        </c:forEach>
+                </select>                
+                Pago?
+                <select name="jsValorPago">
+                    <option>Não</option>
+                    <option>Sim</option>
+                </select>
+                <button type="button" id="add-valorEfp">Adicionar</button> 
+            </form> 
+            <table id="tabelaFormaPagamentoEvalor" class="table table-secondary" style="display: none">
+                <thead> 
+                    <tr>    
+                        <th>Valor</th>
+                        <th>Forma de Pagamento</th>
+                        <th>Pago?</th>
+                        <th></th>
+                    </tr>
+                </thead> 
+                <tbody id="tbodyFormaPagamentoEvalor">
+                </tbody>
+            </table>
             <br>
             <button class="btn btn-warning" onclick="voltarEtapa6()"> Voltar </button>
             <button class="btn btn-warning" onclick="etapa8()"> 8º Etapa </button>   
@@ -351,6 +386,7 @@
             <h6 id="clienteInf"></h6>
             <h6 id="criancasInf"></h6>
             <h6 id="funcionarioInf"></h6>
+            <h6 id="pacoteInf"></h6>
             <h6 id="pacoteAddInf"></h6>
             <h6 id="valoresAddInf"></h6>
             <h6 id="despesasInf"></h6>
@@ -360,8 +396,14 @@
             <h6 id="ObsInf"></h6>
             <h6 id="festaRealizadaInf"></h6>
             <h6 id="enderecoFestaInf"></h6>
+            <h6 id="valoresFinalInf"></h6>
+            <h6 id="formasDePagamentoInf"></h6>
             <br>
             <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
+                <input type="hidden" name="valorTotalFesta" id="valorTotalFesta" value="">
+                <input type="hidden" name="valorTotalDespesa" id="valorTotalDespesa" value="">
+                <input type="hidden" name="valorTotalLucro" id="valorTotalLucro" value="">
+                <input type="hidden" name="valorReceberContratante" id="valorReceberContratante" value="">
                 <input type="hidden" name="cepF" id="cepF" value="">
                 <input type="hidden" name="cidadeF" id="cidadeF" value="">
                 <input type="hidden" name="bairroF" id="bairroF" value="">
@@ -380,6 +422,7 @@
                 <input type="hidden" name="qtdValorAdicional" id="qtdValorAdicional" value="0">
                 <input type="hidden" name="qtdHorario" id="qtdHorario" value="0">
                 <input type="hidden" name="qtdDespesa" id="qtdDespesa" value="0">
+                <input type="hidden" name="qtdDespesa" id="qtdFPeValor" value="0">
                 <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
             </form>
             <br>
