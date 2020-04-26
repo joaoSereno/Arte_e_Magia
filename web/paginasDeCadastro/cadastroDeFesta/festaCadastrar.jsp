@@ -95,7 +95,10 @@
         <div id="selecionarAniversariantes" style="display: none">
             <input type="hidden" id="totalCriancas" value="${totalCriancas}"> <!-- controlador para pegar o total de criancas -->
             <input type="hidden" id="listaConcatenadaCrianca" value="${listaConcatenadaCrianca}"> <!--  controlador lista de todas as crianças que será filtrada no js -->
-            <h5 id="subTituloEtapa2">Caso alguma criança não faça parte do cadastro, clique em remover!</h5>
+            <h5 id="subTituloEtapa2">Clique em remover caso alguma criança não faça parte do cadastro ! =)</h5>
+            <br>
+            <button class="btn btn-warning" onclick="restartCrianca()">Recarregar crianças</button>
+            <br>
             <table id="tabelaAniversariante" class="table table-secondary" style="display: none">
                 <thead> 
                     <tr>    
@@ -366,10 +369,11 @@
         <div id="inserirInfoAdicionais" style="display: none">
             <h5>Insira as informações finais para o cadastro:</h5>
             <br>
-            Quantidade de crianças: <input type="text" name="qtdCriancaNaFesta" id="qtdCriancaNaFesta">
-            Data da festa: <input type="text" name="dataFesta" id="dataFesta">
+            Quantidade de crianças na festa: <input type="text" name="qtdCriancaNaFesta" id="qtdCriancaNaFesta">
+            Data do evento: <input type="text" name="dataFesta" id="dataFesta">
+            Tipo da festa: <input type="text" name="tipoDaFesta" id="tipoDaFesta">
             Observação: <input type="text" name="obs" id="obs">
-            Festa realizada?
+            Evento realizado?
             <select name="festaRealizada" id="festaRealizada">
                 <option value="Não">Não</option>
                 <option value="Sim">Sim</option>
@@ -382,22 +386,168 @@
         <!-- div confirmar informações ( etapa final etapa )-->         
         <div id="confirmarInformacoes" style="display: none">
             <h5>Por favor confira as informações inseridas, caso estejam corretas clique em "Finalizar cadastro"</h5>
-            <br>
-            <h6 id="clienteInf"></h6>
-            <h6 id="criancasInf"></h6>
-            <h6 id="funcionarioInf"></h6>
-            <h6 id="pacoteInf"></h6>
-            <h6 id="pacoteAddInf"></h6>
-            <h6 id="valoresAddInf"></h6>
-            <h6 id="despesasInf"></h6>
-            <h6 id="horariosInf"></h6>
-            <h6 id="qtdCriancaNaFestaInf"></h6>
-            <h6 id="dataDaFestaInf"></h6>
-            <h6 id="ObsInf"></h6>
-            <h6 id="festaRealizadaInf"></h6>
-            <h6 id="enderecoFestaInf"></h6>
-            <h6 id="valoresFinalInf"></h6>
-            <h6 id="formasDePagamentoInf"></h6>
+            <div class="accordion" id="accordionExample">
+                <!-- Contratante -->
+                <div class="card bg-light border-dark">
+                    <div class="card-header" id="headingContratante">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseContratante" aria-expanded="false" aria-controls="collapseContratante">
+                            <h5 class="mb-0">1° ETAPA - Contratante</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseContratante" class="collapse" aria-labelledby="headingContratante" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <h6 class="card-title" id="clienteInf"></h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Aniversariantes  -->
+                <div class="card border-dark">
+                    <div class="card-header" id="headingAniversariante">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAniversariante" aria-expanded="false" aria-controls="collapseAniversariante">
+                            <h5 class="mb-0">2° ETAPA - Aniversariantes</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseAniversariante" class="collapse" aria-labelledby="headingAniversariante" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <h6 class="card-title" id="criancasInf"></h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Animadores -->
+                <div class="card border-dark bg-light">
+                    <div class="card-header border-dark" id="headingAnimadores">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAnimadores" aria-expanded="false" aria-controls="collapseAnimadores">
+                            <h5 class="mb-0">3° ETAPA - Animadores</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseAnimadores" class="collapse" aria-labelledby="headingAnimadores" data-parent="#accordionExample">
+                        <div id="funcionarioInf" class="card-body">
+                        
+                        </div>
+                    </div>
+                </div>
+                <!-- Pacotes e pacote add -->
+                <div class="card border-dark">
+                    <div class="card-header" id="headingPacotes">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePacotes" aria-expanded="false" aria-controls="collapsePacotes">
+                            <h5 class="mb-0">4° ETAPA - Pacotes & Pacotes Adicionais</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapsePacotes" class="collapse" aria-labelledby="headingPacotes" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <h6  class="card-title" id="pacoteInf"></h6>
+                            <div id="pacoteAddInf">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Valores add -->
+                <div class="card border-dark bg-light">
+                    <div class="card-header" id="headingValoresAdd">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseValoresAdd" aria-expanded="false" aria-controls="collapseValoresAdd">
+                            <h5 class="mb-0">5° ETAPA - Valores Adicionais</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseValoresAdd" class="collapse" aria-labelledby="headingValoresAdd" data-parent="#accordionExample">
+                        <div id="valoresAddInf" class="card-body">
+                        
+                        </div>
+                    </div>
+                </div> 
+                <!--  Despesas -->
+                <div class="card border-dark">
+                    <div class="card-header" id="headingDespesas">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseDespesas" aria-expanded="false" aria-controls="collapseDespesas">
+                            <h5 class="mb-0">6° ETAPA - Despesas do Evento</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseDespesas" class="collapse" aria-labelledby="headingDespesas" data-parent="#accordionExample">
+                        <div id="despesasInf" class="card-body">
+                        
+                        </div>
+                    </div>
+                </div>
+                <!--  Formas de pagamento -->
+                <div class="card border-dark bg-light">
+                    <div class="card-header" id="headingFormaPagamento">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFormaPagamento" aria-expanded="false" aria-controls="collapseFormaPagamento">
+                            <h5 class="mb-0">7° ETAPA - Formas de Pagamento</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseFormaPagamento" class="collapse" aria-labelledby="headingFormaPagamento" data-parent="#accordionExample">
+                        <div id="formasDePagamentoInf" class="card-body">
+                        
+                        </div>
+                    </div>
+                </div>
+                <!--  Horarios -->
+                <div class="card border-dark">
+                    <div class="card-header" id="headingHorarios">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseHorarios" aria-expanded="false" aria-controls="collapseHorarios">
+                            <h5 class="mb-0">8° ETAPA - Horários do Evento</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseHorarios" class="collapse" aria-labelledby="headingHorarios" data-parent="#accordionExample">
+                        <div id="horariosInf" class="card-body">
+                        
+                        </div>
+                    </div>
+                </div> 
+                <!-- Endereco -->
+                <div class="card border-dark bg-light">
+                    <div class="card-header" id="headingEndereco">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEndereco" aria-expanded="false" aria-controls="collapseEndereco">
+                            <h5 class="mb-0">9° ETAPA - Endereço do Evento</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseEndereco" class="collapse" aria-labelledby="headingEndereco" data-parent="#accordionExample">
+                        <div id="enderecoFestaInf" class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--  Informações finais --> 
+                <div class="card border-dark">
+                    <div class="card-header" id="headingInformacoesFinais">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseInformacoesFinais" aria-expanded="false" aria-controls="collapseInformacoesFinais">
+                            <h5 class="mb-0">10° ETAPA - Informações Finais</h5>
+                        </button>
+                        <button class="btn btn-primary">Editar</button>
+                    </div>
+                    <div id="collapseInformacoesFinais" class="collapse secondary" aria-labelledby="headingInformacoesFinais" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <h6 class="card-title" id="dataDaFestaInf"></h6>
+                            <h6 class="card-title" id="tipoDeFestaInf"></h6>
+                            <h6 class="card-title" id="qtdCriancaNaFestaInf"></h6>
+                            <h6 class="card-title" id="ObsInf"></h6>
+                            <h6 class="card-title" id="festaRealizadaInf"></h6>                  
+                        </div>
+                    </div>
+                </div>
+                <!-- Valores finais -->
+                <div class="card border-dark bg-light">
+                    <div class="card-header" id="headingValores">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseValores" aria-expanded="false" aria-controls="collapseValores">
+                            <h5 class="mb-0">Valores Finais do Evento</h5>
+                        </button>
+                    </div>
+                    <div id="collapseValores" class="collapse" aria-labelledby="headingValores" data-parent="#accordionExample">
+                        <div id="valoresFinalInf" class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
             <br>
             <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
                 <input type="hidden" name="valorTotalFesta" id="valorTotalFesta" value="">
@@ -411,6 +561,7 @@
                 <input type="hidden" name="numeroF" id="numeroF" value="">
                 <input type="hidden" name="complementoF" id="complementoF" value="">
                 <input type="hidden" name="idPacoteF" id="idPacoteF" value="">
+                <input type="hidden" name="tipoDaFestaF" id="tipoDaFestaF" value="">
                 <input type="hidden" name="festaRealizadaF" id="festaRealizadaF" value="">
                 <input type="hidden" name="observacaoF" id="observacaoF" value="">
                 <input type="hidden" name="dataFestaF" id="dataFestaF" value="">
@@ -429,7 +580,7 @@
             <button class="btn btn-warning" onclick="voltarEtapa10()"> Voltar </button>        
         </div>        
         <br>
-        <a href="festaPrincipal.jsp" type="button" class="btn btn-primary">Voltar</a>
+        <a href="festaPrincipal.jsp" type="button" class="btn btn-primary">Voltar</a>   
     </body>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrar.js"></script>
     <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  

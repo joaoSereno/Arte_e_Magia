@@ -11,6 +11,9 @@
 
     //variavel que verifica se já passou pela etapa 2 para não criar duplicado
     var countEtapa2 = 0;
+    
+    //verifica se o cliente possui crianca
+    var possuiCrianca = 0;
 
     //varivel que recebe a quantidade de crianças adicionadas no form
     var quantidadeCrianca = 0;
@@ -166,24 +169,14 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             document.getElementById("tbodyAniversariantes").innerHTML="";
             document.getElementById('tabelaAniversariante').style.display = 'none'; //desabilita a tabela de listagem de criança
             countEtapa2 = 0;
-        }
-        
-        //apaga os inputs criados na etapa 2 e zera a variavel global "quantidadeCrianca"
-        for(var i=0; i < quantidadeCriancaBotaoRemover; i++){
-            var idCrianca = "idCrianca"+(i+1);
-            
-            var inputCrianca = document.querySelector("#"+idCrianca);
-            
-            //recebe o input e remove
-            if(inputCrianca !== null){   
-                document.getElementById(idCrianca).remove();     
-            }
-        }
+        }        
+
         //limpando/zerando as variaveis relacionadas a criança
         quantidadeCrianca = 0;
         quantidadeCriancaBotaoRemover = 0;
         textoConfirmacaoCrianca = "";
         listaNomeCrianca = [];
+        possuiCrianca = 0;
     };
 
     //quando clicar em etapa 2
@@ -233,13 +226,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
             //verifica se a criança atual do laço, tem o mesmo idCliente que foi selecionado
             if(idCliente == idClienteCrianca){
-                quantidadeCrianca++;
-
-                document.getElementById('tabelaAniversariante').style.display = ''; //habilita a tabela de listagem de criança
-
                 //condição para verificar se alguma vez já passou pela etapa 2 e criou os elementos 
                 if(countEtapa2 == 1){
+                    quantidadeCrianca++;
 
+                    document.getElementById('tabelaAniversariante').style.display = ''; //habilita a tabela de listagem de criança
+                    
                     //COMEÇO DA CRIAÇÃO DA TABELA DAS CRIANÇAS
                     //cria um elemento do tipo TR e salva ele em uma variavel
                     var aniversariantesTr = document.createElement("tr");
@@ -274,6 +266,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                             document.getElementById('tabelaAniversariante').style.display = 'none';
                             quantidadeCriancaBotaoRemover = 0;
                             textoConfirmacaoCrianca = "";
+                            
+                            var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
+                            subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =) ";        
                         }
                     };
                     
@@ -320,10 +315,20 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         
         //se o cliente não tiver criança
         if(quantidadeCrianca < 1){
-
+            
+            if(possuiCrianca == 1){
+                var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
+                subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =)";                        
+            }else{
+                var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
+                subTituloEtapa2.textContent = "Esse cliente não possui nenhuma criança vinculada ao seu cadastro. Por favor, siga para a próxima etapa ou atualize as informações no cadastro de cliente. =)";        
+            }
+            
+        }else{
+            possuiCrianca = 1;
+            
             var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-            subTituloEtapa2.textContent = "O cliente selecionado não possui criança vinculada ao seu cadastro. Por favor pule para a próxima etapa!";        
-
+            subTituloEtapa2.textContent = "Clique em remover caso alguma criança não faça parte do cadastro ! =)";
         }
        
     };
@@ -341,6 +346,167 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         document.getElementById('confirmacaoCliente').style.display = ''; //habilita a confirmação da etapa 1
         document.getElementById('selecionarAniversariantes').style.display = 'none'; //desabilita a etapa 2
         
+    };
+    
+    //caso o usuario clicar em reiniciar selecao
+    function restartCrianca() {
+        //limpa a listagem atual
+        document.getElementById("tbodyAniversariantes").innerHTML="";
+
+        //apaga os inputs
+        for(var i=0; i < quantidadeCrianca; i++){
+            var idCrianca = "idCrianca"+(i+1);
+            
+            var inputCrianca = document.querySelector("#"+idCrianca);
+            
+            //recebe o input e remove
+            if(inputCrianca !== null){   
+                document.getElementById(idCrianca).remove();     
+            }
+        }        
+        
+        //limpando/zerando as variaveis relacionadas a criança
+        quantidadeCrianca = 0;
+        quantidadeCriancaBotaoRemover = 0;
+        textoConfirmacaoCrianca = "";
+        listaNomeCrianca = [];     
+
+        //reecria tudo do zero relacionado a criança
+        //recebe o controlador com total e todos os aniversariantes e salva em uma variavel 
+        var totalCriancas = document.getElementById('totalCriancas').value;
+        var listaConcatenadaCrianca = document.getElementById('listaConcatenadaCrianca').value;   
+
+        //pega a lista concatenada das crianças e faz um split e salva o resultado na lista resultado
+        var resultado = listaConcatenadaCrianca.split("/");
+
+        //percorre essa lista resultado
+        resultado.forEach((valorAtual) => {
+
+            //variaveis 
+            var idCrianca = 0;
+            var nomeCrianca = "";
+            var idClienteCrianca = 0;
+            var countResultado = 0;
+
+            //faz novamente um split em cada objeto da lista 
+            var resultado2 = valorAtual.split(",");     
+
+            //salva nas variaveis os valores da criança
+            resultado2.forEach((valorAtual2) => {
+                countResultado++;
+                //se é a primeira vez que passa na lista, salva o id
+                if (countResultado == 1) {
+                    idCrianca = valorAtual2;
+                } 
+                if (countResultado == 2){
+                    nomeCrianca = valorAtual2;
+                }
+                if(countResultado == 3){
+                    idClienteCrianca = valorAtual2;
+                }
+            });
+
+            //verifica se a criança atual do laço, tem o mesmo idCliente que foi selecionado
+            if(idCliente == idClienteCrianca){
+                    quantidadeCrianca++;
+
+                    document.getElementById('tabelaAniversariante').style.display = ''; //habilita a tabela de listagem de criança
+                    
+                    //COMEÇO DA CRIAÇÃO DA TABELA DAS CRIANÇAS
+                    //cria um elemento do tipo TR e salva ele em uma variavel
+                    var aniversariantesTr = document.createElement("tr");
+                    aniversariantesTr.id = "tdAniversariante" + quantidadeCrianca;
+
+                    //cria elementos do tipo TD e salva eles em uma variavel
+                    var aniversarianteTd = document.createElement("td");
+                    var removerAniversarianteTd = document.createElement("td");
+
+                    //criando elemento button para remover
+                    var removerAniversarianteBotao = document.createElement("button");
+                    removerAniversarianteBotao.textContent = "Remover";
+                    removerAniversarianteBotao.type = "button";
+                    removerAniversarianteBotao.id = "idRemoverAniversarianteBotao";
+                    removerAniversarianteBotao.name = "nameRemoverAniversarianteBotao" + quantidadeCrianca;
+                    
+                    //criando atributo onclick para o botão remover
+                    removerAniversarianteBotao.onclick = function (){
+                        quantidadeCrianca--; //remove 1 da quantidade de criança
+                        
+                        //remove o elemento tr da table
+                        document.getElementById(aniversariantesTr.id).remove();
+                        
+                        //remove o input 
+                        document.getElementById(inputCrianca.id).remove();
+                        
+                        //remove da lista de nome a criança removida
+                        listaNomeCrianca.splice(listaNomeCrianca.indexOf(nomeCrianca), 1);                                      
+                                              
+                        //se não ficou nenhuma criança oculta a table
+                        if(quantidadeCrianca == 0){
+                            document.getElementById('tabelaAniversariante').style.display = 'none';
+                            quantidadeCriancaBotaoRemover = 0;
+                            textoConfirmacaoCrianca = "";
+                            
+                            var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
+                            subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =)";                           
+                        }
+                    };
+                    
+                    //colocando o botão de remover dentro do td de remover
+                    removerAniversarianteTd.appendChild(removerAniversarianteBotao);
+
+                    //seta o texto das td com o nome da criança
+                    aniversarianteTd.textContent = nomeCrianca;
+
+                    //coloca os TDS criados que estão com os valores do form dentro do TR
+                    aniversariantesTr.appendChild(aniversarianteTd);
+                    aniversariantesTr.appendChild(removerAniversarianteTd);
+
+                    //pega o elemento table do html através do id e seta nele o TR criado
+                    var tabelaTbodyAniversariante = document.querySelector("#tbodyAniversariantes");
+                    tabelaTbodyAniversariante.appendChild(aniversariantesTr);
+                    //FIM DA CRIAÇÃO DA TABELA DAS CRIANÇAS
+                    
+                    //COMEÇO DA CRIAÇÃO O INPUT DO CADASTRO DE FESTA
+                    //cria um elemento html input
+                    var inputCrianca = document.createElement("input");
+                    
+                    //seta os atributos do input
+                    inputCrianca.type = "hidden";
+                    inputCrianca.value = idCrianca;
+                    inputCrianca.name = "idCrianca"+quantidadeCrianca;
+                    inputCrianca.id = "idCrianca"+quantidadeCrianca;
+                    
+                    //buscando o form de cadastro e setando nele o input criado
+                    var formCadastroDeFesta = document.querySelector('#cadastrarFestaForm');
+                    formCadastroDeFesta.appendChild(inputCrianca);
+                    //FIM DA CRIAÇÃO O INPUT DO CADASTRO DE FESTA
+                    
+                    //adiciona o nome da criança na lista de nome da criança
+                    listaNomeCrianca.push(nomeCrianca);                                               
+            }
+            
+        });
+        
+        quantidadeCriancaBotaoRemover = quantidadeCrianca;
+        
+        //se o cliente não tiver criança
+        if(quantidadeCrianca < 1){
+            
+            if(possuiCrianca == 1){
+                var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
+                subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =)";                        
+            }else{
+                var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
+                subTituloEtapa2.textContent = "Esse cliente não possui nenhuma criança vinculada ao seu cadastro. Por favor, siga para a próxima etapa ou atualize as informações no cadastro de cliente. =)";        
+            }
+            
+        }else{ //se tiver
+            possuiCrianca = 1;
+            
+            var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
+            subTituloEtapa2.textContent = "Clique em remover caso alguma criança não faça parte do cadastro ! =)";        
+        }
     };
 
     //quando clicar em etapa 3
@@ -362,7 +528,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
         listaNomeCrianca.forEach((valorAtualLista) => {
             if(countListaNomeCrianca == 0){
-                textoConfirmacaoCrianca = "Aniversariante/s: "
+                textoConfirmacaoCrianca = "Aniversariantes: ";
             }
             countListaNomeCrianca++;
             
@@ -374,6 +540,10 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             
         }); 
         countListaNomeCrianca = 0;
+        
+        if(tamanhoListaNomeCrianca == 0){
+            textoConfirmacaoCrianca = "Evento não possui aniversariante.";
+        }
         
         //seta o texto informação da crianças na ultima etapa
         var confirmacaoInfCrianca = document.querySelector("#criancasInf");
@@ -523,7 +693,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     //percorre o resultado do split
                     resultado.forEach((valorAtualLista2) => {
                         if(countResultadoSplit == 0){
-                            textoParagrafoFuncionario = "Animador/a: "+valorAtualLista2;
+                            textoParagrafoFuncionario = "Animador ou Animadora: "+valorAtualLista2;
                             countResultadoSplit++;
                         }else{
                             textoParagrafoFuncionario = textoParagrafoFuncionario+"   -   Cache: R$"+valorAtualLista2;
@@ -532,11 +702,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
                     });
 
-                    //cria um elento inpunt <p>
-                    var paragrafoFuncionario = document.createElement("p");
+                    //cria um elento inpunt <h6>
+                    var paragrafoFuncionario = document.createElement("h6");
 
                     //define os atributos desse elemento
-                    paragrafoFuncionario.id = "pFuncionario"+countListaFuncionario;
+                    paragrafoFuncionario.id = "h6Funcionario"+countListaFuncionario;
+                    paragrafoFuncionario.class = "card-title";
 
                     //define o texto dentro do paragrafo
                     paragrafoFuncionario.textContent = textoParagrafoFuncionario;
@@ -575,45 +746,46 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             //MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA O FUNCIONARIO NA ULTIMA ETAPA
             //adiciona na lista o nome + cache do funcionario adicionado
             listaFuncionarios.push(nomeFuncionario+"+"+cache);
-            
+
             //adiciona da lista de valores dos funcionarios
             listaFuncionarioValores.push(cache);
-            
+
             //recebe o elemento html que está as inf do funcionario e apaga tudo, pois vai ser montado novamente
             var confirmacaoInfFuncionario = document.querySelector("#funcionarioInf");
             confirmacaoInfFuncionario.innerHTML = "";
-            
+
             listaFuncionarios.forEach((valorAtualLista) => {
                 countListaFuncionario++;
-        
+
                 //realiza um split no valor atual
                 var resultado = valorAtualLista.split("+");
-                
+
                 //variaveis utilizadas para montagem do texto
                 var textoParagrafoFuncionario = "";
                 var countResultadoSplit = 0;
-                
+
                 //percorre o resultado do split
                 resultado.forEach((valorAtualLista2) => {
                     if(countResultadoSplit == 0){
-                        textoParagrafoFuncionario = "Animador/a: "+valorAtualLista2;
+                        textoParagrafoFuncionario = "Animador ou Animadora: "+valorAtualLista2;
                         countResultadoSplit++;
                     }else{
                         textoParagrafoFuncionario = textoParagrafoFuncionario+"   -   Cache: R$"+valorAtualLista2;
                         countResultadoSplit = 0;
                     }
-                    
+
                 });
-                
-                //cria um elento inpunt <p>
-                var paragrafoFuncionario = document.createElement("p");
-                
+
+                //cria um elento inpunt <h6>
+                var paragrafoFuncionario = document.createElement("h6");
+
                 //define os atributos desse elemento
-                paragrafoFuncionario.id = "pFuncionario"+countListaFuncionario;
-                
+                paragrafoFuncionario.id = "h6Funcionario"+countListaFuncionario;
+                paragrafoFuncionario.class = "card-title";
+
                 //define o texto dentro do paragrafo
                 paragrafoFuncionario.textContent = textoParagrafoFuncionario;
-                
+
                 //seta criado paragrafo na informação dos funcionarios na ultima etapa
                 confirmacaoInfFuncionario.appendChild(paragrafoFuncionario);         
 
@@ -839,11 +1011,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
                     });
 
-                    //cria um elento inpunt <p>
-                    var paragrafoPacoteAdd = document.createElement("p");
+                    //cria um elento inpunt <h6>
+                    var paragrafoPacoteAdd = document.createElement("h6");
 
                     //define os atributos desse elemento
-                    paragrafoPacoteAdd.id = "pPacoteAdd"+countPacotesAdicionais;
+                    paragrafoPacoteAdd.id = "h6PacoteAdd"+countPacotesAdicionais;
+                    paragrafoPacoteAdd.class = "card-title";
 
                     //define o texto dentro do paragrafo
                     paragrafoPacoteAdd.textContent = textoParagrafoPacoteAdd;
@@ -911,11 +1084,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     
                 });
             
-                //cria um elento inpunt <p>
-                var paragrafoPacoteAdd = document.createElement("p");
+                //cria um elento inpunt <h6>
+                var paragrafoPacoteAdd = document.createElement("h6");
                 
                 //define os atributos desse elemento
-                paragrafoPacoteAdd.id = "pPacoteAdd"+countPacotesAdicionais;
+                paragrafoPacoteAdd.id = "h6PacoteAdd"+countPacotesAdicionais;
+                paragrafoPacoteAdd.class = "card-title";
                 
                 //define o texto dentro do paragrafo
                 paragrafoPacoteAdd.textContent = textoParagrafoPacoteAdd;
@@ -984,6 +1158,26 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     
         document.getElementById('inserirDespesas').style.display = ''; //habilita a etapa 6
         document.getElementById('inserirValorAdicional').style.display = 'none'; //desabilita a etapa 5
+        
+        var qtdValorAdicional = document.getElementById('qtdValorAdicional').value;
+        
+        if(qtdValorAdicional == 0){
+            //recebe o elemento html que está as inf dos valores adicionais e apaga tudo, pois vai ser montado novamente
+            var confirmacaoInfValoresAdicionais = document.querySelector("#valoresAddInf");
+            confirmacaoInfValoresAdicionais.innerHTML = "";
+            
+            //cria um elento inpunt <h6>
+            var paragrafoValorAdicional = document.createElement("h6");
+
+            //define os atributos desse elemento
+            paragrafoValorAdicional.class = "card-title";
+
+            //define o texto dentro do paragrafo
+            paragrafoValorAdicional.textContent = "Evento não possui valores adicionais.";
+
+            //adicona o <p> criado na informação dos valores adicionais na ultima etapa
+            confirmacaoInfValoresAdicionais.appendChild(paragrafoValorAdicional);
+        }
     };
 
     //evento para adicionar valor adicional
@@ -1063,11 +1257,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                         } 
                     });
 
-                    //cria um elento inpunt <p>
-                    var paragrafoValorAdicional = document.createElement("p");
+                    //cria um elento inpunt <h6>
+                    var paragrafoValorAdicional = document.createElement("h6");
 
                     //define os atributos desse elemento
-                    paragrafoValorAdicional.id = "pValorAdd"+countValoresAdicionais;
+                    paragrafoValorAdicional.id = "h6ValorAdd"+countValoresAdicionais;
+                    paragrafoValorAdicional.class = "card-title";
 
                     //define o texto dentro do paragrafo
                     paragrafoValorAdicional.textContent = textoParagrafoValoresAdd;
@@ -1134,11 +1329,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     } 
                 });
 
-                //cria um elento inpunt <p>
-                var paragrafoValorAdicional = document.createElement("p");
+                //cria um elento inpunt <h6>
+                var paragrafoValorAdicional = document.createElement("h6");
         
                 //define os atributos desse elemento
-                paragrafoValorAdicional.id = "pValorAdd"+countValoresAdicionais;
+                paragrafoValorAdicional.id = "h6ValorAdd"+countValoresAdicionais;
+                paragrafoValorAdicional.class = "card-title";
                 
                 //define o texto dentro do paragrafo
                 paragrafoValorAdicional.textContent = textoParagrafoValoresAdd;
@@ -1298,15 +1494,15 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             var confirmacaoInfValoresFinais = document.querySelector("#valoresFinalInf");
             confirmacaoInfValoresFinais.innerHTML = ""; //limpa seu conteudo
            
-            //cria os elementos <p> para todos os valores
-            var paragrafoValorTotal = document.createElement("p");
-            var paragrafoValorTotalDespesa = document.createElement("p");
-            var paragrafoValorLucro = document.createElement("p");
+            //cria os elementos <h6> para todos os valores
+            var paragrafoValorTotal = document.createElement("h6");
+            var paragrafoValorTotalDespesa = document.createElement("h6");
+            var paragrafoValorLucro = document.createElement("h6");
 
             //define o atributo
-            paragrafoValorTotal.class = "valoresEtapaConfirmacao";     
-            paragrafoValorTotalDespesa.class = "valoresEtapaConfirmacao";     
-            paragrafoValorLucro.class = "valoresEtapaConfirmacao";     
+            paragrafoValorTotal.class = "card-title";     
+            paragrafoValorTotalDespesa.class = "card-title"; 
+            paragrafoValorLucro.class = "card-title";     
             
             //define o texto
             paragrafoValorTotal.textContent = "Valor Total: R$"+valorTotalFesta;    
@@ -1496,11 +1692,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
                     });
 
-                    //cria um elento inpunt <p>
-                    var paragrafoDespesa = document.createElement("p");
+                    //cria um elento inpunt <h6>
+                    var paragrafoDespesa = document.createElement("h6");
 
                     //define os atributos desse elemento
-                    paragrafoDespesa.id = "pDespesa"+countDespesas;
+                    paragrafoDespesa.id = "h6Despesa"+countDespesas;
+                    paragrafoDespesa.class = "card-title";
 
                     //define o texto dentro do paragrafo
                     paragrafoDespesa.textContent = textoParagrafoDespesa;
@@ -1603,11 +1800,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
                 });
                 
-                //cria um elento inpunt <p>
-                var paragrafoDespesa = document.createElement("p");
-        
+                //cria um elento inpunt <h6>
+                var paragrafoDespesa = document.createElement("h6");
+
                 //define os atributos desse elemento
-                paragrafoDespesa.id = "pDespesa"+countDespesas;
+                paragrafoDespesa.id = "h6Despesa"+countDespesas;
+                paragrafoDespesa.class = "card-title";
                 
                 //define o texto dentro do paragrafo
                 paragrafoDespesa.textContent = textoParagrafoDespesa;
@@ -1804,10 +2002,8 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             }
         });
         
-        console.log(valorTotalFestaLocal+"Antes");
         //desconta do valor total o valor pago
         valorTotalFestaLocal = parseFloat(valorTotalFestaLocal) - parseFloat(valorFP);
-        console.log(valorTotalFestaLocal);
         
         if (valorTotalFestaLocal >= 0){
             
@@ -1856,8 +2052,6 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                 //volta o valor removido para o valor total
                 valorTotalFestaLocal = parseFloat(valorTotalFestaLocal) + parseFloat(valorFP);
                 
-                console.log(valorTotalFestaLocal);
-                
                 //recebe o elemento html que está as inf das formas de pagamento e apaga tudo, pois vai ser montado novamente
                 var confirmacaoInfFormasPagamento = document.querySelector("#formasDePagamentoInf");
                 confirmacaoInfFormasPagamento.innerHTML = "";     
@@ -1884,15 +2078,16 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                             countResultadoSplit++;
                         } 
                         if(countResultadoSplit == 2){
-                            textoParagrafoFP = textoParagrafoFP+"   -   Pago?: "+valorAtualLista2;
+                            textoParagrafoFP = textoParagrafoFP+"   -   Pago? "+valorAtualLista2;
                         }
                     });
 
-                    //cria um elento inpunt <p>
-                    var paragrafoFP = document.createElement("p");
+                    //cria um elento inpunt <h6>
+                    var paragrafoFP = document.createElement("h6");
 
                     //define os atributos desse elemento
-                    paragrafoFP.id = "pFormaPagamento"+countFPeValor;
+                    paragrafoFP.id = "h6FormaPagamento"+countFPeValor;
+                    paragrafoFP.class = "card-title";
 
                     //define o texto dentro do paragrafo
                     paragrafoFP.textContent = textoParagrafoFP;
@@ -1989,16 +2184,17 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                         textoParagrafoFP = textoParagrafoFP+"   -   Valor: "+valorAtualLista2;
                     } 
                     if(countResultadoSplit == 2){
-                        textoParagrafoFP = textoParagrafoFP+"   -   Pago?: "+valorAtualLista2;
+                        textoParagrafoFP = textoParagrafoFP+"   -   Pago? "+valorAtualLista2;
                     }
                     countResultadoSplit++;                    
                 });
 
-                //cria um elento inpunt <p>
-                var paragrafoFP = document.createElement("p");
-        
+                //cria um elento inpunt <h6>
+                var paragrafoFP = document.createElement("h6");
+
                 //define os atributos desse elemento
-                paragrafoFP.id = "pFormaPagamento"+countFPeValor;
+                paragrafoFP.id = "h6FormaPagamento"+countFPeValor;
+                paragrafoFP.class = "card-title";
                 
                 //define o texto dentro do paragrafo
                 paragrafoFP.textContent = textoParagrafoFP;
@@ -2012,7 +2208,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             
         }else{
             valorTotalFestaLocal = parseFloat(valorTotalFestaLocal) + parseFloat(valorFP);
-            console.log(valorTotalFestaLocal+"somaNovamente");
+            
             alert("O valor adiciona ultrapassa o valor total, por favor revise os valores!");
         }
 
@@ -2125,11 +2321,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                         } 
                     });
 
-                    //cria um elento inpunt <p>
-                    var paragrafoHorario = document.createElement("p");
+                    //cria um elemento html <h6>
+                    var paragrafoHorario = document.createElement("h6");
 
                     //define os atributos desse elemento
-                    paragrafoHorario.id = "pHorario"+countHorarios;
+                    paragrafoHorario.id = "h6Horario"+countHorarios;
+                    paragrafoHorario.class = "card-title";
 
                     //define o texto dentro do paragrafo
                     paragrafoHorario.textContent = textoParagrafoHorarios;
@@ -2193,11 +2390,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     } 
                 });
 
-                //cria um elento inpunt <p>
-                var paragrafoHorario = document.createElement("p");
-        
+                //cria um elemento html <h6>
+                var paragrafoHorario = document.createElement("h6");
+
                 //define os atributos desse elemento
-                paragrafoHorario.id = "pHorario"+countHorarios;
+                paragrafoHorario.id = "h6Horario"+countHorarios;
+                paragrafoHorario.class = "card-title";
                 
                 //define o texto dentro do paragrafo
                 paragrafoHorario.textContent = textoParagrafoHorarios;
@@ -2281,28 +2479,30 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         confirmacaoInfEndereco.innerHTML = "";
         
         //cria um novo elemento <p> para cada input inserido
-        var paragrafoCep = document.createElement("p");
-        var paragrafoCidade = document.createElement("p");
-        var paragrafoBairro = document.createElement("p");
-        var paragrafoRua = document.createElement("p");
-        var paragrafoNumero = document.createElement("p");
-        var paragrafoComplemento = document.createElement("p");
+        var paragrafoCep = document.createElement("h6");
+        var paragrafoCidade = document.createElement("h6");
+        var paragrafoBairro = document.createElement("h6");
+        var paragrafoRua = document.createElement("h6");
+        var paragrafoNumero = document.createElement("h6");
+        var paragrafoComplemento = document.createElement("h6");
 
         //define os atributos dos elementos <p>
-        paragrafoCep.class = "paragrafoEndereco";
-        paragrafoCidade.class = "paragrafoEndereco";
-        paragrafoBairro.class = "paragrafoEndereco";
-        paragrafoRua.class = "paragrafoEndereco";
-        paragrafoNumero.class = "paragrafoEndereco";
-        paragrafoComplemento.class = "paragrafoEndereco";
+        paragrafoCep.class = "card-title";
+        paragrafoCidade.class = "card-title";
+        paragrafoBairro.class = "card-title";
+        paragrafoRua.class = "card-title";
+        paragrafoNumero.class = "card-title";
+        paragrafoComplemento.class = "card-title";
 
         //define o texto do <p> com a variavel que tem o valor do input
-        paragrafoCep.textContent = "CEP: " + cep;
-        paragrafoCidade.textContent = "CIDADE: " + cidade;
-        paragrafoBairro.textContent = "BAIRRO: " + bairro;
-        paragrafoRua.textContent = "RUA: " + rua;
-        paragrafoNumero.textContent = "NÚMERO: " + numero;
-        paragrafoComplemento.textContent = "COMPLEMENTO: " + complemento;
+        paragrafoCep.textContent = "Cep: " + cep;
+        paragrafoCidade.textContent = "Cidade: " + cidade;
+        paragrafoBairro.textContent = "Bairro: " + bairro;
+        paragrafoRua.textContent = "Rua: " + rua;
+        paragrafoNumero.textContent = "N°: " + numero;
+        if(complemento !== ""){
+            paragrafoComplemento.textContent = "Complemento: " + complemento;  
+        }
 
         //adicona os <p> criados na informação do endereco na ultima etapa
         confirmacaoInfEndereco.appendChild(paragrafoCep);  
@@ -2310,7 +2510,10 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         confirmacaoInfEndereco.appendChild(paragrafoBairro);  
         confirmacaoInfEndereco.appendChild(paragrafoRua);  
         confirmacaoInfEndereco.appendChild(paragrafoNumero);  
-        confirmacaoInfEndereco.appendChild(paragrafoComplemento);   
+        if(complemento !== ""){
+            confirmacaoInfEndereco.appendChild(paragrafoComplemento);     
+        }
+
         //FIM DO PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
         
         //SETANDO OS VALORES RECEBIDOS NO INPUT, NO INPUT DO FORM DE CADASTRO DE FESTA
@@ -2347,18 +2550,23 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         //recebendo os valores os valores inseridos no input
         var qtdCriancaNaFesta = document.getElementById('qtdCriancaNaFesta').value;
         var dataDaFesta = document.getElementById('dataFesta').value;
+        var tipoDaFesta = document.getElementById('tipoDaFesta').value;
         var observacao = document.getElementById('obs').value;
         var festaRealizada = document.getElementById('festaRealizada').value;  
         
         //define o texto de confirmacao da ultima etapa com as variaveis que tem o valor do input
-        document.getElementById('qtdCriancaNaFestaInf').textContent = "Quantidade de crianças na festa: " + qtdCriancaNaFesta;
-        document.getElementById('dataDaFestaInf').textContent = "Data da Festa: " + dataDaFesta;
-        document.getElementById('ObsInf').textContent = "Observação: " + observacao;
-        document.getElementById('festaRealizadaInf').textContent = "Festa realizada? " + festaRealizada;        
+        document.getElementById('qtdCriancaNaFestaInf').textContent = "Quantidade de crianças no evento: " + qtdCriancaNaFesta;
+        document.getElementById('dataDaFestaInf').textContent = "Data do evento: " + dataDaFesta;
+        document.getElementById('tipoDeFestaInf').textContent = "Tipo de festa: " + tipoDaFesta;
+        if(observacao !== ""){
+            document.getElementById('ObsInf').textContent = "Observação: " + observacao;
+        }
+        document.getElementById('festaRealizadaInf').textContent = "Evento realizado? " + festaRealizada;        
         //FIM DO PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
         
         //SETANDO OS VALORES RECEBIDOS NO INPUT, NO INPUT DO FORM DE CADASTRO DE FESTA
         document.getElementById('festaRealizadaF').value = festaRealizada;
+        document.getElementById('tipoDaFestaF').value = tipoDaFesta;
         document.getElementById('observacaoF').value = observacao;
         document.getElementById('dataFestaF').value = dataDaFesta;
         document.getElementById('qtdCriancaNaFestaF').value = qtdCriancaNaFesta;
