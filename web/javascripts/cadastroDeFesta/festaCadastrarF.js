@@ -100,6 +100,7 @@
     //variaveis que controla o calculo ao adicionar forma de pagamento
     var valorTotalFestaLocal = 0;
     var countPrimeiraVezAdd = 0; //verifica se é a primeira vez que add fp
+    var valorTotalFestaLocalAnterior = 0; //salvo o valor total anterior caso o usuário voltar etapas
     
 //recebendo os botões dos inputs dinamicos e salvando em uma variavel
 var btnAddFuncionario = document.querySelector("#add-funcionario");
@@ -1262,6 +1263,20 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             valorTotalFesta = parseFloat(valorTotalFesta.toFixed(2));
             valorTotalDespesa = parseFloat(valorTotalDespesa.toFixed(2));
             valorLucro = parseFloat(valorLucro.toFixed(2));
+            
+            //salva o valorTotalFesta em uma variavel auxiliar utilizada na próxima etapa
+            if(countPrimeiraVezAdd == 0){
+                valorTotalFestaLocal = valorTotalFesta;                
+                valorTotalFestaLocalAnterior = valorTotalFesta;                
+            }else{
+               //subtrai do valor total anterior oque sobrou do valor total festa
+               valorTotalFestaLocalAnterior = valorTotalFestaLocalAnterior - valorTotalFestaLocal;
+               
+               //define o novo valor total local, subtraindo o valor total festa - valor anterior
+               valorTotalFestaLocal = valorTotalFesta - valorTotalFestaLocalAnterior;
+               
+               valorTotalFestaLocalAnterior = valorTotalFesta;
+            }
             //FIM DO CALCULO DOS VALORES 
             
             //DEFINIÇÃO DO TEXTO DA PRÓXIMA ETAPA
@@ -1749,7 +1764,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             document.getElementById('inserirHorarios').style.display = ''; //habilita a etapa 8
             document.getElementById('valoresEformaPagamento').style.display = 'none'; //desabilita a etapa 7
         }else{
-            alert("Ainda resta valor para ser informado");
+            alert("Para seguir para a próxima etapa os valores inserido nesta etapa devem bater com o valor total! Por favor revise os valores inseridos !");
         }
         
     };
@@ -1757,14 +1772,8 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     //evento para adicionar forma de pagamento e valor
     btnFPeValor.addEventListener("click", function (event){
         event.preventDefault();
-        
-        //verifica se é a primeira vez que executa esse evento
-        if(countPrimeiraVezAdd == 0){
-            //recebe em uma variavel o valor total da festa
-            valorTotalFestaLocal = valorTotalFesta;
-            
-            countPrimeiraVezAdd++;
-        }
+ 
+        countPrimeiraVezAdd++;
         
         //pega o elemento form inteiro do html
         var form = document.querySelector("#formAddValorEformaPagamento");
@@ -1893,6 +1902,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
                 });
                 countFPeValor = 0;
+                countPrimeiraVezAdd = 0;
             
                 if (jsCountFPeValor2 == 0) { //se for igual a zero
                     //desabilita a div da tabela
