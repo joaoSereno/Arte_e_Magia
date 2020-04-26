@@ -163,6 +163,6 @@ public class ControllerPreCadastroFesta extends HttpServlet {
         
         
         //dispachando para a página
-        request.getRequestDispatcher("festaCadastrarF.jsp").forward(request, response); // dispara para essa página
+        request.getRequestDispatcher("festaCadastrar.jsp").forward(request, response); // dispara para essa página
     }
 }
