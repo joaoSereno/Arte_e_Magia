@@ -1,7 +1,7 @@
-<%--
-    Document   : cadastros
-    Created on : 08/02/2020, 19:30:44
-    Author     : João Pedro
+<%-- 
+    Document   : cadastros2
+    Created on : 21/04/2020, 18:53:30
+    Author     : joseh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">        
         <title>Cadastros</title>
         <link rel="shortcut icon" href="../custom/img/favicon.jpg">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -21,9 +20,9 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-        <!-- Customização -->     
-        <link rel="stylesheet" href="../custom/css/paginaDeCadastros/paginaDeCadastros.css">
+        <!-- Customização -->       
         <link rel="stylesheet" href="../custom/css/navBarOnly/navBar.css">
+        <link rel="stylesheet" href="../custom/css/paginaDeCadastros/paginaDeCadastros2.css">
     </head>
     <body>
         <!-- NavBar -->
@@ -34,25 +33,25 @@
                 <ul class="navbar-nav ml-auto mb-0">
                     <!-- Botão página inicial -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link labelNav" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>Página Inicial</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>&nbsp;Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="cadastros.jsp"><i class="far fa-address-book"></i>Cadastros</a>
+                        <a class="nav-link" href="cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
                     </li>
                     <!-- Config aniversariante -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>Relatórios</a>
-                    </li>
+                        <a class="nav-link" href="../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
+                    </li>                    
                     <!-- Botão relatorios -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>Configuração</a>                        
+                        <a class="nav-link" href="configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>Sair</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>&nbsp;Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->
@@ -76,9 +75,9 @@
             </div>
             <!-- CardFestas -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Evento">
+                <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Festa">
                 <div class="card-body">
-                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Evento</a>
+                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Festa</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->

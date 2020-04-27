@@ -17,37 +17,42 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>        
-        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeClientes/clienteCadastrar.css">
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <!-- Customização -->       
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeClientes/clienteCadastrar.css">
     </head>
     <body>
         <!-- NavBar -->
         <nav class="navbar navbar-expand-lg navbar-light navbar-css">
-            <img src="../../custom/img/logoArte_E_Magia.png" id="logo-navbar">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon"></span></button>
+            <img src="../../custom/img/logoFundoLogin.png" id="logo-navbar">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon navbar-light"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
                 <ul class="navbar-nav ml-auto mb-0">
                     <!-- Botão página inicial -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp">Página Inicial</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>&nbsp;Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../cadastros.jsp">Cadastros</a>
+                        <a class="nav-link" href="../cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
                     </li>
                     <!-- Config aniversariante -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../../paginasDeRelatorios/relatorios.jsp">Relatórios</a>
+                        <a class="nav-link" href="../../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
                     </li>                    
                     <!-- Botão relatorios -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../configAniversariante/telaConfigAniversariante.jsp">Configuração</a>                        
+                        <a class="nav-link" href="../configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp">Sair</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>&nbsp;Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->

@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19/04/2020, 15:24:48
+    Author     : joseh
+*/
+body {
+    background-image: url(../../img/paginaDeLogin/background-login.jpg);
+    background-size: cover;
+}
+
+body, label, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    width: 50%;
+    margin: 10% auto;
+}
+
+.form {
+    margin: 10px auto;
+}
+
+.form > .form-group {
+    background: white;
+    padding: 25px;
+}
+
+.form-group .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.img-fluid {
+    width: 300px;
+    margin: 1px auto;
+    border-radius: 100px
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: white;
+        background-image: none;
+    }
+}

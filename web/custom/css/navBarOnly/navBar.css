@@ -3,21 +3,54 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/*
-    Created on : 16/03/2020, 13:27:16
-    Author     : Jonathan
+/* 
+    Created on : 19/04/2020, 17:22:05
+    Author     : João Sereno
 */
-#logo-navbar{
-    height: 55px;
-    width: 120px;
-    border-radius: 10px;
+body, label, button, a {
+    font-family: 'Poppins', sans-serif;
+}
+
+#logo-navbar {
+    width: 200px;
+    height: 80px;
 }
 
 .navbar-css {
     background-color: #0099c5 !important;
-    color: white !important;
+    color: white;
 }
 
-li > a{
-    color: white !important;
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    box-shadow: 0px 19px 8px -18px #fff;
+    height: 40px;
+    padding: 15px;
+    position: relative;
+    top: 0px;
+    transition: top 0.5s;
+    transition-timing-function: ease;
 }
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    box-shadow: 0px 19px 8px -18px rgba(0,0,0,.5);
+    top: -4px;
+    position: relative;
+}
+
+.navbar-light .navbar-toggler{  
+    color: rgb(255, 255, 255, 0.5);
+    border-color: rgb(251, 251, 251, 0.5);
+    outline: none;
+}
+.navbar-toggler .navbar-toggler-icon{
+    background-image: url(../../img/close.svg) !important;
+    outline: none;
+    transition: background-image 0.5s;
+}
+.navbar-toggler.collapsed .navbar-toggler-icon {
+    background-image: url(../../img/open-menu.svg) !important;
+    outline: none;
+}
+
+
