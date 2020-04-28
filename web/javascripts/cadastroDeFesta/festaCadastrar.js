@@ -45,7 +45,10 @@
     
     //lista que controla os valores relacionados ao funcionario
     var listaFuncionarioValores = [];
-
+    
+    //variavel de msg de erro da etapa 3
+    var msgTratamentoEtapa3 = document.querySelector("#msgTratamentoEtapa3");
+    
 //var das pacotes adicionais
     //count
     var jsCountPacotesAdicionais = 0;
@@ -81,6 +84,9 @@
     
     //lista que controla os valores relacionados as despesas
     let listaValoresDespesa = [];
+    
+    //variavel tratamento de erro etapa 6
+    var msgTratamentoEtapa6 = document.querySelector("#msgTratamentoEtapa6");
 
 //var dos horarios
     //count
@@ -90,6 +96,9 @@
     //variaveis que controlam o texto de confirmação dos valores adicionais na ultima etapa
     let listaHorarios = [];
     var countHorarios = 0;
+    
+    //variavel de msg de erro da etapa 3
+    var msgTratamentoEtapa8 = document.querySelector("#msgTratamentoEtapa8");    
 
 //var das formas de pagamento e valor
     //count
@@ -104,6 +113,9 @@
     var valorTotalFestaLocal = 0;
     var countPrimeiraVezAdd = 0; //verifica se é a primeira vez que add fp
     var valorTotalFestaLocalAnterior = 0; //salvo o valor total anterior caso o usuário voltar etapas
+    
+    //variavel para tratamento de erro na etapa 7;
+    var msgTratamentoEtapa7 = document.querySelector("#msgTratamentoEtapa7");
     
 //recebendo os botões dos inputs dinamicos e salvando em uma variavel
 var btnAddFuncionario = document.querySelector("#add-funcionario");
@@ -572,7 +584,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         
         //verifica se tem pelo menos 1 funcionario
         if(qtdFuncionario == 0){
-            alert("É obrigatório no mínimo 1 animador por evento !");         
+            
+            msgTratamentoEtapa3.textContent = "Não foi possível seguir para a 4º Etapa! É obrigatório adicionar no mínimo um animador. =)" 
+                   
         }else{
             //recebendo H3 e setando nela o texto com o nome do cliente
             var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
@@ -587,7 +601,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     //evento para adicionar funcionario
     btnAddFuncionario.addEventListener("click", function (event) {
         event.preventDefault();
-
+            
+            msgTratamentoEtapa3.innerHTML = "";
+            
             //toda vez que add, vai somar 1 no count para saber quantos funcionario foram adicionados
             jsCountFuncionario++;
             jsCountFuncionario2++;
@@ -1415,9 +1431,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         
         //verifica se adicionou pelo menos 1 despesa
         if(qtdDespesa == 0){
-            alert("É obrigatório no mínimo uma despesa!");
+            msgTratamentoEtapa6.textContent = "Não foi possível seguir para a 7º Etapa! É obrigatório adicionar no mínimo uma despesa. =)";
         }else{   
-            
+                        
             //COMEÇO DO CALCULO DOS VALORES
             //VALOR TOTAL FESTA            
             //calcula o valor total dos pacotes adicionais
@@ -1534,7 +1550,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     //evento para adiconar despesa
     btnAddDespesa.addEventListener("click", function (event) {
         event.preventDefault();
-
+            
+            msgTratamentoEtapa6.innerHTML = "";
+            
             //toda vez que add, vai somar 1 no count para saber quantos despesas foram adicionados
             jsCountDespesa++;
             jsCountDespesa2++;
@@ -1961,8 +1979,10 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
             document.getElementById('inserirHorarios').style.display = ''; //habilita a etapa 8
             document.getElementById('valoresEformaPagamento').style.display = 'none'; //desabilita a etapa 7
+            
+            msgTratamentoEtapa7.innerHTML = "";
         }else{
-            alert("Para seguir para a próxima etapa os valores inserido nesta etapa devem bater com o valor total! Por favor revise os valores inseridos !");
+            msgTratamentoEtapa7.textContent = "Não foi possível seguir para a 8º Etapa! Para seguir o valor total adicionado deve ser igual ao Valor Total. =)"
         }
         
     };
@@ -2005,7 +2025,12 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         //desconta do valor total o valor pago
         valorTotalFestaLocal = parseFloat(valorTotalFestaLocal) - parseFloat(valorFP);
         
+        //arredonda o valor para 2 casas depois da virgula
+        valorTotalFestaLocal = valorTotalFestaLocal.toFixed(2);
+        
         if (valorTotalFestaLocal >= 0){
+            
+            msgTratamentoEtapa7.innerHTML = "";
             
             //toda vez que add, vai somar 1 no count para saber quantas fp+valor foram adicionados
             jsCountFPeValor++;
@@ -2105,7 +2130,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     document.getElementById('qtdFPeValor').value = jsCountHorario2;
                 }            
                 
-            }
+            };
 
             //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
             valorFpTd.textContent = valorFP;
@@ -2182,7 +2207,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     }
                     if(countResultadoSplit == 1){
                         textoParagrafoFP = textoParagrafoFP+"   -   Valor: "+valorAtualLista2;
-                    } 
+                    }
                     if(countResultadoSplit == 2){
                         textoParagrafoFP = textoParagrafoFP+"   -   Pago? "+valorAtualLista2;
                     }
@@ -2207,9 +2232,15 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             // FIM MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA OS HORARIOS NA ULTIMA ETAPA
             
         }else{
+            //trata a msg de erro
+            msgTratamentoEtapa7.innerHTML = "";
+            
+            var valorDeDiferenca = valorTotalFestaLocal * (-1);
+            
+            msgTratamentoEtapa7.textContent = "Não foi possível adicionar, pois o valor ultrapassa R$"+valorDeDiferenca+" o Valor Total. Por favor, revise os valores adicionados!";
+            
             valorTotalFestaLocal = parseFloat(valorTotalFestaLocal) + parseFloat(valorFP);
             
-            alert("O valor adiciona ultrapassa o valor total, por favor revise os valores!");
         }
 
         //limpa os valores do input
@@ -2235,7 +2266,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         var qtdHorario = document.getElementById('qtdHorario').value;
 
         if(qtdHorario == 0){
-            alert("Para ir para 9ºEtapa, é obrigatório no mínimo 1 horário!");
+            
+            msgTratamentoEtapa8.textContent = "Não foi possível seguir para 9º Etapa! É obrigatório adicionar no mínimo um horário. =)";
+
         }else{
             //recebendo H3 e setando nela o texto com o nome do cliente
             var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
@@ -2249,7 +2282,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     //evento para adcionar horario
     btnAddHorario.addEventListener("click", function (event) {
         event.preventDefault();
-
+        
+            msgTratamentoEtapa8.innerHTML = "";
+            
             //toda vez que add, vai somar 1 no count para saber quantos horarios foram adicionados
             jsCountHorario++;
             jsCountHorario2++;
@@ -2582,5 +2617,9 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
         document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
         document.getElementById('confirmarInformacoes').style.display = 'none'; //desabilita a etapa final
+    };
+    
+    function editarEtapa(numeroEtapa) {
+        console.log(numeroEtapa);
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA FINAL

@@ -19,6 +19,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>        
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
@@ -143,6 +144,9 @@
                 <button type="button" id="add-funcionario">Adicionar</button> 
             </form>         
             <br>
+            <div>
+                <p id="msgTratamentoEtapa3" style="color: red;"></p>
+            </div>            
             <table id="tabelaFuncionario" class="table table-secondary" style="display: none">
                 <thead> 
                     <tr>    
@@ -271,7 +275,11 @@
                     <option>Não</option>
                 </select>
                 <button type="button" id="add-despesaFesta">+</button> 
-            </form> 
+            </form>
+            <br>
+            <div>
+                <p id="msgTratamentoEtapa6" style="color: red;"></p>
+            </div>
             <table id="tabelaDespesas" class="table table-secondary" style="display: none">
                 <thead> 
                     <tr>    
@@ -314,7 +322,10 @@
                     <option>Sim</option>
                 </select>
                 <button type="button" id="add-valorEfp">Adicionar</button> 
-            </form> 
+            </form>
+            <div>
+                <p id="msgTratamentoEtapa7" style="color: red;"></p>
+            </div>
             <table id="tabelaFormaPagamentoEvalor" class="table table-secondary" style="display: none">
                 <thead> 
                     <tr>    
@@ -341,6 +352,9 @@
                 <input type="text" name="jsDescricaoH" value="">
                 <button type="button" id="add-horario">Adicionar</button> 
             </form>
+            <div>
+                <p id="msgTratamentoEtapa8" style="color: red;"></p>
+            </div>            
             <table id="tabelaHorario" class="table table-secondary" style="display: none">
                 <thead> 
                     <tr>    
@@ -398,7 +412,7 @@
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseContratante" aria-expanded="false" aria-controls="collapseContratante">
                             <h5 class="mb-0">1° ETAPA - Contratante</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(1)">Editar</button>
                     </div>
                     <div id="collapseContratante" class="collapse" aria-labelledby="headingContratante" data-parent="#accordionExample">
                         <div class="card-body">
@@ -412,7 +426,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAniversariante" aria-expanded="false" aria-controls="collapseAniversariante">
                             <h5 class="mb-0">2° ETAPA - Aniversariantes</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(2)">Editar</button>
                     </div>
                     <div id="collapseAniversariante" class="collapse" aria-labelledby="headingAniversariante" data-parent="#accordionExample">
                         <div class="card-body">
@@ -426,7 +440,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAnimadores" aria-expanded="false" aria-controls="collapseAnimadores">
                             <h5 class="mb-0">3° ETAPA - Animadores</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(3)">Editar</button>
                     </div>
                     <div id="collapseAnimadores" class="collapse" aria-labelledby="headingAnimadores" data-parent="#accordionExample">
                         <div id="funcionarioInf" class="card-body">
@@ -440,7 +454,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsePacotes" aria-expanded="false" aria-controls="collapsePacotes">
                             <h5 class="mb-0">4° ETAPA - Pacotes & Pacotes Adicionais</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(4)">Editar</button>
                     </div>
                     <div id="collapsePacotes" class="collapse" aria-labelledby="headingPacotes" data-parent="#accordionExample">
                         <div class="card-body">
@@ -457,7 +471,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseValoresAdd" aria-expanded="false" aria-controls="collapseValoresAdd">
                             <h5 class="mb-0">5° ETAPA - Valores Adicionais</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(5)">Editar</button>
                     </div>
                     <div id="collapseValoresAdd" class="collapse" aria-labelledby="headingValoresAdd" data-parent="#accordionExample">
                         <div id="valoresAddInf" class="card-body">
@@ -471,7 +485,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseDespesas" aria-expanded="false" aria-controls="collapseDespesas">
                             <h5 class="mb-0">6° ETAPA - Despesas do Evento</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(6)">Editar</button>
                     </div>
                     <div id="collapseDespesas" class="collapse" aria-labelledby="headingDespesas" data-parent="#accordionExample">
                         <div id="despesasInf" class="card-body">
@@ -485,7 +499,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFormaPagamento" aria-expanded="false" aria-controls="collapseFormaPagamento">
                             <h5 class="mb-0">7° ETAPA - Formas de Pagamento</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(7)">Editar</button>
                     </div>
                     <div id="collapseFormaPagamento" class="collapse" aria-labelledby="headingFormaPagamento" data-parent="#accordionExample">
                         <div id="formasDePagamentoInf" class="card-body">
@@ -499,7 +513,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseHorarios" aria-expanded="false" aria-controls="collapseHorarios">
                             <h5 class="mb-0">8° ETAPA - Horários do Evento</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(8)">Editar</button>
                     </div>
                     <div id="collapseHorarios" class="collapse" aria-labelledby="headingHorarios" data-parent="#accordionExample">
                         <div id="horariosInf" class="card-body">
@@ -513,7 +527,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEndereco" aria-expanded="false" aria-controls="collapseEndereco">
                             <h5 class="mb-0">9° ETAPA - Endereço do Evento</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(9)">Editar</button>
                     </div>
                     <div id="collapseEndereco" class="collapse" aria-labelledby="headingEndereco" data-parent="#accordionExample">
                         <div id="enderecoFestaInf" class="card-body">
@@ -527,7 +541,7 @@
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseInformacoesFinais" aria-expanded="false" aria-controls="collapseInformacoesFinais">
                             <h5 class="mb-0">10° ETAPA - Informações Finais</h5>
                         </button>
-                        <button class="btn btn-primary float-right">Editar</button>
+                        <button class="btn btn-primary float-right" onclick="editarEtapa(10)">Editar</button>
                     </div>
                     <div id="collapseInformacoesFinais" class="collapse secondary" aria-labelledby="headingInformacoesFinais" data-parent="#accordionExample">
                         <div class="card-body">
