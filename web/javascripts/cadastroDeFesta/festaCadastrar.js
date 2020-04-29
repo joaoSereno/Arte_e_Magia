@@ -32,6 +32,9 @@
     var valorTotalDespesa = 0;
     var valorLucro = 0;
     var valorPegarContratante = 0;
+    
+    //verifica se passo pela etapa 8 alguma vez e criou o texto de valor a pegar com contratante
+    var criouPegarContratante = 0;
 
 //variaveis globais utilizadas nas criação das tabelas e inputs dinamicos
 //var dos funcionarios
@@ -1509,7 +1512,10 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             //recebe o elemento html da ultima etapa (confirmação) e salva em uma variavel 
             var confirmacaoInfValoresFinais = document.querySelector("#valoresFinalInf");
             confirmacaoInfValoresFinais.innerHTML = ""; //limpa seu conteudo
-           
+            
+            //zera a varivel porque vai apagar o h6
+            criouPegarContratante = 0;
+            
             //cria os elementos <h6> para todos os valores
             var paragrafoValorTotal = document.createElement("h6");
             var paragrafoValorTotalDespesa = document.createElement("h6");
@@ -1705,7 +1711,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                             break;
 
                         default:
-                            console.log("Ops, ocorreu um erro!");
+                            alert("Ops, ocorreu um erro!");
                         }                
 
                     });
@@ -1813,7 +1819,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                         break;
                         
                     default:
-                        console.log("Ops, ocorreu um erro!");
+                        alert("Ops, ocorreu um erro!");
                     }                
 
                 });
@@ -1981,6 +1987,34 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             document.getElementById('valoresEformaPagamento').style.display = 'none'; //desabilita a etapa 7
             
             msgTratamentoEtapa7.innerHTML = "";
+            
+            //DEFINI O TEXTO DE CONFIRMAÇÃO DO VALOR A PEGAR COM CONTRATANTE
+            
+            //apaga o paragrafo do valor a pegar com contratante , pois vai criar outro
+            if(criouPegarContratante > 0){
+                document.getElementById('pValorPegarContratante').remove();
+            }
+            criouPegarContratante++;
+            
+            //recebe o elemento html da ultima etapa (confirmação) e salva em uma variavel 
+            var confirmacaoInfValoresFinais = document.querySelector("#valoresFinalInf");
+            
+            //cria os elementos <h6> para todos os valores
+            var paragrafoValorPegarContratante = document.createElement("h6");
+
+            //define o atributo
+            paragrafoValorPegarContratante.class = "card-title";         
+            paragrafoValorPegarContratante.id = "pValorPegarContratante";         
+            
+            //define o texto
+            paragrafoValorPegarContratante.textContent = "Receber com contrante: R$"+valorPegarContratante;    
+            
+            //coloca os <p> criados dentro do elemento html da etapa de confirmação
+            confirmacaoInfValoresFinais.appendChild(paragrafoValorPegarContratante);
+            
+            //DEFINI O VALOR DO INPUT DO PEGAR COM CONTRATANTE
+            document.getElementById('valorReceberContratante').value = valorPegarContratante;
+            
         }else{
             msgTratamentoEtapa7.textContent = "Não foi possível seguir para a 8º Etapa! Para seguir o valor total adicionado deve ser igual ao Valor Total. =)"
         }
@@ -2076,6 +2110,16 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                 
                 //volta o valor removido para o valor total
                 valorTotalFestaLocal = parseFloat(valorTotalFestaLocal) + parseFloat(valorFP);
+                
+                //verifica se o pagamento removido é adiantado, caso não subtrai da variavel global "valorPegarContratante"
+                if(valorPago == "Não"){
+                    valorPegarContratante = parseFloat(valorPegarContratante) - parseFloat(valorFP);
+
+                    //arredonda para 2 casas depois da virgula
+                    valorPegarContratante = valorPegarContratante.toFixed(2);
+
+                }
+                           
                 
                 //recebe o elemento html que está as inf das formas de pagamento e apaga tudo, pois vai ser montado novamente
                 var confirmacaoInfFormasPagamento = document.querySelector("#formasDePagamentoInf");
@@ -2177,6 +2221,14 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             formCadastrarFesta.appendChild(inputFormaPagamento);
             formCadastrarFesta.appendChild(inputValorPago);
             //FIM CRIAÇÃO DOS INPUTS              
+            
+            //verifica se o pagamento é adiantado, caso não soma na variavel global "valorPegarContratante"
+            if(valorPago == "Não"){
+                valorPegarContratante = parseFloat(valorPegarContratante) + parseFloat(valorFP);
+                
+                //arredonda para 2 casas depois da virgula
+                valorPegarContratante = valorPegarContratante.toFixed(2);
+            }
             
             //seta no controler hidden o qtd de vezes que foi add fp
             document.getElementById('qtdFPeValor').value = jsCountFPeValor;
@@ -2620,6 +2672,94 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     };
     
     function editarEtapa(numeroEtapa) {
-        console.log(numeroEtapa);
+        
+        document.getElementById('confirmarInformacoes').style.display = 'none'; //desabilita a etapa final
+        
+        switch (numeroEtapa) {
+            case 1:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "1º Etapa - Selecionar Cliente";
+
+                document.getElementById('confirmacaoCliente').style.display = ''; //habilita a confirmação da etapa 1
+                
+                break;
+            case 2:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "2º Etapa - Selecionar Criança";
+
+                document.getElementById('selecionarAniversariantes').style.display = ''; //habilita a etapa 2
+
+                textoConfirmacaoCrianca = "";
+
+                break;
+            case 3:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "3º Etapa - Selecionar Animadoras/Animadores";
+
+                document.getElementById('selecionarFuncionarios').style.display = ''; //habilita a etapa 3
+                
+                break;
+            case 4:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";
+
+                document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
+                
+                break;
+            case 5:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "5º Etapa - Valores Adicionais";
+
+                document.getElementById('inserirValorAdicional').style.display = ''; //habilita a etapa 5
+                
+                break;
+            case 6:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "6º Etapa - Despesas da Festa";
+
+                document.getElementById('inserirDespesas').style.display = ''; //habilita a etapa 6
+
+                break;
+            case 7:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+
+                document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
+        
+                break;
+            case 8:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "8º Etapa - Horários do Evento";
+
+                document.getElementById('inserirHorarios').style.display = ''; //habilita a etapa 8
+                
+                break;
+            case 9:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";
+
+                document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 8
+                
+                break;
+            case 10:
+                //recebendo H3 e setando nela o texto com o nome do cliente
+                var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+                tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
+
+                document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
+                
+                break;
+            default:
+                alert('Ops, ocorreu um erro!');
+        }        
     };
 //FIM FUNÇÕES PRESENTES NA ETAPA FINAL

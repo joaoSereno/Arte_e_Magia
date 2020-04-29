@@ -569,37 +569,48 @@
             </div>
             <br>
             <form method="POST" id="cadastrarFestaForm" action="cadastrarFesta">
+                <!-- contador input crianca -->
+                <input type="hidden" name="qtdCrianca" id="qtdCrianca" value="0">
+                <!-- contador input funcionario -->
+                <input type="hidden" name="qtdFuncioanrio" id="qtdFuncioanrio" value="0">
+                <!-- contador input valor add -->
+                <input type="hidden" name="qtdValorAdicional" id="qtdValorAdicional" value="0">
+                <!-- input pacote -->
+                <input type="hidden" name="idPacoteF" id="idPacoteF" value="">
+                <!-- input contador e verificao se tem de pacote add--> 
+                <input type="hidden" name="qtdPacoteAdicional" id="qtdPacoteAdicional" value="0">
+                <input type="hidden" name="temPacoteAdicional" id="temPacoteAdicional" value="0">
+                <!-- input contador despesa --> 
+                <input type="hidden" name="qtdDespesa" id="qtdDespesa" value="0">
+                <!-- input contador horario -->
+                <input type="hidden" name="qtdHorario" id="qtdHorario" value="0">
+                <!-- input contador formas de pagamento e valor -->
+                <input type="hidden" name="qtdFPeValor" id="qtdFPeValor" value="0">
+                <!-- input valores finais da festa -->
                 <input type="hidden" name="valorTotalFesta" id="valorTotalFesta" value="">
                 <input type="hidden" name="valorTotalDespesa" id="valorTotalDespesa" value="">
                 <input type="hidden" name="valorTotalLucro" id="valorTotalLucro" value="">
                 <input type="hidden" name="valorReceberContratante" id="valorReceberContratante" value="">
+                <!-- inputs do endereço -->
                 <input type="hidden" name="cepF" id="cepF" value="">
                 <input type="hidden" name="cidadeF" id="cidadeF" value="">
                 <input type="hidden" name="bairroF" id="bairroF" value="">
                 <input type="hidden" name="ruaF" id="ruaF" value="">
                 <input type="hidden" name="numeroF" id="numeroF" value="">
-                <input type="hidden" name="complementoF" id="complementoF" value="">
-                <input type="hidden" name="idPacoteF" id="idPacoteF" value="">
-                <input type="hidden" name="tipoDaFestaF" id="tipoDaFestaF" value="">
-                <input type="hidden" name="festaRealizadaF" id="festaRealizadaF" value="">
-                <input type="hidden" name="observacaoF" id="observacaoF" value="">
-                <input type="hidden" name="dataFestaF" id="dataFestaF" value="">
+                <input type="hidden" name="complementoF" id="complementoF" value="">   
+                <!-- inputs das inf adicionais -->
                 <input type="hidden" name="qtdCriancaNaFestaF" id="qtdCriancaNaFestaF" value="">
-                <input type="hidden" name="qtdCrianca" id="qtdCrianca" value="0">
-                <input type="hidden" name="qtdFuncioanrio" id="qtdFuncioanrio" value="0">
-                <input type="hidden" name="qtdPacoteAdicional" id="qtdPacoteAdicional" value="0">
-                <input type="hidden" name="temPacoteAdicional" id="temPacoteAdicional" value="0">
-                <input type="hidden" name="qtdValorAdicional" id="qtdValorAdicional" value="0">
-                <input type="hidden" name="qtdHorario" id="qtdHorario" value="0">
-                <input type="hidden" name="qtdDespesa" id="qtdDespesa" value="0">
-                <input type="hidden" name="qtdDespesa" id="qtdFPeValor" value="0">
+                <input type="hidden" name="dataFestaF" id="dataFestaF" value="">
+                <input type="hidden" name="tipoDaFestaF" id="tipoDaFestaF" value="">
+                <input type="hidden" name="observacaoF" id="observacaoF" value="">
+                <input type="hidden" name="festaRealizadaF" id="festaRealizadaF" value="">
                 <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
             </form>
             <br>
             <button class="btn btn-warning" onclick="voltarEtapa10()"> Voltar </button>        
         </div>        
         <br>
-        <a href="festaPrincipal.jsp" type="button" class="btn btn-primary">Voltar</a>   
+        <a href="festaPrincipal.jsp" type="button" class="btn btn-primary">Cancelar Cadastro</a>   
     </body>
     <script src="../../javascripts/cadastroDeFesta/festaCadastrar.js"></script>
     <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  
