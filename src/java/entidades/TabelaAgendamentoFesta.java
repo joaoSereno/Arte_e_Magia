@@ -5,13 +5,12 @@
  */
 package entidades;
 
-import java.io.Serializable;
 
 /**
  *
  * @author João Pedro
  */
-public class TabelaAgendamentoFesta implements Serializable {
+public class TabelaAgendamentoFesta {
 
     private Integer idTabelaAgendamentoFesta;
     private String contratante;
@@ -23,8 +22,7 @@ public class TabelaAgendamentoFesta implements Serializable {
     private String pacote;
     private int qtdCriancas;
     private String pacotesAdicionais;
-    private String lucroFesta;
-    private String valorReceber;
+    private String valorPegarContratante;
     private String observacaoFesta;
     private Festa idFesta;
 
@@ -107,20 +105,12 @@ public class TabelaAgendamentoFesta implements Serializable {
         this.pacotesAdicionais = pacotesAdicionais;
     }
 
-    public String getLucroFesta() {
-        return lucroFesta;
+    public String getValorPegarContratante() {
+        return valorPegarContratante;
     }
 
-    public void setLucroFesta(String lucroFesta) {
-        this.lucroFesta = lucroFesta;
-    }
-
-    public String getValorReceber() {
-        return valorReceber;
-    }
-
-    public void setValorReceber(String valorReceber) {
-        this.valorReceber = valorReceber;
+    public void setValorPegarContratante(String valorPegarContratante) {
+        this.valorPegarContratante = valorPegarContratante;
     }
 
     public String getObservacaoFesta() {

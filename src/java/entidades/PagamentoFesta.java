@@ -5,22 +5,18 @@
  */
 package entidades;
 
-import java.io.Serializable;
-import java.util.List;
-
 /**
  *
  * @author João Pedro
  */
-public class PagamentoFesta implements Serializable {
+public class PagamentoFesta{
 
-    private static final long serialVersionUID = 1L;
     private Integer idPagamentoFesta;
     private float valor;
     private int pagamentoStatus;
     private String dataPagamento;
-    private Festa idFesta;
-    private List<PagamentoAdiantadoFesta> pagamentoadiantadofestaList;
+    private Integer idFesta;
+    private Integer idFormaDePagamento;
 
     public PagamentoFesta() {
     }
@@ -66,21 +62,21 @@ public class PagamentoFesta implements Serializable {
     public void setDataPagamento(String dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
-
-    public Festa getIdFesta() {
+    
+    public Integer getIdFesta() {
         return idFesta;
     }
 
-    public void setIdFesta(Festa idFesta) {
+    public void setIdFesta(Integer idFesta) {
         this.idFesta = idFesta;
     }
 
-    public List<PagamentoAdiantadoFesta> getPagamentoadiantadofestaList() {
-        return pagamentoadiantadofestaList;
+    public Integer getIdFormaDePagamento() {
+        return idFormaDePagamento;
     }
 
-    public void setPagamentoadiantadofestaList(List<PagamentoAdiantadoFesta> pagamentoadiantadofestaList) {
-        this.pagamentoadiantadofestaList = pagamentoadiantadofestaList;
+    public void setIdFormaDePagamento(Integer idFormaDePagamento) {
+        this.idFormaDePagamento = idFormaDePagamento;
     }
-    
+        
 }

@@ -17,6 +17,7 @@
 
     //varivel que recebe a quantidade de crianças adicionadas no form
     var quantidadeCrianca = 0;
+    var quantidadeCrianca2 = 0;
     var quantidadeCriancaBotaoRemover = 0;
 
     //variaveis que controlam o texto de confirmação da criança na ultima etapa
@@ -185,10 +186,20 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             document.getElementById('tabelaAniversariante').style.display = 'none'; //desabilita a tabela de listagem de criança
             countEtapa2 = 0;
         }        
-
+        
+        //apaga os inputs das crianças caso tiver
+        for(var i = 0; i < quantidadeCrianca2; i++){
+            var existeInputCrianca = document.getElementById('idCrianca'+(i+1));  
+            if(existeInputCrianca !== null){
+                document.getElementById('idCrianca'+(i+1)).remove();            
+            }
+            
+        }
+        
         //limpando/zerando as variaveis relacionadas a criança
         quantidadeCrianca = 0;
         quantidadeCriancaBotaoRemover = 0;
+        quantidadeCrianca2 = 0;
         textoConfirmacaoCrianca = "";
         listaNomeCrianca = [];
         possuiCrianca = 0;
@@ -244,6 +255,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                 //condição para verificar se alguma vez já passou pela etapa 2 e criou os elementos 
                 if(countEtapa2 == 1){
                     quantidadeCrianca++;
+                    quantidadeCrianca2++;
 
                     document.getElementById('tabelaAniversariante').style.display = ''; //habilita a tabela de listagem de criança
                     
@@ -280,6 +292,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                         if(quantidadeCrianca == 0){
                             document.getElementById('tabelaAniversariante').style.display = 'none';
                             quantidadeCriancaBotaoRemover = 0;
+                            quantidadeCrianca2 = 0;
                             textoConfirmacaoCrianca = "";
                             
                             var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
@@ -369,7 +382,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         document.getElementById("tbodyAniversariantes").innerHTML="";
 
         //apaga os inputs
-        for(var i=0; i < quantidadeCrianca; i++){
+        for(var i=0; i < quantidadeCrianca2; i++){
             var idCrianca = "idCrianca"+(i+1);
             
             var inputCrianca = document.querySelector("#"+idCrianca);
@@ -383,6 +396,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         //limpando/zerando as variaveis relacionadas a criança
         quantidadeCrianca = 0;
         quantidadeCriancaBotaoRemover = 0;
+        quantidadeCrianca2 = 0;
         textoConfirmacaoCrianca = "";
         listaNomeCrianca = [];     
 
@@ -424,6 +438,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             //verifica se a criança atual do laço, tem o mesmo idCliente que foi selecionado
             if(idCliente == idClienteCrianca){
                     quantidadeCrianca++;
+                    quantidadeCrianca2++;
 
                     document.getElementById('tabelaAniversariante').style.display = ''; //habilita a tabela de listagem de criança
                     
@@ -460,6 +475,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                         if(quantidadeCrianca == 0){
                             document.getElementById('tabelaAniversariante').style.display = 'none';
                             quantidadeCriancaBotaoRemover = 0;
+                            quantidadeCrianca2 = 0;
                             textoConfirmacaoCrianca = "";
                             
                             var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
@@ -536,7 +552,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         document.getElementById('selecionarAniversariantes').style.display = 'none'; //desabilita a etapa 2
         
         //seta a quantidade de criança que foi definida no input de controle "qtdCrianca"
-        document.getElementById('qtdCrianca').value = quantidadeCrianca;
+        document.getElementById('qtdCrianca').value = quantidadeCrianca2;
         
         //percorre a lista de nomes das crianças e monta o texto de confirmação para as crianças
         var tamanhoListaNomeCrianca = listaNomeCrianca.length; //recebe o tamanho da lista em uma variavel
@@ -2635,6 +2651,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         
         //PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
         //recebendo os valores os valores inseridos no input
+        var descricaoEvento = document.getElementById('descricaoEvento').value;
         var qtdCriancaNaFesta = document.getElementById('qtdCriancaNaFesta').value;
         var dataDaFesta = document.getElementById('dataFesta').value;
         var tipoDaFesta = document.getElementById('tipoDaFesta').value;
@@ -2642,6 +2659,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         var festaRealizada = document.getElementById('festaRealizada').value;  
         
         //define o texto de confirmacao da ultima etapa com as variaveis que tem o valor do input
+        document.getElementById('descricaoEventoInf').textContent = "Descrição do Evento: " + descricaoEvento;
         document.getElementById('qtdCriancaNaFestaInf').textContent = "Quantidade de crianças no evento: " + qtdCriancaNaFesta;
         document.getElementById('dataDaFestaInf').textContent = "Data do evento: " + dataDaFesta;
         document.getElementById('tipoDeFestaInf').textContent = "Tipo de festa: " + tipoDaFesta;
@@ -2652,6 +2670,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         //FIM DO PROCESSO DE CRIAÇÃO DO TEXTO DE CRIAÇÃO DA ULTIMA ETAPA
         
         //SETANDO OS VALORES RECEBIDOS NO INPUT, NO INPUT DO FORM DE CADASTRO DE FESTA
+        document.getElementById('descricaoEventoF').value = descricaoEvento;
         document.getElementById('festaRealizadaF').value = festaRealizada;
         document.getElementById('tipoDaFestaF').value = tipoDaFesta;
         document.getElementById('observacaoF').value = observacao;

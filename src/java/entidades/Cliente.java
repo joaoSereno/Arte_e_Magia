@@ -5,19 +5,19 @@
  */
 package entidades;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 /**
  *
  * @author João Pedro
  */
-public class Cliente implements Serializable {
+public class Cliente {
 
     private Integer idCliente;
     private String nomeCliente;
     private String cpf;
-    private String tipoFesta;
+    private int idTipoDeFesta;
     private int ativo;
     private List<Telefone> telefoneList;
     private List<Crianca> criancaList;
@@ -33,19 +33,19 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, String nomeCliente, String cpf, String tipoFesta, int ativo) {
+    public Cliente(Integer idCliente, String nomeCliente, String cpf, int idTipoDeFesta, int ativo) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.cpf = cpf;
-        this.tipoFesta = tipoFesta;
+        this.idTipoDeFesta = idTipoDeFesta;
         this.ativo = ativo;
     }
     
-    public Cliente(Integer idCliente, String nomeCliente, String cpf, String tipoFesta) {
+    public Cliente(Integer idCliente, String nomeCliente, String cpf, int idTipoDeFesta) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.cpf = cpf;
-        this.tipoFesta = tipoFesta;
+        this.idTipoDeFesta = idTipoDeFesta;
     }
 
     public Integer getIdCliente() {
@@ -70,14 +70,6 @@ public class Cliente implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getTipoFesta() {
-        return tipoFesta;
-    }
-
-    public void setTipoFesta(String tipoFesta) {
-        this.tipoFesta = tipoFesta;
     }
 
     public int getAtivo() {
@@ -136,4 +128,11 @@ public class Cliente implements Serializable {
         this.telefonePrincipal = telefonePrincipal;
     }
 
+    public int getIdTipoDeFesta() {
+        return idTipoDeFesta;
+    }
+
+    public void setIdTipoDeFesta(int idTipoDeFesta) {
+        this.idTipoDeFesta = idTipoDeFesta;
+    }  
 }

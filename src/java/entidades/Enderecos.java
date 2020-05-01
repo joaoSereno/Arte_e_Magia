@@ -5,7 +5,7 @@
  */
 package entidades;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author João Pedro
  */
-public class Enderecos implements Serializable {
+public class Enderecos {
 
     private Integer idEnderecos;
     private String cep;

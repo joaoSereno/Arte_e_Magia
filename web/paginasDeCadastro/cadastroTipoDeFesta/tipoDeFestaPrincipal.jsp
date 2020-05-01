@@ -1,18 +1,19 @@
 <%-- 
-    Document   : paginaSelecionarCliente
-    Created on : 02/04/2020, 17:25:22
+    Document   : tipoDeFestaPrincipal
+    Created on : 01/05/2020, 17:39:23
     Author     : João Pedro
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">         
-        <title>Cadastros - Festa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">          
+        <title>Cadastros - Tipo de Festa</title>
         <link rel="shortcut icon" href="../../custom/img/favicon.jpg">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -24,7 +25,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->   
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
-        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/paginaSelecionarCliente.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroTipoDeFesta/tipoDeFestaPrincipal.css">
     </head>
     <body>
         <!-- NavBar -->
@@ -56,38 +57,11 @@
                         <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>Sair</a>
                     </li>
                 </ul>
-                <!-- Fim navbar da página-->                
+                <!-- Fim navbar da página-->
             </div>
         </nav>
-        <!-- div de listagem cliente-->          
-        <div id="listagemDeCliente">
-            <table  class="table table-secondary">
-                <thead> 
-                    <tr>    
-                        <th scope="col">Nome</th>
-                        <th scope="col">CPF/CNPJ</th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${listaClientes}" var="item"> 
-                        <tr>
-                            <td>${item.nomeCliente}</td>
-                            <td>${item.cpf}</td>
-                            <!-- botão/form para editar registro cliente --> 
-                            <td>
-                                <form method="POST" action="listarOpcoes2">
-                                    <input type="hidden" name="listaCriancaString" value="${listaCriancaString}">
-                                    <input type="hidden" name="countCliente" value="${countCliente}">
-                                    <input type="hidden" name="nomeCliente" value="${item.nomeCliente}">
-                                    <input type="hidden" name="idCliente" value="${item.idCliente}">
-                                    <button class="btn btn-warning"> Selecionar </button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div> 
-        <!-- fim  div de listagem cliente-->        
+        <h3>Tela tipo de festa</h3>
+        <br>
+        <a class="btn btn-primary" href="../cadastros.jsp">Voltar</a>
     </body>
 </html>

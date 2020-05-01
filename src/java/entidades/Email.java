@@ -5,13 +5,12 @@
  */
 package entidades;
 
-import java.io.Serializable;
 
 /**
  *
  * @author João Pedro
  */
-public class Email implements Serializable {
+public class Email {
 
     private Integer idEmail;
     private String email;

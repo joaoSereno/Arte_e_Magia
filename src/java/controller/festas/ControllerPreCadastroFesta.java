@@ -52,7 +52,7 @@ public class ControllerPreCadastroFesta extends HttpServlet {
             request.setAttribute("listaClientes", listaClientes);
 
         } catch (Exception ex) {
-            Logger.getLogger(ControllerListaOpcoesFesta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerPreCadastroFesta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //CRIANCA
@@ -82,7 +82,7 @@ public class ControllerPreCadastroFesta extends HttpServlet {
             request.setAttribute("listaConcatenadaCrianca", listaConcatenadaCrianca);
 
         } catch (Exception ex) {
-            Logger.getLogger(ControllerListaOpcoesFesta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerPreCadastroFesta.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //FUNCIONARIOS

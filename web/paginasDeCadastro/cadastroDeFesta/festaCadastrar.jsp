@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">         
-        <title>Cadastros - Festa</title>
+        <title>Cadastros - Evento</title>
         <link rel="shortcut icon" href="../../custom/img/favicon.jpg">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -388,9 +388,10 @@
         <div id="inserirInfoAdicionais" style="display: none">
             <h5>Insira as informações finais para o cadastro:</h5>
             <br>
-            Quantidade de crianças na festa: <input type="text" name="qtdCriancaNaFesta" id="qtdCriancaNaFesta">
+            Descrição do Evento: <input type="text" name="descricaoEvento" id="descricaoEvento">
+            Quantidade de crianças no evento: <input type="text" name="qtdCriancaNaFesta" id="qtdCriancaNaFesta">
             Data do evento: <input type="text" name="dataFesta" id="dataFesta">
-            Tipo da festa: <input type="text" name="tipoDaFesta" id="tipoDaFesta">
+            Tipo de evento: <input type="text" name="tipoDaFesta" id="tipoDaFesta">
             Observação: <input type="text" name="obs" id="obs">
             Evento realizado?
             <select name="festaRealizada" id="festaRealizada">
@@ -545,6 +546,7 @@
                     </div>
                     <div id="collapseInformacoesFinais" class="collapse secondary" aria-labelledby="headingInformacoesFinais" data-parent="#accordionExample">
                         <div class="card-body">
+                            <h6 class="card-title" id="descricaoEventoInf"></h6>
                             <h6 class="card-title" id="dataDaFestaInf"></h6>
                             <h6 class="card-title" id="tipoDeFestaInf"></h6>
                             <h6 class="card-title" id="qtdCriancaNaFestaInf"></h6>
@@ -586,11 +588,6 @@
                 <input type="hidden" name="qtdHorario" id="qtdHorario" value="0">
                 <!-- input contador formas de pagamento e valor -->
                 <input type="hidden" name="qtdFPeValor" id="qtdFPeValor" value="0">
-                <!-- input valores finais da festa -->
-                <input type="hidden" name="valorTotalFesta" id="valorTotalFesta" value="">
-                <input type="hidden" name="valorTotalDespesa" id="valorTotalDespesa" value="">
-                <input type="hidden" name="valorTotalLucro" id="valorTotalLucro" value="">
-                <input type="hidden" name="valorReceberContratante" id="valorReceberContratante" value="">
                 <!-- inputs do endereço -->
                 <input type="hidden" name="cepF" id="cepF" value="">
                 <input type="hidden" name="cidadeF" id="cidadeF" value="">
@@ -599,12 +596,18 @@
                 <input type="hidden" name="numeroF" id="numeroF" value="">
                 <input type="hidden" name="complementoF" id="complementoF" value="">   
                 <!-- inputs das inf adicionais -->
+                <input type="hidden" name="descricaoEventoF" id="descricaoEventoF" value="">
                 <input type="hidden" name="qtdCriancaNaFestaF" id="qtdCriancaNaFestaF" value="">
                 <input type="hidden" name="dataFestaF" id="dataFestaF" value="">
                 <input type="hidden" name="tipoDaFestaF" id="tipoDaFestaF" value="">
                 <input type="hidden" name="observacaoF" id="observacaoF" value="">
                 <input type="hidden" name="festaRealizadaF" id="festaRealizadaF" value="">
                 <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
+                <!-- input valores finais da festa -->
+                <input type="hidden" name="valorTotalFesta" id="valorTotalFesta" value="">
+                <input type="hidden" name="valorTotalDespesa" id="valorTotalDespesa" value="">
+                <input type="hidden" name="valorTotalLucro" id="valorTotalLucro" value="">
+                <input type="hidden" name="valorReceberContratante" id="valorReceberContratante" value="">
             </form>
             <br>
             <button class="btn btn-warning" onclick="voltarEtapa10()"> Voltar </button>        

@@ -5,14 +5,12 @@
  */
 package entidades;
 
-import java.io.Serializable;
 /**
  *
  * @author João Pedro
  */
-public class HorarioFesta implements Serializable {
+public class HorarioFesta{
 
-    private static final long serialVersionUID = 1L;
     private Integer idHorarioFesta;
     private String horario;
     private String descricao;

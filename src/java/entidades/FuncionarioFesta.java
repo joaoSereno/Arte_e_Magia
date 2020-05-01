@@ -5,17 +5,17 @@
  */
 package entidades;
 
-import java.io.Serializable;
 
 /**
  *
  * @author João Pedro
  */
 
-public class FuncionarioFesta implements Serializable {
+public class FuncionarioFesta {
 
     private Integer idFuncionarioFesta;
     private Funcionario idFuncionario;
+    private float cacheFesta;
     private Festa idFesta;
 
     public FuncionarioFesta() {
@@ -49,5 +49,12 @@ public class FuncionarioFesta implements Serializable {
         this.idFesta = idFesta;
     }
 
+    public float getCacheFesta() {
+        return cacheFesta;
+    }
+
+    public void setCacheFesta(float cacheFesta) {
+        this.cacheFesta = cacheFesta;
+    }
     
 }

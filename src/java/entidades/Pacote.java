@@ -5,14 +5,14 @@
  */
 package entidades;
 
-import java.io.Serializable;
+
 import java.util.List;
 /**
  *
  * @author João Pedro
  */
 
-public class Pacote implements Serializable {
+public class Pacote {
 
     private Integer idPacote;
     private String nomePacote;

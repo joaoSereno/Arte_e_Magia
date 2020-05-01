@@ -5,23 +5,22 @@
  */
 package entidades;
 
-import java.io.Serializable;
 
 /**
  *
  * @author João Pedro
  */
-public class DespesaFesta implements Serializable {
+public class DespesaFesta  {
 
     private Integer idDespesas;
     private String descricao;
     private float valorDespesa;
     private int isFuncionariaPag;
-    private int statusPagamento;
-    private FormaPagamento idFormaPagamento;
-    private TipoDeDespesa idTipoDeDespesa;
-    private Festa idFesta;
-    private Funcionario idFuncionario;
+    private int status;
+    private Integer idFormaPagamento;
+    private Integer idTipoDeDespesa;
+    private Integer idFesta;
+    private Integer idFuncionario;
     private String origem;
         
     public DespesaFesta() {
@@ -31,11 +30,35 @@ public class DespesaFesta implements Serializable {
         this.idDespesas = idDespesas;
     }
 
-    public DespesaFesta(Integer idDespesas, float valorDespesa, int isFuncionariaPag, int statusPagamento) {
+    public DespesaFesta(Integer idDespesas, float valorDespesa, int isFuncionariaPag, int status) {
         this.idDespesas = idDespesas;
         this.valorDespesa = valorDespesa;
         this.isFuncionariaPag = isFuncionariaPag;
-        this.statusPagamento = statusPagamento;
+        this.status = status;
+    }
+
+    public Integer getIdTipoDeDespesa() {
+        return idTipoDeDespesa;
+    }
+
+    public void setIdTipoDeDespesa(Integer idTipoDeDespesa) {
+        this.idTipoDeDespesa = idTipoDeDespesa;
+    }
+
+    public Integer getIdFormaPagamento() {
+        return idFormaPagamento;
+    }
+
+    public void setIdFormaPagamento(Integer idFormaPagamento) {
+        this.idFormaPagamento = idFormaPagamento;
+    }
+
+    public Integer getIdFesta() {
+        return idFesta;
+    }
+
+    public void setIdFesta(Integer idFesta) {
+        this.idFesta = idFesta;
     }
 
     public Integer getIdDespesaFesta() {
@@ -70,45 +93,14 @@ public class DespesaFesta implements Serializable {
         this.isFuncionariaPag = isFuncionariaPag;
     }
 
-    public int getStatusPagamento() {
-        return statusPagamento;
+    public int getStatus() {
+        return status;
     }
 
-    public void setStatusPagamento(int statusPagamento) {
-        this.statusPagamento = statusPagamento;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public FormaPagamento getIdFormaPagamento() {
-        return idFormaPagamento;
-    }
-
-    public void setIdFormaPagamento(FormaPagamento idFormaPagamento) {
-        this.idFormaPagamento = idFormaPagamento;
-    }
-
-    public TipoDeDespesa getIdTipoDeDespesa() {
-        return idTipoDeDespesa;
-    }
-
-    public void setIdTipoDeDespesa(TipoDeDespesa idTipoDeDespesa) {
-        this.idTipoDeDespesa = idTipoDeDespesa;
-    }
-
-    public Festa getIdFesta() {
-        return idFesta;
-    }
-
-    public void setIdFesta(Festa idFesta) {
-        this.idFesta = idFesta;
-    }
-
-    public Funcionario getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public void setIdFuncionario(Funcionario idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
 
     public String getOrigem() {
         return origem;
@@ -116,6 +108,22 @@ public class DespesaFesta implements Serializable {
 
     public void setOrigem(String origem) {
         this.origem = origem;
+    }
+
+    public Integer getIdDespesas() {
+        return idDespesas;
+    }
+
+    public void setIdDespesas(Integer idDespesas) {
+        this.idDespesas = idDespesas;
+    }
+
+    public Integer getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
     
 }

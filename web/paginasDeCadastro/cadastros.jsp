@@ -88,6 +88,13 @@
                     <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Forma de pagamento</a>
                 </div>
             </div>
+            <!-- Card Tipo de Evento -->
+            <div class="card cards">
+                <img src="../custom/img/avatares-cards/iconFP.png" class="car-img-top imagens-cards" alt="Tipo de Evento">
+                <div class="card-body">
+                    <a href="cadastroTipoDeFesta/tipoDeFestaPrincipal.jsp" class="btn botoes-card">Tipo de Evento</a>
+                </div>
+            </div>
         </div>
         <div id="card-deck">
             <!-- CardTipoDespesa -->
@@ -109,6 +116,13 @@
                 <img src="../custom/img/avatares-cards/iconPacote.png" class="car-img-top imagens-cards" alt="Pacotes">
                 <div class="card-body">
                     <a href="cadastroDePacote/pacotePrincipal.jsp" type="button" class="btn botoes-card">Pacote</a>
+                </div>
+            </div>
+            <!-- Card Pacotes Adicionais-->
+            <div class="card cards">
+                <img src="../custom/img/avatares-cards/iconPacote.png" class="car-img-top imagens-cards" alt="Pacote Adicionais">
+                <div class="card-body">
+                    <a href="cadastroPacoteAdicional/pacoteAdicionalPrincipal.jsp" type="button" class="btn botoes-card">Pacote Adicionais</a>
                 </div>
             </div>
             <!-- CardContaAcesso -->

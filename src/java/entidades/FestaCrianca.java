@@ -5,12 +5,11 @@
  */
 package entidades;
 
-import java.io.Serializable;
 /**
  *
  * @author João Pedro
  */
-public class FestaCrianca implements Serializable {
+public class FestaCrianca {
 
     private Integer idFestaCrianca;
     private Crianca idCrianca;

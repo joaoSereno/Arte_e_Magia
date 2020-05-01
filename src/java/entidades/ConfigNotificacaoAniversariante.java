@@ -5,14 +5,12 @@
  */
 package entidades;
 
-import java.io.Serializable;
-
 
 /**
  *
  * @author João Pedro
  */
-public class ConfigNotificacaoAniversariante implements Serializable {
+public class ConfigNotificacaoAniversariante {
 
 
     private Integer idConfigNotificacaoAniversariante;

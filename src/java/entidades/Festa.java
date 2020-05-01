@@ -5,27 +5,29 @@
  */
 package entidades;
 
-import java.io.Serializable;
 import java.util.List;
 /**
  *
  * @author João Pedro
  */
-public class Festa implements Serializable {
+public class Festa {
 
     private Integer idFesta;
     private String descricaoFesta;
     private String dataFesta;
-    private int festaRealizada;
     private String obs;
-    private int festaRealizaStatus;
-    private List<PagamentoFesta> pagamentofestaList;
-    private List<PagamentoAdiantadoFesta> pagamentoadiantadofestaList;
-    private List<FuncionarioFesta> funcionariofestaList;
+    private int festaStatus;
     private Enderecos idEnderecos;
     private Cliente idCliente;
     private Pacote idPacote;
     private int qtdCriancas;
+    private int idTipoDeFesta;
+    private float valorTotal;
+    private float totalDespesa;
+    private float lucroFesta;
+    private float receberContrante ;
+    private List<PagamentoFesta> pagamentofestaList;
+    private List<FuncionarioFesta> funcionariofestaList;
     private List<DespesaFesta> despesafestaList;
     private List<TabelaAgendamentoFesta> tabelaagendamentofestaList;
     private List<ValorAdicionalFesta> valoradicionalfestaList;
@@ -40,12 +42,11 @@ public class Festa implements Serializable {
         this.idFesta = idFesta;
     }
 
-    public Festa(Integer idFesta, String dataFesta, int festaRealizada, String obs, int festaRealizaStatus) {
+    public Festa(Integer idFesta, String dataFesta, String obs, int festaStatus) {
         this.idFesta = idFesta;
         this.dataFesta = dataFesta;
-        this.festaRealizada = festaRealizada;
         this.obs = obs;
-        this.festaRealizaStatus = festaRealizaStatus;
+        this.festaStatus = festaStatus;
     }
 
     public Integer getIdFesta() {
@@ -72,14 +73,6 @@ public class Festa implements Serializable {
         this.dataFesta = dataFesta;
     }
 
-    public int getFestaRealizada() {
-        return festaRealizada;
-    }
-
-    public void setFestaRealizada(int festaRealizada) {
-        this.festaRealizada = festaRealizada;
-    }
-
     public String getObs() {
         return obs;
     }
@@ -88,28 +81,12 @@ public class Festa implements Serializable {
         this.obs = obs;
     }
 
-    public int getFestaRealizaStatus() {
-        return festaRealizaStatus;
-    }
-
-    public void setFestaRealizaStatus(int festaRealizaStatus) {
-        this.festaRealizaStatus = festaRealizaStatus;
-    }
-
     public List<PagamentoFesta> getPagamentofestaList() {
         return pagamentofestaList;
     }
 
     public void setPagamentofestaList(List<PagamentoFesta> pagamentofestaList) {
         this.pagamentofestaList = pagamentofestaList;
-    }
-
-    public List<PagamentoAdiantadoFesta> getPagamentoadiantadofestaList() {
-        return pagamentoadiantadofestaList;
-    }
-
-    public void setPagamentoadiantadofestaList(List<PagamentoAdiantadoFesta> pagamentoadiantadofestaList) {
-        this.pagamentoadiantadofestaList = pagamentoadiantadofestaList;
     }
 
     public List<FuncionarioFesta> getFuncionariofestaList() {
@@ -199,8 +176,54 @@ public class Festa implements Serializable {
     public void setQtdCriancas(int qtdCriancas) {
         this.qtdCriancas = qtdCriancas;
     }
-    
-    
-    
 
+    public int getFestaStatus() {
+        return festaStatus;
+    }
+
+    public void setFestaStatus(int festaStatus) {
+        this.festaStatus = festaStatus;
+    }
+
+    public int getIdTipoDeFesta() {
+        return idTipoDeFesta;
+    }
+
+    public void setIdTipoDeFesta(int idTipoDeFesta) {
+        this.idTipoDeFesta = idTipoDeFesta;
+    }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public float getTotalDespesa() {
+        return totalDespesa;
+    }
+
+    public void setTotalDespesa(float totalDespesa) {
+        this.totalDespesa = totalDespesa;
+    }
+
+    public float getLucroFesta() {
+        return lucroFesta;
+    }
+
+    public void setLucroFesta(float lucroFesta) {
+        this.lucroFesta = lucroFesta;
+    }
+
+    public float getReceberContrante() {
+        return receberContrante;
+    }
+
+    public void setReceberContrante(float receberContrante) {
+        this.receberContrante = receberContrante;
+    }
+    
+    
 }

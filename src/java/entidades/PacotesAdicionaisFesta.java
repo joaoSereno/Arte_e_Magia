@@ -5,19 +5,18 @@
  */
 package entidades;
 
-import java.io.Serializable;
 
 /**
  *
  * @author João Pedro
  */
 
-public class PacotesAdicionaisFesta implements Serializable {
+public class PacotesAdicionaisFesta {
 
     private Integer idPacotesAdicionaisFesta;
     private float valorPacoteAdd;
-    private TipoPacoteAdicional idTipoPacoteAdicional;
-    private Festa idFesta;
+    private Integer idTipoPacoteAdicional;
+    private Integer idFesta;
 
     public PacotesAdicionaisFesta() {
     }
@@ -47,19 +46,19 @@ public class PacotesAdicionaisFesta implements Serializable {
         this.valorPacoteAdd = valorPacoteAdd;
     }
 
-    public TipoPacoteAdicional getIdTipoPacoteAdicional() {
+    public Integer getIdTipoPacoteAdicional() {
         return idTipoPacoteAdicional;
     }
 
-    public void setIdTipoPacoteAdicional(TipoPacoteAdicional idTipoPacoteAdicional) {
+    public void setIdTipoPacoteAdicional(Integer idTipoPacoteAdicional) {
         this.idTipoPacoteAdicional = idTipoPacoteAdicional;
     }
 
-    public Festa getIdFesta() {
+    public Integer getIdFesta() {
         return idFesta;
     }
 
-    public void setIdFesta(Festa idFesta) {
+    public void setIdFesta(Integer idFesta) {
         this.idFesta = idFesta;
     }
     

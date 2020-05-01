@@ -5,18 +5,16 @@
  */
 package entidades;
 
-import java.io.Serializable;
 import java.util.List;
 /**
  *
  * @author João Pedro
  */
-public class TipoPacoteAdicional implements Serializable {
+public class TipoPacoteAdicional {
 
     private Integer idTipoPacoteAdicional;
     private String descricaoPacoteAdd;
     private int ativo;
-    private List<PacotesAdicionaisFesta> pacotesadicionaisfestaList;
 
     public TipoPacoteAdicional() {
     }
@@ -44,14 +42,6 @@ public class TipoPacoteAdicional implements Serializable {
 
     public void setDescricaoPacoteAdd(String descricaoPacoteAdd) {
         this.descricaoPacoteAdd = descricaoPacoteAdd;
-    }
-
-    public List<PacotesAdicionaisFesta> getPacotesadicionaisfestaList() {
-        return pacotesadicionaisfestaList;
-    }
-
-    public void setPacotesadicionaisfestaList(List<PacotesAdicionaisFesta> pacotesadicionaisfestaList) {
-        this.pacotesadicionaisfestaList = pacotesadicionaisfestaList;
     }
 
     public int getAtivo() {

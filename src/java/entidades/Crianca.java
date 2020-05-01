@@ -5,7 +5,6 @@
  */
 package entidades;
 
-import java.io.Serializable;
 import java.util.List;
 
 
@@ -13,7 +12,7 @@ import java.util.List;
  *
  * @author João Pedro
  */
-public class Crianca implements Serializable {
+public class Crianca  {
 
     private Integer idCrianca;
     private String nomeCrianca;

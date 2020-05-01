@@ -55,7 +55,7 @@
                         <div class="form-group row">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Acessar</button>
                         </div>
-                        <div class="login-msg">
+                        <div id="login-msg">
                         <%
                             String usarioInvalido = request.getParameter("usarioInvalido"); //se caiu no else do logarSistema.jsp recebe esse parametro
                             if (usarioInvalido != null) {

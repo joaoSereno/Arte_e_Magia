@@ -5,14 +5,13 @@
  */
 package entidades;
 
-import java.io.Serializable;
 
 /**
  *
  * @author João Pedro
  */
 
-public class PagamentoDespesasDetalhe implements Serializable {
+public class PagamentoDespesasDetalhe {
 
     private Integer idPagamentoDespesas;
     private float valor;

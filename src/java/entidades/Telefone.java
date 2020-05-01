@@ -5,12 +5,11 @@
  */
 package entidades;
 
-import java.io.Serializable;
 /**
  *
  * @author João Pedro
  */
-public class Telefone implements Serializable {
+public class Telefone {
 
     private Integer idTelefone;
     private String numero;

@@ -5,12 +5,12 @@
  */
 package entidades;
 
-import java.io.Serializable;
+
 /**
  *
  * @author João Pedro
  */
-public class ValorAdicionalFesta implements Serializable {
+public class ValorAdicionalFesta {
 
     private Integer idValorAdicionalFesta;
     private String descricao;
