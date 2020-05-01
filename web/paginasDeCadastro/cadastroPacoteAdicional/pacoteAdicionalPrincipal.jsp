@@ -4,6 +4,7 @@
     Author     : João Pedro
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <html>
@@ -59,6 +60,81 @@
         </nav>
         <h3>Tela Pacote Adicional</h3>
         <br>
-        <a lass="btn btn-primary" href="../cadastros.jsp">Voltar</a>
+        <div>
+            <!--form para adicionar/editar um novo pacote add-->
+            <form method="GET" action="editarORcadastrarPacoteAdd"> 
+                <input type="hidden" name="idTipoPacoteAdicional" value="${idTipoPacoteAdicionalE}">
+                Nome pacote adicional:
+                <input type="text" name="descricaoPacoteAdd" value="${descricaoPacoteAddE}">
+                <button class="btn btn-warning"> Confirmar </button>
+            </form> 
+            
+            <!-- botão que abre o modal de confirmação de exclusão -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
+                Excluir
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Excluir pacote adicional?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Tem certeza que deseja realizar a exclusão do cadastro?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <!--form inativar pacote add-->
+                            <form method="GET" action="inativarPacoteAdicional">
+                                <input type="hidden" name="idTipoPacoteAdicional" value="${idTipoPacoteAdicionalE}">
+                                <button class="btn btn-warning"> Excluir </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- fim Modal -->
+        </div>
+        <br>
+        <h3>${msg}</h3>
+        <br><br>
+        <!-- botão/form de listar os pacote add-->  
+        <form method="GET" action="listarPacoteAdicional"> 
+            <button type="submit" class="btn btn-primary">Listar pacotes adicionais</button>
+        </form>
+        <br>
+        <!-- div de listagem pacote add-->          
+        <div>
+            <table id="tabela" class="table table-secondary">
+                <thead> 
+                    <tr>    
+                        <th scope="col">Nome Pacote Adicional</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <c:forEach items="${listaPacoteAdicional}" var="item"> 
+                        <tr>
+                            <td>${item.descricaoPacoteAdd}</td>
+                            <!-- botão/form para editar registro pacote add -->
+                            <td>
+                                <form method="GET" action="editarPacoteAdicional"> 
+                                    <input type="hidden" name="idTipoPacoteAdicional" value="${item.idTipoPacoteAdicional}">
+                                    <input type="hidden" name="descricaoPacoteAdd" value="${item.descricaoPacoteAdd}">
+                                    <button class="btn btn-warning"> Editar </button>
+                                </form> 
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div> 
+        <!-- fim  div de listagem pacote add-->            
+        <a class="btn btn-primary" href="../cadastros.jsp">Voltar</a>
     </body>
 </html>

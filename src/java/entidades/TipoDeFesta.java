@@ -10,6 +10,7 @@ package entidades;
  * @author João Pedro
  */
 public class TipoDeFesta {
+    
     private int idTipoDeFesta;
     private String descricaoTipoDeFesta;
     private int ativo;
