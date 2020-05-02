@@ -609,7 +609,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         }else{
             //recebendo H3 e setando nela o texto com o nome do cliente
             var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-            tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";            
+            tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes & Pacotes Adicionais";            
             
             document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
             document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3    
@@ -2658,11 +2658,30 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         var observacao = document.getElementById('obs').value;
         var festaRealizada = document.getElementById('festaRealizada').value;  
         
+        //separa o nome e o id do "tipoDaFesta"
+        var resultado = tipoDaFesta.split("+");  
+        
+        //variaveis que vai receber o valor do tipoDaFesta
+        var idTipoDaFesta = 0;
+        var descricaoTipoDaFesta = "";
+        var countResultadoSplit = 0; 
+
+        //percorre o resultado do split
+        resultado.forEach((valorAtualLista) => {
+            if(countResultadoSplit == 0){
+                idTipoDaFesta = valorAtualLista;
+                countResultadoSplit++;
+            }else{
+                descricaoTipoDaFesta = valorAtualLista;
+                countResultadoSplit = 0;
+            } 
+        });
+        
         //define o texto de confirmacao da ultima etapa com as variaveis que tem o valor do input
         document.getElementById('descricaoEventoInf').textContent = "Descrição do Evento: " + descricaoEvento;
         document.getElementById('qtdCriancaNaFestaInf').textContent = "Quantidade de crianças no evento: " + qtdCriancaNaFesta;
         document.getElementById('dataDaFestaInf').textContent = "Data do evento: " + dataDaFesta;
-        document.getElementById('tipoDeFestaInf').textContent = "Tipo de festa: " + tipoDaFesta;
+        document.getElementById('tipoDeFestaInf').textContent = "Tipo de festa: " + descricaoTipoDaFesta;
         if(observacao !== ""){
             document.getElementById('ObsInf').textContent = "Observação: " + observacao;
         }
@@ -2672,7 +2691,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         //SETANDO OS VALORES RECEBIDOS NO INPUT, NO INPUT DO FORM DE CADASTRO DE FESTA
         document.getElementById('descricaoEventoF').value = descricaoEvento;
         document.getElementById('festaRealizadaF').value = festaRealizada;
-        document.getElementById('tipoDaFestaF').value = tipoDaFesta;
+        document.getElementById('idTipoDaFestaF').value = idTipoDaFesta;
         document.getElementById('observacaoF').value = observacao;
         document.getElementById('dataFestaF').value = dataDaFesta;
         document.getElementById('qtdCriancaNaFestaF').value = qtdCriancaNaFesta;

@@ -391,7 +391,16 @@
             Descrição do Evento: <input type="text" name="descricaoEvento" id="descricaoEvento">
             Quantidade de crianças no evento: <input type="text" name="qtdCriancaNaFesta" id="qtdCriancaNaFesta">
             Data do evento: <input type="text" name="dataFesta" id="dataFesta">
-            Tipo de evento: <input type="text" name="tipoDaFesta" id="tipoDaFesta">
+            <br>
+            Tipo de evento: 
+            <select type="select" name="tipoDaFesta" id="tipoDaFesta">
+                <option value="">Clique para selecionar</option>
+                    <c:forEach var="item" items="${listaTipoDeFesta}">
+                        <option value="${item.idTipoDeFesta}+${item.descricaoTipoDeFesta}">
+                            ${item.descricaoTipoDeFesta}
+                        </option>
+                    </c:forEach>
+            </select>   
             Observação: <input type="text" name="obs" id="obs">
             Evento realizado?
             <select name="festaRealizada" id="festaRealizada">
@@ -599,15 +608,15 @@
                 <input type="hidden" name="descricaoEventoF" id="descricaoEventoF" value="">
                 <input type="hidden" name="qtdCriancaNaFestaF" id="qtdCriancaNaFestaF" value="">
                 <input type="hidden" name="dataFestaF" id="dataFestaF" value="">
-                <input type="hidden" name="tipoDaFestaF" id="tipoDaFestaF" value="">
+                <input type="hidden" name="idTipoDaFestaF" id="idTipoDaFestaF" value="">
                 <input type="hidden" name="observacaoF" id="observacaoF" value="">
                 <input type="hidden" name="festaRealizadaF" id="festaRealizadaF" value="">
-                <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
                 <!-- input valores finais da festa -->
                 <input type="hidden" name="valorTotalFesta" id="valorTotalFesta" value="">
                 <input type="hidden" name="valorTotalDespesa" id="valorTotalDespesa" value="">
                 <input type="hidden" name="valorTotalLucro" id="valorTotalLucro" value="">
                 <input type="hidden" name="valorReceberContratante" id="valorReceberContratante" value="">
+                <button class="btn btn-warning" type="submit">Finalizar cadastro</button> 
             </form>
             <br>
             <button class="btn btn-warning" onclick="voltarEtapa10()"> Voltar </button>        

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -79,9 +80,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                             <div class="col-12">
+                            <div class="col-12">
                                 <label for="tipoFesta">Tipo de Festa</label>
-                                <input type="text" name="tipoFesta" placeholder="Tipo Festa" class="form-control" id="tipoFesta">
+                                <select type="select" name="tipoFesta" >
+                                    <option value="">Clique para selecionar</option>
+                                        <c:forEach var="item" items="${listaTipoDeFesta}">
+                                            <option value="${item.idTipoDeFesta}">
+                                                ${item.nomePacote}
+                                            </option>
+                                        </c:forEach>
+                                </select>   
                             </div>
                         </div>
                         <div class="form-group row">

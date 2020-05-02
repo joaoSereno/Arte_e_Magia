@@ -11,6 +11,7 @@ import entidades.FormaPagamento;
 import entidades.Funcionario;
 import entidades.Pacote;
 import entidades.TipoDeDespesa;
+import entidades.TipoDeFesta;
 import entidades.TipoPacoteAdicional;
 import java.io.IOException;
 import java.util.List;
@@ -26,6 +27,7 @@ import persistence.CriancaSQL;
 import persistence.FuncionarioSQL;
 import persistence.PacoteAdicionalSQL;
 import persistence.PacoteSQL;
+import persistence.TipoDeFestaSQL;
 import persistence.TipoDespesaSQL;
 import persistence.TipoPagamentoSQL;
 
@@ -157,6 +159,21 @@ public class ControllerPreCadastroFesta extends HttpServlet {
             
             //setando os atributos que será enviando para o front
             request.setAttribute("listaTipoDeDespesa", listaTipoDeDespesa);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPreCadastroFesta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //TIPO DE FESTA
+        //instanciando as classes necessarias para a listagem de tipo de festa
+        List<TipoDeFesta> listaTipoDeFesta; //lista de tipo de festa
+        TipoDeFestaSQL tipoFestaBanco = new TipoDeFestaSQL(); //instancia classe de banco do tipo de festa
+        
+        try {
+            //recebendo registros de tipo de festa do banco
+            listaTipoDeFesta = tipoFestaBanco.getTipoDeFesta();
+            
+            //setando os atributos que será enviando para o front
+            request.setAttribute("listaTipoDeFesta", listaTipoDeFesta);            
         } catch (Exception ex) {
             Logger.getLogger(ControllerPreCadastroFesta.class.getName()).log(Level.SEVERE, null, ex);
         }

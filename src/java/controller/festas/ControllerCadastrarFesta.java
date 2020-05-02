@@ -492,7 +492,15 @@ public class ControllerCadastrarFesta extends HttpServlet {
         String descricaoEvento = request.getParameter("descricaoEventoF");
         String qtdCriancaNaFesta = request.getParameter("qtdCriancaNaFestaF");
         String dataFesta = request.getParameter("dataFestaF");
-        String tipoDaFesta = request.getParameter("tipoDaFestaF");
+        String idTipoDeFesta = request.getParameter("idTipoDaFestaF");
+        if (idTipoDeFesta != null) {
+            if (!idTipoDeFesta.equals("")) {
+
+                int idTipoDeFesta2 = Integer.parseInt(idTipoDeFesta);
+
+            }
+        }
+        
         String observacao = request.getParameter("observacaoF");
         String festaRealizada = request.getParameter("festaRealizadaF");
         

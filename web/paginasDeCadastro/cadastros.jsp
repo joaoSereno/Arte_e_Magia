@@ -64,7 +64,7 @@
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconCliente.png" class="card-img-top imagens-cards" alt="Cliente">
                 <div class="card-body">
-                    <a href="cadastroDeClientes/clienteCadastrar.jsp" class="btn botoes-card">Cliente</a>
+                   <a href="cadastroDeClientes/clientePrincipal.jsp" class="btn botoes-card">Cliente</a>
                 </div>
             </div>
             <!-- CardFuncionários -->
@@ -122,7 +122,7 @@
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconPacote.png" class="car-img-top imagens-cards" alt="Pacote Adicionais">
                 <div class="card-body">
-                    <a href="cadastroPacoteAdicional/pacoteAdicionalPrincipal.jsp" type="button" class="btn botoes-card">Pacote Adicionais</a>
+                    <a href="cadastroPacoteAdicional/pacoteAdicionalPrincipal.jsp" type="button" class="btn botoes-card">Adicional no Pacote</a>
                 </div>
             </div>
             <!-- CardContaAcesso -->

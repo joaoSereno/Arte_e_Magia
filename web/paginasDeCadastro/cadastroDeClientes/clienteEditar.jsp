@@ -65,13 +65,22 @@
         <!-- form para editar cliente-->
         <div>
             <form method="GET" action="editarCliente2"> <%-- joga formulario para o controllerClienteEditar2 --%>
+                <input type="hidden" name="tipoDeFesta" value="${cliente.tipoDeFesta}">
                 <input type="hidden" name="idCliente" value="${cliente.idCliente}">
                 Nome do cliente:
                 <input type="text" name="nomeCliente" value="${cliente.nomeCliente}">
                 CPF:
                 <input type="text" name="cpf" value="${cliente.cpf}">
                 Tipo de Festa:
-                <input type="text" name="tipoFesta" value="${cliente.tipoFesta}">
+                <select type="select" name="tipoFesta">
+                    <option value="${cliente.idTipoDeFesta}">${cliente.tipoDeFesta}</option>
+                        <c:forEach var="item" items="${listaTipoDeFesta}">
+                            <option value="${item.idTipoDeFesta}">
+                                ${item.descricaoTipoDeFesta}
+                            </option>
+                        </c:forEach>
+                </select>
+
                 <h6>E-mail</h6>
                 <input type="hidden" name="idEmail" value="${email.idEmail}">
                 <input type="text" name="email" value="${email.email}">

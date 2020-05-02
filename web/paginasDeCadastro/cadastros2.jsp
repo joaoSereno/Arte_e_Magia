@@ -63,7 +63,7 @@
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconCliente.png" class="card-img-top imagens-cards" alt="Cliente">
                 <div class="card-body">
-                    <a href="cadastroDeClientes/clienteCadastrar.jsp" class="btn botoes-card">Cliente</a>
+                    <a href="cadastroDeClientes/clientePrincipal.jsp" class="btn botoes-card">Cliente</a>
                 </div>
             </div>
             <!-- CardFuncionários -->
@@ -75,9 +75,9 @@
             </div>
             <!-- CardFestas -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Festa">
+                <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Evento">
                 <div class="card-body">
-                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Festa</a>
+                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Evento</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->

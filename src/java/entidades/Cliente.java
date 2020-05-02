@@ -18,7 +18,7 @@ public class Cliente {
     private String nomeCliente;
     private String cpf;
     private int idTipoDeFesta;
-    private String tipoFesta;
+    private String tipoDeFesta;
     private int ativo;
     private List<Telefone> telefoneList;
     private List<Crianca> criancaList;
@@ -41,19 +41,20 @@ public class Cliente {
         this.idTipoDeFesta = idTipoDeFesta;
         this.ativo = ativo;
     }
-    //deletar dps
-    public Cliente(Integer idCliente, String nomeCliente, String cpf, String tipoFesta) {
-        this.idCliente = idCliente;
-        this.nomeCliente = nomeCliente;
-        this.cpf = cpf;
-        this.tipoFesta = tipoFesta;
-    }
     
     public Cliente(Integer idCliente, String nomeCliente, String cpf, int idTipoDeFesta) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.cpf = cpf;
         this.idTipoDeFesta = idTipoDeFesta;
+    }
+    
+    public Cliente(Integer idCliente, String nomeCliente, String cpf, int idTipoDeFesta, String tipoDeFesta) {
+        this.idCliente = idCliente;
+        this.nomeCliente = nomeCliente;
+        this.cpf = cpf;
+        this.idTipoDeFesta = idTipoDeFesta;
+        this.tipoDeFesta = tipoDeFesta;
     }
 
     public Integer getIdCliente() {
@@ -142,16 +143,14 @@ public class Cliente {
 
     public void setIdTipoDeFesta(int idTipoDeFesta) {
         this.idTipoDeFesta = idTipoDeFesta;
-    } 
-    //deletar dps
-    public String getTipoFesta() {
-        return tipoFesta;
+    }  
+
+    public String getTipoDeFesta() {
+        return tipoDeFesta;
     }
 
-    public void setTipoFesta(String tipoFesta) {
-        this.tipoFesta = tipoFesta;
+    public void setTipoDeFesta(String tipoDeFesta) {
+        this.tipoDeFesta = tipoDeFesta;
     }
-
     
-
 }

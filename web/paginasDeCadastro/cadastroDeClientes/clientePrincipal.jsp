@@ -60,6 +60,14 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        <h3>Tela de clientes</h3>
+        <form Method="GET" action="listarTipoDeFestaNoCadastroCliente">
+           <button type="submit" class="btn btn-primary">Novo Cliente</button>
+        </form>
+        <br>
+        <form method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
+            <button class="btn btn-primary" type="submit" value="ListarFuncionarios"/>Listar Clientes</button>
+        </form>
         <!-- div de listagem cliente-->          
         <div>
             <table id="tabela" class="table table-secondary">
@@ -76,7 +84,7 @@
                         <tr>
                             <td>${item.nomeCliente}</td>
                             <td>${item.cpf}</td>
-                            <td>${item.tipoFesta}</td>
+                            <td>${item.tipoDeFesta}</td>
                             <td>${item.telefonePrincipal}</td>
                             <!-- botão/form para editar registro cliente --> 
                             <td>
@@ -93,6 +101,6 @@
         <!-- fim  div de listagem cliente-->
         <br>
         <!-- botão de voltar página-->
-        <a href="clienteCadastrar.jsp" class="btn btn-primary" >Voltar</a>
+        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
     </body>
 </html>

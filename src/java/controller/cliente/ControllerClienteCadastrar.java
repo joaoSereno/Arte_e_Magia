@@ -9,7 +9,9 @@ import entidades.Cliente;
 import entidades.Email;
 import entidades.Enderecos;
 import entidades.Telefone;
+import entidades.TipoDeFesta;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -21,6 +23,7 @@ import persistence.ClienteSQL;
 import persistence.EmailSQL;
 import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
+import persistence.TipoDeFestaSQL;
 
 /**
  *
@@ -32,12 +35,21 @@ public class ControllerClienteCadastrar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idCliente = 0; //idCliente para registrar o telefone e endereço
+        int IdTipoDeFesta2 = 0;
         
     //pega os valores inseridos no formulario
         //dados do cliente
         String nomeCliente = request.getParameter("nomeCliente");
         String cpf = request.getParameter("cpf");
-        String tipoFesta = request.getParameter("tipoFesta");
+        String IdTipoDeFesta = request.getParameter("tipoFesta");
+        if (IdTipoDeFesta != null) {
+            if (!IdTipoDeFesta.equals("")) {
+
+                IdTipoDeFesta2 = Integer.parseInt(IdTipoDeFesta);
+
+            }
+        }
+        
         //dados do telefone do cliente
         String contatoCliente = request.getParameter("contato");
         String tipoTelefone = request.getParameter("tipoTelefone");
@@ -56,7 +68,7 @@ public class ControllerClienteCadastrar extends HttpServlet {
         //setando valores "dados do cliente" na variavel cliente
         cliente.setNomeCliente(nomeCliente);
         cliente.setCpf(cpf);
-        cliente.setTipoFesta(tipoFesta);
+        cliente.setIdTipoDeFesta(IdTipoDeFesta2);
         
         //instanciando classe que faz a comunicação com o banco de dados do cliente
         ClienteSQL clienteBanco = new ClienteSQL();
@@ -119,6 +131,15 @@ public class ControllerClienteCadastrar extends HttpServlet {
 
         try {
             enderecoBanco.create(endereco);//chamando método de inserir da classe EnderecoSQL e passando endereco como parametro
+            
+            //para listar novamente o tipo de festa
+            List<TipoDeFesta> listaTipoDeFesta = null; //lista de tipo de festa
+            TipoDeFestaSQL tipoFestaBanco = new TipoDeFestaSQL(); //instancia classe de banco do tipo de festa
+            
+            listaTipoDeFesta = tipoFestaBanco.getTipoDeFesta();
+            
+            //setando atributos e dispachando para a pagina
+            request.setAttribute("listaTipoDeFesta", listaTipoDeFesta);
             request.setAttribute("msg", "Cadastro realizado com sucesso!!");
             request.getRequestDispatcher("clienteCadastrar.jsp").forward(request, response);
         } catch (Exception ex) {

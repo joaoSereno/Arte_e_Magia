@@ -1,10 +1,11 @@
 <%-- 
-    Document   : adicionarCliente
+    Document   : clienteCadastrar
     Created on : 08/02/2020, 20:45:32
     Author     : João Pedro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -72,7 +73,14 @@
                     </div>
                     <div class="col-md-3">
                         <label for="tipoFesta">Tipo de Festa</label>
-                        <input type="text" class="form-control" name="tipoFesta" id="tipoFesta" placeholder="Tipo Festa">
+                        <select type="select" name="tipoFesta">
+                            <option value="">Clique para selecionar</option>
+                                <c:forEach var="item" items="${listaTipoDeFesta}">
+                                    <option value="${item.idTipoDeFesta}">
+                                        ${item.descricaoTipoDeFesta}
+                                    </option>
+                                </c:forEach>
+                        </select>                        
                     </div>
                 </div>
                 <div class="row formularios2">
@@ -124,15 +132,10 @@
             </form>  
             <!-- fim do form para cadastrar cliente-->    
             <h3>${msg}</h3>
-            <!-- form para listar os clientes cadastrados -->
-            <div class="row botoes-inf">
-                <div class="col offset-md-4">
-                    <form class="form-inline botoes-form" method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
-                        <button class="btn btn-primary" type="submit" value="ListarFuncionarios"/>Listar Clientes</button>
-                        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
-                    </form>
-                </div>
-            </div>
+            <br>
+            <form method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
+                <button class="btn btn-primary" type="submit">Voltar</button>
+            </form>
     </body>
     <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>      
 </html>

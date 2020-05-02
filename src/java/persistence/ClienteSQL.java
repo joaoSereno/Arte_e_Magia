@@ -68,16 +68,19 @@ public class ClienteSQL extends Conexao {
             open(); //abre conexão com o banco
             ArrayList<Cliente> listaCliente = new ArrayList(); //instancia uma arrayList de Cliente
 
-            stmt = con.prepareStatement("SELECT  c.idCliente,\n"
-                    + "	 c.nomeCliente,\n"
-                    + "        c.cpf,\n"
-                    + "        c.tipoFesta,\n"
-                    + "        t.numero\n"
-                    + "FROM cliente c,\n"
-                    + "	 telefone t\n"
-                    + "WHERE c.ativo = 1\n"
-                    + "AND c.idCliente = t.idCliente\n"
-                    + "AND t.isPrincipal = 1"); //executa query na base
+            stmt = con.prepareStatement("SELECT  c.idCliente,\n" +
+                                        "        c.nomeCliente,\n" +
+                                        "        c.cpf,\n" +
+                                        "        c.idTipoDeFesta,\n" +
+                                        "        tf.descricaoTipoDeFesta,\n" +
+                                        "	 t.numero\n" +
+                                        "FROM cliente c,\n" +
+                                        "     telefone t,\n" +
+                                        "     tipodefesta tf\n" +
+                                        "WHERE c.ativo = 1\n" +
+                                        "AND c.idCliente = t.idCliente\n" +
+                                        "AND t.isPrincipal = 1\n" +
+                                        "AND c.idTipoDeFesta = tF.idTipoDeFesta"); //QUERY
 
             ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
 
@@ -88,7 +91,8 @@ public class ClienteSQL extends Conexao {
                 cliente.setIdCliente(resultadoConsulta.getInt("c.idCliente"));
                 cliente.setNomeCliente(resultadoConsulta.getString("c.nomeCliente"));
                 cliente.setCpf(resultadoConsulta.getString("c.cpf"));
-                cliente.setTipoFesta(resultadoConsulta.getString("c.tipoFesta"));
+                cliente.setIdTipoDeFesta(resultadoConsulta.getInt("c.idTipoDeFesta"));
+                cliente.setTipoDeFesta(resultadoConsulta.getString("tf.descricaoTipoDeFesta"));
                 cliente.setTelefonePrincipal(resultadoConsulta.getString("t.numero"));
 
                 listaCliente.add(cliente);// add na lista de cliente
@@ -115,16 +119,26 @@ public class ClienteSQL extends Conexao {
 
             Cliente cliente = new Cliente();
 
-            stmt = con.prepareStatement("SELECT idCliente, nomeCliente, cpf, tipoFesta FROM cliente WHERE idCliente = ?"); //executa query na base
+            stmt = con.prepareStatement("SELECT  c.idCliente, \n" +
+                                        "	 c.nomeCliente, \n" +
+                                        "	 c.cpf, \n" +
+                                        "	 c.idTipoDeFesta,\n" +
+                                        "        tf.descricaoTipoDeFesta\n" +
+                                        "FROM   cliente c,\n" +
+                                        "       tipodefesta tf\n" +
+                                        "WHERE c.idTipoDeFesta = tf.idTipoDeFesta\n" +
+                                        "AND c.idCliente = ?"); //query
+            
             stmt.setInt(1, idCliente); //seta valor do parametro como condição da query
             ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
 
             while (resultadoConsulta.next()) {
                 //seta valores pego na consulta na classe cliente 
-                cliente.setIdCliente(resultadoConsulta.getInt("idCliente"));
-                cliente.setNomeCliente(resultadoConsulta.getString("nomeCliente"));
-                cliente.setCpf(resultadoConsulta.getString("cpf"));
-                cliente.setTipoFesta(resultadoConsulta.getString("tipoFesta"));
+                cliente.setIdCliente(resultadoConsulta.getInt("c.idCliente"));
+                cliente.setNomeCliente(resultadoConsulta.getString("c.nomeCliente"));
+                cliente.setCpf(resultadoConsulta.getString("c.cpf"));
+                cliente.setIdTipoDeFesta(resultadoConsulta.getInt("c.idTipoDeFesta"));
+                cliente.setTipoDeFesta(resultadoConsulta.getString("tf.descricaoTipoDeFesta"));
             }
 
             close(); // fecha conexão com o banco
@@ -154,16 +168,16 @@ public class ClienteSQL extends Conexao {
         close(); // fecha conexão com o banco de dados
     }
 
-    public void editarCadastroCliente(int idCliente, String nomeCliente, String cpf, String tipoFesta) throws Exception {
+    public void editarCadastroCliente(int idCliente, String nomeCliente, String cpf, int idTipoDeFesta) throws Exception {
 
         open(); // abre a conexão com o banco de dados
 
-        stmt = con.prepareStatement("UPDATE cliente SET nomeCliente = ?, cpf = ?, tipoFesta = ? where idCliente = ?");
+        stmt = con.prepareStatement("UPDATE cliente SET nomeCliente = ?, cpf = ?, idTipoDeFesta = ? where idCliente = ?");
 
         //seta valores para comando sql
         stmt.setString(1, nomeCliente);
         stmt.setString(2, cpf);
-        stmt.setString(3, tipoFesta);
+        stmt.setInt(3, idTipoDeFesta);
         stmt.setInt(4, idCliente);
 
         stmt.execute();//executa comando sql

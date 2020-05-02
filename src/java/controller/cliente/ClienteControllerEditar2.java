@@ -10,7 +10,9 @@ import entidades.Crianca;
 import entidades.Email;
 import entidades.Enderecos;
 import entidades.Telefone;
+import entidades.TipoDeFesta;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,7 @@ import persistence.CriancaSQL;
 import persistence.EmailSQL;
 import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
+import persistence.TipoDeFestaSQL;
 
 /**
  *
@@ -36,15 +39,17 @@ public class ClienteControllerEditar2 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Crianca> listaCriancaCliente = null; //lista de criança
         List<Telefone> listaTelefoneCliente = null; //lista de telefone
+        ArrayList<TipoDeFesta> listaTipoDeFesta = new ArrayList(); //lista de tipo de festa
         int idCliente2 = 0;
         int idEnderecos2 = 0;
         int idEmail2 = 0;
+        int idTipoDeFesta2 = 0;
+        String tipoDeFesta = "";
         String msg = "Cliente editado com sucesso!";
 
         //pega os parametros do form
         //Cliente
         String idCliente = request.getParameter("idCliente");
-
         if (idCliente != null) { //verifica se existe idCliente
 
             if (!idCliente.equals("")) {
@@ -57,11 +62,40 @@ public class ClienteControllerEditar2 extends HttpServlet {
 
         String nomeCliente = request.getParameter("nomeCliente");
         String cpf = request.getParameter("cpf");
-        String tipoFesta = request.getParameter("tipoFesta");
+        String idTipoDeFesta = request.getParameter("tipoFesta");
+        if (idTipoDeFesta != null) { //verifica se existe idCliente
 
+            if (!idTipoDeFesta.equals("")) {
+
+                idTipoDeFesta2 = Integer.parseInt(idTipoDeFesta);
+
+            }
+
+        }
+        
+        //implementacao do tipo de festa
+        TipoDeFestaSQL tipoFestaBanco = new TipoDeFestaSQL(); 
+
+        try {
+            //pega todos os tipos de festa do banco
+            listaTipoDeFesta = tipoFestaBanco.getTipoDeFesta();
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteControllerEditar2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //retira da lista de tipo de festa, o tipo de festa do cliente que está sendo editado
+        for(int i = 0; i < listaTipoDeFesta.size(); i++){
+            //se o elemento atual da lista tem o idTipoDeFesta igual ao do cliente, remove esse tipo de festa da lista
+            if(listaTipoDeFesta.get(i).getIdTipoDeFesta() == idTipoDeFesta2){
+                tipoDeFesta = listaTipoDeFesta.get(i).getDescricaoTipoDeFesta();
+                listaTipoDeFesta.remove(i);
+                i = listaTipoDeFesta.size();
+            }
+        }
+        
         if (idCliente2 != 0) { //verifica se existe idCliente
 
-            Cliente cliente = new Cliente(idCliente2, nomeCliente, cpf, tipoFesta);//instanciando classe do tipo cliente            
+            Cliente cliente = new Cliente(idCliente2, nomeCliente, cpf, idTipoDeFesta2, tipoDeFesta);//instanciando classe do tipo cliente            
             request.setAttribute("cliente", cliente); // coloca instancia como atributo da proxima página
         }
         
@@ -118,16 +152,17 @@ public class ClienteControllerEditar2 extends HttpServlet {
         CriancaSQL criancaBanco = new CriancaSQL();
         EmailSQL emailBanco = new EmailSQL();
 
+
         try {
               
             if (idCliente2 != 0) { //verifica se existe cliente
                 //chama método de update do banco
-                clienteBanco.editarCadastroCliente(idCliente2, nomeCliente, cpf, tipoFesta);
+                clienteBanco.editarCadastroCliente(idCliente2, nomeCliente, cpf, idTipoDeFesta2);
 
                 //chama método que pega os valores , para retornarem em tela dps que o usuario editar o cadastro
                 listaTelefoneCliente = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista de telefone , todos os telefones do cliente
                 listaCriancaCliente = criancaBanco.getCrianca(idCliente2); // recebendo na lista todas as crianças do cliente
-
+                           
             }
 
             if (idEnderecos2 != 0) {//verifica se existe endereco
@@ -145,6 +180,7 @@ public class ClienteControllerEditar2 extends HttpServlet {
                 //set de atributo para outra página
                 request.setAttribute("msg", msg);
                 request.setAttribute("listaTelefoneCliente", listaTelefoneCliente);
+                request.setAttribute("listaTipoDeFesta", listaTipoDeFesta);
                 request.setAttribute("listaCriancaCliente", listaCriancaCliente);
 
             }

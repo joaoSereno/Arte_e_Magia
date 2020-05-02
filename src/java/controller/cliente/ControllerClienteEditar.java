@@ -10,7 +10,9 @@ import entidades.Crianca;
 import entidades.Email;
 import entidades.Enderecos;
 import entidades.Telefone;
+import entidades.TipoDeFesta;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,7 @@ import persistence.CriancaSQL;
 import persistence.EmailSQL;
 import persistence.EnderecoSQL;
 import persistence.TelefoneSQL;
+import persistence.TipoDeFestaSQL;
 
 /**
  *
@@ -41,6 +44,9 @@ public class ControllerClienteEditar extends HttpServlet {
         ClienteSQL clienteBanco = new ClienteSQL(); //instanciando classe que faz comunicação com o banco de dados
         Cliente cliente = new Cliente();
 
+        ArrayList<TipoDeFesta> listaTipoDeFesta = new ArrayList(); //lista de tipo de festa
+        TipoDeFestaSQL tipoFestaBanco = new TipoDeFestaSQL(); //instancia classe de banco do tipo de festa
+        
         List<Telefone> listaTelefoneCliente = null; //lista de telefone
         TelefoneSQL telefoneBanco = new TelefoneSQL(); //instancia classe de banco do telefone
         
@@ -60,7 +66,19 @@ public class ControllerClienteEditar extends HttpServlet {
             listaEmailCliente = emailBanco.getEmailCliente(idCliente2); //recebendo na lista de EMAIL , todos os email do cliente
             endereco = enderecoBanco.getEnderecoCliente(idCliente2); // recebendo endereco do cliente na variavel endereco
             listaCriancaCliente = criancaBanco.getCrianca(idCliente2); // recebendo na lista todas as crianças do cliente
-
+            
+            //pega todos os tipos de festa do banco
+            listaTipoDeFesta = tipoFestaBanco.getTipoDeFesta();
+            
+            //retira da lista de tipo de festa, o tipo de festa do cliente que está sendo editado
+            for(int i = 0; i < listaTipoDeFesta.size(); i++){
+                //se o elemento atual da lista tem o idTipoDeFesta igual ao do cliente, remove esse tipo de festa da lista
+                if(listaTipoDeFesta.get(i).getIdTipoDeFesta() == cliente.getIdTipoDeFesta()){
+                    listaTipoDeFesta.remove(i);
+                    i = listaTipoDeFesta.size();
+                }
+            }
+            
             //pegando o email do cliente , pq talvez sempre vai ser 1
             Email email = new Email();
             for(int i = 0; i < listaEmailCliente.size(); i++){
@@ -74,6 +92,7 @@ public class ControllerClienteEditar extends HttpServlet {
             request.setAttribute("listaTelefoneCliente", listaTelefoneCliente);
             request.setAttribute("endereco", endereco);
             request.setAttribute("listaCriancaCliente", listaCriancaCliente);
+            request.setAttribute("listaTipoDeFesta", listaTipoDeFesta);
 
             //dispara os atributos setados para outra página
             request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
