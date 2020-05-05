@@ -13,23 +13,23 @@ import java.util.List;
 public class Festa {
 
     private Integer idFesta;
-    private String descricaoFesta;
-    private String dataFesta;
-    private String obs;
-    private int festaStatus;
-    private Enderecos idEnderecos;
-    private Cliente idCliente;
-    private Pacote idPacote;
-    private int qtdCriancas;
-    private int idTipoDeFesta;
-    private float valorTotal;
+    private String descricaoFesta; 
+    private String dataFesta; 
+    private String obs; 
+    private int festaStatus; 
+    private Integer idEnderecos;
+    private Integer idCliente; 
+    private Integer idPacote; 
+    private int qtdCriancas; 
+    private Integer idTipoDeFesta; 
+    private float valorTotal; 
     private float totalDespesa;
-    private float lucroFesta;
-    private float receberContrante ;
+    private float lucroFesta; 
+    private float receberContrante; 
     private List<PagamentoFesta> pagamentofestaList;
     private List<FuncionarioFesta> funcionariofestaList;
     private List<DespesaFesta> despesafestaList;
-    private List<TabelaAgendamentoFesta> tabelaagendamentofestaList;
+    private List<AgendamentoFesta> tabelaagendamentofestaList;
     private List<ValorAdicionalFesta> valoradicionalfestaList;
     private List<HorarioFesta> horariofestaList;
     private List<PacotesAdicionaisFesta> pacotesadicionaisfestaList;
@@ -97,30 +97,6 @@ public class Festa {
         this.funcionariofestaList = funcionariofestaList;
     }
 
-    public Enderecos getIdEnderecos() {
-        return idEnderecos;
-    }
-
-    public void setIdEnderecos(Enderecos idEnderecos) {
-        this.idEnderecos = idEnderecos;
-    }
-
-    public Cliente getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Pacote getIdPacote() {
-        return idPacote;
-    }
-
-    public void setIdPacote(Pacote idPacote) {
-        this.idPacote = idPacote;
-    }
-
     public List<DespesaFesta> getDespesafestaList() {
         return despesafestaList;
     }
@@ -129,11 +105,11 @@ public class Festa {
         this.despesafestaList = despesafestaList;
     }
 
-    public List<TabelaAgendamentoFesta> getTabelaagendamentofestaList() {
+    public List<AgendamentoFesta> getTabelaagendamentofestaList() {
         return tabelaagendamentofestaList;
     }
 
-    public void setTabelaagendamentofestaList(List<TabelaAgendamentoFesta> tabelaagendamentofestaList) {
+    public void setTabelaagendamentofestaList(List<AgendamentoFesta> tabelaagendamentofestaList) {
         this.tabelaagendamentofestaList = tabelaagendamentofestaList;
     }
 
@@ -169,28 +145,12 @@ public class Festa {
         this.festacriancaList = festacriancaList;
     }
 
-    public int getQtdCriancas() {
-        return qtdCriancas;
-    }
-
-    public void setQtdCriancas(int qtdCriancas) {
-        this.qtdCriancas = qtdCriancas;
-    }
-
     public int getFestaStatus() {
         return festaStatus;
     }
 
     public void setFestaStatus(int festaStatus) {
         this.festaStatus = festaStatus;
-    }
-
-    public int getIdTipoDeFesta() {
-        return idTipoDeFesta;
-    }
-
-    public void setIdTipoDeFesta(int idTipoDeFesta) {
-        this.idTipoDeFesta = idTipoDeFesta;
     }
 
     public float getValorTotal() {
@@ -224,6 +184,45 @@ public class Festa {
     public void setReceberContrante(float receberContrante) {
         this.receberContrante = receberContrante;
     }
-    
-    
+
+    public Integer getIdEnderecos() {
+        return idEnderecos;
+    }
+
+    public void setIdEnderecos(Integer idEnderecos) {
+        this.idEnderecos = idEnderecos;
+    }
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Integer getIdPacote() {
+        return idPacote;
+    }
+
+    public void setIdPacote(Integer idPacote) {
+        this.idPacote = idPacote;
+    }
+
+    public int getQtdCriancas() {
+        return qtdCriancas;
+    }
+
+    public void setQtdCriancas(int qtdCriancas) {
+        this.qtdCriancas = qtdCriancas;
+    }
+
+    public Integer getIdTipoDeFesta() {
+        return idTipoDeFesta;
+    }
+
+    public void setIdTipoDeFesta(Integer idTipoDeFesta) {
+        this.idTipoDeFesta = idTipoDeFesta;
+    }
+
 }

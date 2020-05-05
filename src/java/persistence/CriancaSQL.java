@@ -92,7 +92,7 @@ public class CriancaSQL extends Conexao {
             }
         }
     }
-    
+
     public ArrayList<Crianca> getTodasCriancasAtivas() throws Exception {
         try {
             open(); //abre conexão com o banco
@@ -128,7 +128,7 @@ public class CriancaSQL extends Conexao {
             }
         }
     }
-    
+
     public void inativarCadastro(int idCrianca) throws Exception {
 
         open(); //abre conexão com o banco de dados
@@ -153,4 +153,41 @@ public class CriancaSQL extends Conexao {
         close(); // fecha conexão com o banco de dados
     }
 
+    public Crianca getCriancaEspecifica(int idCrianca) throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            
+            Crianca crianca = new Crianca();
+            
+            stmt = con.prepareStatement("SELECT idCrianca, nomeCrianca, sexo, dataNascimento, idCliente FROM crianca WHERE idCrianca = ? AND ativo = 1"); //executa query na base               
+
+            //seta valores para comando sql
+            stmt.setInt(1, idCrianca);
+
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+               
+                //seta valores retornados pelo banco na variavel do tipo crianca
+                crianca.setIdCrianca(resultadoConsulta.getInt("idCrianca"));
+                crianca.setNomeCrianca(resultadoConsulta.getString("nomeCrianca"));
+                crianca.setSexo(resultadoConsulta.getString("sexo"));
+                crianca.setDataNascimento(resultadoConsulta.getString("dataNascimento"));
+                crianca.setIdCliente(resultadoConsulta.getInt("idCliente"));
+
+            }
+            close(); // fecha conexão com o banco
+            return crianca;//retorna a crianca
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
 }

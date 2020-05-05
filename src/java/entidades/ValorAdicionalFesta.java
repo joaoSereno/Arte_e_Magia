@@ -15,7 +15,7 @@ public class ValorAdicionalFesta {
     private Integer idValorAdicionalFesta;
     private String descricao;
     private float valor;
-    private Festa idFesta;
+    private Integer idFesta;
 
     public ValorAdicionalFesta() {
     }
@@ -54,11 +54,11 @@ public class ValorAdicionalFesta {
         this.valor = valor;
     }
 
-    public Festa getIdFesta() {
+    public Integer getIdFesta() {
         return idFesta;
     }
 
-    public void setIdFesta(Festa idFesta) {
+    public void setIdFesta(Integer idFesta) {
         this.idFesta = idFesta;
     }
     

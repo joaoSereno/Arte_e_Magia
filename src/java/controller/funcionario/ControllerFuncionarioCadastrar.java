@@ -8,6 +8,7 @@ package controller.funcionario;
 import entidades.Funcionario;
 import entidades.Telefone;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,13 +27,16 @@ import persistence.TelefoneSQL;
 public class ControllerFuncionarioCadastrar extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
         //pega os valores inseridos no formulario
-        String nomeFuncionario = request.getParameter("nomeFuncionario");
+        String stringNomeFuncionario = request.getParameter("nomeFuncionario");
+        byte array[] = stringNomeFuncionario.getBytes("ISO-8859-1");
+        String nomeFuncionario = new String(array, "UTF-8");
+        
         String sexoFuncionario = request.getParameter("sexoFuncionario");
         String contatoFuncionario = request.getParameter("contato");
         String tipoTelefone = request.getParameter("tipoTelefone");
-
+        
         Funcionario funcionario = new Funcionario();//instanciando funcionario que vai passar como parametro no método do banco que insere
 
         //setando os valores pegos no formulario no funcionariio

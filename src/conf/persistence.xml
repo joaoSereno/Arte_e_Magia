@@ -22,10 +22,10 @@
     <class>entidades.PagamentoAdiantadoFesta</class>
     <class>entidades.PagamentoDespesasDetalhe</class>
     <class>entidades.PagamentoFesta</class>
-    <class>entidades.TabelaAgendamentoFesta</class>
     <class>entidades.TipoDeDespesa</class>
     <class>entidades.TipoPacoteAdicional</class>
     <class>entidades.ValorAdicionalFesta</class>
+    <class>entidades.AgendamentoFesta</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/arteemagia"/>

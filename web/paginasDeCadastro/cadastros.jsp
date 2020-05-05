@@ -1,7 +1,7 @@
-<%--
+<%-- 
     Document   : cadastros
-    Created on : 08/02/2020, 19:30:44
-    Author     : João Pedro
+    Created on : 21/04/2020, 18:53:30
+    Author     : João Sereno
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">        
         <title>Cadastros</title>
         <link rel="shortcut icon" href="../custom/img/favicon.jpg">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -21,9 +20,9 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-        <!-- Customização -->     
-        <link rel="stylesheet" href="../custom/css/paginaDeCadastros/paginaDeCadastros.css">
+        <!-- Customização -->       
         <link rel="stylesheet" href="../custom/css/navBarOnly/navBar.css">
+        <link rel="stylesheet" href="../custom/css/paginaDeCadastros/paginaDeCadastros.css">
     </head>
     <body>
         <!-- NavBar -->
@@ -60,11 +59,25 @@
         </nav>
         <!-- Cards Dos Botões -->
         <div id="card-deck">
+            <!-- CardFestas -->
+            <div class="card cards">
+                <img src="../custom/img/avatares-cards/iconEvento.png" class="car-img-top imagens-cards" alt="Evento">
+                <div class="card-body">
+                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Evento</a>
+                </div>
+            </div>
+            <!-- Card Tipo de Evento -->
+            <div class="card cards">
+                <img src="../custom/img/avatares-cards/iconTipoDeFesta.png" class="car-img-top imagens-cards" alt="Tipo de Evento">
+                <div class="card-body">
+                    <a href="cadastroTipoDeFesta/tipoDeFestaPrincipal.jsp" class="btn botoes-card">Tipo de Evento</a>
+                </div>
+            </div>            
             <!-- CardCliente -->
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconCliente.png" class="card-img-top imagens-cards" alt="Cliente">
                 <div class="card-body">
-                   <a href="cadastroDeClientes/clientePrincipal.jsp" class="btn botoes-card">Cliente</a>
+                    <a href="cadastroDeClientes/clientePrincipal.jsp" class="btn botoes-card">Cliente</a>
                 </div>
             </div>
             <!-- CardFuncionários -->
@@ -74,25 +87,11 @@
                     <a href="cadastroDeFuncionario/funcionarioCadastrar.jsp" class="btn botoes-card">Funcionário</a>
                 </div>
             </div>
-            <!-- CardFestas -->
-            <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFesta.png" class="car-img-top imagens-cards" alt="Evento">
-                <div class="card-body">
-                    <a href="cadastroDeFesta/festaPrincipal.jsp" type="button" class="btn botoes-card">Evento</a>
-                </div>
-            </div>
             <!-- Card FormaPgto -->
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconFP.png" class="car-img-top imagens-cards" alt="Forma de pagamento">
                 <div class="card-body">
-                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Forma de pagamento</a>
-                </div>
-            </div>
-            <!-- Card Tipo de Evento -->
-            <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFP.png" class="car-img-top imagens-cards" alt="Tipo de Evento">
-                <div class="card-body">
-                    <a href="cadastroTipoDeFesta/tipoDeFestaPrincipal.jsp" class="btn botoes-card">Tipo de Evento</a>
+                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Tipo de Pagamento</a>
                 </div>
             </div>
         </div>
@@ -101,7 +100,7 @@
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconTipoDespesa.png" class="car-img-top imagens-cards" alt="Tipo Despesas">
                 <div class="card-body">
-                    <a href="cadastroTipoDespesa/tipoDespesaPrincipal.jsp" type="button" class="btn botoes-card">Tipo de despesa</a>
+                    <a href="cadastroTipoDespesa/tipoDespesaPrincipal.jsp" type="button" class="btn botoes-card">Tipo de Despesa</a>
                 </div>
             </div>            
             <!--CardDespesas -->
@@ -120,16 +119,16 @@
             </div>
             <!-- Card Pacotes Adicionais-->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconPacote.png" class="car-img-top imagens-cards" alt="Pacote Adicionais">
+                <img src="../custom/img/avatares-cards/iconPacoteAdd.png" class="car-img-top imagens-cards" alt="Pacote Adicionais">
                 <div class="card-body">
                     <a href="cadastroPacoteAdicional/pacoteAdicionalPrincipal.jsp" type="button" class="btn botoes-card">Adicional no Pacote</a>
                 </div>
-            </div>
+            </div>            
             <!-- CardContaAcesso -->
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/iconContaUsuario.png" class="car-img-top imagens-cards" alt="Conta Acesso">
                 <div class="card-body">
-                    <a href="cadastroDeUsuario/usuarioCadastrar.jsp" type="button "class="btn botoes-card">Conta de acesso</a>
+                    <a href="cadastroDeUsuario/usuarioCadastrar.jsp" type="button "class="btn botoes-card">Conta de Acesso</a>
                 </div>
             </div>
         </div>

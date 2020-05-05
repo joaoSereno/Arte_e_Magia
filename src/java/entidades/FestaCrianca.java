@@ -12,8 +12,8 @@ package entidades;
 public class FestaCrianca {
 
     private Integer idFestaCrianca;
-    private Crianca idCrianca;
-    private Festa idFesta;
+    private Integer idCrianca;
+    private Integer idFesta;
 
     public FestaCrianca() {
     }
@@ -30,20 +30,21 @@ public class FestaCrianca {
         this.idFestaCrianca = idFestaCrianca;
     }
 
-    public Crianca getIdCrianca() {
+    public Integer getIdCrianca() {
         return idCrianca;
     }
 
-    public void setIdCrianca(Crianca idCrianca) {
+    public void setIdCrianca(Integer idCrianca) {
         this.idCrianca = idCrianca;
     }
 
-    public Festa getIdFesta() {
+    public Integer getIdFesta() {
         return idFesta;
     }
 
-    public void setIdFesta(Festa idFesta) {
+    public void setIdFesta(Integer idFesta) {
         this.idFesta = idFesta;
     }
+
  
 }

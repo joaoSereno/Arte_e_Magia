@@ -1450,9 +1450,138 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         
         //verifica se adicionou pelo menos 1 despesa
         if(qtdDespesa == 0){
-            msgTratamentoEtapa6.textContent = "Não foi possível seguir para a 7º Etapa! É obrigatório adicionar no mínimo uma despesa. =)";
+            
+            //COMEÇO DEFINIÇÃO DO TEXTO DE CONFIRMAÇÃO DA ULTIMA ETAPA
+            //recebe o elemento html que está as inf das despesas e apaga tudo, pois vai ser montado novamente
+            var confirmacaoInfDespesas = document.querySelector("#despesasInf");
+            confirmacaoInfDespesas.innerHTML = ""; 
+
+            //variaveis utilizadas para montagem do texto
+            var textoParagrafoDespesa = "";
+
+           //cria um elento inpunt <h6>
+            var paragrafoDespesa = document.createElement("h6");
+
+            //define os atributos desse elemento
+            paragrafoDespesa.id = "h6Despesa";
+            paragrafoDespesa.class = "card-title";
+
+            //define o texto dentro do paragrafo
+            paragrafoDespesa.textContent = "Evento não possui despesas.";
+
+            //adicona o <p> criado na informação das despesas na ultima etapa
+            confirmacaoInfDespesas.appendChild(paragrafoDespesa);                        
+            
+            //COMEÇO DO CALCULO DOS VALORES
+            //VALOR TOTAL FESTA            
+            //calcula o valor total dos pacotes adicionais
+            var valorPacotesAdd = 0;
+            listaPacoteAddValores.forEach((valorAtual) => {
+                valorPacotesAdd = parseFloat(valorPacotesAdd) + parseFloat(valorAtual);
+            });
+                 
+            //calcula o valor total dos valores adicionais
+            var valorValoresAdicionais = 0;
+            listaValoresAddValores.forEach((valorAtual) => {
+                valorValoresAdicionais = parseFloat(valorValoresAdicionais) + parseFloat(valorAtual);
+            });            
+            
+            //resultado = pacotes adicionais + valores adicionais + pacote
+            valorTotalFesta = parseFloat(valorPacotesAdd) + parseFloat(valorValoresAdicionais) + parseFloat(valorPacote);
+
+            //VALOR TOTAL DESPESA          
+            //calcula o valor de despesa de funcionario
+            var valorTotalPagamentoFunc = 0;
+            listaFuncionarioValores.forEach((valorAtual) => {
+                valorTotalPagamentoFunc = parseFloat(valorTotalPagamentoFunc) + parseFloat(valorAtual);
+            });
+            
+            //resultado = funcionario
+            var valorTotalDespesa = 0;
+            valorTotalDespesa = parseFloat(valorTotalPagamentoFunc);
+            
+            //LUCRO
+            //resultado = valor total - valor total despesa
+            valorLucro = parseFloat(valorTotalFesta) - parseFloat(valorTotalDespesa);
+            
+            //arredonda os valores para 2 casas depois da virgula
+            valorTotalFesta = parseFloat(valorTotalFesta.toFixed(2));
+            valorTotalDespesa = parseFloat(valorTotalDespesa.toFixed(2));
+            valorLucro = parseFloat(valorLucro.toFixed(2));
+            
+            //salva o valorTotalFesta em uma variavel auxiliar utilizada na próxima etapa
+            if(countPrimeiraVezAdd == 0){
+                valorTotalFestaLocal = valorTotalFesta;                
+                valorTotalFestaLocalAnterior = valorTotalFesta;                
+            }else{
+               //subtrai do valor total anterior oque sobrou do valor total festa
+               valorTotalFestaLocalAnterior = valorTotalFestaLocalAnterior - valorTotalFestaLocal;
+               
+               //define o novo valor total local, subtraindo o valor total festa - valor anterior
+               valorTotalFestaLocal = valorTotalFesta - valorTotalFestaLocalAnterior;
+               
+               valorTotalFestaLocalAnterior = valorTotalFesta;
+            }
+            //FIM DO CALCULO DOS VALORES 
+            
+            //DEFINIÇÃO DO TEXTO DA PRÓXIMA ETAPA
+            //valor total
+            var valorTotalProximaEtapa = document.querySelector("#valorTotal");
+            valorTotalProximaEtapa.textContent = "Valor Total: R$"+valorTotalFesta;  
+            
+            //valor total despesa
+            var valorTotalDespesaProximaEtapa = document.querySelector("#totalDespesas");
+            valorTotalDespesaProximaEtapa.textContent = "Total de despesas: R$"+valorTotalDespesa;  
+            
+            //valor lucro
+            var valorLucroProximaEtapa = document.querySelector("#lucro");
+            valorLucroProximaEtapa.textContent = "Lucro do Evento: R$"+valorLucro;  
+            //FIM DA DEFINIÇÃO DO TEXTO DA PRÓXIMA ETAPA
+            
+            //DEFINIÇÃO DO TEXTO PARA A ULTIMA ETAPA (CONFIRMAÇÃO)
+            //recebe o elemento html da ultima etapa (confirmação) e salva em uma variavel 
+            var confirmacaoInfValoresFinais = document.querySelector("#valoresFinalInf");
+            confirmacaoInfValoresFinais.innerHTML = ""; //limpa seu conteudo
+            
+            //zera a varivel porque vai apagar o h6
+            criouPegarContratante = 0;
+            
+            //cria os elementos <h6> para todos os valores
+            var paragrafoValorTotal = document.createElement("h6");
+            var paragrafoValorTotalDespesa = document.createElement("h6");
+            var paragrafoValorLucro = document.createElement("h6");
+
+            //define o atributo
+            paragrafoValorTotal.class = "card-title";     
+            paragrafoValorTotalDespesa.class = "card-title"; 
+            paragrafoValorLucro.class = "card-title";     
+            
+            //define o texto
+            paragrafoValorTotal.textContent = "Valor Total: R$"+valorTotalFesta;    
+            paragrafoValorTotalDespesa.textContent = "Total de despesas: R$"+valorTotalDespesa;  
+            paragrafoValorLucro.textContent = "Lucro do Evento: R$"+valorLucro;  
+            
+            //coloca os <p> criados dentro do elemento html da etapa de confirmação
+            confirmacaoInfValoresFinais.appendChild(paragrafoValorTotal);
+            confirmacaoInfValoresFinais.appendChild(paragrafoValorTotalDespesa);
+            confirmacaoInfValoresFinais.appendChild(paragrafoValorLucro);
+            //FIM DEFINIÇÃO DO TEXTO PARA A ULTIMA ETAPA (CONFIRMAÇÃO)
+            
+            //DEFINIÇÃO DOS VALORES DO INPUTS DO CADASTRO DE FESTA
+            document.getElementById('valorTotalFesta').value = valorTotalFesta;
+            document.getElementById('valorTotalDespesa').value = valorTotalDespesa;
+            document.getElementById('valorTotalLucro').value = valorLucro;
+            //FIM DEFINIÇÃO DOS VALORES DO INPUTS DO CADASTRO DE FESTA
+          
+            //recebendo H3 e setando nela o texto com o nome do cliente
+            var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
+            tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+            
+            document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
+            document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
+            
         }else{   
-                        
+
             //COMEÇO DO CALCULO DOS VALORES
             //VALOR TOTAL FESTA            
             //calcula o valor total dos pacotes adicionais

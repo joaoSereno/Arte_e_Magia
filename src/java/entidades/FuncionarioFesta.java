@@ -14,9 +14,9 @@ package entidades;
 public class FuncionarioFesta {
 
     private Integer idFuncionarioFesta;
-    private Funcionario idFuncionario;
+    private Integer idFuncionario;
     private float cacheFesta;
-    private Festa idFesta;
+    private Integer idFesta;
 
     public FuncionarioFesta() {
     }
@@ -33,28 +33,28 @@ public class FuncionarioFesta {
         this.idFuncionarioFesta = idFuncionarioFesta;
     }
 
-    public Funcionario getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public void setIdFuncionario(Funcionario idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
-
-    public Festa getIdFesta() {
-        return idFesta;
-    }
-
-    public void setIdFesta(Festa idFesta) {
-        this.idFesta = idFesta;
-    }
-
     public float getCacheFesta() {
         return cacheFesta;
     }
 
     public void setCacheFesta(float cacheFesta) {
         this.cacheFesta = cacheFesta;
+    }
+
+    public Integer getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+
+    public Integer getIdFesta() {
+        return idFesta;
+    }
+
+    public void setIdFesta(Integer idFesta) {
+        this.idFesta = idFesta;
     }
     
 }

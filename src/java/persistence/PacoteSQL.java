@@ -93,5 +93,37 @@ public class PacoteSQL extends Conexao {
         stmt.execute(); // executa update no banco de dados
         close(); // fecha conexão com o banco de dados
     }
-    
+
+    public Pacote getPacoteEspecifico(int idPacote) throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            Pacote pacote = new Pacote();
+
+            stmt = con.prepareStatement("SELECT idPacote, nomePacote, valorPacoteVenda FROM pacote WHERE idPacote = ?"); //executa query na base               
+            stmt.setInt(1, idPacote); //seta idTipoDeFesta no ?
+            
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) { 
+               
+                //seta valores retornados pelo banco na variavel do tipo pacote
+                pacote.setIdPacote(resultadoConsulta.getInt("idPacote"));
+                pacote.setNomePacote(resultadoConsulta.getString("nomePacote"));
+                pacote.setValorPacoteVenda(resultadoConsulta.getFloat("valorPacoteVenda"));
+
+            }
+            close(); // fecha conexão com o banco
+            return pacote;//retorn de forma de pagamento para onde foi chamado
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }    
 }

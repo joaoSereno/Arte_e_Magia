@@ -10,9 +10,11 @@ package entidades;
  *
  * @author João Pedro
  */
-public class TabelaAgendamentoFesta {
+public class AgendamentoFesta {
 
     private Integer idTabelaAgendamentoFesta;
+    private String descricaoFesta;
+    private String dataEvento;
     private String contratante;
     private String aniversariante;
     private String tipoDeFesta;
@@ -20,16 +22,16 @@ public class TabelaAgendamentoFesta {
     private String cacheFuncionarios;
     private String horarios;
     private String pacote;
-    private int qtdCriancas;
+    private String qtdCriancas;
     private String pacotesAdicionais;
     private String valorPegarContratante;
     private String observacaoFesta;
-    private Festa idFesta;
+    private Integer idFesta;
 
-    public TabelaAgendamentoFesta() {
+    public AgendamentoFesta() {
     }
 
-    public TabelaAgendamentoFesta(Integer idTabelaAgendamentoFesta) {
+    public AgendamentoFesta(Integer idTabelaAgendamentoFesta) {
         this.idTabelaAgendamentoFesta = idTabelaAgendamentoFesta;
     }
 
@@ -121,21 +123,36 @@ public class TabelaAgendamentoFesta {
         this.observacaoFesta = observacaoFesta;
     }
 
-    public Festa getIdFesta() {
-        return idFesta;
-    }
-
-    public void setIdFesta(Festa idFesta) {
-        this.idFesta = idFesta;
-    }
-
-    public int getQtdCriancas() {
+    public String getQtdCriancas() {
         return qtdCriancas;
     }
 
-    public void setQtdCriancas(int qtdCriancas) {
+    public void setQtdCriancas(String qtdCriancas) {
         this.qtdCriancas = qtdCriancas;
     }
 
+    public Integer getIdFesta() {
+        return idFesta;
+    }
+
+    public void setIdFesta(Integer idFesta) {
+        this.idFesta = idFesta;
+    }
+
+    public String getDescricaoFesta() {
+        return descricaoFesta;
+    }
+
+    public void setDescricaoFesta(String descricaoFesta) {
+        this.descricaoFesta = descricaoFesta;
+    }
+
+    public String getDataEvento() {
+        return dataEvento;
+    }
+
+    public void setDataEvento(String dataEvento) {
+        this.dataEvento = dataEvento;
+    }
     
 }

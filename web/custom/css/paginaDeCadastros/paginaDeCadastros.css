@@ -3,13 +3,17 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/*
-    Created on : 15/03/2020, 13:48:13
-    Author     : João Pedro
+/* 
+    Created on : 21/04/2020, 18:56:35
+    Author     : João Sereno
 */
 
 body {
     background-color: #ccd4b82b;
+}
+
+body, label, button, a {
+    font-family: 'Poppins', sans-serif;
 }
 
 #card-deck {
@@ -21,12 +25,9 @@ body {
     display: flex;
 }
 
-
 .imagens-cards {
-    width: 100%;
-    margin: auto;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    width: 80%;
+    margin: 10px auto;
 }
 
 .cards {
@@ -49,4 +50,3 @@ body {
 .botoes-card:hover{
     background-color: #0099c5e0 !important;
 }
-

@@ -125,5 +125,34 @@ public class EnderecoSQL extends Conexao {
         
         close(); // fecha conexão com o banco de dados
         
-    } 
+    }
+    
+    public int getUltimoIdEndereco() throws Exception {
+        
+        try {
+            open(); //abre conexão com o banco
+            int idEndereco = 0; //idEndereco de retorno
+
+            stmt = con.prepareStatement("SELECT idEnderecos FROM enderecos ORDER BY 1 DESC LIMIT 1"); //executa query na base
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) {
+                idEndereco = resultadoConsulta.getInt("idEnderecos");
+            }
+            
+            close(); // fecha conexão com o banco
+            return idEndereco;//retorna idEndereco para onde foi chamado
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }        
+    }
+    
 }

@@ -17,10 +17,10 @@ public class DespesaFesta  {
     private float valorDespesa;
     private int isFuncionariaPag;
     private int status;
-    private Integer idFormaPagamento;
-    private Integer idTipoDeDespesa;
+    private Integer idFormaPagamento; 
+    private Integer idTipoDeDespesa; 
     private Integer idFesta;
-    private Integer idFuncionario;
+    private Integer idFuncionario; 
     private String origem;
         
     public DespesaFesta() {

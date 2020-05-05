@@ -63,5 +63,8 @@
             <button class="btn btn-primary" type="submit">Cadastrar de evento</button>        
         </form>
         <br>
+        <div>
+            <h5>${msgConfirmaçãoFesta}</h5>
+        </div>
     </body>
 </html>

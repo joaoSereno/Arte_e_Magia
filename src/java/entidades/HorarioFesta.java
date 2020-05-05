@@ -14,7 +14,7 @@ public class HorarioFesta{
     private Integer idHorarioFesta;
     private String horario;
     private String descricao;
-    private Festa idFesta;
+    private Integer idFesta;
 
     public HorarioFesta() {
     }
@@ -52,12 +52,12 @@ public class HorarioFesta{
         this.descricao = descricao;
     }
 
-    public Festa getIdFesta() {
+    public Integer getIdFesta() {
         return idFesta;
     }
 
-    public void setIdFesta(Festa idFesta) {
+    public void setIdFesta(Integer idFesta) {
         this.idFesta = idFesta;
     }
-    
+
 }
