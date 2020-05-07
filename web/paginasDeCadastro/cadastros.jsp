@@ -33,25 +33,25 @@
                 <ul class="navbar-nav ml-auto mb-0">
                     <!-- Botão página inicial -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link labelNav" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>Página Inicial</a>
+                        <a class="nav-link labelNav" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>&nbsp;Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="cadastros.jsp"><i class="far fa-address-book"></i>Cadastros</a>
+                        <a class="nav-link" href="cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
                     </li>
                     <!-- Config aniversariante -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>Relatórios</a>
+                        <a class="nav-link" href="../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
                     </li>
                     <!-- Botão relatorios -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>Configuração</a>                        
+                        <a class="nav-link" href="configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>Sair</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>&nbsp;Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->

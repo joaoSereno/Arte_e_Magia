@@ -1,7 +1,7 @@
-<%--
-    Document   : relatorios
-    Created on : 08/02/2020, 20:06:13
-    Author     : João Pedro
+<%-- 
+    Document   : relatorios2
+    Created on : 21/04/2020, 14:40:54
+    Author     : joseh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,12 +21,12 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-        <!-- Customização -->  
+        <!-- Customização -->       
         <link rel="stylesheet" href="../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../custom/css/paginaDeRelatorios/paginaDeRelatorios.css">
     </head>
     <body>
-        <!-- NavBar -->
+       <!-- NavBar -->
         <nav class="navbar navbar-expand-lg navbar-light navbar-css">
             <img src="../custom/img/logoFundoLogin.png" id="logo-navbar">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon navbar-light"></span></button>
@@ -34,25 +34,25 @@
                 <ul class="navbar-nav ml-auto mb-0">
                     <!-- Botão página inicial -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link labelNav" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>Página Inicial</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>&nbsp;Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../paginasDeCadastro/cadastros.jsp"><i class="far fa-address-book"></i>Cadastros</a>
+                        <a class="nav-link" href="../paginasDeCadastro/cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
                     </li>
                     <!-- Config aniversariante -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="relatorios.jsp"><i class="far fa-clipboard"></i>Relatórios</a>
-                    </li>
+                        <a class="nav-link" href="relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
+                    </li>                    
                     <!-- Botão relatorios -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../paginasDeCadastro/configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>Configuração</a>                        
+                        <a class="nav-link" href="../paginasDeCadastro/configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>Sair</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>&nbsp;Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->
@@ -60,32 +60,39 @@
         </nav>
         <!-- Cards Dos Botões -->
         <div id="card-deck">
+            <!-- Card Evento  -->
+            <div class="card cards">
+                <img src="../custom/img/avatares-cards/relatorioEvento.png" class="car-img-top imagens-cards" alt="Evento">
+                <div class="card-body">
+                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Evento</a>
+                </div>
+            </div>
             <!-- CardCliente -->
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioAni.png" class="card-img-top imagens-cards" alt="Aniversariante">
                 <div class="card-body">
-                    <a href="cadastroDeClientes/clienteCadastrar.jsp" class="btn botoes-card">Relatório - Aniversariante</a>
+                    <a href="cadastroDeClientes/clienteCadastrar.jsp" class="btn botoes-card">Aniversariante</a>
                 </div>
             </div>
             <!-- CardFuncionários -->
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioTD.png" class="card-img-top imagens-cards" alt="Tipo de Despesa" >
                 <div class="card-body">
-                    <a href="cadastroDeFuncionario/funcionarioCadastrar.jsp" class="btn botoes-card">Relatório - Tipo de Despesa</a>
+                    <a href="cadastroDeFuncionario/funcionarioCadastrar.jsp" class="btn botoes-card">Tipo de Despesa</a>
                 </div>
             </div>
             <!-- CardFestas -->
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Festa">
                 <div class="card-body">
-                    <a href="cadastroDeFesta/clientePrincipal.jsp" type="button" class="btn botoes-card">Relatório - Funcionário</a>
+                    <a href="cadastroDeFesta/clientePrincipal.jsp" type="button" class="btn botoes-card">Funcionário</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioPacote.png" class="car-img-top imagens-cards" alt="Forma de pagamento">
                 <div class="card-body">
-                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Relatório - Pacote</a>
+                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Pacote</a>
                 </div>
             </div>
         </div>
