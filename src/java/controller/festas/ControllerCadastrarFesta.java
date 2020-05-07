@@ -359,6 +359,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
             if (qtdCrianca2 != 0) {
                 //variavel do texto de agendamento de festa
                 String aniversariantesAF = "";
+                int countTexto = 0;
 
                 //instancia classe de comunicação com o banco de dados
                 FestaCriancaSQL festaCriancaBanco = new FestaCriancaSQL();
@@ -395,7 +396,12 @@ public class ControllerCadastrarFesta extends HttpServlet {
                                 crianca = criancaBanco.getCriancaEspecifica(idCrianca2);
 
                                 //define o texto agendamento de festa
-                                aniversariantesAF = aniversariantesAF + "Aniversariante: " + crianca.getNomeCrianca() + "\n";
+                                if(countTexto == 0){
+                                    countTexto++;
+                                    aniversariantesAF = aniversariantesAF + "Aniversariante: " + crianca.getNomeCrianca();
+                                }else{
+                                    aniversariantesAF = aniversariantesAF + " & " + crianca.getNomeCrianca();
+                                }
 
                             }
 
@@ -528,6 +534,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
 
                 //string que vai o texto do agendamento
                 String pacoteAdicionalAF = "";
+                int countText = 0;
 
                 //instancia a classe de comunicação com o banco de dados do pacote adicional
                 PacoteAdicionalSQL pacoteAdicionalBanco = new PacoteAdicionalSQL();
@@ -569,7 +576,12 @@ public class ControllerCadastrarFesta extends HttpServlet {
                                 pacoteAdicional = pacoteAdicionalBanco.getTipoPacoteAdicionalEspecifico(idPacoteAdicional2);
 
                                 //monta o texto do agendamento
-                                pacoteAdicionalAF = pacoteAdicionalAF + "Adicionais no Pacote: " + pacoteAdicional.getDescricaoPacoteAdd() + "\n";
+                                if(countText == 0){
+                                    countText++;
+                                    pacoteAdicionalAF = pacoteAdicionalAF + "Adicionais no Pacote: " + pacoteAdicional.getDescricaoPacoteAdd();
+                                }else{
+                                    pacoteAdicionalAF = pacoteAdicionalAF + " & " + pacoteAdicional.getDescricaoPacoteAdd();
+                                }
 
                             }
                         }

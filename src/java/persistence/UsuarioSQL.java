@@ -7,6 +7,7 @@ package persistence;
 
 import configConexao.Conexao;
 import entidades.Usuario;
+import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -70,9 +71,20 @@ public class UsuarioSQL extends Conexao {
         Usuario usuarioEncontrado = new Usuario(); //cria uma variavel do tipo USUARIO
 
         usuarioEncontrado = null;
+        
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
+
+        StringBuilder sb = new StringBuilder();
+
+        for (byte b : messageDigest) {
+            sb.append(String.format("%02X", 0xFF & b));
+        }
+
+        String senhaSegura = sb.toString();        
 
         for (int i = 0; i < listaUsuario.size(); i++) {//loop para verificar se o usuario e senha tem no banco
-            if (listaUsuario.get(i).getUsuario().equals(usuario) && listaUsuario.get(i).getSenha().equals(senha)) {//verifica o usuário e verifica a senha se é igual aos do parametros
+            if (listaUsuario.get(i).getUsuario().equals(usuario) && listaUsuario.get(i).getSenha().equals(senhaSegura)) {//verifica o usuário e verifica a senha se é igual aos do parametros
                 usuarioEncontrado = listaUsuario.get(i); //recebe o funcionario na variavel usuarioEncontrado e retorna para aonde chamo a função
                 break;//para o loop
             }
@@ -84,6 +96,19 @@ public class UsuarioSQL extends Conexao {
 
         open(); //abre conexão com o banco de dados
 
+        String senha = usuario.getSenha();
+
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
+
+        StringBuilder sb = new StringBuilder();
+
+        for (byte b : messageDigest) {
+            sb.append(String.format("%02X", 0xFF & b));
+        }
+
+        String senhaSegura = sb.toString();
+
         if (usuario.getIdFuncionario() != null) { //se for != null é cadastro do tipo FUNC
 
             //define comando para o banco de dados
@@ -91,7 +116,7 @@ public class UsuarioSQL extends Conexao {
 
             //atribui os valores das marcações do comando acima 
             stmt.setString(1, usuario.getUsuario());
-            stmt.setString(2, usuario.getSenha());
+            stmt.setString(2, senhaSegura);
             stmt.setInt(3, 1);
             stmt.setInt(4, 2); // 2 = FUNC
             stmt.setInt(5, usuario.getIdFuncionario());
@@ -104,7 +129,7 @@ public class UsuarioSQL extends Conexao {
 
             //atribui os valores das marcações do comando acima 
             stmt.setString(1, usuario.getUsuario());
-            stmt.setString(2, usuario.getSenha());
+            stmt.setString(2, senhaSegura);
             stmt.setInt(3, 1);
             stmt.setInt(4, 1); // 1 = ADM
             stmt.setString(5, usuario.getNomeUsuario());
@@ -127,7 +152,7 @@ public class UsuarioSQL extends Conexao {
         stmt.execute(); // executa update no banco de dados
         close(); // fecha conexão com o banco de dados
     }
-    
+
     public void inativaUsuarioDeFuncionario(int idFuncionario) throws Exception {
 
         open(); //abre conexão com o banco de dados
@@ -212,15 +237,26 @@ public class UsuarioSQL extends Conexao {
 
         open(); //abre conexão com o banco de dados
 
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
+
+        StringBuilder sb = new StringBuilder();
+
+        for (byte b : messageDigest) {
+            sb.append(String.format("%02X", 0xFF & b));
+        }
+
+        String senhaSegura = sb.toString();
+
         stmt = con.prepareStatement("UPDATE usuario SET senha = ? WHERE idusuario = ?");
 
         //setando valores do update
-        stmt.setString(1, senha);
+        stmt.setString(1, senhaSegura);
         stmt.setInt(2, idUsuario);
 
         stmt.execute(); // executa update no banco de dados
         close(); // fecha conexão com o banco de dados
-        
+
     }
 
 }

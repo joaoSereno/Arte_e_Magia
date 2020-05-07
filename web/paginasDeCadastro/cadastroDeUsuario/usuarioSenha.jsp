@@ -53,7 +53,7 @@
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp">&nbsp;Sair</a>
+                        <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>&nbsp;Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->
