@@ -62,37 +62,37 @@
         <div id="card-deck">
             <!-- Card Evento  -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioEvento.png" class="car-img-top imagens-cards" alt="Evento">
+                <img src="../custom/img/avatares-cards/relatorioEvento.png" class="car-img-top imagens-cards" alt="Eventos">
                 <div class="card-body">
-                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Evento</a>
+                    <a href="relatorioEvento/eventoFiltroRel.jsp" class="btn botoes-card">Eventos</a>
                 </div>
             </div>
             <!-- CardCliente -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioAni.png" class="card-img-top imagens-cards" alt="Aniversariante">
+                <img src="../custom/img/avatares-cards/relatorioAni.png" class="card-img-top imagens-cards" alt="Aniversariantes">
                 <div class="card-body">
-                    <a href="cadastroDeClientes/clienteCadastrar.jsp" class="btn botoes-card">Aniversariante</a>
+                    <a href="relatorioAniversariante/aniversarianteFiltroRel.jsp" class="btn botoes-card">Aniversariantes</a>
                 </div>
             </div>
             <!-- CardFuncionários -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioTD.png" class="card-img-top imagens-cards" alt="Tipo de Despesa" >
+                <img src="../custom/img/avatares-cards/relatorioTD.png" class="card-img-top imagens-cards" alt="Tipos de Despesa" >
                 <div class="card-body">
-                    <a href="cadastroDeFuncionario/funcionarioCadastrar.jsp" class="btn botoes-card">Tipo de Despesa</a>
+                    <a href="relatorioTipoDespesa/tipoDespesaFiltroRel.jsp" class="btn botoes-card">Tipos de Despesa</a>
                 </div>
             </div>
             <!-- CardFestas -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Festa">
+                <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Funcionários">
                 <div class="card-body">
-                    <a href="cadastroDeFesta/clientePrincipal.jsp" type="button" class="btn botoes-card">Funcionário</a>
+                    <a href="relatorioFuncionario/funcionarioFiltroRel.jsp" type="button" class="btn botoes-card">Funcionários</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioPacote.png" class="car-img-top imagens-cards" alt="Forma de pagamento">
+                <img src="../custom/img/avatares-cards/relatorioPacote.png" class="car-img-top imagens-cards" alt="Pacotes">
                 <div class="card-body">
-                    <a href="cadastroTipoPagamento/tipoPagamentoPrincipal.jsp" class="btn botoes-card">Pacote</a>
+                    <a href="relatorioPacote/pacoteFiltroRel.jsp" class="btn botoes-card">Pacotes</a>
                 </div>
             </div>
         </div>

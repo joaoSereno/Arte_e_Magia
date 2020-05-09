@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.CriancaSQL;
+import util.Conversor;
 
 /**
  *
@@ -26,6 +27,7 @@ public class ControllerCriancaCadastrarOuEditar2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idCrianca2 = 0;
+        Conversor conversorData = new Conversor();
 
         //pegando os valores do usuario digitados no front
         String idCrianca = request.getParameter("idCrianca");
@@ -35,6 +37,9 @@ public class ControllerCriancaCadastrarOuEditar2 extends HttpServlet {
 
         String nomeCrianca = request.getParameter("nomeCrianca");
         String dataNascimento = request.getParameter("dataNascimento");
+        //converte para o formato correto a data
+        String dataNascimento2 = conversorData.formatarData(dataNascimento);
+        
         String sexoCrianca = request.getParameter("sexoCrianca");
 
         String idCliente = request.getParameter("idCliente");
@@ -47,7 +52,7 @@ public class ControllerCriancaCadastrarOuEditar2 extends HttpServlet {
             crianca.setIdCrianca(idCrianca2);
         }
         crianca.setNomeCrianca(nomeCrianca);
-        crianca.setDataNascimento(dataNascimento);
+        crianca.setDataNascimento(dataNascimento2);
         crianca.setSexo(sexoCrianca);
         crianca.setIdCliente(idCliente2);
 

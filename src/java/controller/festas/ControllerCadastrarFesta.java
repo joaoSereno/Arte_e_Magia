@@ -50,7 +50,7 @@ import persistence.PacotesAdicionaisFestaSQL;
 import persistence.PagamentoFestaSQL;
 import persistence.TipoDeFestaSQL;
 import persistence.ValorAdicionalFestaSQL;
-import util.ConversorString;
+import util.Conversor;
 
 @WebServlet("/paginasDeCadastro/cadastroDeFesta/cadastrarFesta")
 public class ControllerCadastrarFesta extends HttpServlet {
@@ -58,7 +58,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //classe de conversão de string
-        ConversorString conversorString = new ConversorString();
+        Conversor conversorString = new Conversor();
         //entidade que representa a tabela agendamentoFesta
         AgendamentoFesta agendamentoFesta = new AgendamentoFesta();
         //entidade que representa a tabela festa
@@ -285,7 +285,11 @@ public class ControllerCadastrarFesta extends HttpServlet {
 
             //DATA DA FESTA
             String dataFesta = request.getParameter("dataFestaF");
-            festa.setDataFesta(dataFesta); //seta na festa
+            //converte a data da festa para o formato correto
+            dataFesta = conversorString.formatarData(dataFesta);
+            //seta na festa
+            festa.setDataFesta(dataFesta); 
+            
             //verifica se é necessario agendamento
             if (festa.getFestaStatus() == 0) {
                 agendamentoFesta.setDataEvento("Data do Evento: " + dataFesta); //seta no agendamento de festa

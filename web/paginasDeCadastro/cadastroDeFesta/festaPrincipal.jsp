@@ -1,11 +1,12 @@
 <%-- 
-    Document   : festaCadastrar3
+    Document   : festaPrincipal
     Created on : 11/04/2020, 15:33:38
     Author     : João Pedro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->   
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
-        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/festaCadastrar3.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFesta/festaPrincipal.css">
     </head>
     <body>
         <!-- NavBar -->
@@ -59,6 +60,53 @@
             </div>
         </nav>
         <h3>Tela Principal Festa</h3>
+        <form method="GET" action="listarFesta">
+            Status do Evento:
+            <select name="statusEvento">
+                <option value="1">Somente não realizados</option>
+                <option value="2">Somente realizados</option>
+                <option value="3">Todos</option>
+            </select>
+            Período do Evento:
+            <input type="text" name="periodoEvento">
+            à
+            <input type="text" name="periodoEvento2">
+            <button type="submit">Listar</button>
+        </form>
+        <br>
+        <div id="divMsgEvento" style="display: none">
+            ${msgQtdEvento}
+            <input type="hidden" id="controllerMsgEvento" value="${controllerMsgEvento}">
+        </div>
+        <!-- div de listagem evento-->
+        <div id="divListagemEvento" style="display: none">
+            <input type="hidden" id="controllerListagemEvento" value="${controllerListagemEvento}">
+            <table id="tabela" class="table table-secondary">
+                <thead> 
+                    <tr>
+                        <th scope="col">Descrição do Evento</th>
+                        <th scope="col">Data do Evento</th>
+                        <th scope="col">Evento realizado?</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <c:forEach items="${listaEvento}" var="item"> 
+                        <tr>
+                            <td>${item.descricaoFesta}</td>
+                            <td>${item.dataFesta}</td>
+                            <td>${item.festaStatus}</td>
+                            <!-- botão/form para editar registro cliente --> 
+                            <td>
+                                <form method="GET" action="edicaoEvento">
+                                    <input type="hidden" name="idFesta" value="${item.idFesta}">
+                                    <button class="btn btn-warning"> + </button>
+                                </form> 
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>              
         <form method="GET" action="preCadastroFesta">
             <button class="btn btn-primary" type="submit">Cadastrar de evento</button>        
         </form>
@@ -66,5 +114,9 @@
         <div>
             <h5>${msgConfirmaçãoFesta}</h5>
         </div>
+        <br>
+        <a  class="btn btn-primary" href="../cadastros.jsp">Voltar</a> 
+        <br>        
     </body>
+    <script src="../../javascripts/cadastroDeFesta/festaPrincipal.js"></script>
 </html>

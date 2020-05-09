@@ -1,17 +1,18 @@
 <%-- 
-    Document   : funcionarioCadastrar
-    Created on : 10/02/2020, 21:44:21
+    Document   : funcionarioFiltroRel
+    Created on : 07/05/2020, 17:24:10
     Author     : João Pedro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">         
-        <title>Cadastros - Funcionário</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">            
+        <title>Relatório - Funcionário</title>
         <link rel="shortcut icon" href="../../custom/img/favicon.jpg">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -23,7 +24,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->   
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
-        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFuncionario/funcionarioCadastrar.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeRelatorios/relatorioFuncionario/funcionarioFiltroRel.css">
     </head>
     <body>
         <!-- NavBar -->
@@ -38,15 +39,15 @@
                     </li>
                     <!-- Botão cadastros -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
+                        <a class="nav-link" href="../../paginasDeCadastro/cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
                     </li>
                     <!-- Config aniversariante -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
+                        <a class="nav-link" href="../relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
                     </li>                    
                     <!-- Botão relatorios -->
                     <li class="nav-item h5 mb-0">
-                        <a class="nav-link" href="../configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
+                        <a class="nav-link" href="../../paginasDeCadastro/configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
@@ -57,41 +58,10 @@
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
-        </nav>
-        <h3>tela cadastrar funcionario</h3>
+        </nav>        
+        <h1>Hello World!</h1>
         <br>
-        <br>
-        <!-- form para cadastrar funcionario-->
-        <div>
-            <form method="POST" action="cadastrarFuncionario"> <%-- joga formulario para o controllerFuncionarioCadastrar --%>
-                Nome do funcionário:
-                <input type="text" name="nomeFuncionario">
-                Sexo:
-                <select type="select" name="sexoFuncionario">
-                    <option value="M">M</option>
-                    <option value="F">F</option>
-                </select> 
-                Contato:
-                <input type="text" name="contato">
-                <select type="select" name="tipoTelefone">
-                    <option value="Celular">Celular</option>
-                    <option value="Fixo">Fixo</option>
-                </select> 
-                <button type="submit" value="Cadastrar"/>Cadastrar</button>
-            </form>            
-        <div>
-        <h3>${msg}</h3>
-        <!-- fim do form para cadastrar funcionario-->
-        <br>
-        <br>
-        <div>
-            <!-- form para listar os funcionarios cadastrados -->
-            <form method="POST" action="listaFuncionarios"> <%-- joga formulario para o controllerFuncionarioListar --%>
-                <button type="submit" value="ListarFuncionarios"/>Listar funcionários</button>
-            </form>                        
-        </div>
-        <br>
-        <br>
-        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
+        <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
+        <br>        
     </body>
 </html>

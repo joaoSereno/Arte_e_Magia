@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
  *
  * @author João Pedro
  */
-public class ConversorString {
+public class Conversor {
 
     public String ConvereterString(String string) throws UnsupportedEncodingException{
         
@@ -20,4 +20,16 @@ public class ConversorString {
         
         return novaString;
     }
+    
+    public String formatarData(String data){
+        
+        String dataFormatada = "";
+        
+        dataFormatada = dataFormatada + data.substring(6,10);
+        dataFormatada = dataFormatada + data.substring(3,5);
+        dataFormatada = dataFormatada + data.substring(0,2);
+          
+        return dataFormatada;
+    }
+    
 }

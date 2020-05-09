@@ -59,7 +59,7 @@ public class CriancaSQL extends Conexao {
             open(); //abre conexão com o banco
             ArrayList<Crianca> listaCrianca = new ArrayList(); //instancia uma arrayList de Crianca
 
-            stmt = con.prepareStatement("SELECT idCrianca, nomeCrianca, sexo, dataNascimento, idCliente FROM crianca WHERE idCliente = ? AND ativo = 1"); //executa query na base               
+            stmt = con.prepareStatement("SELECT idCrianca, nomeCrianca, sexo, DATE_FORMAT(dataNascimento, '%d/%m/%Y'), idCliente FROM crianca WHERE idCliente = ? AND ativo = 1"); //executa query na base               
 
             //seta valores para comando sql
             stmt.setInt(1, idCliente);
@@ -73,7 +73,7 @@ public class CriancaSQL extends Conexao {
                 crianca.setIdCrianca(resultadoConsulta.getInt("idCrianca"));
                 crianca.setNomeCrianca(resultadoConsulta.getString("nomeCrianca"));
                 crianca.setSexo(resultadoConsulta.getString("sexo"));
-                crianca.setDataNascimento(resultadoConsulta.getString("dataNascimento"));
+                crianca.setDataNascimento(resultadoConsulta.getString("DATE_FORMAT(dataNascimento, '%d/%m/%Y')"));
                 crianca.setIdCliente(resultadoConsulta.getInt("idCliente"));
 
                 listaCrianca.add(crianca);// add na lista de forma de pagamento
@@ -159,7 +159,7 @@ public class CriancaSQL extends Conexao {
             
             Crianca crianca = new Crianca();
             
-            stmt = con.prepareStatement("SELECT idCrianca, nomeCrianca, sexo, dataNascimento, idCliente FROM crianca WHERE idCrianca = ? AND ativo = 1"); //executa query na base               
+            stmt = con.prepareStatement("SELECT idCrianca, nomeCrianca, sexo, DATE_FORMAT(dataNascimento, '%d/%m/%Y'), idCliente FROM crianca WHERE idCrianca = ? AND ativo = 1"); //executa query na base               
 
             //seta valores para comando sql
             stmt.setInt(1, idCrianca);
@@ -172,7 +172,7 @@ public class CriancaSQL extends Conexao {
                 crianca.setIdCrianca(resultadoConsulta.getInt("idCrianca"));
                 crianca.setNomeCrianca(resultadoConsulta.getString("nomeCrianca"));
                 crianca.setSexo(resultadoConsulta.getString("sexo"));
-                crianca.setDataNascimento(resultadoConsulta.getString("dataNascimento"));
+                crianca.setDataNascimento(resultadoConsulta.getString("DATE_FORMAT(dataNascimento, '%d/%m/%Y')"));
                 crianca.setIdCliente(resultadoConsulta.getInt("idCliente"));
 
             }
