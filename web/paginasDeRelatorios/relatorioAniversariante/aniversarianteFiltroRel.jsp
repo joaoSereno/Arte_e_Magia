@@ -60,9 +60,21 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>        
-        <h1>Hello World!</h1>
+        <h1>Relatório de Aniversariante</h1>
+        <h5>Por favor, informe o período desejado e clique em "Gerar Relatório"</h5>
+        <br>
+        <form method="GET" action="relatorioAniversariante">
+            Mês inicial:
+            <input type="text" name="mesInicial">
+            Mês final:
+            <input type="text" name="mesFinal">
+            <button type="submit">Gerar Relatório</button>
+        </form>
+        <br>
+        <div>
+            <h5>${msgValidacao}</h5>
+        </div>
         <br>
         <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
-        <br>        
     </body>
 </html>

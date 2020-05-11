@@ -59,7 +59,35 @@
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
-        </nav>        
-        <h1>Hello World!</h1>
+        </nav>
+        <br>
+        <div>
+            <p>Quantidade de Evento: ${totalEventoPeriodo}</p>
+            <p>Valor Total Pago: R$ ${totalValorPagoFunc}</p>
+        </div>    
+        <div class="table-responsive">   
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Colaborador</th>
+                        <th scope="col">Quantidade de Evento</th>
+                        <th scope="col">Cache Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${relatorioFuncionario}" var="item"> 
+                        <tr>
+                            <th scope="row">${item.count}</th>
+                            <td>${item.nomeFuncionario}</td>
+                            <td>${item.totalFesta}</td>
+                            <td>R$ ${item.totalGanho}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a  class="btn btn-primary" href="funcionarioFiltroRel.jsp">Voltar</a> 
     </body>
 </html>

@@ -43,6 +43,11 @@ public class UsuarioSQL extends Conexao {
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setTipoUsuario(rs.getInt("tipoUsuario"));
+                if(usuario.getTipoUsuario() == 1){
+                    usuario.setTipoUsuario2("ADM");
+                }else{
+                    usuario.setTipoUsuario2("FUNC");
+                }
                 usuario.setIdFuncionario(rs.getInt("idFuncionario"));
                 usuario.setNomeUsuario(rs.getString("nomeUsuario"));
 

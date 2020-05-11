@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class ConfigAniversarianteSQL extends Conexao{
     
-    public void create(ConfigNotificacaoAniversariante configAniversariante) throws Exception { //recebe cliente vindo do controller
+    public void create(int configAniversariante) throws Exception { //recebe cliente vindo do controller
 
         open(); //abre conexão com o banco de dados
 
@@ -24,7 +24,7 @@ public class ConfigAniversarianteSQL extends Conexao{
         stmt = con.prepareStatement("INSERT INTO confignotificacaoaniversariante(dias) VALUES(?)");
 
         //atribui os valores das marcações do comando acima 
-        stmt.setInt(1, configAniversariante.getDias());
+        stmt.setInt(1, configAniversariante);
 
         stmt.execute();//executa  insert no banco de dados
         close();//fecha conexão com o banco de dados

@@ -61,7 +61,16 @@
         <div class="jumbotron text-center">
             <h1>Notificação de Aniversariante</h1>
         </div>
-        <div class="d-flex justify-content-center">
+        <div>
+            <form method="GET" action="verificarConfigAniversariante">
+                <button type="submit" class="btn btn-success" value="VerificarConfigAtual">Configuração Atual</button>
+            </form>               
+            <h4>${textoConfigAtual}</h4>
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" onclick="editarConfig()" value="Confirmar">Editar Configuração</button>
+        <br>
+        <div id="formEditarConfig" class="d-flex justify-content-center" style="display: none !important">
             <!-- form para config aniversario -->
             <form method="GET" action="configAniversariante"> <%-- joga formulario para o controllerConfigAniversariante --%>
                 <div class="form-group">
@@ -79,4 +88,5 @@
         </div>
         <h1>${msg}</h1>
     </body>
+    <script src="../../javascripts/cadastroDeConfigAniversariante/configAniversariante.js"></script>    
 </html>

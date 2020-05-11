@@ -75,7 +75,7 @@
                     <c:forEach items="${listaUsuarios}" var="item"> 
                         <tr>
                             <td>${item.usuario}</td>
-                            <td>${item.tipoUsuario}</td>
+                            <td>${item.tipoUsuario2}</td>
                             <td>${item.nomeUsuario}</td>
                             <!-- botão/form para editar registro tipo despesa , envia para ControllerUsuarioEditar  --> 
                             <td>

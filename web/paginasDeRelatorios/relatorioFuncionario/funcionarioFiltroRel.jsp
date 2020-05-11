@@ -59,7 +59,26 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>        
-        <h1>Hello World!</h1>
+        <h1>Relatório de Colaboradores</h1>
+        <h5>Por favor, informe os filtros desejados e clique em "Gerar Relatório"</h5>
+        <br>
+        <form method="GET" action="relatorioFuncionario">
+            Status do Evento:
+            <select name="statusEvento">
+                <option value="1">Todos</option>
+                <option value="2">Somente realizados</option>
+                <option value="3">Somente não realizados</option>
+            </select>
+            Período:
+            <input type="text" name="periodo">
+            à
+            <input type="text" name="periodoo2">
+            <button type="submit">Gerar Relatório</button>
+        </form>
+        <br>
+        <div>
+            <h5>${msgValidacao}</h5>
+        </div>
         <br>
         <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
         <br>        

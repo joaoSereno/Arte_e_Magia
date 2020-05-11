@@ -5,6 +5,7 @@
  */
 package controller.configAniversariante;
 
+import entidades.ConfigNotificacaoAniversariante;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ import persistence.ConfigAniversarianteSQL;
 public class ControllerConfigAniversariante extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int qtdDias2 =0;
+        int qtdDias2 = 800;
         
         String qtdDias = request.getParameter("qtdDias");
         if (qtdDias != null) {
@@ -39,11 +40,27 @@ public class ControllerConfigAniversariante extends HttpServlet {
         ConfigAniversarianteSQL configAniversarianteBanco = new ConfigAniversarianteSQL();
         
         try {
-
-            if(qtdDias2 != 0){
-                
-                configAniversarianteBanco.editarConfigAniversariante(qtdDias2);
             
+            //chama get do banco para verificar se já existe config
+            ConfigNotificacaoAniversariante configAniversariante = new ConfigNotificacaoAniversariante();
+            configAniversariante = configAniversarianteBanco.getDiasConfigAniversariante(1);
+            
+            if(configAniversariante != null){ //se existir já config chama o método de editar
+                
+                if(qtdDias2 != 800){
+                    
+                    configAniversarianteBanco.editarConfigAniversariante(qtdDias2);
+                    
+                }
+                
+            }else{ //se não existir chama o método de create
+                
+                if(qtdDias2 != 800){            
+                    
+                    configAniversarianteBanco.create(qtdDias2);
+                    
+                }  
+                
             }
 
             //set de atributo para outra página

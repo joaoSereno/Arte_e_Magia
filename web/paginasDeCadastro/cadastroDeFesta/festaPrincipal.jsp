@@ -94,7 +94,7 @@
                         <tr>
                             <td>${item.descricaoFesta}</td>
                             <td>${item.dataFesta}</td>
-                            <td>${item.festaStatus}</td>
+                            <td>${item.festaStatus2}</td>
                             <!-- botão/form para editar registro cliente --> 
                             <td>
                                 <form method="GET" action="edicaoEvento">

@@ -59,7 +59,42 @@
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
-        </nav>        
-        <h1>Hello World!</h1>
+        </nav>
+        <div>
+            <p>Quantidade de Eventos: ${totalEventoPeriodo}</p>
+            <p>Valor Total Bruto: R$ ${somaValorTotalBruto}</p>
+            <p>Despesas Total: R$ ${somaTotalDespesa}</p>
+            <p>Lucro Total: R$ ${somaTotalLucro}</p>
+        </div>    
+        <div class="table-responsive">   
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Descrição do Evento</th>
+                        <th scope="col">Data do Evento</th>
+                        <th scope="col">Valor Total</th>
+                        <th scope="col">Total Despesas</th>
+                        <th scope="col">Lucro</th>
+                        <th scope="col">Evento Realizado?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${relatorioEvento}" var="item"> 
+                        <tr>
+                            <th scope="row">${item.count}</th>
+                            <td>${item.descricaoEvento}</td>
+                            <td>${item.dataEvento}</td>
+                            <td>${item.valorTotalBruto}</td>
+                            <td>${item.valorTotalDespesa}</td>
+                            <td>${item.lucroEvento}</td>
+                            <td>${item.statusEvento}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a  class="btn btn-primary" href="eventoFiltroRel.jsp">Voltar</a> 
     </body>
 </html>

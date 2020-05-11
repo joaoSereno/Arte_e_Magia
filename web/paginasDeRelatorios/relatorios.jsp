@@ -83,9 +83,9 @@
             </div>
             <!-- CardFestas -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Funcionários">
+                <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Colaboradores">
                 <div class="card-body">
-                    <a href="relatorioFuncionario/funcionarioFiltroRel.jsp" type="button" class="btn botoes-card">Funcionários</a>
+                    <a href="relatorioFuncionario/funcionarioFiltroRel.jsp" type="button" class="btn botoes-card">Colaboradores</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->

@@ -59,7 +59,32 @@
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
-        </nav>        
-        <h1>Hello World!</h1>
+        </nav>
+        <div class="table-responsive">   
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Aniversariante</th>
+                        <th scope="col">Data de Aniversário</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Contato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${relatorioAniversariante}" var="item"> 
+                        <tr>
+                            <th scope="row">${item.count}</th>
+                            <td>${item.aniversariante}</td>
+                            <td>${item.dataAniversario}</td>
+                            <td>${item.cliente}</td>
+                            <td>${item.contato}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <a  class="btn btn-primary" href="aniversarianteFiltroRel.jsp">Voltar</a> 
     </body>
 </html>

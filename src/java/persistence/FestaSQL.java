@@ -78,38 +78,38 @@ public class FestaSQL extends Conexao {
     public ArrayList<Festa> getFestaListagem(int statusEvento, String periodoEvento, String periodoEvento2) throws Exception {
         try {
             open(); //abre conexão com o banco
-            
+
             //cria lista que será retornada
             ArrayList<Festa> listaFesta = new ArrayList();
-            
+
             //verifica o filtro e salva a query
             switch (statusEvento) {
                 case 1:
                     stmt = con.prepareStatement("SELECT idFesta, \n"
-                                                + "descricaoFesta, \n"
-                                                + "	DATE_FORMAT(dataFesta, '%d/%m/%Y'), \n"
-                                                + "festaStatus \n"
-                                                + "FROM festa\n"
-                                                + "WHERE dataFesta >= ? \n"
-                                                + "AND dataFesta <= ? \n"
-                                                + "AND festaStatus = 0 \n"
-                                                + "ORDER BY DATE_FORMAT(dataFesta, '%d/%m/%Y')");
+                            + "descricaoFesta, \n"
+                            + "DATE_FORMAT(dataFesta, '%d/%m/%Y'), \n"
+                            + "festaStatus \n"
+                            + "FROM festa\n"
+                            + "WHERE dataFesta >= ? \n"
+                            + "AND dataFesta <= ? \n"
+                            + "AND festaStatus = 0 \n"
+                            + "ORDER BY DATE_FORMAT(dataFesta, '%d/%m/%Y')");
 
                     break;
-                    
+
                 case 2:
                     stmt = con.prepareStatement("SELECT idFesta, \n"
-                                                + "descricaoFesta, \n"
-                                                + "	DATE_FORMAT(dataFesta, '%d/%m/%Y'), \n"
-                                                + "festaStatus \n"
-                                                + "FROM festa\n"
-                                                + "WHERE dataFesta >= ? \n"
-                                                + "AND dataFesta <= ? \n"
-                                                + "AND festaStatus = 1 \n"
-                                                + "ORDER BY DATE_FORMAT(dataFesta, '%d/%m/%Y')");                 
-            
+                            + "descricaoFesta, \n"
+                            + "DATE_FORMAT(dataFesta, '%d/%m/%Y'), \n"
+                            + "festaStatus \n"
+                            + "FROM festa\n"
+                            + "WHERE dataFesta >= ? \n"
+                            + "AND dataFesta <= ? \n"
+                            + "AND festaStatus = 1 \n"
+                            + "ORDER BY DATE_FORMAT(dataFesta, '%d/%m/%Y')");
+
                     break;
-                    
+
                 default:
                     stmt = con.prepareStatement("SELECT idFesta, \n"
                             + "descricaoFesta, \n"
@@ -118,18 +118,18 @@ public class FestaSQL extends Conexao {
                             + "FROM festa\n"
                             + "WHERE dataFesta >= ? \n"
                             + "AND dataFesta <= ?\n"
-                            + "ORDER BY DATE_FORMAT(dataFesta, '%d/%m/%Y')");                      
-                    
+                            + "ORDER BY DATE_FORMAT(dataFesta, '%d/%m/%Y')");
+
                     break;
             }
-            
+
             //define valor dos ?
             stmt.setString(1, periodoEvento);
             stmt.setString(2, periodoEvento2);
-            
+
             //executa a query no banco
             ResultSet resultadoConsulta = stmt.executeQuery();
-            
+
             //percorre o resultado e monta o dados da lista que será retornado
             while (resultadoConsulta.next()) {
                 Festa festa = new Festa();
@@ -139,11 +139,16 @@ public class FestaSQL extends Conexao {
                 festa.setDescricaoFesta(resultadoConsulta.getString("descricaoFesta"));
                 festa.setDataFesta(resultadoConsulta.getString("DATE_FORMAT(dataFesta, '%d/%m/%Y')"));
                 festa.setFestaStatus(resultadoConsulta.getInt("festaStatus"));
+                if (festa.getFestaStatus() == 0) {
+                    festa.setFestaStatus2("Não");
+                } else {
+                    festa.setFestaStatus2("Sim");
+                }
 
                 listaFesta.add(festa);
             }
             close(); // fecha conexão com o banco
-            
+
             return listaFesta; //retorna a lista de festa
 
         } catch (SQLException e) {
@@ -157,5 +162,5 @@ public class FestaSQL extends Conexao {
             }
         }
     }
-
+    
 }

@@ -17,6 +17,7 @@ public class Festa {
     private String dataFesta; 
     private String obs; 
     private int festaStatus; 
+    private String festaStatus2; 
     private Integer idEnderecos;
     private Integer idCliente; 
     private Integer idPacote; 
@@ -223,6 +224,14 @@ public class Festa {
 
     public void setIdTipoDeFesta(Integer idTipoDeFesta) {
         this.idTipoDeFesta = idTipoDeFesta;
+    }
+
+    public String getFestaStatus2() {
+        return festaStatus2;
+    }
+
+    public void setFestaStatus2(String festaStatus2) {
+        this.festaStatus2 = festaStatus2;
     }
 
 }

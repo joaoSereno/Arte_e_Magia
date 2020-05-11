@@ -59,7 +59,27 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>        
-        <h1>Hello World!</h1>
+        <h1>Relatório Tipo De Despesa</h1>
+        <h5>Por favor, informe o período desejado e clique em "Gerar Relatório"</h5>
+        <br>
+        <form method="GET" action="relatorioTipoDespesa">
+            Origem da Despesa:
+            <select name="origemDespesa">
+                <option value="1">Ambas</option>
+                <option value="2">Cadastro de Despesa</option>
+                <option value="3">Cadastro de Festa</option>
+            </select>
+            Período:
+            <input type="text" name="periodo">
+            à
+            <input type="text" name="periodo2">
+            <button type="submit">Gerar Relatório</button>
+        </form>
+        <br>
+        <div>
+            <h5>${msgValidacao}</h5>
+        </div>
+        <br>
         <br>
         <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
         <br>        

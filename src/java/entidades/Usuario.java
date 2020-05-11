@@ -17,6 +17,7 @@ public class Usuario{
     private String senha;
     private int ativo;
     private int tipoUsuario;
+    private String tipoUsuario2;
     private Integer idFuncionario;
     private String nomeUsuario;
 
@@ -118,7 +119,13 @@ public class Usuario{
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
     }
-    
-    
+
+    public String getTipoUsuario2() {
+        return tipoUsuario2;
+    }
+
+    public void setTipoUsuario2(String tipoUsuario2) {
+        this.tipoUsuario2 = tipoUsuario2;
+    }
 
 }

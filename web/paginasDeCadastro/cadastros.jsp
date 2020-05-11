@@ -83,9 +83,9 @@
             </div>
             <!-- CardFuncionários -->
             <div class="card cards">
-                <img src="../custom/img/avatares-cards/iconFunc.png" class="card-img-top imagens-cards" alt="Funcionário" >
+                <img src="../custom/img/avatares-cards/iconFunc.png" class="card-img-top imagens-cards" alt="Colaborador" >
                 <div class="card-body">
-                    <a href="cadastroDeFuncionario/funcionarioCadastrar.jsp" class="btn botoes-card">Funcionário</a>
+                    <a href="cadastroDeFuncionario/funcionarioCadastrar.jsp" class="btn botoes-card">Colaborador</a>
                 </div>
             </div>
             <!-- Card FormaPgto -->
