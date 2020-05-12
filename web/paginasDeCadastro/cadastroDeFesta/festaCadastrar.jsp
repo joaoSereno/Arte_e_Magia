@@ -74,12 +74,13 @@
         </div>
         <br>
         <!-- div de listagem cliente-->
-        <div id="listagemDeCliente">
-            <table  class="table table-secondary">
+        <div id="listagemDeCliente" class="table-responsive">
+            <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
+                    <tr class="bg-info">    
                         <th scope="col">Nome</th>
                         <th scope="col">CPF/CNPJ</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -90,7 +91,7 @@
                             <!-- botão/form para editar registro cliente --> 
                             <td>
                                 <input type="hidden" id="nomeCliente${item.idCliente}" value="${item.nomeCliente}">
-                                <button id="btnSelecionarCliente" onclick="selecionarCliente(${item.idCliente})" class="btn btn-warning"> Selecionar </button>                                    
+                                <button id="btnSelecionarCliente" onclick="selecionarCliente(${item.idCliente})" class="btn btn-info"> Selecionar </button>                                    
                             </td>
                         </tr>
                     </c:forEach>

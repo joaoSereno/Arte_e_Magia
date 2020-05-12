@@ -35,6 +35,7 @@ public class ControllerTipoDeFestaListar extends HttpServlet{
 
             listaTipoDeFesta = tipoDeFestaBanco.getTipoDeFesta();
             request.setAttribute("listaTipoDeFesta", listaTipoDeFesta); 
+            request.setAttribute("controllerListagemTipoDeFesta", 1); 
             
             request.getRequestDispatcher("tipoDeFestaPrincipal.jsp").forward(request, response);// dispara para essa página
 

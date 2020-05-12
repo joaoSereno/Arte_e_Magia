@@ -60,7 +60,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela tipo de Despesa</h3>
+        <div class="jumbotron text-center">
+            <h1>Tipo de Despesa</h1>
+        </div>          
         <br>
         <div>
             <!--form para adicionar/editar um novo tipo de despesa-->
@@ -112,11 +114,13 @@
         </form>
         <br>
         <!-- div de listagem tipos de despesa-->          
-        <div>
-            <table id="tabela" class="table table-secondary">
+        <div class="table-responsive" id="divTipoDeDespesa" style="display: none">
+            <input type="hidden" id="controllerListagemTipoDeDespesa" value="${controllerListagemTipoDeDespesa}">     
+            <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
-                        <th scope="col">Nome da despesa</th>
+                    <tr class="bg-danger">    
+                        <th scope="col">Descrição</th>
+                        <th></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -128,7 +132,7 @@
                                 <form method="GET" action="tipoDespesaEditar"> 
                                     <input type="hidden" name="idTipoDeDespesa" value="${item.idTipoDeDespesa}">
                                     <input type="hidden" name="nomeDespesa" value="${item.nomeDespesa}">
-                                    <button class="btn btn-warning"> Editar </button>
+                                    <button class="btn btn-info"> Editar </button>
                                 </form> 
                             </td>
                         </tr>
@@ -141,5 +145,6 @@
         <br>
         <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
     </body>
+    <script src="../../javascripts/cadastroTipoDeDespesa/tipoDeDespesa.js"></script>      
 </html>
 

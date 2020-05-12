@@ -60,8 +60,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <br>
-        <h3>Tela pacote</h3>
+        <div class="jumbotron text-center">
+            <h1>Pacote</h1>
+        </div>  
         <br>
         <div>
             <!--form para adicionar/editar um pacote-->
@@ -115,12 +116,14 @@
         </form>
         <br>
         <!-- div de listagem de pacote -->          
-        <div>
-            <table id="tabela" class="table table-secondary">
+        <div class="table-responsive" id="divListagemPacote" style="display: none">
+            <input type="hidden" id="controllerListagemPacote" value="${controllerListagemPacote}">    
+            <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
-                        <th scope="col">Pacote</th>
-                        <th scope="col">Valor do Pacote</th>
+                    <tr class="bg-danger">    
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Valor</th>
+                        <th></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -134,7 +137,7 @@
                                     <input type="hidden" name="idPacote" value="${item.idPacote}">
                                     <input type="hidden" name="nomePacote" value="${item.nomePacote}">
                                     <input type="hidden" name="valorPacoteVenda" value="${item.valorPacoteVenda}">
-                                    <button class="btn btn-warning"> Editar </button>
+                                    <button class="btn btn-info"> Editar </button>
                                 </form> 
                             </td>
                         </tr>
@@ -148,8 +151,5 @@
         <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
         
     </body>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>        
-
+    <script src="../../javascripts/cadastroDePacote/cadastroDePacote.js"></script>  
 </html>

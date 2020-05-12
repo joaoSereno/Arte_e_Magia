@@ -25,14 +25,17 @@ import persistence.PacoteSQL;
 @WebServlet("/paginasDeCadastro/cadastroDePacote/pacoteListar")
 public class ControllerPacoteListar extends HttpServlet {
     
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         PacoteSQL pacoteBanco = new PacoteSQL(); //instancia a classe de comunicação com o banco de dados 
-
         List<Pacote> listaPacotes; //lista que vai receber os dados do Pacote
 
         try {
             
             listaPacotes = pacoteBanco.getPacote(); // recebe na lista os listaPacote pelo método de get do banco 
+            
+            request.setAttribute("controllerListagemPacote", 1);
             request.setAttribute("listaPacotes", listaPacotes); // atribui a lista na marcação "listaPacotes"
             request.getRequestDispatcher("pacotePrincipal.jsp").forward(request, response);// dispara para essa página
 

@@ -26,12 +26,13 @@ public class ControllerTipoPagamentoListar extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         TipoPagamentoSQL tipoPagamentoBanco = new TipoPagamentoSQL(); //instancia a classe de comunicação com o banco de dados 
-
         List<FormaPagamento> listaTipoPagamento; //lista que vai receber os dados do tipo de pagamento
 
         try {
 
             listaTipoPagamento = tipoPagamentoBanco.getFormaPagamento(); // recebe na lista os listaTipoPagamento pelo método de get do banco 
+            
+            request.setAttribute("controllerListagemTipoDePagamento", 1);
             request.setAttribute("listaTipoPagamento", listaTipoPagamento); // atribui a lista na marcação "listaTipoPagamento"
             request.getRequestDispatcher("tipoPagamentoPrincipal.jsp").forward(request, response);// dispara para essa página
 

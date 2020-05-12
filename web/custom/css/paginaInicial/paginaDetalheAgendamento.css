@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 20/03/2020, 20:27:55
+    Created on : 11/05/2020, 17:05:32
     Author     : João Pedro
 */
 
@@ -12,17 +12,13 @@ body, label, button, a, h1, input {
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    background-color: #ccd4b82b;
-}
-
-.bg-danger {
-    background-color: #ef97a7!important;
+.list-group-item{
+    color: black !important;
 }
 
 .jumbotron {
     background-color: #ec768cbd;
     color: white;
-    padding: 2rem 2rem !important; 
+    padding: 2rem 2rem !important;
     border-radius: unset;    
 }

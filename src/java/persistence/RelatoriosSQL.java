@@ -10,6 +10,7 @@ import static configConexao.Conexao.close;
 import static configConexao.Conexao.con;
 import static configConexao.Conexao.open;
 import static configConexao.Conexao.stmt;
+import entidadesRelatorio.AniversariantesProximos;
 import entidadesRelatorio.RelatorioAniversariante;
 import entidadesRelatorio.RelatorioEvento;
 import entidadesRelatorio.RelatorioFuncionario;
@@ -358,5 +359,53 @@ public class RelatoriosSQL extends Conexao{
         }        
     }
 
+//    public ArrayList<AniversariantesProximos> getAniversariantesProximos() throws Exception {
+//        try {
+//            open(); //abre conexão com o banco
+//
+//            //cria lista que será retornada
+//            ArrayList<AniversariantesProximos> listaAniversariantesProximos = new ArrayList();
+//
+//
+//            stmt = con.prepareStatement("");
+//    
+//            //define valor dos ?
+//            stmt.setString(1, periodo);
+//            stmt.setString(2, periodo2);
+//            stmt.setInt(3, idFuncionario);
+//
+//            //executa a query no banco
+//            ResultSet resultadoConsulta = stmt.executeQuery();
+//            
+//            
+//            //percorre o resultado e monta o dados da lista que será retornado
+//            while (resultadoConsulta.next()) {
+//                
+//                RelatorioFuncionario relatorioFuncionario = new RelatorioFuncionario();
+//
+//                //seta valores pegos no select no cliente
+//                relatorioFuncionario.setTotalFesta(resultadoConsulta.getInt("COUNT(1)"));
+//                relatorioFuncionario.setNomeFuncionario(resultadoConsulta.getString("func.nomeFuncionario"));
+//                relatorioFuncionario.setTotalGanho(resultadoConsulta.getFloat("SUM(funcFesta.cacheDaFesta)"));
+//                
+//                listaRelatorioFuncionario.add(relatorioFuncionario); 
+//                
+//            }
+//            
+//            close(); // fecha conexão com o banco
+//
+//            return listaAniversariantesProximos; //retorna aniversariantes
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException(e);
+//        } finally {
+//            try {
+//                close();
+//            } catch (SQLException e) {
+//                throw new Exception(e.getMessage());
+//            }
+//        }        
+//    }
 }
     

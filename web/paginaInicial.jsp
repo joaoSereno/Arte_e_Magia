@@ -7,6 +7,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/controleDeSession.jsp" %> <%-- inclui o arquivo que faz a validação de session do usuario --%>
 <!DOCTYPE html>
 <html>
@@ -62,4 +63,89 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        <div class="jumbotron text-center">
+            <h1>Seja bem-vindo ao sistema do Arte & Magia</h1>
+        </div>       
+        <div>
+            <label for="listarAgendamentos">Clique no botão "Eventos Agendados" para listar os eventos que estão agendados.</label>
+            <form method="GET" action="listarAgendamentos">
+                <button type="submit" class="btn btn-primary" value="listagemAgendamento">Eventos Agendados</button>
+            </form>               
+        </div>
+        <div>
+            <h5>${msgValidacaoAgendamento}</h5>
+        </div> 
+<!--        listagem agendamento evento-->
+        <div class="table-responsive" id="divAgendamentoFesta" style="display: none"> 
+            <input type="hidden" id="controllerListagemAgendamento" value="${controllerListagemAgendamento}">          
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr class="bg-danger">
+                        <th>Descrição do Evento</th>
+                        <th>Data do Evento</th>
+                        <th>Tipo de Evento</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${listaAgendamentoFesta}" var="item"> 
+                        <tr>
+                            <td>${item.descricaoFesta}</td>
+                            <td>${item.dataEvento}</td>
+                            <td>${item.tipoDeFesta}</td>
+                            <!-- form para detalhes do agendamento--> 
+                            <td>
+                                <form method="GET" action="agendamentoDetalhe"> 
+                                    <input type="hidden" name="idTabelaAgendamentoFesta" value="${item.idTabelaAgendamentoFesta}">
+                                    <button class="btn btn-info">+Detalhes</button>
+                                </form> 
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>            
+        <div>
+            <label for="listarAniversariantesProximos">Clique no botão "Aniversariantes Próximos" para listar os aniversariantes próximos.</label>
+            <form method="GET" action="listarAniversariantesProximos">
+                <button type="submit" class="btn btn-primary" value="listarAniversariantesProximos">Aniversariantes Próximos</button>
+            </form>               
+        </div>
+        <div>
+            <h5>${msgValidacaoAniversariantesProximos}</h5>
+        </div>
+        <div class="table-responsive" id="listagemAniversariantesProximos" style="display: none"> 
+            <input type="hidden" id="listagemAniversariantesProximos" value="${listagemAniversariantesProximos}">            
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Aniversariante</th>
+                        <th scope="col">Dias para Aniversario</th>
+                        <th scope="col">Idade a Fazer</th>
+                        <th scope="col">Contratante</th>
+                        <th scope="col">Contato</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${listaAniversariantesProximos}" var="item"> 
+                        <tr>
+                            <td>${item.descricaoFesta}</td>
+                            <td>${item.dataEvento}</td>
+                            <td>${item.tipoDeFesta}</td>
+                            <td>${item.tipoDeFesta}</td>
+                            <td>${item.tipoDeFesta}</td>
+                            <td>
+                                <form method="GET" action="verCadastroAniversariante"> 
+                                    <input type="hidden" name="idCliente" value="${item.idCliente}">
+                                    <button class="btn btn-warning">Ver Cadastro</button>
+                                </form> 
+                            </td>                            
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>                  
+    </body>
+    <script src="javascripts/paginaInicial/paginaInicial.js"></script>
 </html>

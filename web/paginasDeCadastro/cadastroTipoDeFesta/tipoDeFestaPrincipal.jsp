@@ -61,7 +61,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela tipo de festa</h3>
+        <div class="jumbotron text-center">
+            <h1>Tipo de Evento</h1>
+        </div>           
         <br>
         <div>
             <!--form para adicionar/editar um novo tipo de festa-->
@@ -113,11 +115,13 @@
         </form>
         <br>
         <!-- div de listagem tipos de festa-->          
-        <div>
-            <table id="tabela" class="table table-secondary">
+        <div class="table-responsive" id="divTipoDeFesta" style="display: none">
+            <input type="hidden" id="controllerListagemTipoDeFesta" value="${controllerListagemTipoDeFesta}">    
+            <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
-                        <th scope="col">Tipo de Festa</th>
+                    <tr class="bg-danger">    
+                        <th scope="col">Descrição</th>
+                        <th ></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -129,15 +133,16 @@
                                 <form method="GET" action="editarTipoDeFesta"> 
                                     <input type="hidden" name="idTipoDeFesta" value="${item.idTipoDeFesta}">
                                     <input type="hidden" name="descricaoTipoDeFesta" value="${item.descricaoTipoDeFesta}">
-                                    <button class="btn btn-warning"> Editar </button>
+                                    <button class="btn btn-info"> Editar </button>
                                 </form> 
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-        </div> 
+        </div>       
         <!-- fim  div de listagem tipo festa-->             
         <a class="btn btn-primary" href="../cadastros.jsp">Voltar</a>
     </body>
+    <script src="../../javascripts/cadastroTipoDeEvento/tipoDeEvento.js"></script>    
 </html>

@@ -79,14 +79,15 @@
             <input type="hidden" id="controllerMsgEvento" value="${controllerMsgEvento}">
         </div>
         <!-- div de listagem evento-->
-        <div id="divListagemEvento" style="display: none">
-            <input type="hidden" id="controllerListagemEvento" value="${controllerListagemEvento}">
-            <table id="tabela" class="table table-secondary">
+        <div class="table-responsive" id="divListagemEvento" style="display: none"> 
+            <input type="hidden" id="controllerListagemEvento" value="${controllerListagemEvento}">      
+            <table id="tabela" class="table table-striped table-bordered">
                 <thead> 
-                    <tr>
+                    <tr class="bg-info">
                         <th scope="col">Descrição do Evento</th>
                         <th scope="col">Data do Evento</th>
                         <th scope="col">Evento realizado?</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -99,14 +100,14 @@
                             <td>
                                 <form method="GET" action="edicaoEvento">
                                     <input type="hidden" name="idFesta" value="${item.idFesta}">
-                                    <button class="btn btn-warning"> + </button>
+                                    <button class="btn btn-info"> + </button>
                                 </form> 
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-        </div>              
+        </div>             
         <form method="GET" action="preCadastroFesta">
             <button class="btn btn-primary" type="submit">Cadastrar de evento</button>        
         </form>

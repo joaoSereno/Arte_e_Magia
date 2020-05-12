@@ -25,13 +25,15 @@ import persistence.TipoDespesaSQL;
 public class ControllerTipoDespesaListar extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         TipoDespesaSQL tipoDespesaBanco = new TipoDespesaSQL(); //instancia a classe de comunicação com o banco de dados 
-
         List<TipoDeDespesa> listaTipoDeDespesa; //lista que vai receber os dados do tipo de despesa
 
         try {
 
-            listaTipoDeDespesa = tipoDespesaBanco.getTipoDeDespesa(); // recebe na lista os listaTipoDeDespesa pelo método de get do banco 
+            listaTipoDeDespesa = tipoDespesaBanco.getTipoDeDespesa(); // recebe na lista os listaTipoDeDespesa pelo método de get do banco
+            
+            request.setAttribute("controllerListagemTipoDeDespesa", 1);
             request.setAttribute("listaTipoDespesa", listaTipoDeDespesa); // atribui a lista na marcação "listaTipoDespesa"
             request.getRequestDispatcher("tipoDespesaPrincipal.jsp").forward(request, response);// dispara para essa página
 

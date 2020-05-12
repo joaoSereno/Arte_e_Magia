@@ -75,7 +75,7 @@
             <form method="GET" action="configAniversariante"> <%-- joga formulario para o controllerConfigAniversariante --%>
                 <div class="form-group">
                     <div class="text-center">
-                         <div class="form-group row">
+                        <div class="form-group row">
                             <label for="qtdDias">Por favor, digite a quantidade de dias para a notificação de aniversariante próximo:</label>
                             <input type="text" name="qtdDias" placeholder="Digite a quantidade de dias" class="form-control" id="qtdDias">
                         </div>

@@ -98,29 +98,33 @@ public class ControllerCadastrarFesta extends HttpServlet {
             //verifica se é necessario agendamento
             if (festa.getFestaStatus() == 0) {
                 //Monta a String do agendamento de festa
-                String localFestaAF = " ";
+                String localFestaAF = "<h5 class=\"list-group-item list-group-item-info\">Local do Evento:</h5>";
+                String localFestaSubAf = "";
 
                 if (!enderecoFesta.getCep().equals("")) {
-                    localFestaAF = localFestaAF + "CEP: " + enderecoFesta.getCep() + " - ";
+                    localFestaSubAf = localFestaSubAf + "CEP: " + enderecoFesta.getCep() + " <br> ";
                 }
                 if (!enderecoFesta.getCidade().equals("")) {
-                    localFestaAF = localFestaAF + "Cidade: " + enderecoFesta.getCidade() + " - ";
+                    localFestaSubAf = localFestaSubAf + "Cidade: " + enderecoFesta.getCidade() + " <br> ";
                 }
                 if (!enderecoFesta.getBairro().equals("")) {
-                    localFestaAF = localFestaAF + "Bairro: " + enderecoFesta.getBairro() + " - ";
+                    localFestaSubAf = localFestaSubAf + "Bairro: " + enderecoFesta.getBairro() + " <br> ";
                 }
                 if (!enderecoFesta.getRua().equals("")) {
-                    localFestaAF = localFestaAF + "Rua: " + enderecoFesta.getRua() + " - ";
+                    localFestaSubAf = localFestaSubAf + "Rua: " + enderecoFesta.getRua() + " <br> ";
                 }
                 if (!enderecoFesta.getNumero().equals("")) {
-                    localFestaAF = localFestaAF + "Nº: " + enderecoFesta.getNumero() + " - ";
+                    localFestaSubAf = localFestaSubAf + "Nº: " + enderecoFesta.getNumero() + " <br>";
                 }
                 if (!enderecoFesta.getComplemento().equals("")) {
-                    localFestaAF = localFestaAF + "Complemento: " + enderecoFesta.getComplemento();
+                    localFestaSubAf = localFestaSubAf + "Complemento: " + enderecoFesta.getComplemento() + " <br> ";
                 }
+
+                localFestaAF = localFestaAF + "<p class=\"list-group-item\">" + localFestaSubAf + "</p>";
 
                 //seta a string no agendamentoFesta
                 agendamentoFesta.setLocalDaFesta(localFestaAF);
+
             }
 
             //instancia classe de comunicação com o banco de dados
@@ -158,7 +162,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
                         cliente = clienteBanco.getClienteEspecifico(idCliente2);
 
                         //monta string do agendamento e seta ela na entidade do agendamento
-                        String clienteAF = "Nome do Contratante: " + cliente.getNomeCliente();
+                        String clienteAF = "<h5  class=\"list-group-item list-group-item-info\">Nome do Contrante:</h5><p class=\"list-group-item\">" + cliente.getNomeCliente() + "</p>";
 
                         agendamentoFesta.setContratante(clienteAF);
                     }
@@ -187,11 +191,10 @@ public class ControllerCadastrarFesta extends HttpServlet {
                         pacote = pacoteBanco.getPacoteEspecifico(idPacote2);
 
                         //monta string do agendamento e seta ela na entidade do agendamento
-                        String pacoteAF = "Pacote: " + pacote.getNomePacote();
+                        String pacoteAF = "<h5 class=\"list-group-item list-group-item-info\">Pacote:</h5><p class=\"list-group-item\">" + pacote.getNomePacote() + "</p>";
 
                         agendamentoFesta.setPacote(pacoteAF);
                     }
-
                 }
             }
 
@@ -239,7 +242,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
                     //verifica se é necessario agendamento
                     if (festa.getFestaStatus() == 0) {
                         //adiciona o valor no agendamento de festa
-                        String receberContratanteAF = "Valor a receber com contratante: R$" + valorReceberContratante;
+                        String receberContratanteAF = "<h5 class=\"list-group-item list-group-item-info\">Valor a receber com contratante:</h5><p class=\"list-group-item\">R$" + valorReceberContratante + "</p>";
                         agendamentoFesta.setValorPegarContratante(receberContratanteAF);
                     }
 
@@ -257,7 +260,10 @@ public class ControllerCadastrarFesta extends HttpServlet {
 
             //verifica se é necessario agendamento
             if (festa.getFestaStatus() == 0) {
-                agendamentoFesta.setDescricaoFesta("Descrição do Evento: " + descricaoEvento); //adiciona na agendamentoFesta   
+
+                String descricaoEventoAF = "<h5  class=\"list-group-item list-group-item-info\">Descrição do Evento:</h5><p class=\"list-group-item\">" + descricaoEvento + "</p>";
+
+                agendamentoFesta.setDescricaoFesta(descricaoEventoAF); //adiciona na agendamentoFesta   
             }
 
             //QTD DE CRIANCA
@@ -274,8 +280,8 @@ public class ControllerCadastrarFesta extends HttpServlet {
                     //verifica se é necessario agendamento
                     if (festa.getFestaStatus() == 0) {
                         //adiciona na agendamentoFesta
-                        String qtdCriancaAF = "Quantidade de crianças: ";
-                        qtdCriancaAF = qtdCriancaAF + Integer.toString(qtdCriancaNaFesta2);
+                        String qtdCriancaAF = "<h5 class=\"list-group-item list-group-item-info\">Quantidade de Crianças:</h5><p class=\"list-group-item\">";
+                        qtdCriancaAF = qtdCriancaAF + Integer.toString(qtdCriancaNaFesta2) + "</p>";
 
                         agendamentoFesta.setQtdCriancas(qtdCriancaAF);
                     }
@@ -288,11 +294,11 @@ public class ControllerCadastrarFesta extends HttpServlet {
             //converte a data da festa para o formato correto
             dataFesta = conversorString.formatarData(dataFesta);
             //seta na festa
-            festa.setDataFesta(dataFesta); 
-            
+            festa.setDataFesta(dataFesta);
+
             //verifica se é necessario agendamento
             if (festa.getFestaStatus() == 0) {
-                agendamentoFesta.setDataEvento("Data do Evento: " + dataFesta); //seta no agendamento de festa
+                agendamentoFesta.setDataEvento(dataFesta); //seta no agendamento de festa
             }
 
             //OBSERVAÇÃO
@@ -301,7 +307,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
             festa.setObs(observacao); //adiciona na festa
             //verifica se é necessario agendamento
             if (festa.getFestaStatus() == 0) {
-                agendamentoFesta.setObservacaoFesta("Observação: " + observacao); //adiciona no agendamento
+                agendamentoFesta.setObservacaoFesta("<h5 class=\"list-group-item list-group-item-info\">Observações:</h5><p class=\"list-group-item\">" + observacao + "</p>"); //adiciona no agendamento
             }
 
             //TIPO DE FESTA
@@ -326,7 +332,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
                         tipoDeFesta = tipoDeFestaBanco.getTipoPacoteAdicionalEspecifico(idTipoDeFesta2);
 
                         //monta string do agendamento e seta ela na entidade do agendamento
-                        String tipoEventoAF = "Tipo do Festa: " + tipoDeFesta.getDescricaoTipoDeFesta();
+                        String tipoEventoAF = "<h5  class=\"list-group-item list-group-item-info\">Tipo do Evento:</h5><p class=\"list-group-item\">" + tipoDeFesta.getDescricaoTipoDeFesta() + "</p>";
 
                         agendamentoFesta.setTipoDeFesta(tipoEventoAF);
                     }
@@ -400,10 +406,10 @@ public class ControllerCadastrarFesta extends HttpServlet {
                                 crianca = criancaBanco.getCriancaEspecifica(idCrianca2);
 
                                 //define o texto agendamento de festa
-                                if(countTexto == 0){
+                                if (countTexto == 0) {
                                     countTexto++;
-                                    aniversariantesAF = aniversariantesAF + "Aniversariante: " + crianca.getNomeCrianca();
-                                }else{
+                                    aniversariantesAF = aniversariantesAF + "<h5 class=\"list-group-item list-group-item-info\">Aniversariante:</h5><p class=\"list-group-item\">" + crianca.getNomeCrianca();
+                                } else {
                                     aniversariantesAF = aniversariantesAF + " & " + crianca.getNomeCrianca();
                                 }
 
@@ -415,6 +421,11 @@ public class ControllerCadastrarFesta extends HttpServlet {
                 }
                 //verifica se é necessario agendamento
                 if (festa.getFestaStatus() == 0) {
+
+                    if (!aniversariantesAF.equals("")) {
+                        aniversariantesAF = aniversariantesAF + "</p>";
+                    }
+
                     //adiciona a string montada no loop na entidade de agendamento
                     agendamentoFesta.setAniversariante(aniversariantesAF);
                 }
@@ -438,7 +449,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
             //se existir funcionario
             if (qtdFuncionario2 != 0) {
 
-                String funcionarioInfAF = "";
+                String funcionarioInfAF = "<h5 class=\"list-group-item list-group-item-info\">Colaboradores:</h5><p class=\"list-group-item\">";
 
                 //instancia classe de comunicação com o banco de dados
                 FuncionarioSQL funcionarioBanco = new FuncionarioSQL();
@@ -495,7 +506,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
                                 funcionario = funcionarioBanco.getFuncionarioEspecifico(idFuncionario2);
 
                                 //monta o texto do agendamento
-                                funcionarioInfAF = funcionarioInfAF + "Animador ou Animadora: " + funcionario.getNomeFuncionario() + " -  Cache: " + cacheFuncionario2 + "\n";
+                                funcionarioInfAF = funcionarioInfAF + funcionario.getNomeFuncionario() + " -  Cache: R$" + cacheFuncionario2 + "<br>";
 
                             }
                         }
@@ -503,6 +514,9 @@ public class ControllerCadastrarFesta extends HttpServlet {
                 }
                 //verifica se é necessario agendamento
                 if (festa.getFestaStatus() == 0) {
+
+                    funcionarioInfAF = funcionarioInfAF + "</p>";
+
                     //adiciona a string montada no loop na entidade de agendamento
                     agendamentoFesta.setCacheFuncionarios(funcionarioInfAF);
                 }
@@ -580,19 +594,23 @@ public class ControllerCadastrarFesta extends HttpServlet {
                                 pacoteAdicional = pacoteAdicionalBanco.getTipoPacoteAdicionalEspecifico(idPacoteAdicional2);
 
                                 //monta o texto do agendamento
-                                if(countText == 0){
+                                if (countText == 0) {
                                     countText++;
-                                    pacoteAdicionalAF = pacoteAdicionalAF + "Adicionais no Pacote: " + pacoteAdicional.getDescricaoPacoteAdd();
-                                }else{
+                                    pacoteAdicionalAF = pacoteAdicionalAF + "<h5 class=\"list-group-item list-group-item-info\">Adicional no Pacote:</h5><p class=\"list-group-item\">" + pacoteAdicional.getDescricaoPacoteAdd();
+                                } else {
                                     pacoteAdicionalAF = pacoteAdicionalAF + " & " + pacoteAdicional.getDescricaoPacoteAdd();
                                 }
-
                             }
                         }
                     }
                 }
                 //verifica se é necessario agendamento
                 if (festa.getFestaStatus() == 0) {
+
+                    if (!pacoteAdicionalAF.equals("")) {
+                        pacoteAdicionalAF = pacoteAdicionalAF + "</p>";
+                    }
+
                     //adiciona a string montada no loop na entidade de agendamento
                     agendamentoFesta.setPacotesAdicionais(pacoteAdicionalAF);
                 }
@@ -616,7 +634,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
             //se existir horario
             if (qtdHorario2 != 0) {
 
-                String horarioFestaAG = "";
+                String horarioFestaAG = "<h5 class=\"list-group-item list-group-item-info\">Horários:</h5><p class=\"list-group-item\">";
 
                 //instancia classe de comunicação com o banco de dados
                 HorarioFestaSQL horarioFestaBanco = new HorarioFestaSQL();
@@ -647,13 +665,17 @@ public class ControllerCadastrarFesta extends HttpServlet {
                         //verifica se é necessario agendamento
                         if (festa.getFestaStatus() == 0) {
                             //monta o texto de agendamento
-                            horarioFestaAG = horarioFestaAG + "Horário: " + horario + " - Descrição: " + horarioDesricao + "\n";
+                            horarioFestaAG = horarioFestaAG + horario + " - " + horarioDesricao + "<br>";
                         }
 
                     }
                 }
+                
                 //verifica se é necessario agendamento
                 if (festa.getFestaStatus() == 0) {
+                    
+                    horarioFestaAG = horarioFestaAG + "</p>";
+                    
                     //adiciona na entidade de agendamento
                     agendamentoFesta.setHorarios(horarioFestaAG);
                 }

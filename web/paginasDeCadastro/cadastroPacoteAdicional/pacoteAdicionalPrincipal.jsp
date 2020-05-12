@@ -58,7 +58,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela Pacote Adicional</h3>
+        <div class="jumbotron text-center">
+            <h1>Adicional no Pacote</h1>
+        </div>  
         <br>
         <div>
             <!--form para adicionar/editar um novo pacote add-->
@@ -110,11 +112,13 @@
         </form>
         <br>
         <!-- div de listagem pacote add-->          
-        <div>
-            <table id="tabela" class="table table-secondary">
+        <div class="table-responsive" id="divPacoteAdicional" style="display: none">
+            <input type="hidden" id="controllerListagemPacoteAdicional" value="${controllerListagemPacoteAdicional}">
+            <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
-                        <th scope="col">Nome Pacote Adicional</th>
+                    <tr class="bg-danger">    
+                        <th scope="col">Descrição</th>
+                        <th></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -126,15 +130,16 @@
                                 <form method="GET" action="editarPacoteAdicional"> 
                                     <input type="hidden" name="idTipoPacoteAdicional" value="${item.idTipoPacoteAdicional}">
                                     <input type="hidden" name="descricaoPacoteAdd" value="${item.descricaoPacoteAdd}">
-                                    <button class="btn btn-warning"> Editar </button>
+                                    <button class="btn btn-info"> Editar </button>
                                 </form> 
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-        </div> 
+        </div>
         <!-- fim  div de listagem pacote add-->            
         <a class="btn btn-primary" href="../cadastros.jsp">Voltar</a>
     </body>
+    <script src="../../javascripts/cadastroPacoteAdicional/pacoteAdicional.js"></script>          
 </html>
