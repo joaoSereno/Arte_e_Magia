@@ -20,4 +20,5 @@ body {
     background-color: #24b053;
     color: white;
     border-radius: unset;
+    padding: 2rem 2rem !important;     
 }

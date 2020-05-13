@@ -211,7 +211,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "2º Etapa - Selecionar Criança";    
+        tituloDaEtapa.textContent = "2º Etapa - Crianças";    
 
         //recebe o controlador com total e todos os aniversariantes e salva em uma variavel 
         var totalCriancas = document.getElementById('totalCriancas').value;
@@ -272,6 +272,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     var removerAniversarianteBotao = document.createElement("button");
                     removerAniversarianteBotao.textContent = "Remover";
                     removerAniversarianteBotao.type = "button";
+                    removerAniversarianteBotao.classList.add("btn", "btn-info");
                     removerAniversarianteBotao.id = "idRemoverAniversarianteBotao";
                     removerAniversarianteBotao.name = "nameRemoverAniversarianteBotao" + quantidadeCrianca;
                     
@@ -369,7 +370,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "1º Etapa - Selecionar Cliente";
+        tituloDaEtapa.textContent = "1º Etapa - Contratante";
 
         document.getElementById('confirmacaoCliente').style.display = ''; //habilita a confirmação da etapa 1
         document.getElementById('selecionarAniversariantes').style.display = 'none'; //desabilita a etapa 2
@@ -455,6 +456,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     var removerAniversarianteBotao = document.createElement("button");
                     removerAniversarianteBotao.textContent = "Remover";
                     removerAniversarianteBotao.type = "button";
+                    removerAniversarianteBotao.classList.add("btn", "btn-info");
                     removerAniversarianteBotao.id = "idRemoverAniversarianteBotao";
                     removerAniversarianteBotao.name = "nameRemoverAniversarianteBotao" + quantidadeCrianca;
                     
@@ -546,7 +548,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "3º Etapa - Selecionar Animadoras/Animadores";
+        tituloDaEtapa.textContent = "3º Etapa - Colaborador";
 
         document.getElementById('selecionarFuncionarios').style.display = ''; //habilita a etapa 3
         document.getElementById('selecionarAniversariantes').style.display = 'none'; //desabilita a etapa 2
@@ -588,7 +590,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function voltarEtapa2() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "2º Etapa - Selecionar Criança";
+        tituloDaEtapa.textContent = "2º Etapa - Crianças";
 
         document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3
         document.getElementById('selecionarAniversariantes').style.display = ''; //habilita a etapa 2
@@ -609,7 +611,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         }else{
             //recebendo H3 e setando nela o texto com o nome do cliente
             var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-            tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes & Pacotes Adicionais";            
+            tituloDaEtapa.textContent = "4º Etapa - Pacote & Adicionais";            
             
             document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
             document.getElementById('selecionarFuncionarios').style.display = 'none'; //desabilita a etapa 3    
@@ -673,7 +675,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             });
 
             //habilita a div da tabela
-            document.getElementById('tabelaFuncionario').style.display = 'block';
+            document.getElementById('tabelaFuncionario').style.display = '';
 
             //cria um elemento do tipo TR e salva ele em uma variavel
             var funcionarioTr = document.createElement("tr");
@@ -691,6 +693,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             removerFuncionarioBotao.textContent = "Remover";
             removerFuncionarioBotao.type = "button";
             removerFuncionarioBotao.id = "idRemoverFuncionarioBotao";
+            removerFuncionarioBotao.classList.add("btn", "btn-info");
             removerFuncionarioBotao.name = "nameRemoverFuncionarioBotao" + jsCountFuncionario;
 
             //criando função on clik para remover o funcionario adicionado
@@ -728,7 +731,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     //percorre o resultado do split
                     resultado.forEach((valorAtualLista2) => {
                         if(countResultadoSplit == 0){
-                            textoParagrafoFuncionario = "Animador ou Animadora: "+valorAtualLista2;
+                            textoParagrafoFuncionario = "Colaborador: "+valorAtualLista2;
                             countResultadoSplit++;
                         }else{
                             textoParagrafoFuncionario = textoParagrafoFuncionario+"   -   Cache: R$"+valorAtualLista2;
@@ -765,7 +768,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
             //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
             funcionarioTd.textContent = nomeFuncionario;
-            cacheTd.textContent = cache;
+            cacheTd.textContent = "R$ " + cache;
             formaPagamentoFuncionarioTd.textContent = nomePagamento;
 
             //coloca os TDS criados que estão com os valores do form dentro do TR
@@ -802,7 +805,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                 //percorre o resultado do split
                 resultado.forEach((valorAtualLista2) => {
                     if(countResultadoSplit == 0){
-                        textoParagrafoFuncionario = "Animador ou Animadora: "+valorAtualLista2;
+                        textoParagrafoFuncionario = "Colaborador: "+valorAtualLista2;
                         countResultadoSplit++;
                     }else{
                         textoParagrafoFuncionario = textoParagrafoFuncionario+"   -   Cache: R$"+valorAtualLista2;
@@ -893,7 +896,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function voltarEtapa3() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "3º Etapa - Selecionar Animadoras/Animadores";
+        tituloDaEtapa.textContent = "3º Etapa - Colaborador";
 
         document.getElementById('selecionarPacotes').style.display = 'none'; //desabilita a etapa 4
         document.getElementById('selecionarFuncionarios').style.display = ''; //habilita a etapa 3
@@ -984,7 +987,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             });
 
             //habilita a div da tabela
-            document.getElementById('tabelaPacoteAdicional').style.display = 'block';
+            document.getElementById('tabelaPacoteAdicional').style.display = '';
 
             //cria um elemento do tipo TR e salva ele em uma variavel
             var pacotesAdicionaisTr = document.createElement("tr");
@@ -1001,6 +1004,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             removerPacotesAdicionaisBotao.textContent = "Remover";
             removerPacotesAdicionaisBotao.type = "button";
             removerPacotesAdicionaisBotao.id = "idRemoverPacotesAdicionaisBotao";
+            removerPacotesAdicionaisBotao.classList.add("btn", "btn-info");
             removerPacotesAdicionaisBotao.name = "nameRemoverPacotesAdicionaisBotao" + jsCountPacotesAdicionais;
 
             //criando função on clik para remover o pacote adicional adicionado
@@ -1074,7 +1078,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
 
             //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
             pacoteAdicionaisTd.textContent = descricaoPacoteAdd;
-            valorPacoteAdicionalTd.textContent = valorPacoteAdicional;
+            valorPacoteAdicionalTd.textContent = "R$ " + valorPacoteAdicional;
 
             //coloca os TDS criados que estão com os valores do form dentro do TR
             pacotesAdicionaisTr.appendChild(pacoteAdicionaisTd);
@@ -1179,7 +1183,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function voltarEtapa4() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";
+        tituloDaEtapa.textContent = "4º Etapa - Pacote & Adicionais";
 
         document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
         document.getElementById('inserirValorAdicional').style.display = 'none'; //desabilita a etapa 5
@@ -1189,7 +1193,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function etapa6() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "6º Etapa - Despesas da Festa";
+        tituloDaEtapa.textContent = "6º Etapa - Despesas do Evento";
     
         document.getElementById('inserirDespesas').style.display = ''; //habilita a etapa 6
         document.getElementById('inserirValorAdicional').style.display = 'none'; //desabilita a etapa 5
@@ -1230,7 +1234,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             var descricaoValorAdicional = form.jsDescricaoValorAdicional.value;
 
             //habilita a div da tabela
-            document.getElementById('tabelaValorAdicional').style.display = 'block';
+            document.getElementById('tabelaValorAdicional').style.display = '';
 
             //cria um elemento do tipo TR e salva ele em uma variavel
             var valorAdicionalTr = document.createElement("tr");
@@ -1247,6 +1251,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             removerValorAdicionalBotao.textContent = "Remover";
             removerValorAdicionalBotao.type = "button";
             removerValorAdicionalBotao.id = "idRemoverValorAdicionalBotao";
+            removerValorAdicionalBotao.classList.add("btn", "btn-info");
             removerValorAdicionalBotao.name = "nameRemoverValorAdicionalBotao" + jsCountValorAdicional;
 
             //criando função on clik para remover o valor adicional adicionado
@@ -1319,7 +1324,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             removerValorAdicionalBotaoTd.appendChild(removerValorAdicionalBotao);
 
             //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
-            valorAdicionalTd.textContent = valorAdicional;
+            valorAdicionalTd.textContent = "R$ " + valorAdicional;
             descricaoValorAdicionalTd.textContent = descricaoValorAdicional;
 
             //coloca os TDS criados que estão com os valores do form dentro do TR
@@ -1575,7 +1580,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
           
             //recebendo H3 e setando nela o texto com o nome do cliente
             var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-            tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+            tituloDaEtapa.textContent = "7º Etapa - Valores & Formas de Pagamento";
             
             document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
             document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
@@ -1690,7 +1695,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
           
             //recebendo H3 e setando nela o texto com o nome do cliente
             var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-            tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+            tituloDaEtapa.textContent = "7º Etapa - Valores & Formas de Pagamento";
             
             document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
             document.getElementById('inserirDespesas').style.display = 'none'; //desabilita a etapa 6
@@ -1763,7 +1768,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             });
 
             //habilita a div da tabela
-            document.getElementById('tabelaDespesas').style.display = 'block';
+            document.getElementById('tabelaDespesas').style.display = '';
 
             //cria um elemento do tipo TR e salva ele em uma variavel
             var despesaTr = document.createElement("tr");
@@ -1782,6 +1787,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             removerDespesaBotao.textContent = "Remover";
             removerDespesaBotao.type = "button";
             removerDespesaBotao.id = "idRemoverDespesaBotao";
+            removerDespesaBotao.classList.add("btn", "btn-info");
             removerDespesaBotao.name = "nameRemoverDespesaBotao" + jsCountDespesa;
 
             //criando função on clik para remover o aniversariante adicionado
@@ -1894,7 +1900,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                 despesaTd.textContent = nomeDespesa;
             }
 
-            valorDespesaTd.textContent = valorDespesa;
+            valorDespesaTd.textContent = "R$ " + valorDespesa;
             formaPagamentoDespesaTd.textContent = nomePagamento;
             despesaPagaTd.textContent = despesaPaga;
 
@@ -2113,7 +2119,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function voltarEtapa6() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "6º Etapa - Despesas da Festa";
+        tituloDaEtapa.textContent = "6º Etapa - Despesas do Evento";
 
         document.getElementById('inserirDespesas').style.display = ''; //habilita a etapa 6
         document.getElementById('valoresEformaPagamento').style.display = 'none'; //desabilita a etapa 7
@@ -2216,7 +2222,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             jsCountFPeValor2++;
             
             //habilita a div da tabela
-            document.getElementById('tabelaFormaPagamentoEvalor').style.display = 'block';
+            document.getElementById('tabelaFormaPagamentoEvalor').style.display = '';
             
             //cria um elemento do tipo TR e salva ele em uma variavel
             var FPeValorTr = document.createElement("tr");
@@ -2233,6 +2239,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             removerValorBotao.textContent = "Remover";
             removerValorBotao.type = "button";
             removerValorBotao.id = "idRemoverValorEfp";
+            removerValorBotao.classList.add("btn", "btn-info");
             removerValorBotao.name = "nameRemoverValorEfp" + jsCountFPeValor;            
             
             //colocando o botão de remover dentro do td
@@ -2322,7 +2329,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             };
 
             //seta o texto das td com os valores das variaveis que receberam os valores dos inputs do form
-            valorFpTd.textContent = valorFP;
+            valorFpTd.textContent = "R$ " + valorFP;
             formaPagamentoTd.textContent = nomePagamento;
             valorPagoTd.textContent = valorPago;
 
@@ -2452,7 +2459,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function voltarEtapa7() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+        tituloDaEtapa.textContent = "7º Etapa - Valores & Formas de Pagamento";
 
         document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
         document.getElementById('inserirHorarios').style.display = 'none'; //desabilita a etapa 8
@@ -2469,7 +2476,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         }else{
             //recebendo H3 e setando nela o texto com o nome do cliente
             var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-            tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";            
+            tituloDaEtapa.textContent = "9º Etapa - Local do Evento";            
             
             document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 9
             document.getElementById('inserirHorarios').style.display = 'none'; //desabilita a etapa 8
@@ -2494,7 +2501,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             var descricaoHorario = form.jsDescricaoH.value;
 
             //habilita a div da tabela
-            document.getElementById('tabelaHorario').style.display = 'block';
+            document.getElementById('tabelaHorario').style.display = '';
 
             //cria um elemento do tipo TR e salva ele em uma variavel
             var horarioTr = document.createElement("tr");
@@ -2511,6 +2518,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             removerHorarioBotao.textContent = "Remover";
             removerHorarioBotao.type = "button";
             removerHorarioBotao.id = "idRemoverHorarioBotao";
+            removerHorarioBotao.classList.add("btn", "btn-info");
             removerHorarioBotao.name = "nameRemoverHorarioBotao" + jsCountHorario;
 
             //criando função on clik para remover o horario adicionado
@@ -2692,7 +2700,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function etapa10() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
+        tituloDaEtapa.textContent = "10º Etapa - Informações Finais";
     
         document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
         document.getElementById('inserirEndereco').style.display = 'none'; //desabilita a etapa 9
@@ -2763,7 +2771,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function voltarEtapa9() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";
+        tituloDaEtapa.textContent = "9º Etapa - Local do Evento";
 
         document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 8
         document.getElementById('inserirInfoAdicionais').style.display = 'none'; //desabilita a etapa 9
@@ -2773,7 +2781,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function etapaFinal() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "ETAPA FINAL - Confirmar Informações";
+        tituloDaEtapa.textContent = "Etapa Final - Confirmação de Informações";
     
         document.getElementById('confirmarInformacoes').style.display = ''; //habilita a etapa final
         document.getElementById('inserirInfoAdicionais').style.display = 'none'; //desabilita a etapa 10
@@ -2832,7 +2840,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     function voltarEtapa10() {
         //recebendo H3 e setando nela o texto com o nome do cliente
         var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-        tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
+        tituloDaEtapa.textContent = "10º Etapa - Informações Finais";
 
         document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
         document.getElementById('confirmarInformacoes').style.display = 'none'; //desabilita a etapa final
@@ -2846,7 +2854,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 1:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "1º Etapa - Selecionar Cliente";
+                tituloDaEtapa.textContent = "1º Etapa - Contratante";
 
                 document.getElementById('confirmacaoCliente').style.display = ''; //habilita a confirmação da etapa 1
                 
@@ -2854,7 +2862,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 2:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "2º Etapa - Selecionar Criança";
+                tituloDaEtapa.textContent = "2º Etapa - Crianças";
 
                 document.getElementById('selecionarAniversariantes').style.display = ''; //habilita a etapa 2
 
@@ -2864,7 +2872,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 3:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "3º Etapa - Selecionar Animadoras/Animadores";
+                tituloDaEtapa.textContent = "3º Etapa - Colaborador";
 
                 document.getElementById('selecionarFuncionarios').style.display = ''; //habilita a etapa 3
                 
@@ -2872,7 +2880,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 4:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "4º Etapa - Selecionar Pacotes";
+                tituloDaEtapa.textContent = "4º Etapa - Pacote & Adicionais";
 
                 document.getElementById('selecionarPacotes').style.display = ''; //habilita a etapa 4
                 
@@ -2888,7 +2896,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 6:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "6º Etapa - Despesas da Festa";
+                tituloDaEtapa.textContent = "6º Etapa - Despesas do Evento";
 
                 document.getElementById('inserirDespesas').style.display = ''; //habilita a etapa 6
 
@@ -2896,7 +2904,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 7:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "7º Etapa - Valores e Forma de Pagamento";
+                tituloDaEtapa.textContent = "7º Etapa - Valores & Formas de Pagamento";
 
                 document.getElementById('valoresEformaPagamento').style.display = ''; //habilita a etapa 7
         
@@ -2912,7 +2920,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 9:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "9º Etapa - Endereço do Evento";
+                tituloDaEtapa.textContent = "9º Etapa - Local do Evento";
 
                 document.getElementById('inserirEndereco').style.display = ''; //habilita a etapa 8
                 
@@ -2920,7 +2928,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             case 10:
                 //recebendo H3 e setando nela o texto com o nome do cliente
                 var tituloDaEtapa = document.querySelector("#tituloDaEtapa");
-                tituloDaEtapa.textContent = "10º Etapa - Informações finais do evento";
+                tituloDaEtapa.textContent = "10º Etapa - Informações Finais";
 
                 document.getElementById('inserirInfoAdicionais').style.display = ''; //habilita a etapa 10
                 

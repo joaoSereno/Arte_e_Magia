@@ -61,7 +61,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela de clientes</h3>
+        <div class="jumbotron text-center">
+            <h1>Clientes</h1>
+        </div> 
         <form Method="GET" action="listarTipoDeFestaNoCadastroCliente">
            <button type="submit" class="btn btn-primary">Novo Cliente</button>
         </form>
@@ -70,14 +72,16 @@
             <button class="btn btn-primary" type="submit" value="ListarFuncionarios"/>Listar Clientes</button>
         </form>
         <!-- div de listagem cliente-->          
-        <div>
-            <table id="tabela" class="table table-secondary">
+        <div class="table-responsive" id="divListagemCliente" style="display: none">
+            <input type="hidden" id="controllerListagemCliente" value="${controllerListagemCliente}">    
+            <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
+                    <tr class="bg-danger">    
                         <th scope="col">Nome</th>
                         <th scope="col">CPF/CNPJ</th>
                         <th scope="col">Tipo de Festa</th>
                         <th scope="col">Contato</th>
+                        <th></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -91,17 +95,18 @@
                             <td>
                                 <form method="GET" action="editarCadastroCliente">
                                     <input type="hidden" name="idCliente" value="${item.idCliente}">
-                                    <button class="btn btn-warning"> + </button>
+                                    <button class="btn btn-info"> + </button>
                                 </form> 
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-        </div> 
+        </div>
         <!-- fim  div de listagem cliente-->
         <br>
         <!-- botão de voltar página-->
         <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
     </body>
+    <script src="../../javascripts/cadastroDeClientes/clientePrincipal.js"></script>      
 </html>

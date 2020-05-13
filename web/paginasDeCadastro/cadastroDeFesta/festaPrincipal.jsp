@@ -59,7 +59,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela Principal Festa</h3>
+        <div class="jumbotron text-center">
+            <h1>Eventos</h1>
+        </div>          
         <form method="GET" action="listarFesta">
             Status do Evento:
             <select name="statusEvento">

@@ -11,3 +11,11 @@ and open the template in the editor.
 body {
     background-color: #ccd4b82b;
 }
+
+.bg-danger{
+    background-color: #ffc107cc !important;
+}
+
+/*.table{
+    color: red !important;
+}*/

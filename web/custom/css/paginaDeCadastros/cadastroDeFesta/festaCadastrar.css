@@ -10,3 +10,10 @@ and open the template in the editor.
 body {
     background-color: #ccd4b82b;
 }
+
+.jumbotron {
+    background-color: #51e0ff;;
+    color: white;
+    padding: 2rem 2rem !important; 
+    border-radius: unset;    
+}

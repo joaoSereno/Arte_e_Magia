@@ -60,35 +60,35 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <br>
         <!-- div de listagem usuários do sistemaa-->          
-        <div>
-            <table id="tabela" class="table table-secondary">
-                <thead> 
-                    <tr>    
-                        <th scope="col">Login</th>
-                        <th scope="col">Tipo usuário</th>
-                        <th scope="col">Nome usuário</th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${listaUsuarios}" var="item"> 
-                        <tr>
-                            <td>${item.usuario}</td>
-                            <td>${item.tipoUsuario2}</td>
-                            <td>${item.nomeUsuario}</td>
-                            <!-- botão/form para editar registro tipo despesa , envia para ControllerUsuarioEditar  --> 
-                            <td>
-                                <form method="GET" action="usuarioEditar">
-                                    <input type="hidden" name="idUsuario" value="${item.idusuario}">
-                                    <button class="btn btn-warning"> Editar </button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
+        <div class="table-responsive" >
+           <table class="table table-striped table-bordered">
+               <thead> 
+                   <tr  class="bg-danger">    
+                       <th scope="col">Login</th>
+                       <th scope="col">Tipo do Usuário</th>
+                       <th scope="col">Nome do Usuário</th>
+                       <th></th>
+                   </tr>
+               </thead> 
+               <tbody>
+                   <c:forEach items="${listaUsuarios}" var="item"> 
+                       <tr>
+                           <td>${item.usuario}</td>
+                           <td>${item.tipoUsuario2}</td>
+                           <td>${item.nomeUsuario}</td>
+                           <!-- botão/form para editar registro tipo despesa , envia para ControllerUsuarioEditar  --> 
+                           <td>
+                               <form method="GET" action="usuarioEditar">
+                                   <input type="hidden" name="idUsuario" value="${item.idusuario}">
+                                   <button class="btn btn-info"> Editar </button>
+                               </form> 
+                           </td>
+                       </tr>
+                   </c:forEach>
+               </tbody>
+           </table>
+       </div>
         <br>
         <br>
         <a href="usuarioCadastrar.jsp" class="btn btn-primary" >Voltar</a>

@@ -59,7 +59,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela cadastro despesa</h3>
+        <div class="jumbotron text-center">
+            <h1>Despesas - Cadastrar</h1>
+        </div>   
         <br>
         <button type="button" onclick="tipoDespesa()"/>DESCRIÇÃO MANUAL</button>
         <!--   form para listar os tipos de despesa no campo "tipoDespesa" -->

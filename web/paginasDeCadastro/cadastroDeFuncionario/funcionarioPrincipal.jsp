@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cadastros - Funcionário</title>
+        <title>Cadastros - Colaborador</title>
         <link rel="shortcut icon" href="../../custom/img/favicon.jpg">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -61,15 +61,14 @@
             </div>
         </nav>
         <!-- div de listagem funcionario-->          
-        <div>
         <div id="listagemFuncionario" class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
+                    <tr class="bg-danger">    
                         <th scope="col">Nome</th>
                         <th scope="col">Sexo</th>
                         <th scope="col">Contato</th>
-                        <th scope="col"></th>
+                        <th></th>
                     </tr>
                 </thead>  
                 <tbody>
@@ -92,7 +91,6 @@
                 </tbody>
             </table>
         </div>
-        </div> 
         <!-- fim  div de listagem funcionario--> 
         <br>
         <!-- botão de voltar página-->

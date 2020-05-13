@@ -25,13 +25,15 @@ import persistence.ClienteSQL;
 public class ControllerClienteListar extends HttpServlet{
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ClienteSQL clienteBanco = new ClienteSQL(); //instancia a classe de comunicação com o banco de dados
-              
+        
+        ClienteSQL clienteBanco = new ClienteSQL(); //instancia a classe de comunicação com o banco de dados              
         List<Cliente> listaClientes; //lista que vai receber os dados do cliente
 
         try {
     
             listaClientes = clienteBanco.getClientes(); // recebe na lista os clientes pelo método de get do banco 
+            
+            request.setAttribute("controllerListagemCliente", 1); // atribui a lista na marcação "clientes"
             request.setAttribute("clientes", listaClientes); // atribui a lista na marcação "clientes"
             request.getRequestDispatcher("clientePrincipal.jsp").forward(request, response); // dispara para essa página
             

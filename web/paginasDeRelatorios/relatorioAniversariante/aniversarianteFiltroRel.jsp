@@ -59,9 +59,11 @@
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
-        </nav>        
-        <h1>Relatório de Aniversariante</h1>
-        <h5>Por favor, informe o período desejado e clique em "Gerar Relatório"</h5>
+        </nav>
+        <div class="jumbotron text-center">
+            <h1>Relatório de Aniversariante</h1>
+            <h4>Por favor, informe o período desejado e clique em "Gerar Relatório".</h4>
+        </div>           
         <br>
         <form method="GET" action="relatorioAniversariante">
             Mês inicial:

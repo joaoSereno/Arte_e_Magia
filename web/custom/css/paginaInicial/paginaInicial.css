@@ -17,11 +17,11 @@ body {
 }
 
 .bg-danger {
-    background-color: #ef97a7!important;
+    background-color: #fb5877!important;
 }
 
 .jumbotron {
-    background-color: #ec768cbd;
+    background-color: #ff365ccc;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    

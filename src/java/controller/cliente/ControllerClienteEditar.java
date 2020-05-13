@@ -86,6 +86,10 @@ public class ControllerClienteEditar extends HttpServlet {
                 email.setEmail(listaEmailCliente.get(i).getEmail());
             }
             
+            if(listaCriancaCliente.size() > 0){
+                request.setAttribute("controllerListagemCrianca", 1);
+            }
+            
             //set de atributo para outra página
             request.setAttribute("cliente", cliente);
             request.setAttribute("email", email);

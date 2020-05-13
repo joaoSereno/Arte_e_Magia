@@ -60,8 +60,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <br>
-        <h1>Pagina cadastrar usuario</h1>
+        <div class="jumbotron text-center">
+            <h1>Usuário - Cadastrar</h1>
+        </div>   
         <br>
         <!-- form para cadastrar funcionario-->
         <div>

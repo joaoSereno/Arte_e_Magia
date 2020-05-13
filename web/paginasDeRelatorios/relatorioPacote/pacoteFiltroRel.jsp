@@ -59,7 +59,18 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>        
-        <h1>Hello World!</h1>
+        <div class="jumbotron text-center">
+            <h1>Relatório de Pacote</h1>
+            <h4>Por favor, informe o período desejado e clique em "Gerar Relatório".</h4>
+        </div>           
+        <br>
+        <form method="GET" action="relatorioPacote">
+            Período:
+            <input type="text" name="periodo">
+            à
+            <input type="text" name="periodo2">
+            <button type="submit">Gerar Relatório</button>
+        </form>
         <br>
         <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
         <br>        

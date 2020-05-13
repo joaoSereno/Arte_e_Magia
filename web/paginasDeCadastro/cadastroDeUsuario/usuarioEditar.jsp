@@ -59,8 +59,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <br>
-        <h3>Edição de usuário</h3>
+        <div class="jumbotron text-center">
+            <h1>Usuário - Editar</h1>
+        </div>  
         <br>
         <form method="GET" action="usuarioEditar2"> 
                 <input type="hidden" name="idusuario" value="${usuario.idusuario}">           

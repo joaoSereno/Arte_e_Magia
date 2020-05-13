@@ -104,6 +104,10 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
                        
                 //recebendo lista de telefone atual do cliente
                 listaTelefone =  telefoneBanco.getTelefone(0, idCliente2);
+
+                if(listaCrianca.size() > 0){
+                    request.setAttribute("controllerListagemCrianca", 1);
+                }
                 
                 request.setAttribute("cliente", cliente);
                 request.setAttribute("endereco", endereco);

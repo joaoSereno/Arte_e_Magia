@@ -12,3 +12,13 @@ body {
     background-color: #ccd4b82b;
 }
 
+.jumbotron {
+    background-color: #f75576;
+    color: white;
+    padding: 2rem 2rem !important; 
+    border-radius: unset;    
+}
+
+.bg-danger{
+    background-color: #f75576 !important;
+}

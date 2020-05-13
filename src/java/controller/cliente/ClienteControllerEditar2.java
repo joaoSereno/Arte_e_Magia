@@ -177,6 +177,10 @@ public class ClienteControllerEditar2 extends HttpServlet {
 
             if (idCliente2 != 0 || idEnderecos2 != 0) {
 
+                if(listaCriancaCliente.size() > 0){
+                    request.setAttribute("controllerListagemCrianca", 1);
+                }
+                
                 //set de atributo para outra página
                 request.setAttribute("msg", msg);
                 request.setAttribute("listaTelefoneCliente", listaTelefoneCliente);

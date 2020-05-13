@@ -60,8 +60,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela editar cliente</h3>
-        <br>
+        <div class="jumbotron text-center">
+            <h1>Cliente - Editar</h1>
+        </div> 
         <br>
         <!-- form para editar cliente-->
         <div>
@@ -192,12 +193,13 @@
             <!-- fim da div de modal para o  novo telefone-->
             
             <!-- div de listagem listagem telefone cliente-->          
-            <div>
-                <table id="tabelaTelefone" class="table table-secondary"> 
+            <div class="table-responsive">
+                <table id="tabelaTelefone" class="table table-striped table-bordered"> 
                     <thead> 
-                        <tr>    
+                        <tr class="bg-danger">     
                             <th scope="col">Número</th>
                             <th scope="col">Tipo</th>
+                            <th></th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -211,34 +213,36 @@
                                         <input type="hidden" name="idClienteTelefone" value="${cliente.idCliente}">
                                         <input type="hidden" name="isPrincipal" value="${item.isPrincipal}">
                                         <input type="hidden" name="idTelefone" value="${item.idTelefone}">
-                                        <button class="btn btn-warning"> Excluir </button>
+                                        <button class="btn btn-info"> Excluir </button>
                                     </form> 
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-            </div> 
+            </div>
             <!-- fim  div de listagem telefone cliente-->   
         </div>
-       <br>
+        <br>
         <div>
-            <h3>Crianças:</h3>
-            <div>
-                <!-- form cadastrar criança -->
-                <form method="GET" action="editarORcadastrarCrianca">
-                    <input type="hidden" name="idClienteCrianca" value="${cliente.idCliente}">
-                    <button type="submit">Nova Criança</button>
-                </form>                        
-            </div>        
+            <!-- form cadastrar criança -->
+            <form method="GET" action="editarORcadastrarCrianca">
+                <input type="hidden" name="idClienteCrianca" value="${cliente.idCliente}">
+                <button type="submit">Nova Criança</button>
+            </form>                        
+        </div>          
+        <div style="display: none" id="divCrianca">
+            <input type="hidden" id="controllerListagemCrianca" value="${controllerListagemCrianca}">  
+            <h3>Crianças:</h3>      
             <!-- div de listagem crianca do cliente-->          
-            <div>
-                <table id="tabela" class="table table-secondary">
-                    <thead> 
-                        <tr>    
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead > 
+                        <tr class="bg-danger">    
                             <th scope="col">Nome</th>
-                            <th scope="col">sexo</th>
+                            <th scope="col">Sexo</th>
                             <th scope="col">Data de Nascimento</th>
+                            <th></th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -255,7 +259,7 @@
                                         <input type="hidden" name="nomeCrianca" value="${item.nomeCrianca}">
                                         <input type="hidden" name="sexo" value="${item.sexo}">
                                         <input type="hidden" name="dataNascimento" value="${item.dataNascimento}">
-                                        <button class="btn btn-warning"> + </button>
+                                        <button class="btn btn-info"> Editar </button>
                                     </form> 
                                 </td>
                             </tr>
@@ -264,7 +268,7 @@
                 </table>
             </div> 
             <!-- fim  div de listagem crianca do cliente-->              
-        </div>
+        </div>  
        <br>
        <br>
         <!--botão de voltar página-->
@@ -277,4 +281,5 @@
     </body>
     <script src="../../javascripts/telefones/destacarTelefone.js"></script>
     <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  
+    <script src="../../javascripts/cadastroDeClientes/clienteEditar.js"></script>     
 </html>

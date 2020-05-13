@@ -11,3 +11,14 @@ and open the template in the editor.
 body {
     background-color: #ccd4b82b;
 }
+
+.jumbotron {
+    background-color: #ffc107;
+    color: white;
+    padding: 2rem 2rem !important; 
+    border-radius: unset;    
+}
+
+.bg-danger{
+    background-color: #ffc107 !important;
+}

@@ -12,7 +12,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastros - Funcionário</title>
+        <title>Cadastros - Colaborador</title>
         <link rel="shortcut icon" href="../../custom/img/favicon.jpg">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -59,8 +59,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>tela editar funcionario</h3>
-        
+        <div class="jumbotron text-center">
+            <h1>Colaborador - Editar</h1>
+        </div>      
         <!--form para edição de funcionario-->
         <div>
             <form method="GET" action="editarCadastroFuncionario2"> <%-- joga formulario para o controllerFuncionarioEditar --%>              
@@ -161,12 +162,13 @@
             <!-- fim da div de modal para o  novo telefone-->
             
             <!-- div de listagem listagem telefone funcionario-->          
-            <div>
-                <table  class="table table-secondary">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
                     <thead> 
-                        <tr>    
+                        <tr class="bg-danger">    
                             <th scope="col">Número</th>
                             <th scope="col">Tipo</th>
+                            <th></th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -180,7 +182,7 @@
                                         <input type="hidden" name="idFuncionarioTelefone" value="${idFuncionario}">
                                         <input type="hidden" name="isPrincipal" value="${item.isPrincipal}">
                                         <input type="hidden" name="idTelefone" value="${item.idTelefone}">
-                                        <button class="btn btn-warning"> Excluir </button>
+                                        <button class="btn btn-info"> Excluir </button>
                                     </form> 
                                 </td>
                             </tr>
@@ -189,7 +191,6 @@
                 </table>
             </div> 
             <!-- fim  div de listagem telefone funcionario-->   
-        </div>
          
         <!--form para edição de funcionario-->
         <h3>${msg}</h3>

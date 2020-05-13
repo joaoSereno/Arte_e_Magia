@@ -90,7 +90,10 @@ public class ControllerExcluirTelefoneCliente extends HttpServlet {
                 telefoneBanco.excluirTelefone(telefone);//chamando método de delete da classe TelefoneSQL e passando telefone como parametro
                 listaTelefone = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista telefone , os telefones do cliente
                 listaCrianca = criancaBanco.getCrianca(idCliente2); //recebendo lista de crianças do cliente
-                
+
+                if(listaCrianca.size() > 0){
+                    request.setAttribute("controllerListagemCrianca", 1);
+                }               
                 
                 request.setAttribute("listaCriancaCliente", listaCrianca);
                 request.setAttribute("listaTelefoneCliente", listaTelefone);
@@ -101,6 +104,9 @@ public class ControllerExcluirTelefoneCliente extends HttpServlet {
                 listaTelefone = telefoneBanco.getTelefone(0, idCliente2); //recebendo na lista telefone , os telefones do cliente
                 listaCrianca = criancaBanco.getCrianca(idCliente2); //recebendo lista de crianças do cliente
                 
+                if(listaCrianca.size() > 0){
+                    request.setAttribute("controllerListagemCrianca", 1);
+                }
                 
                 request.setAttribute("listaCriancaCliente", listaCrianca);                
                 request.setAttribute("listaTelefoneCliente", listaTelefone);

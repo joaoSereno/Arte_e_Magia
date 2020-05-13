@@ -59,8 +59,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <br>
-        <h3>Edição de senha usuário</h3>
+        <div class="jumbotron text-center">
+            <h1>Usuário - Troca de Senha</h1>
+        </div>  
         <br>
         <form method="POST" action="trocarSenhaUsuario">   
             <input type="hidden" name="valorDisplay" value="${valorDisplay}">

@@ -60,7 +60,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Tela Criança</h3>
+        <div class="jumbotron text-center">
+            <h1>Cadastrar/Editar - Criança</h1>
+        </div> 
         <br>
         <div>
             <!-- form para cadastrar ou editar criança-->

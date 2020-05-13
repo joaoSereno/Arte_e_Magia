@@ -58,7 +58,9 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <h3>Listar despesa</h3>
+        <div class="jumbotron text-center">
+            <h1>Despesas</h1>
+        </div> 
         <form method="GET" action="listarDespesas">
             Origem Despesa
             <select name="origem">
@@ -76,13 +78,14 @@
         <br>
         <br>
         <!-- div de listagem despesas-->          
-        <div>
-            <table id="tabela" class="table table-secondary">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
                 <thead> 
-                    <tr>    
-                        <th scope="col">Origem despesa</th>
+                    <tr class="bg-danger">    
+                        <th scope="col">Origem da Despesa</th>
                         <th scope="col">Descrição</th>
                         <th scope="col">Status</th>
+                        <th></th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -95,7 +98,7 @@
                             <td>
                                 <form method="GET" action="edicaoDespesa">
                                     <input type="hidden" name="idDespesas" value="${item.idDespesas}">
-                                    <button class="btn btn-warning"> + </button>
+                                    <button class="btn btn-info"> + </button>
                                 </form> 
                             </td>
                         </tr>
