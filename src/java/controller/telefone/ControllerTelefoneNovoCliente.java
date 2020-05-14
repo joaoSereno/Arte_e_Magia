@@ -113,7 +113,7 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
                 request.setAttribute("endereco", endereco);
                 request.setAttribute("listaCriancaCliente", listaCrianca);
                 request.setAttribute("listaTelefoneCliente", listaTelefone);
-                request.setAttribute("msg", "Telefone cadastrado com sucesso!!");
+                request.setAttribute("msg", "Contato cadastrado com sucesso!");
 
             }
 

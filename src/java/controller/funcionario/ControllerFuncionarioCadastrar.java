@@ -74,7 +74,7 @@ public class ControllerFuncionarioCadastrar extends HttpServlet {
 
         try {
             telefoneBanco.create(telefone); //chamando método de inserir da classe TelefoneSQL e passando telefone como parametro
-            request.setAttribute("msg", "Cadastro realizado com sucesso!!");
+            request.setAttribute("msg", "Colaborador cadastrado com sucesso!");
             request.getRequestDispatcher("funcionarioCadastrar.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(ControllerFuncionarioCadastrar.class.getName()).log(Level.SEVERE, null, ex);

@@ -38,7 +38,7 @@ public class ControllerTipoDeFestaInativar extends HttpServlet{
             
             if (idTipoDeFesta2 != 0) { //se existir valor no idTipoDeFesta2 
                 tipoDeFestaBanco.inativaPacoteAdicional(idTipoDeFesta2); //chama método da classe de comunicação com o banco que inativa o cadastro
-                request.setAttribute("msg", "Tipo de Festa exluido com sucesso!!");  
+                request.setAttribute("msg", "Cadastro excluído com sucesso!");  
                 request.getRequestDispatcher("tipoDeFestaPrincipal.jsp").forward(request, response);
             }else{
                 request.getRequestDispatcher("tipoDeFestaPrincipal.jsp").forward(request, response);                

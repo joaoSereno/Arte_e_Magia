@@ -55,13 +55,13 @@ public class ControllerTipoDespesaCadastrarOuEditar extends HttpServlet{
                     request.getRequestDispatcher("tipoDespesaPrincipal.jsp").forward(request, response);
                 } else {//se não for vazio add no banco
                     tipoDespesaBanco.create(tipoDeDespesa);//chamando método de inserir da classe TipoDespesaSQL e passando classe instanciada do tipoDeDespesa como parametro  
-                    request.setAttribute("msg", "Tipo de Despesa cadastrada com sucesso!!");
+                    request.setAttribute("msg", "Cadastro realizado com sucesso!");
                     request.getRequestDispatcher("tipoDespesaPrincipal.jsp").forward(request, response);
                 }
             } else {//se não significa que é para editar
 
                 tipoDespesaBanco.editarTipoDespesa(tipoDeDespesa);//chamando método de update da classe TipoDespesaSQL e passando classe instanciada do tipoDeDespesa como parametro  
-                request.setAttribute("msg", "Tipo de Despesa  editada com sucesso!!");
+                request.setAttribute("msg", "Cadastro editado com sucesso!");
                 request.getRequestDispatcher("tipoDespesaPrincipal.jsp").forward(request, response);
                 
             }

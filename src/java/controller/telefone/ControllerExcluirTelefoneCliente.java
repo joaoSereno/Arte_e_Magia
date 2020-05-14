@@ -97,7 +97,7 @@ public class ControllerExcluirTelefoneCliente extends HttpServlet {
                 
                 request.setAttribute("listaCriancaCliente", listaCrianca);
                 request.setAttribute("listaTelefoneCliente", listaTelefone);
-                request.setAttribute("msg", "Telefone excluido com sucesso!!");
+                request.setAttribute("msg", "Contato excluído com sucesso!");
                 request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
             } else {
                 
@@ -110,7 +110,7 @@ public class ControllerExcluirTelefoneCliente extends HttpServlet {
                 
                 request.setAttribute("listaCriancaCliente", listaCrianca);                
                 request.setAttribute("listaTelefoneCliente", listaTelefone);
-                request.setAttribute("msg", "Não é possível ficar sem nenhum telefone no cadastro, por favor realize um novo cadastro de telefone e tente excluir este novamente!!");
+                request.setAttribute("msg", "Não foi possível concluir a exclusão. É necessário no mínimo um contato no cadastro!");
                 request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
             }
         } catch (Exception ex) {

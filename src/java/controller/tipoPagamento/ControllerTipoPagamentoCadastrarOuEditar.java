@@ -53,13 +53,13 @@ public class ControllerTipoPagamentoCadastrarOuEditar extends HttpServlet {
                     request.getRequestDispatcher("tipoPagamentoPrincipal.jsp").forward(request, response);
                 } else {//se não for vazio add no banco
                     formaPagamentoBanco.create(formaPagamento);//chamando método de inserir da classe TipoPagamentoSQL e passando classe instanciada do tipoPagamento como parametro  
-                    request.setAttribute("msg", "Forma de pagamento cadastrada com sucesso!!");
+                    request.setAttribute("msg", "Cadastro realizado com sucesso!");
                     request.getRequestDispatcher("tipoPagamentoPrincipal.jsp").forward(request, response);
                 }
             } else {//se não significa que é para editar
 
                 formaPagamentoBanco.editaFormaPagamento(formaPagamento);//chamando método de update da classe TipoPagamentoSQL e passando classe instanciada do tipoPagamento como parametro  
-                request.setAttribute("msg", "Forma de pagamento editada com sucesso!!");
+                request.setAttribute("msg", "Cadastro editado com sucesso!");
                 request.getRequestDispatcher("tipoPagamentoPrincipal.jsp").forward(request, response);
                 
             }

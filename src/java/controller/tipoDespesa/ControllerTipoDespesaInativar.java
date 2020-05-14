@@ -38,7 +38,7 @@ public class ControllerTipoDespesaInativar extends HttpServlet{
             
             if (idTipoDeDespesa2 != 0) { //se existir valor no idFormaPagamento2 
                 tipoDespesaBanco.inativaTipoDespesa(idTipoDeDespesa2); //chama método da classe de comunicação com o banco que inativa o cadastro
-                request.setAttribute("msg", "Tipo de despesa exluida com sucesso!!");  
+                request.setAttribute("msg", "Cadastro excluído com sucesso!");  
                 request.getRequestDispatcher("tipoDespesaPrincipal.jsp").forward(request, response);
             }else{
                 request.getRequestDispatcher("tipoDespesaPrincipal.jsp").forward(request, response);                

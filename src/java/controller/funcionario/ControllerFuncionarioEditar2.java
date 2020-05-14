@@ -29,7 +29,7 @@ public class ControllerFuncionarioEditar2 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Telefone> listaTelefoneFuncionario = null; //lista de telefone
         int idFuncionario2 = 0;
-        String msg = "Funcionário editado com sucesso!";
+        String msg = "Cadastro editado com sucesso!";
 
         //pega os parametros do form
         String idFuncionario = request.getParameter("idFuncionario");

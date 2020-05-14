@@ -38,7 +38,7 @@ public class ControllerPacoteAddInativar extends HttpServlet{
             
             if (idTipoPacoteAdicional2 != 0) { //se existir valor no idTipoPacoteAdicional2 
                 pacoteAddBanco.inativaPacoteAdicional(idTipoPacoteAdicional2); //chama método da classe de comunicação com o banco que inativa o cadastro
-                request.setAttribute("msg", "Pacote Adicional exluido com sucesso!!");  
+                request.setAttribute("msg", "Cadastro excluído com sucesso!");  
                 request.getRequestDispatcher("pacoteAdicionalPrincipal.jsp").forward(request, response);
             }else{
                 request.getRequestDispatcher("pacoteAdicionalPrincipal.jsp").forward(request, response);                

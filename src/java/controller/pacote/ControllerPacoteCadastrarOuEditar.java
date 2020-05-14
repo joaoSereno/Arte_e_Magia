@@ -73,14 +73,14 @@ public class ControllerPacoteCadastrarOuEditar extends HttpServlet {
                 } else {
                     
                     pacoteBanco.create(pacote);//chamando método de inserir da classe PacoteSQL e passando classe instanciada do pacote como parametro  
-                    request.setAttribute("msg", "Pacote cadastrado com sucesso!!");
+                    request.setAttribute("msg", "Cadastro realizado com sucesso!");
                     request.getRequestDispatcher("pacotePrincipal.jsp").forward(request, response);
                     
                 }
             } else {//se não significa que é para editar
 
                 pacoteBanco.editaPacote(pacote);//chamando método de update da classe PacoteSQL e passando classe instanciada do pacote como parametro  
-                request.setAttribute("msg", "Pacote editado com sucesso!!");
+                request.setAttribute("msg", "Cadastro editado com sucesso!");
                 request.getRequestDispatcher("pacotePrincipal.jsp").forward(request, response);
 
             }

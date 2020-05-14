@@ -8,23 +8,17 @@ and open the template in the editor.
     Author     : joseh
 */
 
-body {
-    background-color: #ccd4b82b;
-}
-
 body, label, button, a {
     font-family: 'Poppins', sans-serif;
 }
 
 #card-deck {
     text-align: center;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-top: 3%;
+    margin-left: 1%;
+    margin-right: 1%;
     display: flex;
 }
-
 
 .imagens-cards {
     width: 80%;
@@ -33,21 +27,60 @@ body, label, button, a {
 
 .cards {
     border-radius: 25px;
-    box-shadow: 0px 0px 4px #0099c5;
+    box-shadow: 0px 0px 4px #f73737;
     margin: auto;
     width: 14rem;
 }
 
 .botoes-card {
     width: 100%;
-    border-color: #0099c5!important;
+    border-color: #f73737!important;
     box-shadow: 0px 0px 4px !important;
-    background-color: #0099c5;
+    background-color: #f73737;
     border-radius: 30px;
     padding: 5px;
     color: white;
 }
 
+.jumbotron {
+    background-color: #f73737;
+    color: white;
+    padding: 2rem 2rem !important; 
+    border-radius: unset;
+    margin-bottom: 0rem;
+}
+
 .botoes-card:hover{
-    background-color: #0099c5e0 !important;
+    background-color: #f73737 !important;
+}
+
+.bnt2{
+    
+}
+
+@media only screen and (max-width: 600px) {
+    .cards {
+        border-radius: 25px;
+        box-shadow: 0px 0px 4px #f73737;
+        margin: auto;
+        width: 19rem;
+    }
+    
+    .imagens-cards {
+        width: 65%;
+        margin: 10px auto;
+    }
+    
+    .bnt2{
+        font-size: 1.60rem;
+        line-height: 1.5;        
+    }
+    
+    #card-deck {
+        text-align: center;
+        margin-top: 8%;
+        margin-left: 1%;
+        margin-right: 1%;
+        display: flex;
+    }
 }

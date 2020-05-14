@@ -63,87 +63,201 @@
         <div class="jumbotron text-center">
             <h1>Tipo de Pagamento</h1>
         </div>           
-        <br>
-        <div>
-            <!--form para adicionar/editar uma nova forma de pagamento-->
-            <form method="GET" action="editarORcadastrarFP"> 
-                <input type="hidden" name="idFormaPagamento" value="${idFormaPagamentoE}">
-                Forma de Pagamento:
-                <input type="text" name="nomePagamento" value="${nomePagamentoE}">
-                <button class="btn btn-warning"> Confirmar </button>
-            </form> 
-            
-            <!-- botão que abre o modal de confirmação de exclusão -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
-                Excluir
-            </button>
+        <div class="container">
 
-            <!-- Modal -->
-            <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Excluir forma de pagamento?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="editarORcadastrarFP">
+
+                        <input type="hidden" name="idFormaPagamento" value="${idFormaPagamentoE}">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <label for="nomePagamento">Descrição do Tipo de Pagamento: *</label>
+                                <input type="text" class="form-control" name="nomePagamento" placeholder="Ex: Dinheiro" id="nomePagamento" value="${nomePagamentoE}" required>
+
+                            </div>
+
                         </div>
-                        <div class="modal-body">
-                            Tem certeza que deseja realizar a exclusão do cadastro?
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block"> Confirmar </button>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#confirmaçãoExclusao">
+                                    Excluir
+                                </button>
+
+                            </div>                    
+
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <!--form inativar forma de pagamento-->
-                            <form method="GET" action="inativarFormaPagamento">
-                                <input type="hidden" name="idFormaPagamento" value="${idFormaPagamentoE}">
-                                <button class="btn btn-warning"> Excluir </button>
-                            </form>
-                        </div>
-                    </div>
+
+                    </form>
+
+                    <div class="row my-3">
+
+                        <div class="text-center col-lg-12">
+
+                            <h3>${msg}</h3>
+
+                        </div>                    
+
+                    </div>                
+
                 </div>
+
             </div>
-            <!-- fim Modal -->
-        </div>
-        <br>
-        <h3>${msg}</h3>
-        <br><br>
-        <!-- botão/form de listar as formas de pagamento-->  
-        <form method="GET" action="tipoPagamentoListar"> 
-            <button type="submit" class="btn btn-primary">Listar formas de pagamento</button>
-        </form>
-        <br>
-        <!-- div de listagem tipo de pagamento-->          
-        <div class="table-responsive" id="divTipoDePagamento" style="display: none">
-            <input type="hidden" id="controllerListagemTipoDePagamento" value="${controllerListagemTipoDePagamento}">     
-            <table class="table table-striped table-bordered">
-                <thead> 
-                    <tr class="bg-danger">    
-                        <th scope="col">Descrição</th>
-                        <th></th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${listaTipoPagamento}" var="item"> 
-                        <tr>
-                            <td>${item.nomePagamento}</td>
-                            <!-- botão/form para editar registro forma de pagamento , envia para o ControllerTipoPagamentoEditar --> 
-                            <td>
-                                <form method="GET" action="tipoPagamentoEditar"> 
-                                    <input type="hidden" name="idFormaPagamento" value="${item.idFormaPagamento}">
-                                    <input type="hidden" name="nomePagamento" value="${item.nomePagamento}">
-                                    <button class="btn btn-info"> Editar </button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+
         </div> 
-        <!-- fim  div de listagem forma de pagamento--> 
-        <br>
-        <br>
-        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>           
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="tipoPagamentoListar">
+
+                        <div class="form-col-lg-12 my-3">
+                            <button type="submit" class="btn btn-info btn-lg btn-block">Listar Tipos de Pagamento</button>
+                        </div>
+
+                    </form>  
+
+                </div>  
+
+            </div>
+
+        </div>                    
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="table-responsive" id="divTipoDePagamento" style="display: none">
+                        <input type="hidden" id="controllerListagemTipoDePagamento" value="${controllerListagemTipoDePagamento}">    
+
+                        <table class="table table-striped table-bordered">
+                            <thead> 
+                                <tr class="bg-danger">    
+                                    <th scope="col">Descrição</th>
+                                    <th></th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <c:forEach items="${listaTipoPagamento}" var="item"> 
+                                    <tr>
+                                        <td>${item.nomePagamento}</td>
+                                        <!-- botão/form para editar registro forma de pagamento , envia para o ControllerTipoPagamentoEditar --> 
+                                        <td>
+                                            <form method="GET" action="tipoPagamentoEditar"> 
+                                                <input type="hidden" name="idFormaPagamento" value="${item.idFormaPagamento}">
+                                                <input type="hidden" name="nomePagamento" value="${item.nomePagamento}">
+                                                <button class="btn btn-info"> Editar </button>
+                                            </form> 
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>  
+
+            </div>
+
+        </div>
+
+        <div class="container my-5">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="form-col-lg-12 my-3">
+
+                        <a href="../cadastros.jsp" class="btn btn-secondary btn-lg btn-block" >Voltar</a>                
+
+                    </div>   
+
+                </div>  
+
+            </div>
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel">Excluir Tipo de Pagamento?</h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+                        Tem certeza que deseja realizar a exclusão do cadastro?
+                    </div>
+
+                    <div class="container">
+
+                        <div class="row justify-content-center">
+
+                            <div class="col-sm-12 col-md-10 col-lg-8">
+
+                                <form method="GET" action="inativarFormaPagamento">
+
+                                    <div class="form-row">
+
+                                        <div class="form-group col-lg-6">
+
+                                            <input type="hidden" name="idFormaPagamento" value="${idFormaPagamentoE}">
+                                            <button type="submit" class="btn btn-danger btn-block" value="Confirmar">Sim</button>
+
+                                        </div>
+
+                                        <div class="form-group col-lg-6">
+
+                                            <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Não</button>
+
+                                        </div>
+
+                                    </div>
+
+                                </form>                                
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
     </body>
     <script src="../../javascripts/cadastroTipoDePagamento/cadastroTipoDePagamento.js"></script>  
 </html>

@@ -18,6 +18,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -63,20 +64,81 @@
         <div class="jumbotron text-center">
             <h1>Relatório de Aniversariante</h1>
             <h4>Por favor, informe o período desejado e clique em "Gerar Relatório".</h4>
-        </div>           
-        <br>
-        <form method="GET" action="relatorioAniversariante">
-            Mês inicial:
-            <input type="text" name="mesInicial">
-            Mês final:
-            <input type="text" name="mesFinal">
-            <button type="submit">Gerar Relatório</button>
-        </form>
-        <br>
-        <div>
-            <h5>${msgValidacao}</h5>
         </div>
-        <br>
-        <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
+        
+        <div class="container my-5">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <form method="GET" action="relatorioAniversariante">
+                                                
+                        <div class="form-row">
+                            
+                            <div class="form-group col-lg-6">                                
+                                
+                                <label for="mesInicial"><h5>Mês inicial:</h5></label>
+                                <input type="text" class="form-control" placeholder="00" id="mesInicial" name="mesInicial" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="mesFinal"><h5>Mês final:</h5></label>
+                                <input type="text" class="form-control" placeholder="00" id="mesFinal" name="mesFinal" required>
+                    
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="form-row my-2">
+                            
+                            <div class="form-group col-lg-12">
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Gerar Relatório</button>
+                            </div>
+                            
+                        </div>   
+                        
+                    </form>
+                    
+                </div>
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="col-lg-12 text-center my-2">
+
+                        <h5>${msgValidacao}</h5>
+
+                    </div>
+
+                </div>  
+                
+            </div>
+            
+        </div>
+                        
+        <div class="container">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="form-col-lg-8 my-2">
+
+                        <a  class="btn btn-secondary btn-lg btn-block" href="../relatorios.jsp">Voltar</a> 
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div> 
+                        
     </body>
+    <script>
+        $("#mesInicial").mask("00");
+        $("#mesFinal").mask("00");
+    </script>    
 </html>

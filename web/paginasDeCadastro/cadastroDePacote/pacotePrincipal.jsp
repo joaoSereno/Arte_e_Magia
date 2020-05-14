@@ -63,93 +63,215 @@
         <div class="jumbotron text-center">
             <h1>Pacote</h1>
         </div>  
-        <br>
-        <div>
-            <!--form para adicionar/editar um pacote-->
-            <form method="GET" action="editarORcadastrarPacote"> 
-                <input type="hidden" name="idPacote" value="${idPacoteE}">
-                Nome Pacote:
-                <input type="text" name="nomePacote" value="${nomePacoteE}">
-                Valor Pacote:
-                <input type="text" name="valorPacoteVenda" value="${valorPacoteVendaE}">
-                <button type="submit"> Confirmar </button>
-            </form> 
+        <div class="container">
 
-            <!-- botão que abre o modal de confirmação de exclusão -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
-                Excluir
-            </button>
+            <div class="row justify-content-center">
 
-            <!-- Modal -->
-            <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Excluir pacote?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="editarORcadastrarPacote">
+
+                        <input type="hidden" name="idPacote" value="${idPacoteE}">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="nomePacote">Descrição do Pacote: *</label>
+                                <input type="text" class="form-control" name="nomePacote" placeholder="Ex: Master" id="nomePacote" value="${nomePacoteE}" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="valorPacoteVenda">Valor do Pacote: *</label>
+                                <input type="text" class="form-control" name="valorPacoteVenda" placeholder="000.0" id="valorPacoteVenda" value="${valorPacoteVendaE}" required>
+
+                            </div>                    
+
                         </div>
-                        <div class="modal-body">
-                            Tem certeza que deseja realizar a exclusão do cadastro?
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block"> Confirmar </button>
+
+                            </div>                   
+
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <!--form inativar pacote-->
-                            <form method="GET" action="inativarPacote">
-                                <input type="hidden" name="idPacoteE" value="${idPacoteE}">
-                                <button class="btn btn-warning"> Excluir </button>
-                            </form>
+                                
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#confirmaçãoExclusao">
+                                    Excluir
+                                </button>
+
+                            </div>                  
+
                         </div>
-                    </div>
+
+                    </form>
+
+                    <div class="row my-3">
+
+                        <div class="text-center col-lg-12">
+
+                            <h3>${msg}</h3>
+
+                        </div>                    
+
+                    </div>                
+
                 </div>
+
             </div>
-            <!-- fim Modal -->
-        </div>
-        <br>
-        <h3>${msg}</h3>
-        <br><br>
-        <!-- botão/form de listar os pacotes-->  
-        <form method="GET" action="pacoteListar"> 
-            <button type="submit" class="btn btn-primary">Listar Pacotes</button>
-        </form>
-        <br>
-        <!-- div de listagem de pacote -->          
-        <div class="table-responsive" id="divListagemPacote" style="display: none">
-            <input type="hidden" id="controllerListagemPacote" value="${controllerListagemPacote}">    
-            <table class="table table-striped table-bordered">
-                <thead> 
-                    <tr class="bg-danger">    
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Valor</th>
-                        <th></th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${listaPacotes}" var="item"> 
-                        <tr>
-                            <td>${item.nomePacote}</td>
-                            <td>R$ ${item.valorPacoteVenda}</td>
-                            <!-- botão/form para editar registro de pacote , envia para o  --> 
-                            <td>
-                                <form method="GET" action="pacoteEditar"> 
-                                    <input type="hidden" name="idPacote" value="${item.idPacote}">
-                                    <input type="hidden" name="nomePacote" value="${item.nomePacote}">
-                                    <input type="hidden" name="valorPacoteVenda" value="${item.valorPacoteVenda}">
-                                    <button class="btn btn-info"> Editar </button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+
         </div> 
-        <!-- fim  div de listagem listagem de pacote-->   
-        <br>
-        <br>
-        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
-        
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="pacoteListar">
+
+                        <div class="form-col-lg-12 my-3">
+                            <button type="submit" class="btn btn-info btn-lg btn-block">Listar Pacotes</button>
+                        </div>
+
+                    </form>  
+
+                </div>  
+
+            </div>
+
+        </div>                    
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="table-responsive" id="divListagemPacote" style="display: none">
+                        <input type="hidden" id="controllerListagemPacote" value="${controllerListagemPacote}">    
+
+                        <table class="table table-striped table-bordered">
+                            <thead> 
+                                <tr class="bg-danger">    
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Valor</th>
+                                    <th></th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <c:forEach items="${listaPacotes}" var="item"> 
+                                    <tr>
+                                        <td>${item.nomePacote}</td>
+                                        <td>R$ ${item.valorPacoteVenda}</td>
+                                        <!-- botão/form para editar registro de pacote , envia para o  --> 
+                                        <td>
+                                            <form method="GET" action="pacoteEditar"> 
+                                                <input type="hidden" name="idPacote" value="${item.idPacote}">
+                                                <input type="hidden" name="nomePacote" value="${item.nomePacote}">
+                                                <input type="hidden" name="valorPacoteVenda" value="${item.valorPacoteVenda}">
+                                                <button class="btn btn-info"> Editar </button>
+                                            </form> 
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+
+                    </div>            
+
+                </div>  
+
+            </div>
+
+        </div>
+
+        <div class="container my-5">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="form-col-lg-12 my-3">
+
+                        <a href="../cadastros.jsp" class="btn btn-secondary btn-lg btn-block" >Voltar</a>                
+
+                    </div>   
+
+                </div>  
+
+            </div>
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel">Excluir Pacote?</h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+                        Tem certeza que deseja realizar a exclusão do cadastro?
+                    </div>
+
+                    <div class="container">
+
+                        <div class="row justify-content-center">
+
+                            <div class="col-sm-12 col-md-10 col-lg-8">
+
+                                <form method="GET" action="inativarPacote">
+
+                                    <div class="form-row">
+
+                                        <div class="form-group col-lg-6">
+
+                                            <input type="hidden" name="idPacoteE" value="${idPacoteE}">
+                                            <button type="submit" class="btn btn-danger btn-block" value="Confirmar">Sim</button>
+
+                                        </div>
+
+                                        <div class="form-group col-lg-6">
+
+                                            <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Não</button>
+
+                                        </div>
+
+                                    </div>
+
+                                </form> 
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
     </body>
     <script src="../../javascripts/cadastroDePacote/cadastroDePacote.js"></script>  
 </html>

@@ -92,7 +92,7 @@ public class ControllerTelefoneNovoFuncionario extends HttpServlet {
                 request.setAttribute("nomeFuncionario", funcionario.getNomeFuncionario());
                 request.setAttribute("sexo", funcionario.getSexo());
                 request.setAttribute("listaTelefoneFuncionario", listaTelefoneFuncionario);
-                request.setAttribute("msg", "Telefone cadastrado com sucesso!!");
+                request.setAttribute("msg", "Contato cadastrado com sucesso!");
 
             }
 

@@ -87,7 +87,7 @@ public class ControllerExcluirTelefoneFuncionario extends HttpServlet {
                 listaTelefone = telefoneBanco.getTelefone(idFuncionario2, 0); //recebe lista
                 
                 request.setAttribute("listaTelefoneFuncionario", listaTelefone);
-                request.setAttribute("msg", "Telefone excluido com sucesso!!");
+                request.setAttribute("msg", "Contato excluído com sucesso!");
                 request.getRequestDispatcher("funcionarioEditar.jsp").forward(request, response);
 
             } else {
@@ -95,7 +95,7 @@ public class ControllerExcluirTelefoneFuncionario extends HttpServlet {
                 listaTelefone = telefoneBanco.getTelefone(idFuncionario2, 0); //recebe lista
                                
                 request.setAttribute("listaTelefoneFuncionario", listaTelefone);                
-                request.setAttribute("msg", "Não é possível ficar sem nenhum telefone no cadastro, por favor realize um novo cadastro de telefone e tente excluir este novamente!!");
+                request.setAttribute("msg", "Não foi possível concluir a exclusão. É necessário no mínimo um contato no cadastro!");
                 request.getRequestDispatcher("funcionarioEditar.jsp").forward(request, response);
 
             }

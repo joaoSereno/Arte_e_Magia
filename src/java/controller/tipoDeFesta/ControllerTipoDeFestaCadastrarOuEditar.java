@@ -56,14 +56,14 @@ public class ControllerTipoDeFestaCadastrarOuEditar extends HttpServlet {
                     request.getRequestDispatcher("tipoDeFestaPrincipal.jsp").forward(request, response);
                 } else {//se não for vazio add no banco
                     tipoDeFestaBanco.create(tipoDeFesta);//chamando método de inserir da classe de comunicação com o banco de dados
-                    request.setAttribute("msg", "Tipo de Festa cadastrada com sucesso!!");
+                    request.setAttribute("msg", "Cadastro realizado com sucesso!");
                     request.getRequestDispatcher("tipoDeFestaPrincipal.jsp").forward(request, response);
                 }
                 
             } else {//se não significa que é para editar
 
                 tipoDeFestaBanco.editarPacoteAdicional(tipoDeFesta);//chamando método de editar da classe de comunicação com o banco 
-                request.setAttribute("msg", "Tipo de Festa editada com sucesso!!");
+                request.setAttribute("msg", "Cadastro editado com sucesso!");
                 request.getRequestDispatcher("tipoDeFestaPrincipal.jsp").forward(request, response);
                 
             }

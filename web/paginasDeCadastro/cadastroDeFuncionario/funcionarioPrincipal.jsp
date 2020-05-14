@@ -25,7 +25,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->   
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
-        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFuncionario/funcionarioPrincipal.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeFuncionario/funcionarioPrincipal.css">     
     </head>
     <body>
         <!-- NavBar -->
@@ -92,8 +92,23 @@
             </table>
         </div>
         <!-- fim  div de listagem funcionario--> 
-        <br>
-        <!-- botão de voltar página-->
-        <a href="funcionarioCadastrar.jsp" class="btn btn-primary" >Voltar</a>
+        
+        <div class="container my-2">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                         
+                    <div class="form-col-lg-8 my-4">
+
+                        <a href="funcionarioCadastrar.jsp" class="btn btn-secondary btn-lg btn-block" >Voltar</a>
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>  
     </body>
 </html>

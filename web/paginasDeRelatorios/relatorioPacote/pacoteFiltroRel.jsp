@@ -18,6 +18,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>        
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
@@ -63,16 +64,82 @@
             <h1>Relatório de Pacote</h1>
             <h4>Por favor, informe o período desejado e clique em "Gerar Relatório".</h4>
         </div>           
-        <br>
-        <form method="GET" action="relatorioPacote">
-            Período:
-            <input type="text" name="periodo">
-            à
-            <input type="text" name="periodo2">
-            <button type="submit">Gerar Relatório</button>
-        </form>
-        <br>
-        <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
-        <br>        
+
+        
+        <div class="container my-5">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <form method="GET" action="relatorioPacote">
+                                               
+                        <div class="form-row">
+                            
+                            <div class="form-group col-lg-3">
+                                <h5>Período:</h5>
+                            </div>
+                            
+                            <div class="form-group col-lg-4">
+                                <input type="text" class="form-control" id="periodo" name="periodo" placeholder="00/00/0000" required> 
+                            </div>
+                            
+                            <div class="form-group text-center col-lg-1">
+                                <h5>à</h5>
+                            </div>
+                            
+                            <div class="form-group col-lg-4">
+                                <input type="text" class="form-control" id="periodo2" name="periodo2" placeholder="00/00/0000" required>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="form-row my-2">
+                            
+                            <div class="form-group col-lg-12">
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Gerar Relatório</button>
+                            </div>
+                            
+                        </div>   
+                        
+                    </form>
+                    
+                </div>
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="col-lg-12 text-center my-2">
+
+                        <h5>${msgValidacao}</h5>
+
+                    </div>
+
+                </div>  
+                
+            </div>
+            
+        </div>
+                        
+        <div class="container">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="form-col-lg-8 my-2">
+
+                        <a  class="btn btn-secondary btn-lg btn-block" href="../relatorios.jsp">Voltar</a> 
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>                
     </body>
+    <script>
+        $("#periodo").mask("00/00/0000");
+        $("#periodo2").mask("00/00/0000");
+    </script>
 </html>

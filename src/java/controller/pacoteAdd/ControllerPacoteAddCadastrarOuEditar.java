@@ -58,7 +58,7 @@ public class ControllerPacoteAddCadastrarOuEditar extends HttpServlet{
                 } else {//se não for vazio add no banco
                     
                     pacoteAddBanco.create(tipoPacoteAdicional);//chamando método de inserir da classe de comuniação com o banco
-                    request.setAttribute("msg", "Pacote adicional cadastrado com sucesso!!");
+                    request.setAttribute("msg", "Cadastro realizado com sucesso!");
                     request.getRequestDispatcher("pacoteAdicionalPrincipal.jsp").forward(request, response);
                     
                 }
@@ -66,7 +66,7 @@ public class ControllerPacoteAddCadastrarOuEditar extends HttpServlet{
             } else {//se não significa que é para editar
 
                 pacoteAddBanco.editarPacoteAdicional(tipoPacoteAdicional);//chamando método de editar da classe de comunicação com o banco 
-                request.setAttribute("msg", "Pacote adicional editado com sucesso!!");
+                request.setAttribute("msg", "Cadastro editado com sucesso!");
                 request.getRequestDispatcher("pacoteAdicionalPrincipal.jsp").forward(request, response);
                 
             }

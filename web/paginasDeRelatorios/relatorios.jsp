@@ -29,7 +29,7 @@
        <!-- NavBar -->
         <nav class="navbar navbar-expand-lg navbar-light navbar-css">
             <img src="../custom/img/logoFundoLogin.png" id="logo-navbar">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon navbar-light"></span></button>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon navbar-light"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
                 <ul class="navbar-nav ml-auto mb-0">
                     <!-- Botão página inicial -->
@@ -58,42 +58,128 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <!-- Cards Dos Botões -->
+        <div class="jumbotron text-center">
+            <h1>Relatórios</h1>
+        </div>          
+        <!-- Cards Dos Cadastros -->                       
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <div class="row justify-content-center">
+
+                <div clas="col-lg-2" id="card-deck">
+
+                    <div class="card cards my-1">
+
+                        <img src="../custom/img/avatares-cards/relatorioEvento.png" class="car-img-top imagens-cards" alt="Eventos">
+
+                        <div class="card-body">
+                            <a href="relatorioEvento/eventoFiltroRel.jsp" class="btn bnt2 botoes-card">Eventos</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div clas="col-lg-2" id="card-deck">
+
+                    <div class="card cards my-1">
+
+                        <img src="../custom/img/avatares-cards/relatorioAni.png" class="card-img-top imagens-cards" alt="Aniversariantes">
+
+                        <div class="card-body">
+                            <a href="relatorioAniversariante/aniversarianteFiltroRel.jsp" class="btn bnt2 botoes-card">Aniversariantes</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div clas="col-lg-2" id="card-deck">
+
+                    <div class="card cards my-1">
+
+                        <img src="../custom/img/avatares-cards/relatorioTD.png" class="card-img-top imagens-cards" alt="Tipos de Despesa">
+
+                        <div class="card-body">
+                            <a href="relatorioTipoDespesa/tipoDespesaFiltroRel.jsp" class="btn bnt2 botoes-card">Tipos de Despesa</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div clas="col-lg-2" id="card-deck">
+
+                    <div class="card cards my-1">
+
+                        <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Colaboradores">
+
+                        <div class="card-body">
+                            <a href="relatorioFuncionario/funcionarioFiltroRel.jsp" type="button" class="btn bnt2 botoes-card">Colaboradores</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div clas="col-lg-2" id="card-deck">
+
+                    <div class="card cards my-1">
+
+                        <img src="../custom/img/avatares-cards/relatorioPacote.png" class="car-img-top imagens-cards" alt="Pacotes">
+
+                        <div class="card-body">
+                            <a href="relatorioPacote/pacoteFiltroRel.jsp" class="btn bnt2 botoes-card">Pacotes</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="my-3">
+
+        </div>            
+<!--         Cards Dos Botões 
         <div id="card-deck">
-            <!-- Card Evento  -->
+             Card Evento  
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioEvento.png" class="car-img-top imagens-cards" alt="Eventos">
                 <div class="card-body">
                     <a href="relatorioEvento/eventoFiltroRel.jsp" class="btn botoes-card">Eventos</a>
                 </div>
             </div>
-            <!-- CardCliente -->
+             CardCliente 
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioAni.png" class="card-img-top imagens-cards" alt="Aniversariantes">
                 <div class="card-body">
                     <a href="relatorioAniversariante/aniversarianteFiltroRel.jsp" class="btn botoes-card">Aniversariantes</a>
                 </div>
             </div>
-            <!-- CardFuncionários -->
+             CardFuncionários 
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioTD.png" class="card-img-top imagens-cards" alt="Tipos de Despesa" >
                 <div class="card-body">
                     <a href="relatorioTipoDespesa/tipoDespesaFiltroRel.jsp" class="btn botoes-card">Tipos de Despesa</a>
                 </div>
             </div>
-            <!-- CardFestas -->
+             CardFestas 
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Colaboradores">
                 <div class="card-body">
                     <a href="relatorioFuncionario/funcionarioFiltroRel.jsp" type="button" class="btn botoes-card">Colaboradores</a>
                 </div>
             </div>
-            <!-- Card FormaPgto -->
+             Card FormaPgto 
             <div class="card cards">
                 <img src="../custom/img/avatares-cards/relatorioPacote.png" class="car-img-top imagens-cards" alt="Pacotes">
                 <div class="card-body">
                     <a href="relatorioPacote/pacoteFiltroRel.jsp" class="btn botoes-card">Pacotes</a>
                 </div>
             </div>
-        </div>
+        </div>-->
 </html>

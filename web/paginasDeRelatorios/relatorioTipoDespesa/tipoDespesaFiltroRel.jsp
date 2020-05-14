@@ -17,6 +17,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -62,28 +63,98 @@
         <div class="jumbotron text-center">
             <h1>Relatório Tipo de Despesa</h1>
             <h4>Por favor, informe os filtros desejados e clique em "Gerar Relatório".</h4>
-        </div>         
-        <br>
-        <form method="GET" action="relatorioTipoDespesa">
-            Origem da Despesa:
-            <select name="origemDespesa">
-                <option value="1">Ambas</option>
-                <option value="2">Cadastro de Despesa</option>
-                <option value="3">Cadastro de Festa</option>
-            </select>
-            Período:
-            <input type="text" name="periodo">
-            à
-            <input type="text" name="periodo2">
-            <button type="submit">Gerar Relatório</button>
-        </form>
-        <br>
-        <div>
-            <h5>${msgValidacao}</h5>
+        </div> 
+        
+        <div class="container my-5">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <form  method="GET" action="relatorioTipoDespesa">
+                        
+                        <div class="form-row">
+                            
+                            <div class="form-group col-lg-4">
+                                <h5>Origem da Despesa:</h5>
+                            </div>
+                            
+                            <div class="form-group col-lg-8">                               
+                                <select class="form-control" name="origemDespesa">
+                                    <option value="1">Ambas</option>
+                                    <option value="2">Cadastro de Despesa</option>
+                                    <option value="3">Cadastro de Festa</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="form-row">
+                            
+                            <div class="form-group col-lg-3">
+                                <h5>Período:</h5>
+                            </div>
+                            
+                            <div class="form-group col-lg-4">
+                                <input type="text" class="form-control" id="periodo" name="periodo" minlength="10" placeholder="00/00/0000" required> 
+                            </div>
+                            
+                            <div class="form-group text-center col-lg-1">
+                                <h5>à</h5>
+                            </div>
+                            
+                            <div class="form-group col-lg-4">
+                                <input type="text" class="form-control" id="periodo2" name="periodo2" minlength="10" placeholder="00/00/0000" required>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="form-row my-2">
+                            
+                            <div class="form-group col-lg-12">
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Gerar Relatório</button>
+                            </div>
+                            
+                        </div>   
+                        
+                    </form>
+                    
+                </div>
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="col-lg-12 text-center my-2">
+
+                        <h5>${msgValidacao}</h5>
+
+                    </div>
+
+                </div>  
+                
+            </div>
+            
         </div>
-        <br>
-        <br>
-        <a  class="btn btn-primary" href="../relatorios.jsp">Voltar</a> 
-        <br>        
+                        
+        <div class="container">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="form-col-lg-8 my-2">
+
+                        <a  class="btn btn-secondary btn-lg btn-block" href="../relatorios.jsp">Voltar</a> 
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>       
     </body>
+    <script>
+        $("#periodo").mask("00/00/0000");
+        $("#periodo2").mask("00/00/0000");
+    </script>
 </html>
