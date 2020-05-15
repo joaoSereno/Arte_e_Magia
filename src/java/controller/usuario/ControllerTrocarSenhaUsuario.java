@@ -111,7 +111,7 @@ public class ControllerTrocarSenhaUsuario extends HttpServlet {
 
                         usuarioBanco.novaSenha(idUsuario2, senha); //chama método que realiza a alteração na senha do usuario
 
-                        msg = "Senha do usuário alterada com sucesso!";
+                        msg = "Senha alterada com sucesso!";
 
                         //setando usuário editado que será jogados para outra página
                         request.setAttribute("idUsuario", idUsuario2);
@@ -126,7 +126,7 @@ public class ControllerTrocarSenhaUsuario extends HttpServlet {
 
                 } else { //se não igual
 
-                    msg = "Senha e senha de confirmação não são iguais!";
+                    msg = "A senha e a confirmação de senha devem ser iguais!";
 
                     //setando usuário editado que será jogados para outra página
                     request.setAttribute("idUsuario", idUsuario2);

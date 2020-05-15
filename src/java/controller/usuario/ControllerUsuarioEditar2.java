@@ -77,8 +77,7 @@ public class ControllerUsuarioEditar2 extends HttpServlet {
                             i = listaUsuario.size(); //seta o i para o tamanho da lista , para não ficar executando o laço
                             usuarioJaExiste = true; //como o usuário já existe, seta o valor de não cadastravel para true
 
-                            msg = "O login '" + login + "' já existe! Por favor utilize outro!";
-
+                            msg = " O login '" + login + "' já está sendo utilizado por outro usuário. Por favor utilize outro login!";
                         }
                     }
                 }
@@ -113,7 +112,7 @@ public class ControllerUsuarioEditar2 extends HttpServlet {
 
                         request.setAttribute("funcionarioDoUsuario", funcionarioDoUsuario);
                         request.setAttribute("listaFuncionario", listaFuncionario);
-                        msg = "Usuário editado com sucesso!";
+                        msg = "Cadastro editado com sucesso!";
 
                     } catch (Exception ex) {
                         Logger.getLogger(ControllerUsuarioEditar2.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,7 +150,7 @@ public class ControllerUsuarioEditar2 extends HttpServlet {
 
                         usuarioBanco.editarUsuario(usuario); //chama método de update do banco e passa o usuario como parametro
 
-                        msg = "Usuário editado com sucesso!";
+                        msg = "Cadastro editado com sucesso!";
 
                     } catch (Exception ex) {
                         Logger.getLogger(ControllerUsuarioEditar2.class.getName()).log(Level.SEVERE, null, ex);

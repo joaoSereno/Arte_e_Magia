@@ -32,58 +32,110 @@
             <img src="../../custom/img/logoFundoLogin.png" id="logo-navbar">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon navbar-light"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
-                <ul class="navbar-nav ml-auto mb-0">
+                <ul class="navbar-nav ml-auto">
                     <!-- Botão página inicial -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>&nbsp;Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="../cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
                     </li>
                     <!-- Config aniversariante -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="../../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
                     </li>                    
                     <!-- Botão relatorios -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="../configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>&nbsp;Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="jumbotron text-center">
-            <h1>Usuário - Troca de Senha</h1>
+            <h1>Trocar Senha do Usuário</h1>
         </div>  
-        <br>
-        <form method="POST" action="trocarSenhaUsuario">   
-            <input type="hidden" name="valorDisplay" value="${valorDisplay}">
-            <input type="hidden" name="idUsuario" value="${idUsuario}">
-            Nova senha:
-            <input type="password" name="senha" value="">
-            Confirmação de senha:
-            <input type="password" name="confirmacaoDeSenha" value="">
-            <br>
-            <button type="submit">Confirmar</button> 
-        </form>
-        <br>
-        <br>
-        <h3>${msg}</h3>
-        <br>
-        <div>
-            <!-- form para voltar a pagina  -->
-            <form method="GET" action="usuarioEditar"> 
-                <input type="hidden" name="valorDisplay" value="${valorDisplay}">
-                <input type="hidden" name="idUsuario" value="${idUsuario}">
-                <button type="submit" value="ListaUsuarios">Voltar</button>
-            </form>                        
-        </div> 
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form  method="POST" action="trocarSenhaUsuario">
+
+                        <input type="hidden" name="valorDisplay" value="${valorDisplay}">
+                        <input type="hidden" name="idUsuario" value="${idUsuario}">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="senha">Nova Senha: *</label>
+                                <input type="password" class="form-control" maxlength="45" name="senha" id="senha" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="confirmacaoDeSenha">Confirmação de Senha: *</label>
+                                <input type="password" class="form-control" maxlength="45" name="confirmacaoDeSenha" id="confirmacaoDeSenha" required> 
+
+                            </div>
+
+                            <div class="form-group col-lg-12 my-2">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Confirmar</button>
+
+                            </div>
+                            
+                            <div class="form-group text-center col-lg-12 my-3">
+
+                                <h4>${msg}</h4>
+
+                            </div>
+
+
+                        </div>        
+
+                    </form>
+
+                </div>            
+
+            </div>
+
+        </div>
+                                
+        <div class="container my-5">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="usuarioEditar">
+                        
+                        <input type="hidden" name="valorDisplay" value="${valorDisplay}">
+                        <input type="hidden" name="idUsuario" value="${idUsuario}">
+                        
+                        <div class="form-row">
+
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block" value="ListaUsuarios">Voltar</button>
+
+                        </div>
+
+                    </form>
+
+                </div>            
+
+        </div>
+
     </body>
 </html>

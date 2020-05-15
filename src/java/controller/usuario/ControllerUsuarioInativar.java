@@ -52,7 +52,7 @@ public class ControllerUsuarioInativar extends HttpServlet {
 
                 usuarioBanco.inativaUsuario(idUsuario2);//chamando método que inativa a conta, passando o idUsuario como parametro
 
-                msg = "Usuario excluido com sucesso!";
+                msg = "Cadastro excluído com sucesso!";
 
                 request.setAttribute("msg", msg);
                 request.setAttribute("valorDisplay", valorDisplay2);

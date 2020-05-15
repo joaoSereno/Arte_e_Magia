@@ -67,7 +67,9 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
 
             naoDeveCadastrar = true; // seta true para não executar proximos passos
 
-            msg = "Senha e confirmação de senha não iguais!";
+            msg = "A senha e a confirmação de senha devem ser iguais!";
+            
+            
 
             //para continuar listando os funcionarios caso errar a confirmação de senha
             if (idFuncionario2 != 0) {
@@ -115,7 +117,8 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
 
                         }
 
-                        msg = "O login '" + login + "' já existe! Por favor utilize outro!";
+                        msg = "O login '" + login + "' já está sendo utilizado por outro usuário. Por favor utilize outro login!";
+                        
 
                         request.setAttribute("msg", msg);
 
@@ -162,7 +165,7 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
                     listaFuncionario = funcionarioBanco.getFuncionarioNaoTemUsuario();
                     request.setAttribute("funcionarios", listaFuncionario);
                     
-                    msg = "Usuário cadastrado com sucesso!!";
+                    msg = "Cadastro de usuário realizado com sucesso!";
 
                 } catch (Exception ex) {
                     Logger.getLogger(ControllerUsuarioCadastrar.class.getName()).log(Level.SEVERE, null, ex);
@@ -178,7 +181,7 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
                 try {
                     //chamando método que faz o cadastro no banco, passando como parametro a instancia do tipo usuario
                     usuarioBanco.create(usuario);
-                    msg = "Usuário cadastrado com sucesso!!";
+                    msg = "Cadastro de usuário realizado com sucesso!";
 
                 } catch (Exception ex) {
                     Logger.getLogger(ControllerUsuarioCadastrar.class.getName()).log(Level.SEVERE, null, ex);

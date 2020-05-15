@@ -8,13 +8,15 @@ and open the template in the editor.
     Author     : João Pedro
 */
 
-body {
-    background-color: #ccd4b82b;
-}
-
 .jumbotron {
     background-color: #ffc107fc; 
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    
+}
+
+@media only screen and (max-width: 600px) {
+    .h4, h4 {
+        font-size: 1.4rem;
+    }
 }

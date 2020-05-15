@@ -17,13 +17,13 @@ body, label, button, a {
 }
 
 .navbar-css {
-    background-color: #0099c5 !important;
+    background-color: #6c757d !important;
     color: white;
 }
 
 .navbar-light .navbar-nav .nav-link {
     color: white;
-    box-shadow: 0px 19px 8px -18px #fff;
+    box-shadow: 0px 18px 8px -18px #fff;
     height: 40px;
     padding: 15px;
     position: relative;
@@ -53,4 +53,7 @@ body, label, button, a {
     outline: none;
 }
 
+.h5{
+    font-size: 1.40rem !important;
+}
 

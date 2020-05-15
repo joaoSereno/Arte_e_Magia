@@ -24,7 +24,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->   
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
-        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeUsuario/usuarioEditar.css">
+        <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/cadastroDeUsuario/usuarioEditar.css">     
     </head>
     <body>
         <!-- NavBar -->
@@ -32,118 +32,228 @@
             <img src="../../custom/img/logoFundoLogin.png" id="logo-navbar">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#NavbarSite"><span class="navbar-toggler-icon navbar-light"></span></button>
             <div class="collapse navbar-collapse" id="NavbarSite">
-                <ul class="navbar-nav ml-auto mb-0">
+                <ul class="navbar-nav ml-auto">
                     <!-- Botão página inicial -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="/Arte-E-Magia_tst/paginaInicial.jsp"><i class="fas fa-home"></i>&nbsp;Página Inicial</a>
                     </li>
                     <!-- Botão cadastros -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="../cadastros.jsp"><i class="far fa-address-book"></i>&nbsp;Cadastros</a>
                     </li>
                     <!-- Config aniversariante -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="../../paginasDeRelatorios/relatorios.jsp"><i class="far fa-clipboard"></i>&nbsp;Relatórios</a>
                     </li>                    
                     <!-- Botão relatorios -->
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="../configAniversariante/telaConfigAniversariante.jsp"><i class="fas fa-cog"></i>&nbsp;Configuração</a>                        
                     </li>
                 </ul>
                 <!-- Botão Sair -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item h5 mb-0">
+                    <li class="nav-item h5">
                         <a class="nav-link" href="/Arte-E-Magia_tst/deslogar.jsp"><i class="fas fa-sign-out-alt"></i>&nbsp;Sair</a>
                     </li>
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="jumbotron text-center">
-            <h1>Usuário - Editar</h1>
-        </div>  
-        <br>
-        <form method="GET" action="usuarioEditar2"> 
-                <input type="hidden" name="idusuario" value="${usuario.idusuario}">           
-                Login:
-                <input type="hidden" name="loginAtual" value="${usuario.usuario}">
-                <input type="text" name="login" value="${usuario.usuario}">
-                <br>
-                <br>
-                <div id="nomeUsuario">
-                    Nome do usuário:
-                    <input type="text" name="nomeUsuario" value="${usuario.nomeUsuario}">
-                </div>
-                <br>
-                <br>
-                <div id="func" style="display: none"> 
-                    <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
-                    Funcionario:
-                    <select type="select" name="idFuncionario" >
-                        <option value="${funcionarioDoUsuario.idFuncionario}">${funcionarioDoUsuario.nomeFuncionario}</option>
-                            <c:forEach var="item" items="${listaFuncionario}">
-                                <option value="${item.idFuncionario}">${item.nomeFuncionario}</option>
-                            </c:forEach>
-                    </select>                                
-                </div>
-                <br>
-                <br>
-                <button type="submit">Confirmar</button>                    
-        </form>
-        <br>
-        <form method="GET" action="trocarSenhaUsuario">
-            <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
-            <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
-            <button type="submit">Alterar Senha</button>                    
-        </form>
-        <br>
-        <!-- botão que abre o modal de confirmação de exclusão -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
-            Excluir
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Excluir usuário</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Tem certeza que deseja realizar a exclusão do cadastro?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <!-- form realizar a exclusão do usuario -->
-                        <form method="POST" action="inativarUsuario">
-                            <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
-                            <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
-                            <button type="submit">Excluir</button>                    
-                        </form>     
-                    </div>
-                </div>
-            </div>
+            <h1>Editar Usuário</h1>
         </div>
-        <!-- fim Modal de exclusão-->      
-        <br>
-        <h3>${msg}</h3>
-        <br>
+        
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="usuarioEditar2">
+
+                        <input type="hidden" name="idusuario" value="${usuario.idusuario}">   
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+                                
+                                <input type="hidden" name="loginAtual" value="${usuario.usuario}">
+
+                                <label for="login">Login: *</label>
+                                <input type="text" class="form-control" maxlength="45" name="login" id="login" value="${usuario.usuario}" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <div id="nomeUsuario">
+
+                                    <label for="nomeUsuario">Nome do Usuário: *</label>
+                                    <input type="text" class="form-control" maxlength="45" name="nomeUsuario" id="nomeUsuario" value="${usuario.nomeUsuario}" required>                            
+
+                                </div>                        
+
+                                <div id="func" style="display: none"> 
+                                    <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
+
+                                    <label for="idFuncionario">Funcionario: *</label>
+                                    <select type="select" class="form-control" id="idFuncionario" name="idFuncionario" >
+                                        <option value="${funcionarioDoUsuario.idFuncionario}">${funcionarioDoUsuario.nomeFuncionario}</option>
+                                            <c:forEach var="item" items="${listaFuncionario}">
+                                                <option value="${item.idFuncionario}">${item.nomeFuncionario}</option>
+                                            </c:forEach>
+                                    </select>     
+
+                                </div>             
+
+                            </div>
+                                            
+                            <div class="form-group text-center col-lg-12">
+                                
+                                <h3>${msg}</h3>
+
+                            </div>                                            
+
+                            <div class="form-group col-lg-6 my-2">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Confirmar</button>
+
+                            </div>
+
+                            <div class="form-group col-lg-6 my-2">
+
+                                <!-- botão que abre o modal de confirmação de exclusão -->
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#confirmaçãoExclusao">
+                                    Excluir Cadastro
+                                </button>
+
+                            </div>
+
+                        </div>        
+
+                    </form>
+
+                </div>            
+
+            </div>
+
+        </div>
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="trocarSenhaUsuario">
+
+                        <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
+                        <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
+
+                        <div class="form-row">
+                            
+                            <div class="form-group col-lg-12">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block">Alterar Senha</button>  
+                                
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>            
+
+            </div>
+
+        </div>
+                        
+        <div class="container my-5">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form  method="GET" action="listaUsuarios">
+
+                        <div class="form-row">
+
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block" value="ListaUsuarios">Voltar</button>
+
+                        </div>
+
+                    </form>
+
+                </div>            
+
+        </div>
+        
+        <!-- Modal de exclusão do cadastro-->
         <div>
-            <!-- form para voltar a pagina e listar os usuarios cadastrados -->
-            <form method="GET" action="listaUsuarios"> <%-- joga formulario para o controllerUsuarioListar --%>
-                <button type="submit" value="ListaUsuarios">Voltar</button>
-            </form>                        
-        </div> 
-    <script>            
-        //sempre que carregar a página vai verificar se o valorDisplay é == 1 
-        var valorDisplay = document.getElementById('valorDisplay').value;
-        if(valorDisplay == 1){
-            document.getElementById('func').style.display = 'block';  //habilita a div com id "func"              
-            document.getElementById('nomeUsuario').style.display = 'none'; //desabilita a div com id "nomeUsuario"       
-        }           
-    </script>
+            
+            <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                
+                <div class="modal-dialog" role="document">
+                  
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <h5 class="modal-title" id="exampleModalLabel">Excluir Usuário</h5>
+                            
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            
+                        </div>
+
+                        <div class="modal-body">
+                          Tem certeza que deseja realizar a exclusão do cadastro?
+                        </div>
+
+                        <div class="container">
+                            
+                            <div class="row justify-content-center">
+                                
+                                <div class="col-sm-12 col-md-10 col-lg-8">
+                                    
+                                    <form method="POST" action="inativarUsuario">
+                                        
+                                        <div class="form-row">
+
+                                            <div class="form-group col-lg-6">
+
+                                                <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
+                                                <input type="hidden" name="idUsuario" value="${usuario.idusuario}"> 
+                                                
+                                                <button type="submit" class="btn btn-danger btn-block" value="Confirmar">Sim</button>
+
+                                            </div>
+                                                
+                                            <div class="form-group col-lg-6">
+
+                                                <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Não</button>
+
+                                            </div>
+                                            
+                                        </div>
+
+                                    </form>                                
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                        
+                </div>
+                        
+            </div>
+                        
+        </div>        
+                                                
     </body>
+    <script src="../../javascripts/cadastroDeUsuario/usuarioEditar.js"></script>  
 </html>
