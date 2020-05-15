@@ -60,6 +60,7 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="table-responsive">   
             <table class="table table-striped table-bordered">
                 <thead>
@@ -84,7 +85,24 @@
                 </tbody>
             </table>
         </div>
-        <br>
-        <a  class="btn btn-primary" href="aniversarianteFiltroRel.jsp">Voltar</a> 
+        
+        <div class="container">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="form-col-lg-8 my-2">
+
+                        <a  class="btn btn-secondary btn-lg btn-block" href="aniversarianteFiltroRel.jsp">Voltar</a> 
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>          
+        
     </body>
 </html>

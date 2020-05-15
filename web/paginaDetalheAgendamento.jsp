@@ -60,28 +60,62 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="jumbotron text-center">
             <h1>Detalhes do Evento</h1>
         </div> 
-       <div class="list-group">
-            ${agendamentoFesta.descricaoFesta}
-            ${agendamentoFesta.contratante}
-            <h5  class="list-group-item list-group-item-info">Data do Evento:</h5>
-            <p class="list-group-item">${agendamentoFesta.dataEvento}</p>            
-            ${agendamentoFesta.tipoDeFesta}
-            ${agendamentoFesta.aniversariante}
-            ${agendamentoFesta.pacote}
-            ${agendamentoFesta.pacotesAdicionais}
-            ${agendamentoFesta.valorPegarContratante}
-            ${agendamentoFesta.qtdCriancas}
-            ${agendamentoFesta.cacheFuncionarios}
-            ${agendamentoFesta.horarios}
-            ${agendamentoFesta.observacaoFesta}  
-            ${agendamentoFesta.localDaFesta}   
-        </div>
-        <br>
-        <form method="GET" action="listarAgendamentos">
-            <button type="submit" class="btn btn-primary" value="listagemAgendamento">Voltar</button>
-        </form>   
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="list-group">
+
+                        ${agendamentoFesta.descricaoFesta}
+                        ${agendamentoFesta.contratante}
+                        <h5  class="list-group-item list-group-item-info">Data do Evento:</h5>
+                        <p class="list-group-item">${agendamentoFesta.dataEvento}</p>            
+                        ${agendamentoFesta.tipoDeFesta}
+                        ${agendamentoFesta.aniversariante}
+                        ${agendamentoFesta.pacote}
+                        ${agendamentoFesta.pacotesAdicionais}
+                        ${agendamentoFesta.valorPegarContratante}
+                        ${agendamentoFesta.qtdCriancas}
+                        ${agendamentoFesta.cacheFuncionarios}
+                        ${agendamentoFesta.horarios}
+                        ${agendamentoFesta.observacaoFesta}  
+                        ${agendamentoFesta.localDaFesta} 
+
+                    </div>
+                        
+                </div>
+             
+            </div> 
+                    
+        </div>  
+                    
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">                    
+                    
+                    <form method="GET" action="listarAgendamentos">
+                        
+                        <div class="form-row my-3">
+
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block" value="listagemAgendamento">Voltar</button>
+                            
+                        </div>
+                
+                    </form>
+                    
+                </div>
+                
+            </div>
+            
+        </div>             
     </body>
 </html>

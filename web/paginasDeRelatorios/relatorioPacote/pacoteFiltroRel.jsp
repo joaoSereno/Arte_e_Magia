@@ -81,7 +81,7 @@
                             </div>
                             
                             <div class="form-group col-lg-4">
-                                <input type="text" class="form-control" id="periodo" name="periodo" placeholder="00/00/0000" required> 
+                                <input type="text" class="form-control" minlength="10" id="periodo" name="periodo" placeholder="00/00/0000" required> 
                             </div>
                             
                             <div class="form-group text-center col-lg-1">
@@ -89,7 +89,7 @@
                             </div>
                             
                             <div class="form-group col-lg-4">
-                                <input type="text" class="form-control" id="periodo2" name="periodo2" placeholder="00/00/0000" required>
+                                <input type="text" class="form-control" minlength="10" id="periodo2" name="periodo2" placeholder="00/00/0000" required>
                             </div>
                             
                         </div>

@@ -26,7 +26,7 @@
         <!-- Customização -->   
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../../custom/css/paginaDeRelatorios/relatorioEvento/eventoResultadoRel.css">
-    </head>
+    </head>  
     <body>
         <!-- NavBar -->
         <nav class="navbar navbar-expand-lg navbar-light navbar-css">
@@ -60,13 +60,53 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        <div>
-            <p>Quantidade de Eventos: ${totalEventoPeriodo}</p>
-            <p>Valor Total Bruto: R$ ${somaValorTotalBruto}</p>
-            <p>Despesas Total: R$ ${somaTotalDespesa}</p>
-            <p>Lucro Total: R$ ${somaTotalLucro}</p>
-        </div>    
-        <div class="table-responsive">   
+
+        <div class="container mt-2">        
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-8 col-lg-8">
+                
+                    <div class="row">
+                        
+                        <div class="col-lg-6 my-1">
+                        
+                            <h4>Quantidade de Eventos: ${totalEventoPeriodo}</h4>
+                 
+                        </div>
+                        
+                        <div class="col-lg-6 my-1">
+                        
+                            <h4>Valor Total Bruto: R$ ${somaValorTotalBruto}</h4>
+                        
+                        </div>
+                        
+                    </div>
+                
+                    <div class="row">
+                        
+                        <div class="col-lg-6 my-1">
+                        
+                            <h4>Despesas Total: R$ ${somaTotalDespesa}</h4>
+                            
+                        </div>
+                        
+                        <div class="col-lg-6 my-1">
+                        
+                            <h4>Lucro Total: R$ ${somaTotalLucro}</h4>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                </div>               
+                
+            </div>
+        
+        </div>             
+   
+        <div class="table-responsive mt-2"> 
+            
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -93,8 +133,26 @@
                     </c:forEach>
                 </tbody>
             </table>
+            
         </div>
-        <br>
-        <a  class="btn btn-primary" href="eventoFiltroRel.jsp">Voltar</a> 
+                            
+        <div class="container">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="form-col-lg-8 my-2">
+
+                        <a  class="btn btn-secondary btn-lg btn-block" href="eventoFiltroRel.jsp">Voltar</a> 
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>                  
+                            
     </body>
 </html>

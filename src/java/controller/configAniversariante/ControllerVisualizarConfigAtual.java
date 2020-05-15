@@ -38,9 +38,9 @@ public class ControllerVisualizarConfigAtual extends HttpServlet{
             
             //monta o texto de exibição
             if(configAtual.getDias() < 2){
-                textoConfigAtual = "Configuração Atual: "+configAtual.getDias()+" dia! =)";
+                textoConfigAtual = "Configuração Atual: "+configAtual.getDias()+" dia.";
             }else{
-                textoConfigAtual = "Configuração Atual: "+configAtual.getDias()+" dias! =)";
+                textoConfigAtual = "Configuração Atual: "+configAtual.getDias()+" dias.";
             }
             
             

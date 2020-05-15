@@ -24,6 +24,11 @@
         <!-- Customização -->       
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../../custom/css/paginaDeCadastros/paginaConfigAniversariante/telaConfigAniversariante.css">
+<!--<style>
+	div{
+		border: solid 1px blue;
+	}
+</style>        -->
     </head>
     <body>
         <!-- NavBar -->
@@ -61,7 +66,7 @@
         <div class="jumbotron text-center">
             <h1>Notificação de Aniversariante</h1>
         </div>
-        <div>
+<!--        <div>
             <form method="GET" action="verificarConfigAniversariante">
                 <button type="submit" class="btn btn-success" value="VerificarConfigAtual">Configuração Atual</button>
             </form>               
@@ -71,7 +76,7 @@
         <button type="button" class="btn btn-success" onclick="editarConfig()" value="Confirmar">Editar Configuração</button>
         <br>
         <div id="formEditarConfig" class="d-flex justify-content-center" style="display: none !important">
-            <!-- form para config aniversario -->
+             form para config aniversario 
             <form method="GET" action="configAniversariante"> <%-- joga formulario para o controllerConfigAniversariante --%>
                 <div class="form-group">
                     <div class="text-center">
@@ -86,7 +91,104 @@
                 </div>
             </form>
         </div>
-        <h1>${msg}</h1>
+        <h1>${msg}</h1>-->
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="verificarConfigAniversariante">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" value="VerificarConfigAtual">Ver configuração atual</button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                    
+                </div>
+
+            </div>
+
+        </div> 
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <button type="button" class="btn btn-info btn-lg btn-block" onclick="editarConfig()" value="Confirmar">Editar Configuração</button>            
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container my-4" id="formEditarConfig" style="display: none !important">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="configAniversariante">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <label for="qtdDias"><h5>Por favor, digite a quantidade de dias para a notificação de aniversariante: </h5></label>
+                                <input type="text" name="qtdDias" placeholder="Digite aqui a quantidade de dias" maxlength="3" class="form-control" id="qtdDias" required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" value="Confirmar">Confirmar</button>
+
+                            </div>
+
+                        </div>                
+
+                    </form>               
+
+                </div>
+
+            </div>
+
+        </div>
+                            
+        <div class="container my-3">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="col-sm-12 text-center">
+                    
+                        <h3>${msg}</h3>
+                        <h3>${textoConfigAtual}</h3>
+                        
+                    </div>
+                    
+                </div>
+
+
+            </div>
+                    
+        </div>
+                        
     </body>
     <script src="../../javascripts/cadastroDeConfigAniversariante/configAniversariante.js"></script>    
 </html>

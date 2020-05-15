@@ -96,7 +96,7 @@
                             </div>
                             
                             <div class="form-group col-lg-4">
-                                <input type="text" class="form-control" id="periodoEvento" name="periodo" placeholder="00/00/0000" required> 
+                                <input type="text" class="form-control" minlength="10" id="periodoEvento" name="periodo" placeholder="00/00/0000" required> 
                             </div>
                             
                             <div class="form-group text-center col-lg-1">
@@ -104,7 +104,7 @@
                             </div>
                             
                             <div class="form-group col-lg-4">
-                                <input type="text" class="form-control" id="periodoEvento2" name="periodoo2" placeholder="00/00/0000" required>
+                                <input type="text" class="form-control" minlength="10" id="periodoEvento2" name="periodoo2" placeholder="00/00/0000" required>
                             </div>
                             
                         </div>
@@ -154,7 +154,7 @@
         </div> 
     </body>
     <script>
-        $("#periodo").mask("00/00/0000");
-        $("#periodoo2").mask("00/00/0000");
+        $("#periodoEvento").mask("00/00/0000");
+        $("#periodoEvento2").mask("00/00/0000");
     </script>    
 </html>

@@ -12,10 +12,6 @@ body, label, button, a, h1, input {
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    background-color: #ccd4b82b;
-}
-
 .jumbotron {
     background-color: #24b053;
     color: white;
