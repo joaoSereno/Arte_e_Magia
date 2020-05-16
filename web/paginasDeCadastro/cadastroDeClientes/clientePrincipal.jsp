@@ -61,52 +61,131 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="jumbotron text-center">
             <h1>Clientes</h1>
-        </div> 
-        <form Method="GET" action="listarTipoDeFestaNoCadastroCliente">
-           <button type="submit" class="btn btn-primary">Novo Cliente</button>
-        </form>
-        <br>
-        <form method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
-            <button class="btn btn-primary" type="submit" value="ListarFuncionarios"/>Listar Clientes</button>
-        </form>
-        <!-- div de listagem cliente-->          
-        <div class="table-responsive" id="divListagemCliente" style="display: none">
-            <input type="hidden" id="controllerListagemCliente" value="${controllerListagemCliente}">    
-            <table class="table table-striped table-bordered">
-                <thead> 
-                    <tr class="bg-danger">    
-                        <th scope="col">Nome</th>
-                        <th scope="col">CPF/CNPJ</th>
-                        <th scope="col">Tipo de Festa</th>
-                        <th scope="col">Contato</th>
-                        <th></th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${clientes}" var="item"> 
-                        <tr>
-                            <td>${item.nomeCliente}</td>
-                            <td>${item.cpf}</td>
-                            <td>${item.tipoDeFesta}</td>
-                            <td>${item.telefonePrincipal}</td>
-                            <!-- botão/form para editar registro cliente --> 
-                            <td>
-                                <form method="GET" action="editarCadastroCliente">
-                                    <input type="hidden" name="idCliente" value="${item.idCliente}">
-                                    <button class="btn btn-info"> + </button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
         </div>
-        <!-- fim  div de listagem cliente-->
-        <br>
-        <!-- botão de voltar página-->
-        <a href="../cadastros.jsp" class="btn btn-primary" >Voltar</a>
+        
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-10">
+
+                    <form method="GET" action="listarTipoDeFestaNoCadastroCliente">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Cadastrar Cliente</button>
+
+                            </div>
+                        
+                        </div>
+
+                    </form>
+
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-10">
+
+                    <form method="GET" action="listaCliente">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Listar Clientes</button>
+
+                            </div>
+                            
+                        </div>
+                        
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+            
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-10"> 
+                    
+                    <div class="col-lg-14 border border-secondary rounded" id="divListagemCliente" style="display: none">
+
+                        <div class="table-responsive">
+
+                            <input type="hidden" id="controllerListagemCliente" value="${controllerListagemCliente}"> 
+
+                            <table class="table table-striped table-bordered">
+                                <thead> 
+                                    <tr class="bg-danger">    
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">CPF/CNPJ</th>
+                                        <th scope="col">Tipo de Festa</th>
+                                        <th scope="col">Contato</th>
+                                        <th></th>
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <c:forEach items="${clientes}" var="item"> 
+                                        <tr>
+                                            <td>${item.nomeCliente}</td>
+                                            <td>${item.cpf}</td>
+                                            <td>${item.tipoDeFesta}</td>
+                                            <td>${item.telefonePrincipal}</td>
+                                            <td>
+                                                <form method="GET" action="editarCadastroCliente">
+                                                    <input type="hidden" name="idCliente" value="${item.idCliente}">
+                                                    <button class="btn btn-info"> + </button>
+                                                </form> 
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+                        </div>
+                            
+                    </div>  
+                            
+                </div>
+                        
+            </div>
+                        
+        </div>
+                            
+        <div class="container my-4">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-10">
+                         
+                    <div class="col-lg-14">
+                            
+                        <a href="../cadastros.jsp" class="btn btn-secondary btn-lg btn-block" >Voltar</a>
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>                             
+
     </body>
     <script src="../../javascripts/cadastroDeClientes/clientePrincipal.js"></script>      
 </html>

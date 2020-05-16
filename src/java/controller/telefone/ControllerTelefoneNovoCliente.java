@@ -74,10 +74,14 @@ public class ControllerTelefoneNovoCliente extends HttpServlet {
 
         }
 
-        if (telefonePrincipal.equals("sim")) { // se o usuário determinou como principal
-            telefoneNovo.setIsPrincipal(1);
-        } else { // se não
-            telefoneNovo.setIsPrincipal(0);
+        if(telefonePrincipal != null){
+
+            if (telefonePrincipal.equals("sim")) { // se o usuário determinou como principal
+                telefoneNovo.setIsPrincipal(1);
+            } else { // se não
+                telefoneNovo.setIsPrincipal(0);
+            }
+
         }
 
         //instanciando classe de comunicão com o banco de dados

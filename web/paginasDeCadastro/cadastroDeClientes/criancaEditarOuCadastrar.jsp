@@ -19,6 +19,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>                
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
@@ -61,97 +62,186 @@
             </div>
         </nav>
         <div class="jumbotron text-center">
-            <h1>Cadastrar/Editar - Criança</h1>
-        </div> 
-        <br>
-        <div>
-            <!-- form para cadastrar ou editar criança-->
-            <form method="GET" action="editarORcadastrarCrianca2">
-                    <input type="hidden" name="idCliente" value="${idClienteE}">
-                    <input type="hidden" name="idCrianca" value="${idCriancaE}">
-                    Nome da criança:
-                    <input type="text" name="nomeCrianca" value="${nomeCriancaE}">
-                    <br>
-                    <br>
-                    Data de Nascimento:
-                    <input type="text" name="dataNascimento" value="${dataNascimentoE}">
-                    <br>
-                    <br>
-                    Sexo:
-                    <select type="select" name="sexoCrianca">
-<%  
-                        String sexo = request.getParameter("sexo"); //se for editar
-                        if(sexo != null){
-%>
-                        <option value="${sexoE}">${sexoE}</option>
-<%
-                                if(sexo.equals("M")){
-%>
-                                <option value="F">F</option>
-<%                            
-                                }else{
-%>
-                                <option value="M">M</option>
-<%   
-                                }
-                        }else{ //se for cadastrar
-%>
-                                <option value="M">M</option>
-                                <option value="F">F</option>
-<% 
-                        }        
-%>
-                    </select> 
-                    <br>
-                    <br>
-                    <button class="btn btn-warning"> Confirmar </button>
-            </form>
-            <!-- botão que abre o modal de confirmação de exclusão -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
-                Excluir
-            </button>
+            <h1>Cadastro de Criança</h1>
+        </div>
+        
+        <div class="container">
 
-            <!-- Modal -->
-            <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Excluir criança</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Tem certeza que deseja realizar a exclusão do cadastro?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <!-- form realizar a exclusão da crianca -->
-                            <form method="GET" action="inativarCrianca">
-                                <%-- joga formulario para o controllerInativarCrianca --%>
-                                <input type="hidden" name="idCrianca" value="${idCriancaE}">
-                                <input type="hidden" name="idCliente" value="${idClienteE}">
-                                <button type="submit" class="btn btn-primary" value="Confirmar">Confirmar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="editarORcadastrarCrianca2">
+
+                        <input type="hidden" name="idCliente" value="${idClienteE}">
+                        <input type="hidden" name="idCrianca" value="${idCriancaE}">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-4">
+
+                                <label for="nomeCrianca">Nome da Criança: *</label>
+                                <input type="text" class="form-control" maxlength="45" placeholder="Ex: Pietro" name="nomeCrianca" id="nomeCrianca" value="${nomeCriancaE}" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-4">
+
+                                <label for="dataNascimento">Data de Nascimento: *</label>
+                                <input type="text" class="form-control" minlength="10" placeholder="00/00/0000" name="dataNascimento" id="dataNascimento" value="${dataNascimentoE}" required>                                                         
+
+                            </div>
+
+                            <div class="form-group col-lg-4">
                                 
+                                <input type="hidden" id="sexo" name="sexo" value="${sexo}">  
+
+                                <label for="sexoCrianca">Gênero *</label>
+                                <select type="select" id="sexoCrianca" class="form-control" name="sexoCrianca"> <!--select controlado por js -->
+                                    <option id="sexo2" value="" selected> </option>
+                                    <option id="sexo3" value="" > </option>
+                                </select>
+
+                            </div>                    
+
+                            <div class="form-group col-lg-6 my-2">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Confirmar</button>
+
+                            </div>
+
+                            <div class="form-group col-lg-6 my-2">
+
+                                <!-- botão que abre o modal de confirmação de exclusão -->
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#confirmaçãoExclusao">
+                                    Excluir Cadastro
+                                </button>
+
+                            </div>
+
+                        </div>        
+
+                    </form>
+
+                </div>            
+
+            </div>
+
         </div>
-        <!-- fim Modal -->
-        </div>
-        <h3>${msg}</h3>
-        <br>
-        <br>
-        <!--botão de voltar página-->
+                                    
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">      
+                    
+                    <div class="row">
+
+                        <div class="col-lg-12 text-center my-2">
+
+                            <h4>${msg}</h4>
+
+                        </div>
+
+                    </div>   
+                            
+                </div>
+            
+            </div>
+        
+        </div>    
+                                          
+        <div class="container mt-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">                    
+
+                    <form method="GET" action="editarCadastroCliente">
+
+                        <input type="hidden" name="idCliente" value="${idClienteE}">
+
+                        <div class="form-row my-3">
+
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block">Voltar</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>  
+
+        <!-- Modal de exclusão do cadastro-->
         <div>
-            <!-- form voltar para a página de funcionario -->
-            <form method="GET" action="editarCadastroCliente">
-                <input type="hidden" name="idCliente" value="${idClienteE}">
-                <button class="btn btn-warning"> Voltar </button>
-            </form>                      
-        </div>      
+            
+            <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                
+                <div class="modal-dialog" role="document">
+                  
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <h5 class="modal-title" id="exampleModalLabel">Excluir Criança</h5>
+                            
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            
+                        </div>
+
+                        <div class="modal-body">
+                          Tem certeza que deseja realizar a exclusão do cadastro?
+                        </div>
+
+                        <div class="container">
+                            
+                            <div class="row justify-content-center">
+                                
+                                <div class="col-sm-12 col-md-10 col-lg-8">
+                                    
+                                    <form method="GET" action="inativarCrianca">
+                                        
+                                        <input type="hidden" name="idCrianca" value="${idCriancaE}">
+                                        <input type="hidden" name="idCliente" value="${idClienteE}">                                        
+                                        
+                                        <div class="form-row">
+
+                                            <div class="form-group col-lg-6">
+
+                                                <input type="hidden" name="idFuncionario" value="${idFuncionario}">
+                                                <button type="submit" class="btn btn-danger btn-block" value="Confirmar">Sim</button>
+
+                                            </div>
+                                                
+                                            <div class="form-group col-lg-6">
+
+                                                <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Não</button>
+
+                                            </div>
+                                            
+                                        </div>
+
+                                    </form>   
+
+                                </div>
+                                                
+                            </div>
+
+                        </div>
+
+                    </div>
+                        
+                </div>
+                        
+            </div>
+                        
+        </div>  
+                                                
     </body>
+    <script src="../../javascripts/cadastroDeClientes/criancaEditarOuCadastrar.js"></script>           
 </html>

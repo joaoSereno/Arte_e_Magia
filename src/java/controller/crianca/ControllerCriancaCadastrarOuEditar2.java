@@ -67,7 +67,7 @@ public class ControllerCriancaCadastrarOuEditar2 extends HttpServlet {
                 
                 //setando atributos que será jogados para outra página
                 request.setAttribute("idClienteE", idCliente2);
-                request.setAttribute("msg", "Criança cadastrada com sucesso!!");
+                request.setAttribute("msg", "Cadastro realizado com sucesso!");
                 
                 //dispachando para a página
                 request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);
@@ -81,8 +81,8 @@ public class ControllerCriancaCadastrarOuEditar2 extends HttpServlet {
                 request.setAttribute("idCriancaE", idCrianca2);
                 request.setAttribute("nomeCriancaE", nomeCrianca);
                 request.setAttribute("dataNascimentoE", dataNascimento);
-                request.setAttribute("sexoE", sexoCrianca);
-                request.setAttribute("msg", "Criança editada com sucesso!!");
+                request.setAttribute("sexo", sexoCrianca);
+                request.setAttribute("msg", "Cadastro editado com sucesso!");
                 
                 //dispachando para a página
                 request.getRequestDispatcher("criancaEditarOuCadastrar.jsp").forward(request, response);

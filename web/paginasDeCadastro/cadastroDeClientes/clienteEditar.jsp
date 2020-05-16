@@ -19,6 +19,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>                
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
@@ -60,226 +61,498 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="jumbotron text-center">
-            <h1>Cliente - Editar</h1>
+            <h1>Editar Cliente</h1>
         </div> 
-        <br>
-        <!-- form para editar cliente-->
-        <div>
-            <form method="GET" action="editarCliente2"> <%-- joga formulario para o controllerClienteEditar2 --%>
-                <input type="hidden" name="tipoDeFesta" value="${cliente.tipoDeFesta}">
-                <input type="hidden" name="idCliente" value="${cliente.idCliente}">
-                Nome do cliente:
-                <input type="text" name="nomeCliente" value="${cliente.nomeCliente}">
-                CPF:
-                <input type="text" name="cpf" value="${cliente.cpf}">
-                Tipo de Festa:
-                <select type="select" name="tipoFesta">
-                    <option value="${cliente.idTipoDeFesta}">${cliente.tipoDeFesta}</option>
-                        <c:forEach var="item" items="${listaTipoDeFesta}">
-                            <option value="${item.idTipoDeFesta}">
-                                ${item.descricaoTipoDeFesta}
-                            </option>
-                        </c:forEach>
-                </select>
+        
+        <div class="container">
 
-                <h6>E-mail</h6>
-                <input type="hidden" name="idEmail" value="${email.idEmail}">
-                <input type="text" name="email" value="${email.email}">
-                <h6>Endereço:</h6>
-                <input type="hidden" name="idEnderecos" value="${endereco.idEnderecos}">                
-                CEP:
-                <input type="text" name="cep" id="cep" value="${endereco.cep}">
-                CIDADE:
-                <input type="text" name="cidade" id="cidade" value="${endereco.cidade}">
-                BAIRRO:
-                <input type="text" name="bairro" id="bairro" value="${endereco.bairro}">
-                RUA:
-                <input type="text" name="rua" id="rua" value="${endereco.rua}">
-                NUMERO:
-                <input type="text" name="numero" idnumero value="${endereco.numero}">
-                COMPLEMENTO:
-                <input type="text" name="complemento" id="complemento" value="${endereco.complemento}">
-                <br>
-                <br>
-                <button type="submit">Salvar</button>
-            </form>
-        <!-- fim do form para editar cliente-->
-        </div>
-        <br>
-        <!-- botão que abre o modal de confirmação de exclusão -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmaçãoExclusao">
-            Excluir
-        </button>
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">          
+                    
+                    <form class="form-group" method="GET" action="editarCliente2">
 
-        <!-- Modal -->
-        <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Excluir cliente</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Tem certeza que deseja realizar a exclusão do cadastro?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <!-- form realizar a exclusão do funcionario -->
-                        <form method="GET" action="inativarCliente2">
-                            <%-- joga formulario para o controllerInativarCliente --%>
-                            <input type="hidden" name="idCliente" value="${cliente.idCliente}">
-                            <button type="submit" class="btn btn-primary" value="Confirmar">Confirmar</button>
-                        </form>
-                    </div>
+                        <input type="hidden" name="tipoDeFesta" value="${cliente.tipoDeFesta}">
+                        <input type="hidden" name="idCliente" value="${cliente.idCliente}">                        
+                        
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <h3><i class="fas fa-user-check"></i> Dados do Cliente </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="nomeCliente">Nome do Cliente *</label>
+                                <input type="text" class="form-control" maxlength="45" name="nomeCliente" id="nomeCliente" value="${cliente.nomeCliente}" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="cpf">CPF do Cliente *</label>
+                                <input type="text" class="form-control" minlength="14" name="cpf" id="cpf" value="${cliente.cpf}" required>
+                    
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="tipoFesta">Tipo de Evento *</label>
+                                <select type="select" class="form-control" id="tipoFesta" name="tipoFesta">
+                                    <option value="${cliente.idTipoDeFesta}">${cliente.tipoDeFesta}</option>
+                                        <c:forEach var="item" items="${listaTipoDeFesta}">
+                                            <option value="${item.idTipoDeFesta}">
+                                                ${item.descricaoTipoDeFesta}
+                                            </option>
+                                        </c:forEach>
+                                </select>      
+
+                            </div>                            
+
+                            <div class="form-group col-lg-6">
+
+                                <input type="hidden" name="idEmail" value="${email.idEmail}">
+
+                                <label for="email"> E-mail: *</label>
+                                <input type="email" class="form-control" maxlength="45" name="email" id="email" value="${email.email}" required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row mt-3">
+
+                            <div class="form-group col-lg-12">
+
+                                <h3><i class="fas fa-map-marker-alt"></i> Dados Residênciais </h3>
+
+                            </div>
+
+                        </div>   
+
+                        <div class="form-row">
+
+                            <input type="hidden" name="idEnderecos" value="${endereco.idEnderecos}">
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="cep"> CEP: *</label>
+                                <input type="text" class="form-control" minlength="9" name="cep" id="cep" value="${endereco.cep}" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="cidade">Cidade: *</label>
+                                <input type="text" class="form-control" name="cidade" id="cidade" value="${endereco.cidade}" required>
+                    
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="bairro"> Bairro: *</label>
+                                <input type="text" class="form-control" name="bairro" id="bairro" value="${endereco.bairro}" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="rua">Rua: *</label>
+                                <input type="text" class="form-control" name="rua" id="rua" value="${endereco.rua}" required>
+                    
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="numero"> Número: *</label>
+                                <input type="text" class="form-control" name="numero" id="numero" value="${endereco.numero}" required>
+
+                            </div>
+
+                            <div class="form-group col-lg-6">
+
+                                <label for="rua">Complemento: *</label>
+                                <input type="text" class="form-control" name="complemento" id="complemento" value="${endereco.complemento}">
+                    
+                            </div>
+
+                        </div>
+                        
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12 my-2">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Salvar</button>
+                                
+                            </div>
+                            
+                        </div>                        
+                        
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12 my-2">
+
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#confirmaçãoExclusao">
+                                    Excluir Cadastro
+                                </button>
+                                
+                            </div>
+                            
+                        </div>                        
+                        
+                    </form>
+                    
                 </div>
-            </div>
-        </div>
-        <!-- fim Modal -->
-        <br>
-        <h3>${msg}</h3>
-        <br>
-        <div>
-            <div>
-                <h3>Telefone/s:</h3>                
-            </div>
-            <br>
-            <!-- div de modal para o  novo telefone-->
-            <div>
-                <!-- botão que abre o modal de novo  -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novoTelefone">
-                  Novo telefone
-                </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="novoTelefone" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
+            </div>
+
+        </div>
+                                
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">      
+                    
+                    <div class="row">
+
+                        <div class="col-lg-12 text-center my-3">
+
+                            <h3>${msg}</h3>
+
+                        </div>
+
+                    </div>   
+                            
+                </div>
+            
+            </div>
+        
+        </div>
+                            
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+
+                        <div class="col-lg-7">
+
+                            <h3><i class="fas fa-address-book"></i> Contatos do Cliente :</h3>
+
+                        </div>
+
+                        <div class="col-lg-5">
+
+                            <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#novoTelefone">
+                                +Novo Contato
+                            </button>                    
+
+                        </div> 
+
+                    </div>
+
+                    <div class="col-lg-13 my-1 border border-secondary rounded">
+
+                        <div class="table-responsive">
+
+                            <table class="table table-striped table-bordered">
+                                <thead> 
+                                    <tr class="bg-danger">     
+                                        <th scope="col">Número</th>
+                                        <th scope="col">Tipo</th>
+                                        <th></th>
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <c:forEach items="${listaTelefoneCliente}" var="item"> 
+                                        <tr>
+                                            <td>${item.numero}</td>
+                                            <td>${item.tipoTelefone}</td>
+                                            <td>
+                                                <form method="GET" action="excluirTelefoneCliente">
+                                                    <input type="hidden" name="idClienteTelefone" value="${cliente.idCliente}">
+                                                    <input type="hidden" name="isPrincipal" value="${item.isPrincipal}">
+                                                    <input type="hidden" name="idTelefone" value="${item.idTelefone}">
+                                                    <button class="btn btn-info"> Excluir </button>
+                                                </form> 
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+                        </div> 
+
+                    </div>
+
+                </div>    
+
+            </div>
+
+        </div>
+                            
+        <div class="container my-3 mt-4">
+
+            <input type="hidden" id="controllerListagemCrianca" value="${controllerListagemCrianca}">  
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+
+                        <div class="col-lg-7">
+
+                            <h3><i class="fas fa-child"></i> Crianças do Cliente :</h3>
+
+                        </div>
+
+                        <div class="col-lg-5">
+
+                            <form method="GET" action="editarORcadastrarCrianca">
+                                <input type="hidden" name="idClienteCrianca" value="${cliente.idCliente}">
+                                <button type="submit" class="btn btn-info btn-block" >+Nova Criança</button>
+                            </form>                      
+
+                        </div> 
+
+                    </div>
+
+                    <div class="col-lg-13 my-1 border border-secondary rounded"  style="display: none" id="divCrianca">
+
+                        <div class="table-responsive">
+
+                            <table class="table table-striped table-bordered">
+                                <thead> 
+                                    <tr class="bg-danger">    
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Sexo</th>
+                                        <th scope="col">Data de Nascimento</th>
+                                        <th></th>
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <c:forEach items="${listaCriancaCliente}" var="item"> 
+                                        <tr>
+                                            <td>${item.nomeCrianca}</td>
+                                            <td>${item.sexo}</td>
+                                            <td>${item.dataNascimento}</td>
+                                            <td>
+                                                <form method="GET" action="editarORcadastrarCrianca">
+                                                    <input type="hidden" name="idClienteCrianca" value="${item.idCliente}">
+                                                    <input type="hidden" name="idCrianca" value="${item.idCrianca}">
+                                                    <input type="hidden" name="nomeCrianca" value="${item.nomeCrianca}">
+                                                    <input type="hidden" name="sexo" value="${item.sexo}">
+                                                    <input type="hidden" name="dataNascimento" value="${item.dataNascimento}">
+                                                    <button class="btn btn-info"> Editar </button>
+                                                </form> 
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+
+                        </div> 
+
+                    </div>
+
+                </div>    
+
+            </div>
+
+        </div>
+                                
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">                    
+                    
+                    <form method="GET" action="listaCliente">
+                        
+                        <div class="form-row my-3">
+
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block">Voltar</button>
+                            
+                        </div>
+                
+                    </form>
+                    
+                </div>
+                
+            </div>
+            
+        </div> 
+                                
+        <!-- Modal de exclusão do cadastro-->
+        <div>
+            
+            <div class="modal fade" id="confirmaçãoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                
+                <div class="modal-dialog" role="document">
+                  
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Novo telefone =)</h5>
+
+                        <div class="modal-header">
+
+                            <h5 class="modal-title" id="exampleModalLabel">Excluir Cliente</h5>
+                            
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            
+                        </div>
+
+                        <div class="modal-body">
+                          Tem certeza que deseja realizar a exclusão do cadastro?
+                        </div>
+
+                        <div class="container">
+                            
+                            <div class="row justify-content-center">
+                                
+                                <div class="col-sm-12 col-md-10 col-lg-8">
+                                    
+                                    <form method="GET" action="inativarCliente2">
+                                        
+                                        <div class="form-row">
+
+                                            <div class="form-group col-lg-6">
+
+                                                <input type="hidden" name="idCliente" value="${cliente.idCliente}">
+
+                                                <button type="submit" class="btn btn-danger btn-block" value="Confirmar">Sim</button>
+
+                                            </div>
+                                                
+                                            <div class="form-group col-lg-6">
+
+                                                <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Não</button>
+
+                                            </div>
+                                            
+                                        </div>
+
+                                    </form>                                
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                        
+                </div>
+                        
+            </div>
+                        
+        </div> 
+                                                
+        <!-- Modal novo telefone -->
+        <div class="modal fade" id="novoTelefone" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            
+            <div class="modal-dialog" role="document">
+                
+                <div class="modal-content">
+                    
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Contato</h5>
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
-                      </div>
-                      <br> 
-                      <div>
-                        <!-- form para adicionar novo contato --> 
-                        <form method="GET" action="adicionarNovoTelefoneCliente"> <%-- joga formulario para o controllerTelefoneNovo --%>
-                            <input type="hidden" name="idCliente" value="${cliente.idCliente}">
-                            Número:
-                            <input type="text" name="contato">
-                            Tipo:
-                            <select type="select" name="tipoTelefone">
-                                <option value="Celular">Celular</option>
-                                <option value="Fixo">Fixo</option>
-                            </select>
-                            <br>
-                            Telefone Principal? 
-                            <input type="radio" value="sim" name="telefonePrincipal"> Sim                        
-                            <input type="radio" value="nao" name="telefonePrincipal"> Não                        
-                            <button type="submit" class="btn btn-primary" value="Confirmar">Adicionar</button>
-                        </form> 
-                        <!-- fim form para adicionar novo contato --> 
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                      </div>
+
                     </div>
-                  </div>
-                </div> 
-                 <!-- fim Modal -->                          
+                    
+                    <div class="modal-body">
+                        
+                        <div class="container">
+        
+                            <form  method="GET" action="adicionarNovoTelefoneCliente">
+
+                                <input type="hidden" name="idCliente" value="${cliente.idCliente}">
+
+                                <div class="form-row">
+                                    
+                                    <label for="contato">Número *</label>
+                                    <input type="text" class="form-control" minlength="13" placeholder="Ex: (17) 99261-2072" name="contato" id="contato" required>
+                                    
+                                </div>
+                                
+                                <div class="form-row mt-2">
+                                    
+                                    <label for="tipoTelefone">Tipo do Contato *</label>
+                                    <select id="tipoTelefone" class="form-control" name="tipoTelefone">
+                                        <option value="Celular" selected>Celular</option>
+                                        <option value="Fixo">Fixo</option>
+                                    </select>
+                                    
+                                </div>
+
+                                <div class="form-row my-2">
+                                    
+                                    <div class="form-group col-lg-6">
+                                        
+                                        Contato Principal <input type="radio" value="sim" name="telefonePrincipal">
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="form-row">
+                                    
+                                    <div class="form-group col-lg-6">
+                                        <button type="submit" class="btn btn-info btn-block" value="Confirmar">Adicionar</button>
+                                    </div>
+
+                                    <div class="form-group col-lg-6">
+                                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cancelar</button>
+                                    </div>    
+                                    
+                                </div>  
+                                
+                            </form>
+                            
+                        </div>
+                        
+                    </div>
+                                
+                </div>
+                        
             </div>
-            <!-- fim da div de modal para o  novo telefone-->
-            
-            <!-- div de listagem listagem telefone cliente-->          
-            <div class="table-responsive">
-                <table id="tabelaTelefone" class="table table-striped table-bordered"> 
-                    <thead> 
-                        <tr class="bg-danger">     
-                            <th scope="col">Número</th>
-                            <th scope="col">Tipo</th>
-                            <th></th>
-                        </tr>
-                    </thead> 
-                    <tbody>
-                        <c:forEach items="${listaTelefoneCliente}" var="item"> 
-                            <tr>
-                                <td>${item.numero}</td>
-                                <td>${item.tipoTelefone}</td>
-                                <td>
-                                    <!-- form para excluir contato --> 
-                                    <form method="GET" action="excluirTelefoneCliente">
-                                        <input type="hidden" name="idClienteTelefone" value="${cliente.idCliente}">
-                                        <input type="hidden" name="isPrincipal" value="${item.isPrincipal}">
-                                        <input type="hidden" name="idTelefone" value="${item.idTelefone}">
-                                        <button class="btn btn-info"> Excluir </button>
-                                    </form> 
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <!-- fim  div de listagem telefone cliente-->   
-        </div>
-        <br>
-        <div>
-            <!-- form cadastrar criança -->
-            <form method="GET" action="editarORcadastrarCrianca">
-                <input type="hidden" name="idClienteCrianca" value="${cliente.idCliente}">
-                <button type="submit">Nova Criança</button>
-            </form>                        
-        </div>          
-        <div style="display: none" id="divCrianca">
-            <input type="hidden" id="controllerListagemCrianca" value="${controllerListagemCrianca}">  
-            <h3>Crianças:</h3>      
-            <!-- div de listagem crianca do cliente-->          
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered">
-                    <thead > 
-                        <tr class="bg-danger">    
-                            <th scope="col">Nome</th>
-                            <th scope="col">Sexo</th>
-                            <th scope="col">Data de Nascimento</th>
-                            <th></th>
-                        </tr>
-                    </thead> 
-                    <tbody>
-                        <c:forEach items="${listaCriancaCliente}" var="item"> 
-                            <tr>
-                                <td>${item.nomeCrianca}</td>
-                                <td>${item.sexo}</td>
-                                <td>${item.dataNascimento}</td>
-                                <td>
-                                    <!-- form para editar contato --> 
-                                    <form method="GET" action="editarORcadastrarCrianca">
-                                        <input type="hidden" name="idClienteCrianca" value="${item.idCliente}">
-                                        <input type="hidden" name="idCrianca" value="${item.idCrianca}">
-                                        <input type="hidden" name="nomeCrianca" value="${item.nomeCrianca}">
-                                        <input type="hidden" name="sexo" value="${item.sexo}">
-                                        <input type="hidden" name="dataNascimento" value="${item.dataNascimento}">
-                                        <button class="btn btn-info"> Editar </button>
-                                    </form> 
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div> 
-            <!-- fim  div de listagem crianca do cliente-->              
-        </div>  
-       <br>
-       <br>
-        <!--botão de voltar página-->
-        <div>
-            <!-- form para listar os clientes cadastrados -->
-            <form method="GET" action="listaCliente"> <%-- joga formulario para o controllerClienteListar --%>
-                <button type="submit" value="ListarClientes"/>Voltar</button>
-            </form>                        
-        </div>                            
+                        
+        </div>                                                
     </body>
-    <script src="../../javascripts/telefones/destacarTelefone.js"></script>
+<!--    <script src="../../javascripts/telefones/destacarTelefone.js"></script>-->
     <script src="../../javascripts/enderecos/enderecosAutomaticos.js"></script>  
-    <script src="../../javascripts/cadastroDeClientes/clienteEditar.js"></script>     
+    <script src="../../javascripts/cadastroDeClientes/clienteEditar.js"></script> 
+    <script src="../../javascripts/telefones/telefone.js"></script>    
+    <script>
+        $("#cpf").mask("000.000.000-00");
+        $("#cep").mask("00000-000");        
+    </script>     
 </html>

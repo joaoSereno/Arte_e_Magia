@@ -140,7 +140,7 @@ public class ControllerClienteCadastrar extends HttpServlet {
             
             //setando atributos e dispachando para a pagina
             request.setAttribute("listaTipoDeFesta", listaTipoDeFesta);
-            request.setAttribute("msg", "Cadastro realizado com sucesso!!");
+            request.setAttribute("msg", "Cadastro realizado com sucesso!");
             request.getRequestDispatcher("clienteCadastrar.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(ControllerClienteCadastrar.class.getName()).log(Level.SEVERE, null, ex);

@@ -150,6 +150,7 @@
                 <div class="col-sm-12 col-md-10 col-lg-8 my-5">
 
                     <div class="row">
+                        
                         <div class="col-lg-7">
 
                             <h3><i class="fas fa-address-book"></i> Contatos do Colaborador :</h3>
@@ -162,10 +163,11 @@
                                 +Novo Contato
                             </button>                    
 
-                        </div>                
+                        </div> 
+                        
                     </div>
                     
-                    <div class="col-lg-13 my-1">
+                    <div class="col-lg-13 my-1 border border-secondary rounded">
                         
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
@@ -315,11 +317,11 @@
                                 <div class="form-row">
                                     
                                     <label for="contato">Número *</label>
-                                    <input type="text" class="form-control" placeholder="Ex: (17) 99261-2072" name="contato" id="contato" required>
+                                    <input type="text" class="form-control" minlength="13" placeholder="Ex: (17) 99261-2072" name="contato" id="contato" required>
                                     
                                 </div>
                                 
-                                <div class="form-row">
+                                <div class="form-row  mt-2">
                                     
                                     <label for="tipoTelefone">Tipo do Contato *</label>
                                     <select id="tipoTelefone" class="form-control" name="tipoTelefone">

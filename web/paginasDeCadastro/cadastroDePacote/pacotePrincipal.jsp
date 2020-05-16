@@ -157,7 +157,7 @@
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
-                    <div class="table-responsive" id="divListagemPacote" style="display: none">
+                    <div class="table-responsive border border-secondary rounded" id="divListagemPacote" style="display: none">
                         <input type="hidden" id="controllerListagemPacote" value="${controllerListagemPacote}">    
 
                         <table class="table table-striped table-bordered">

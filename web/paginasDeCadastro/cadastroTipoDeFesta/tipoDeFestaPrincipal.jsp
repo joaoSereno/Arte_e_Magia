@@ -147,7 +147,7 @@
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
-                    <div class="table-responsive" id="divTipoDeFesta" style="display: none">
+                    <div class="table-responsive border border-secondary rounded" id="divTipoDeFesta" style="display: none">
                         <input type="hidden" id="controllerListagemTipoDeFesta" value="${controllerListagemTipoDeFesta}">   
 
                         <table class="table table-striped table-bordered">

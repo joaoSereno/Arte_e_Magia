@@ -59,7 +59,7 @@ public class ControllerCriancaCadastrarOuEditar extends HttpServlet {
             request.setAttribute("nomeCriancaE", nomeCrianca);
         }
         if (sexo != null) {
-            request.setAttribute("sexoE", sexo);
+            request.setAttribute("sexo", sexo);
         }
         if (dataNascimento != null) {
             request.setAttribute("dataNascimentoE", dataNascimento);

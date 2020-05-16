@@ -146,7 +146,7 @@
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
-                    <div class="table-responsive" id="divTipoDePagamento" style="display: none">
+                    <div class="table-responsive border border-secondary rounded" id="divTipoDePagamento" style="display: none">
                         <input type="hidden" id="controllerListagemTipoDePagamento" value="${controllerListagemTipoDePagamento}">    
 
                         <table class="table table-striped table-bordered">

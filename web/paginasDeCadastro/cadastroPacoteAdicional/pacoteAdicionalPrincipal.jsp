@@ -144,7 +144,7 @@
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
-                    <div class="table-responsive" id="divPacoteAdicional" style="display: none">
+                    <div class="table-responsive border border-secondary rounded" id="divPacoteAdicional" style="display: none">
                         <input type="hidden" id="controllerListagemPacoteAdicional" value="${controllerListagemPacoteAdicional}">
 
                         <table class="table table-striped table-bordered">

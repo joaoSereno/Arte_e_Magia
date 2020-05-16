@@ -147,14 +147,13 @@
                 
                 <div class="col-sm-12 col-md-10 col-lg-8">
                     
-                        <form method="POST" action="listaFuncionarios"> <%-- joga formulario para o controllerFuncionarioListar --%>
-                            
-                            <div class="form-col-lg-8 my-3">
-                                <button type="submit" class="btn btn-info btn-lg btn-block">Listar Colaboradores</button>
-                            </div>
-                            
-                        </form>  
+                    <form method="POST" action="listaFuncionarios"> <%-- joga formulario para o controllerFuncionarioListar --%>
 
+                        <div class="form-col-lg-8 my-3">
+                            <button type="submit" class="btn btn-info btn-lg btn-block">Listar Colaboradores</button>
+                        </div>
+
+                    </form>  
                             
                     <div class="form-col-lg-8 my-4">
 
