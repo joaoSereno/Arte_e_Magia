@@ -14,5 +14,9 @@ if(controllerListagemEvento == 1){
     document.getElementById('divListagemEvento').style.display = '';
 }
 
+$("#periodoEvento").mask("00/00/0000");
+$("#periodoEvento2").mask("00/00/0000");
+
+
 
 

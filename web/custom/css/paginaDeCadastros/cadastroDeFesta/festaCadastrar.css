@@ -7,13 +7,28 @@ and open the template in the editor.
     Created on : 02/04/2020, 16:57:32
     Author     : João Pedro
 */
-body {
-    background-color: #ccd4b82b;
-}
-
 .jumbotron {
-    background-color: #51e0ff;;
+    background-color: #07bfe6;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    
+}
+
+#bntAddAdicional{
+    margin-top: 1.9rem!important;
+}
+
+.fontInfValores{
+   font-size: 1.35rem !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .h3, h3 {
+        font-size: 1.55rem;
+    }
+    
+    #bntAddAdicional{
+        margin-top: 0rem!important;
+    }
+    
 }

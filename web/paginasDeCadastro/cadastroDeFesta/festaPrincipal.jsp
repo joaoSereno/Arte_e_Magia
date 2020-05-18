@@ -18,6 +18,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>        
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
@@ -59,67 +60,183 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="jumbotron text-center">
             <h1>Eventos</h1>
-        </div>          
-        <form method="GET" action="listarFesta">
-            Status do Evento:
-            <select name="statusEvento">
-                <option value="1">Somente não realizados</option>
-                <option value="2">Somente realizados</option>
-                <option value="3">Todos</option>
-            </select>
-            Período do Evento:
-            <input type="text" name="periodoEvento">
-            à
-            <input type="text" name="periodoEvento2">
-            <button type="submit">Listar</button>
-        </form>
-        <br>
-        <div id="divMsgEvento" style="display: none">
-            ${msgQtdEvento}
-            <input type="hidden" id="controllerMsgEvento" value="${controllerMsgEvento}">
         </div>
-        <!-- div de listagem evento-->
-        <div class="table-responsive" id="divListagemEvento" style="display: none"> 
-            <input type="hidden" id="controllerListagemEvento" value="${controllerListagemEvento}">      
-            <table id="tabela" class="table table-striped table-bordered">
-                <thead> 
-                    <tr class="bg-info">
-                        <th scope="col">Descrição do Evento</th>
-                        <th scope="col">Data do Evento</th>
-                        <th scope="col">Evento realizado?</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${listaEvento}" var="item"> 
-                        <tr>
-                            <td>${item.descricaoFesta}</td>
-                            <td>${item.dataFesta}</td>
-                            <td>${item.festaStatus2}</td>
-                            <!-- botão/form para editar registro cliente --> 
-                            <td>
-                                <form method="GET" action="edicaoEvento">
-                                    <input type="hidden" name="idFesta" value="${item.idFesta}">
-                                    <button class="btn btn-info"> + </button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>             
-        <form method="GET" action="preCadastroFesta">
-            <button class="btn btn-primary" type="submit">Cadastrar de evento</button>        
-        </form>
-        <br>
-        <div>
-            <h5>${msgConfirmaçãoFesta}</h5>
+        
+        <div class="container my-1">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="preCadastroFesta">
+
+                        <div class="form-row">
+
+                            <button type="submit" class="btn btn-info btn-lg btn-block" >+Novo Evento</button>
+
+                        </div>
+
+                    </form>
+
+                </div>  
+
+            </div>
+
+        </div>    
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <form method="GET" action="listarFesta">
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-3">
+                                <h5>Status do Evento:</h5>
+                            </div>
+
+                            <div class="form-group col-lg-9">
+                                <select id="statuEvento" class="form-control" name="statusEvento">
+                                    <option value="1" selected>Somente não realizados</option>
+                                    <option value="2">Somente realizados</option>
+                                    <option value="3">Todos</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-3">
+                                <h5>Período:</h5>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <input type="text" class="form-control" minlength="10" id="periodoEvento" name="periodoEvento" placeholder="00/00/0000" required> 
+                            </div>
+
+                            <div class="form-group text-center col-lg-1">
+                                <h5>à</h5>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <input type="text" class="form-control" minlength="10" id="periodoEvento2" name="periodoEvento2" placeholder="00/00/0000" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-lg-12">
+
+                                <button type="submit" class="btn btn-info btn-lg btn-block" >Listar Eventos</button>
+
+                            </div>
+
+                        </div>   
+
+                    </form>
+
+                </div>
+
+            </div>
+
         </div>
-        <br>
-        <a  class="btn btn-primary" href="../cadastros.jsp">Voltar</a> 
-        <br>        
+
+        <div class="container mt-3">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="form-col-lg-8" id="divMsgEvento" style="display: none">
+
+                        <input type="hidden" id="controllerMsgEvento" value="${controllerMsgEvento}">
+
+                        <h4>${msgQtdEvento}</h4>
+
+                    </div>
+
+                    <div class="form-col-lg-8">
+
+                        <h4>${msgConfirmaçãoFesta}</h4>
+
+                    </div>
+
+                </div>  
+
+            </div>
+
+        </div> 
+
+        <div class="container" id="divListagemEvento" style="display: none">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="table-responsive border border-secondary rounded"> 
+
+                        <input type="hidden" id="controllerListagemEvento" value="${controllerListagemEvento}">    
+
+                        <table id="tabela" class="table table-striped table-bordered">
+                            <thead> 
+                                <tr class="bg-info">
+                                    <th scope="col">Descrição do Evento</th>
+                                    <th scope="col">Data do Evento</th>
+                                    <th scope="col">Evento realizado?</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <c:forEach items="${listaEvento}" var="item"> 
+                                    <tr>
+                                        <td>${item.descricaoFesta}</td>
+                                        <td>${item.dataFesta}</td>
+                                        <td>${item.festaStatus2}</td>
+                                        <!-- botão/form para editar registro cliente --> 
+                                        <td>
+                                            <form method="GET" action="edicaoEvento">
+                                                <input type="hidden" name="idFesta" value="${item.idFesta}">
+                                                <button class="btn btn-info"> + </button>
+                                            </form> 
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+
+                    </div> 
+
+                </div>  
+
+            </div>
+
+        </div>    
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="form-col-lg-8 my-2">
+
+                        <a  class="btn btn-secondary btn-lg btn-block" href="../cadastros.jsp">Voltar</a> 
+
+                    </div>
+
+                </div>  
+
+            </div>
+
+        </div>           
     </body>
-    <script src="../../javascripts/cadastroDeFesta/festaPrincipal.js"></script>
+    <script src="../../javascripts/cadastroDeFesta/festaPrincipal.js"></script> 
 </html>

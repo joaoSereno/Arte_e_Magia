@@ -7,13 +7,19 @@ and open the template in the editor.
     Created on : 02/04/2020, 16:57:42
     Author     : João Pedro
 */
-body {
-    background-color: #ccd4b82b;
-}
-
 .jumbotron {
-    background-color: #51e0ff;;
+    background-color: #07bfe6;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    
+}
+
+.h4, h4 {
+    font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .h4, h4 {
+        font-size: 1.1rem;
+    }
 }

@@ -89,8 +89,8 @@
     //lista que controla os valores relacionados as despesas
     let listaValoresDespesa = [];
     
-    //variavel tratamento de erro etapa 6
-    var msgTratamentoEtapa6 = document.querySelector("#msgTratamentoEtapa6");
+//    //variavel tratamento de erro etapa 6
+//    var msgTratamentoEtapa6 = document.querySelector("#msgTratamentoEtapa6");
 
 //var dos horarios
     //count
@@ -297,7 +297,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                             textoConfirmacaoCrianca = "";
                             
                             var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-                            subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =) ";        
+                            subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a 3° Etapa ou clique no botão 'Recarregar crianças' para selecionar novamente.";        
                         }
                     };
                     
@@ -347,17 +347,17 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             
             if(possuiCrianca == 1){
                 var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-                subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =)";                        
+                subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a 3° Etapa ou clique no botão 'Recarregar crianças' para selecionar novamente.";                        
             }else{
                 var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-                subTituloEtapa2.textContent = "Esse cliente não possui nenhuma criança vinculada ao seu cadastro. Por favor, siga para a próxima etapa ou atualize as informações no cadastro de cliente. =)";        
+                subTituloEtapa2.textContent = "Esse cliente não possui nenhuma criança vinculada ao seu cadastro. Por favor, siga para a 3° Etapa ou atualize as informações no cadastro de cliente.";        
             }
             
         }else{
             possuiCrianca = 1;
             
             var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-            subTituloEtapa2.textContent = "Clique em remover caso alguma criança não faça parte do cadastro ! =)";
+            subTituloEtapa2.textContent = "Por favor, clique em remover caso alguma criança não faça parte do cadastro: ";
         }
        
     };
@@ -481,7 +481,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                             textoConfirmacaoCrianca = "";
                             
                             var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-                            subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =)";                           
+                            subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a 3° Etapa ou clique no botão 'Recarregar crianças' para selecionar novamente.";                           
                         }
                     };
                     
@@ -528,17 +528,17 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             
             if(possuiCrianca == 1){
                 var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-                subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a próxima etapa ou clique no botão 'Recarregar crianças' para selecionar novamente. =)";                        
+                subTituloEtapa2.textContent = "Nenhuma criança selecionada! Por favor, siga para a 3° Etapa ou clique no botão 'Recarregar crianças' para selecionar novamente.";                        
             }else{
                 var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-                subTituloEtapa2.textContent = "Esse cliente não possui nenhuma criança vinculada ao seu cadastro. Por favor, siga para a próxima etapa ou atualize as informações no cadastro de cliente. =)";        
+                subTituloEtapa2.textContent = "Esse cliente não possui nenhuma criança vinculada ao seu cadastro. Por favor, siga para a 3° Etapa ou atualize as informações no cadastro de cliente.";        
             }
             
         }else{ //se tiver
             possuiCrianca = 1;
             
             var subTituloEtapa2 = document.querySelector("#subTituloEtapa2");
-            subTituloEtapa2.textContent = "Clique em remover caso alguma criança não faça parte do cadastro ! =)";        
+            subTituloEtapa2.textContent = "Por favor, clique em remover caso alguma criança não faça parte do cadastro: ";        
         }
     };
 
@@ -1707,7 +1707,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
     btnAddDespesa.addEventListener("click", function (event) {
         event.preventDefault();
             
-            msgTratamentoEtapa6.innerHTML = "";
+//msgTratamentoEtapa6
             
             //toda vez que add, vai somar 1 no count para saber quantos despesas foram adicionados
             jsCountDespesa++;
