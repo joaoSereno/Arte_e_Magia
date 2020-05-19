@@ -45,7 +45,7 @@ public class ControllerConfigAniversariante extends HttpServlet {
             ConfigNotificacaoAniversariante configAniversariante = new ConfigNotificacaoAniversariante();
             configAniversariante = configAniversarianteBanco.getDiasConfigAniversariante(1);
             
-            if(configAniversariante != null){ //se existir já config chama o método de editar
+            if(configAniversariante.getIdConfigNotificacaoAniversariante() != null){ //se existir já config chama o método de editar
                 
                 if(qtdDias2 != 800){
                     

@@ -10,3 +10,4 @@ if(controllerListagemPacote == 1){
     document.getElementById('divListagemPacote').style.display = '';
 }
 
+$("#valorPacoteVenda").mask("999999.00", {reverse: true});

@@ -8,12 +8,8 @@ and open the template in the editor.
     Author     : João Pedro
 */
 
-body {
-    background-color: #ccd4b82b;
-}
-
 .jumbotron {
-    background-color: #f600ff73;
+    background-color: #d037dee6;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    

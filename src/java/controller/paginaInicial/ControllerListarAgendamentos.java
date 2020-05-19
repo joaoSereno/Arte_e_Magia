@@ -37,7 +37,7 @@ public class ControllerListarAgendamentos extends HttpServlet{
             
             if(listaAgendamentoFesta.size() < 1){
                 
-                String msgValidacaoAgendamento = "Desculpe, no momento não possui nenhum agendamento.";
+                String msgValidacaoAgendamento = "Desculpe, no momento você não possui nenhum agendamento de evento.";
             
                 //define o atributo do response e dispacha para página
                 request.setAttribute("msgValidacaoAgendamento", msgValidacaoAgendamento);

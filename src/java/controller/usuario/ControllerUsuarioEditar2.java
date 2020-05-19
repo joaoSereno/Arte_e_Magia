@@ -29,6 +29,7 @@ public class ControllerUsuarioEditar2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String msg = "";
+        String msgErro = "";
         int idFuncionario2 = 0;
         int idUsuario2 = 0;
         int valorDisplay2 = 0;
@@ -77,7 +78,9 @@ public class ControllerUsuarioEditar2 extends HttpServlet {
                             i = listaUsuario.size(); //seta o i para o tamanho da lista , para não ficar executando o laço
                             usuarioJaExiste = true; //como o usuário já existe, seta o valor de não cadastravel para true
 
-                            msg = " O login '" + login + "' já está sendo utilizado por outro usuário. Por favor utilize outro login!";
+                            msgErro = " O login \"" + login + "\" já está sendo utilizado por outro usuário. Por favor utilize outro login.";
+                            
+                            request.setAttribute("msgErro", msgErro);
                         }
                     }
                 }

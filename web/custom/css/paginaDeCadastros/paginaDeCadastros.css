@@ -27,23 +27,23 @@ body, label, button, a {
 
 .cards {
     border-radius: 25px;
-    box-shadow: 0px 0px 4px #bf37f7;
+    box-shadow: 0px 0px 4px #f73737; 
     margin: auto;
     width: 14rem;
 }
 
 .botoes-card {
     width: 100%;
-    border-color: #bf37f7!important;
+    border-color: #f73737!important; 
     box-shadow: 0px 0px 4px !important;
-    background-color: #bf37f7;
+    background-color: #f73737; 
     border-radius: 30px;
     padding: 5px;
     color: white;
 }
 
 .jumbotron {
-    background-color: #bf37f7;
+    background-color: #f73737;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;
@@ -51,7 +51,7 @@ body, label, button, a {
 }
 
 .botoes-card:hover{
-    background-color: #bf37f7 !important;
+    background-color: #f73737 !important; 
 }
 
 .bnt2{
@@ -61,7 +61,7 @@ body, label, button, a {
 @media only screen and (max-width: 600px) {
     .cards {
         border-radius: 25px;
-        box-shadow: 0px 0px 4px #bf37f7;
+        box-shadow: 0px 0px 4px #f73737; 
         margin: auto;
         width: 19rem;
     }

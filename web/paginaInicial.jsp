@@ -63,89 +63,232 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+        
         <div class="jumbotron text-center">
-            <h1>Seja bem-vindo ao sistema do Arte & Magia</h1>
-        </div>       
-        <div>
-            <label for="listarAgendamentos">Clique no botão "Eventos Agendados" para listar os eventos que estão agendados.</label>
-            <form method="GET" action="listarAgendamentos">
-                <button type="submit" class="btn btn-primary" value="listagemAgendamento">Eventos Agendados</button>
-            </form>               
+            <h1>Bem vindo ao sistema do Arte & Magia</h1>
         </div>
-        <div>
-            <h5>${msgValidacaoAgendamento}</h5>
+        
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <p id="textoEventoAgendados">Liste os eventos agendados através do botão "Eventos Agendados".</p>
+
+                        </div>
+                        
+                    </div>  
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <form method="GET" action="listarAgendamentos">
+                                <button type="submit" class="btn btn-info btn-lg btn-block" value="listagemAgendamento">Eventos Agendados</button>
+                            </form>   
+
+                        </div>
+                        
+                    </div>  
+                                        
+                </div>  
+                
+            </div> 
+            
         </div> 
-<!--        listagem agendamento evento-->
-        <div class="table-responsive" id="divAgendamentoFesta" style="display: none"> 
-            <input type="hidden" id="controllerListagemAgendamento" value="${controllerListagemAgendamento}">          
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr class="bg-danger">
-                        <th>Descrição do Evento</th>
-                        <th>Data do Evento</th>
-                        <th>Tipo de Evento</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${listaAgendamentoFesta}" var="item"> 
-                        <tr>
-                            <td>${item.descricaoFesta}</td>
-                            <td>${item.dataEvento}</td>
-                            <td>${item.tipoDeFesta}</td>
-                            <!-- form para detalhes do agendamento--> 
-                            <td>
-                                <form method="GET" action="agendamentoDetalhe"> 
-                                    <input type="hidden" name="idTabelaAgendamentoFesta" value="${item.idTabelaAgendamentoFesta}">
-                                    <button class="btn btn-info">+Detalhes</button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>            
-        <div>
-            <label for="listarAniversariantesProximos">Clique no botão "Aniversariantes Próximos" para listar os aniversariantes próximos.</label>
-            <form method="GET" action="listarAniversariantesProximos">
-                <button type="submit" class="btn btn-primary" value="listarAniversariantesProximos">Aniversariantes Próximos</button>
-            </form>               
+                            
+        <div class="container my-3">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <p id="textoValidacaoAgendamento" class="text-danger">${msgValidacaoAgendamento}</p> 
+
+                        </div>
+                        
+                    </div>   
+                                        
+                </div>  
+                
+            </div> 
+            
+        </div>                         
+        
+        <div class="container my-2" id="divAgendamentoFesta" style="display: none">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">        
+                            
+                            <div class="table-responsive border border-secondary rounded"> 
+                                
+                                <input type="hidden" id="controllerListagemAgendamento" value="${controllerListagemAgendamento}">          
+                                
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr class="bg-danger">
+                                            <th>Descrição do Evento</th>
+                                            <th>Data do Evento</th>
+                                            <th>Tipo de Evento</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${listaAgendamentoFesta}" var="item"> 
+                                            <tr>
+                                                <td>${item.descricaoFesta}</td>
+                                                <td>${item.dataEvento}</td>
+                                                <td>${item.tipoDeFesta}</td>
+                                                <!-- form para detalhes do agendamento--> 
+                                                <td>
+                                                    <form method="GET" action="agendamentoDetalhe"> 
+                                                        <input type="hidden" name="idTabelaAgendamentoFesta" value="${item.idTabelaAgendamentoFesta}">
+                                                        <button class="btn btn-info">+Detalhes</button>
+                                                    </form> 
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                                
+                            </div>   
+                                
+                        </div>
+                        
+                    </div>  
+                                        
+                </div>  
+                
+            </div> 
+            
         </div>
-        <div>
-            <h5>${msgValidacaoAniversariantesProximos}</h5>
+                                
+        <div class="container mt-4">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <p id="textoAniversariantes">Liste os aniversariantes próximos através do botão "Aniversariantes Próximos".</p>
+
+                        </div>
+                        
+                    </div>  
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <form method="GET" action="listarAniversariantesProximos">
+                                <button type="submit" class="btn btn-info btn-lg btn-block" value="listarAniversariantesProximos">Aniversariantes Próximos</button>
+                            </form>      
+
+                        </div>
+                        
+                    </div>  
+                                               
+                </div>  
+                
+            </div> 
+            
         </div>
-        <div class="table-responsive" id="listagemAniversariantesProximos" style="display: none"> 
-            <input type="hidden" id="listagemAniversariantesProximos" value="${listagemAniversariantesProximos}">            
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Aniversariante</th>
-                        <th scope="col">Dias para Aniversario</th>
-                        <th scope="col">Idade a Fazer</th>
-                        <th scope="col">Contratante</th>
-                        <th scope="col">Contato</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${listaAniversariantesProximos}" var="item"> 
-                        <tr>
-                            <td>${item.descricaoFesta}</td>
-                            <td>${item.dataEvento}</td>
-                            <td>${item.tipoDeFesta}</td>
-                            <td>${item.tipoDeFesta}</td>
-                            <td>${item.tipoDeFesta}</td>
-                            <td>
-                                <form method="GET" action="verCadastroAniversariante"> 
-                                    <input type="hidden" name="idCliente" value="${item.idCliente}">
-                                    <button class="btn btn-warning">Ver Cadastro</button>
-                                </form> 
-                            </td>                            
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>                  
+
+        <div class="container my-3">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+                                                                                        <!--Desculpe, não encontramos aniversariante dentro do período configurado. -->
+                            <h5 id="textoValidacaoAniversariante" class="text-danger">${msgValidacaoAniversariantesProximos}</h5>
+
+                        </div>
+                        
+                    </div>   
+                                        
+                </div>  
+                
+            </div> 
+            
+        </div>                            
+        
+        <div class="container" id="listagemAniversariantesProximos" style="display: none">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">        
+
+                            <div class="table-responsive border border-secondary rounded"> 
+
+                                <input type="hidden" id="listagemAniversariantesProximos" value="${listagemAniversariantesProximos}">            
+
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Aniversariante</th>
+                                            <th scope="col">Dias para Aniversario</th>
+                                            <th scope="col">Idade a Fazer</th>
+                                            <th scope="col">Contratante</th>
+                                            <th scope="col">Contato</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${listaAniversariantesProximos}" var="item"> 
+                                            <tr>
+                                                <td>${item.descricaoFesta}</td>
+                                                <td>${item.dataEvento}</td>
+                                                <td>${item.tipoDeFesta}</td>
+                                                <td>${item.tipoDeFesta}</td>
+                                                <td>${item.tipoDeFesta}</td>
+                                                <td>
+                                                    <form method="GET" action="verCadastroAniversariante"> 
+                                                        <input type="hidden" name="idCliente" value="${item.idCliente}">
+                                                        <button class="btn btn-warning">Ver Cadastro</button>
+                                                    </form> 
+                                                </td>                            
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+
+                            </div>  
+                                
+                        </div>
+                        
+                    </div>  
+                                        
+                </div>  
+                
+            </div> 
+            
+        </div>                                
+                                
     </body>
     <script src="javascripts/paginaInicial/paginaInicial.js"></script>
 </html>

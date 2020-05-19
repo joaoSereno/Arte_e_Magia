@@ -22,6 +22,22 @@ and open the template in the editor.
    font-size: 1.35rem !important;
 }
 
+.btn-link{
+    color: #000000d6 !important;
+}
+
+#subTituloEtapa5{
+    font-size: 1.31rem !important;
+}
+
+#subTituloEtapa7{
+    font-size: 1.3556rem !important;
+}
+
+#subTituloEtapaFinal{
+    font-size: 1.203rem !important;
+}
+
 @media only screen and (max-width: 600px) {
     .h3, h3 {
         font-size: 1.55rem;

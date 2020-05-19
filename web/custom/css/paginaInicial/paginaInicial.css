@@ -12,17 +12,39 @@ body, label, button, a, h1, input {
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    background-color: #ccd4b82b;
-}
-
 .bg-danger {
     background-color: #fb5877!important;
 }
 
 .jumbotron {
-    background-color: #ff365ccc;
+    background-color: #ff365ce6;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    
+}
+
+#textoEventoAgendados{
+    font-size: 1.17rem;
+}
+
+#textoAniversariantes{
+    font-size: 1.17rem;
+}
+
+#textoValidacaoAgendamento{
+    font-size: 1.17rem;
+}
+
+#textoValidacaoAniversariante{
+    font-size: 1.17rem;
+}
+
+@media only screen and (max-width: 600px) {
+    #textoEventoAgendados{
+        font-size: 1.35rem;
+    }
+
+    #textoAniversariantes{
+        font-size: 1.35rem;
+    }
 }

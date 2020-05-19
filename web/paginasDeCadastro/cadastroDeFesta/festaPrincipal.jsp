@@ -65,7 +65,7 @@
             <h1>Eventos</h1>
         </div>
         
-        <div class="container my-1">
+        <div class="container my-3">
 
             <div class="row justify-content-center">
 
@@ -85,8 +85,54 @@
 
             </div>
 
-        </div>    
+        </div> 
+        
+        <div class="container" id="divMsgConfirmacaoDeFesta" style="display: none;">
+            
+            <input type="hidden" id="controllerCadastroEvento" value="${controllerCadastroEvento}">
 
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12 my-3">
+                            
+                            <p id="textoFestaCastrada" class="text-success">${msgConfirmaçãoFesta}</p>
+                            
+                        </div>
+                            
+                    </div>
+
+                </div>  
+
+            </div>
+
+        </div> 
+                            
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+                            
+                            <h4>Informe os filtros a baixo e liste os eventos cadastrados:</h4>
+                            
+                        </div>
+                        
+                    </div>
+
+                </div>  
+
+            </div>
+
+        </div>     
+        
         <div class="container my-2">
 
             <div class="row justify-content-center">
@@ -163,12 +209,6 @@
 
                     </div>
 
-                    <div class="form-col-lg-8">
-
-                        <h4>${msgConfirmaçãoFesta}</h4>
-
-                    </div>
-
                 </div>  
 
             </div>
@@ -220,7 +260,7 @@
 
         </div>    
 
-        <div class="container">
+        <div class="container mt-3">
 
             <div class="row justify-content-center">
 

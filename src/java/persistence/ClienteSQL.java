@@ -80,7 +80,8 @@ public class ClienteSQL extends Conexao {
                                         "WHERE c.ativo = 1\n" +
                                         "AND c.idCliente = t.idCliente\n" +
                                         "AND t.isPrincipal = 1\n" +
-                                        "AND c.idTipoDeFesta = tF.idTipoDeFesta"); //QUERY
+                                        "AND c.idTipoDeFesta = tF.idTipoDeFesta\n" +
+                                        "ORDER BY c.nomeCliente"); //QUERY
 
             ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
 

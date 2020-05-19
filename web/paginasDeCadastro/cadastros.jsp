@@ -24,11 +24,6 @@
         <!-- Customização -->       
         <link rel="stylesheet" href="../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../custom/css/paginaDeCadastros/paginaDeCadastros.css">
-<!--<style>
-	div{
-		border: solid 1px blue;
-	}
-</style>        -->
     </head>
     <body>
         <!-- NavBar -->

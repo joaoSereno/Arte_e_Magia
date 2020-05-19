@@ -126,7 +126,7 @@
                                 <input type="hidden" name="idEmail" value="${email.idEmail}">
 
                                 <label for="email"> E-mail: *</label>
-                                <input type="email" class="form-control" maxlength="45" name="email" id="email" value="${email.email}" required>
+                                <input type="email" class="form-control" maxlength="45" name="email" id="email" value="${email.email}">
 
                             </div>
 
@@ -238,7 +238,7 @@
 
                         <div class="col-lg-12 text-center my-3">
 
-                            <h3>${msg}</h3>
+                            <h3 class="text-success">${msg}</h3>
 
                         </div>
 

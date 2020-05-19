@@ -99,7 +99,8 @@
                             
                             <div class="form-group text-center col-lg-12 my-3">
 
-                                <h4>${msg}</h4>
+                                <h4 class="text-success">${msg}</h4>
+                                <h4 class="text-danger">${msgErro}</h4>
 
                             </div>
 

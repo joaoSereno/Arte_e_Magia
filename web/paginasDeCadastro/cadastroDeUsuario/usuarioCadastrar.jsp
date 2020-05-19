@@ -135,7 +135,7 @@
                             <div class="form-group col-lg-6" id="nomeUsuario">
 
                                 <label for="nomeUsuario">Nome do Usuário: *</label>
-                                <input type="text" class="form-control" maxlength="45" placeholder="Ex: Jeniffer Nobre" name="nomeUsuario" id="nomeUsuario" required>
+                                <input type="text" class="form-control" maxlength="45" placeholder="Ex: Jeniffer Nobre" name="nomeUsuario" id="nomeUsuario">
 
                             </div>
                                 
@@ -188,7 +188,8 @@
 
                             <div class="form-group col-lg-12">
 
-                                <h4>${msg}</h4>
+                                <h4 class="text-success">${msg}</h4>
+                                <h4 class="text-danger">${msgErro}</h4>
 
                             </div>
 

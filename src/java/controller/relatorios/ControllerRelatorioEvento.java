@@ -96,6 +96,13 @@ public class ControllerRelatorioEvento extends HttpServlet {
             
         } catch (Exception ex) {
             Logger.getLogger(ControllerRelatorioEvento.class.getName()).log(Level.SEVERE, null, ex);
+            
+            //seta atributo do response
+            request.setAttribute("msgValidacao", "Desculpe, nenhum resultado encontrado para os filtros informado.");
+
+            //dispachando para a página
+            request.getRequestDispatcher("eventoFiltroRel.jsp").forward(request, response);  
+            
         }
     }
 

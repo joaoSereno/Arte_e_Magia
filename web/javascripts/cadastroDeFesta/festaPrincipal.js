@@ -6,6 +6,7 @@
 
 var controllerMsgEvento = document.getElementById('controllerMsgEvento').value;
 var controllerListagemEvento = document.getElementById('controllerListagemEvento').value;
+var controllerCadastroEvento = document.getElementById('controllerCadastroEvento').value;
 
 if(controllerMsgEvento == 1){
     document.getElementById('divMsgEvento').style.display = '';
@@ -13,6 +14,11 @@ if(controllerMsgEvento == 1){
 if(controllerListagemEvento == 1){
     document.getElementById('divListagemEvento').style.display = '';
 }
+
+if(controllerCadastroEvento == 1){
+    document.getElementById('divMsgConfirmacaoDeFesta').style.display = '';
+}
+
 
 $("#periodoEvento").mask("00/00/0000");
 $("#periodoEvento2").mask("00/00/0000");

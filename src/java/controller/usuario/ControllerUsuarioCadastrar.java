@@ -33,6 +33,7 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
         int valorDisplay = 0;  //caso o cadastro for do tipo FUNC, vai enviar o valorDisplay = 1 que faz o js entender que o cadastro é do tipo FUNC
         boolean naoDeveCadastrar = false; // caso caia na condição de algum tratamento, servirá para não executar os próximos passos
         String msg = ""; //msg de retorno do cadastro
+        String msgErro = "";
         List<Usuario> listaUsuario = null; //lista utilizada para verificar se o usuário já existe
         List<Funcionario> listaFuncionario = null; //lista que vai receber os dados do funcionario
 
@@ -67,7 +68,7 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
 
             naoDeveCadastrar = true; // seta true para não executar proximos passos
 
-            msg = "A senha e a confirmação de senha devem ser iguais!";
+            msgErro = "A senha e a confirmação de senha devem ser iguais!";
             
             
 
@@ -87,7 +88,7 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
 
             }
 
-            request.setAttribute("msg", msg);
+            request.setAttribute("msgErro", msgErro);
             request.setAttribute("login", login);
 
             //dispara os atributos setados para outra página
@@ -117,10 +118,10 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
 
                         }
 
-                        msg = "O login '" + login + "' já está sendo utilizado por outro usuário. Por favor utilize outro login!";
+                        msgErro = "O login \" "+ login+" \" já está sendo utilizado por outro usuário. Por favor utilize outro login.";
                         
 
-                        request.setAttribute("msg", msg);
+                        request.setAttribute("msgErro", msgErro);
 
                         //dispara os atributos setados para outra página
                         request.getRequestDispatcher("usuarioCadastrar.jsp").forward(request, response);
@@ -188,6 +189,7 @@ public class ControllerUsuarioCadastrar extends HttpServlet {
                 }
 
             }
+            
             //dispara os atributos setados para outra página
             request.setAttribute("msg", msg);
             request.getRequestDispatcher("usuarioCadastrar.jsp").forward(request, response);

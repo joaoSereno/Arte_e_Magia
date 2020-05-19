@@ -909,6 +909,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
             //FIM FORMAS DE PAGAMENTO E VALORES
 
             //caso de certo o cadastro , msg de confirmação e redirecionamento para a página 
+            request.setAttribute("controllerCadastroEvento", 1);
             request.setAttribute("msgConfirmaçãoFesta", "Festa cadastrada com sucesso!");
             request.getRequestDispatcher("festaPrincipal.jsp").forward(request, response);
 

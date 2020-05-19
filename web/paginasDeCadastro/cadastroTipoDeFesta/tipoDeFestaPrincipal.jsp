@@ -109,7 +109,7 @@
 
                         <div class="text-center col-lg-12">
 
-                            <h3>${msg}</h3>
+                            <h3 class="text-success">${msg}</h3>
 
                         </div>                    
 

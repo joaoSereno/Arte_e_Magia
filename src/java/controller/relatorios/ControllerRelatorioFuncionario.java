@@ -91,6 +91,12 @@ public class ControllerRelatorioFuncionario extends HttpServlet{
             
         } catch (Exception ex) {
             Logger.getLogger(ControllerRelatorioFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            
+            //seta atributo do response
+            request.setAttribute("msgValidacao", "Desculpe, nenhum resultado encontrado para os filtros informado.");
+
+            //dispachando para a página
+            request.getRequestDispatcher("funcionarioFiltroRel.jsp").forward(request, response);            
         }        
         
     }

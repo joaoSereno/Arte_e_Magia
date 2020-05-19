@@ -9,12 +9,12 @@ and open the template in the editor.
 */
 
 .jumbotron {
-    background-color: #f58537;
+    background-color: #ff7c00;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    
 }
 
 .bg-danger {
-    background-color: #f58537!important;
+    background-color: #ff7c00!important;
 }

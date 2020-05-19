@@ -17,7 +17,7 @@ body, label, button, a, h1, input {
 }
 
 .jumbotron {
-    background-color: #ff365ccc;
+    background-color: #ff365ce6;
     color: white;
     padding: 2rem 2rem !important;
     border-radius: unset;    

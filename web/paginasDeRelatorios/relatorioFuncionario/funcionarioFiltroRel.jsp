@@ -125,7 +125,7 @@
 
                     <div class="col-lg-12 text-center my-2">
 
-                        <h5>${msgValidacao}</h5>
+                        <h5 class="text-danger">${msgValidacao}</h5>
 
                     </div>
 

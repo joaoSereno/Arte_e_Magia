@@ -18,8 +18,15 @@ and open the template in the editor.
     font-size: 1.3rem;
 }
 
+#textoFestaCastrada{
+  font-size: 1.5rem;
+}
+
 @media only screen and (max-width: 600px) {
     .h4, h4 {
         font-size: 1.1rem;
+    }
+    #textoFestaCastrada{
+       font-size: 1.28rem;
     }
 }

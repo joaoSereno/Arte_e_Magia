@@ -121,7 +121,7 @@
                             <div class="form-group col-lg-5">
 
                                 <label for="email"> E-mail: *</label>
-                                <input type="email" class="form-control" maxlength="45" placeholder="Ex: exemplo@hotmail.com" name="email" id="email" required>
+                                <input type="email" class="form-control" maxlength="45" placeholder="Ex: exemplo@hotmail.com" name="email" id="email">
 
                             </div>
 
@@ -224,7 +224,7 @@
 
                         <div class="col-lg-12 text-center my-2">
 
-                            <h3>${msg}</h3>
+                            <h3 class="text-success">${msg}</h3>
 
                         </div>
 

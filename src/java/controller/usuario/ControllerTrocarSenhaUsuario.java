@@ -78,6 +78,7 @@ public class ControllerTrocarSenhaUsuario extends HttpServlet {
         int idUsuario2 = 0;
         int valorDisplay2 = 0;
         String msg = "";
+        String msgErro = "";
 
         //pega os parametros do form
         String idUsuario = request.getParameter("idUsuario");
@@ -126,24 +127,24 @@ public class ControllerTrocarSenhaUsuario extends HttpServlet {
 
                 } else { //se não igual
 
-                    msg = "A senha e a confirmação de senha devem ser iguais!";
+                    msgErro = "A senha e a confirmação de senha devem ser iguais!";
 
                     //setando usuário editado que será jogados para outra página
                     request.setAttribute("idUsuario", idUsuario2);
                     request.setAttribute("valorDisplay", valorDisplay2);
-                    request.setAttribute("msg", msg);
+                    request.setAttribute("msgErro", msgErro);
 
                     request.getRequestDispatcher("usuarioSenha.jsp").forward(request, response);
                 }
 
             } else { //se não for diferente de vazia
 
-                msg = "Senha não pode ser em branco";
+                msgErro = "Senha não pode ser em branco";
 
                 //setando usuário editado que será jogados para outra página
                 request.setAttribute("idUsuario", idUsuario2);
                 request.setAttribute("valorDisplay", valorDisplay2);
-                request.setAttribute("msg", msg);
+                request.setAttribute("msg", msgErro);
 
                 request.getRequestDispatcher("usuarioSenha.jsp").forward(request, response);
             }

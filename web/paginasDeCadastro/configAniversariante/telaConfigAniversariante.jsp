@@ -66,32 +66,7 @@
         <div class="jumbotron text-center">
             <h1>Notificação de Aniversariante</h1>
         </div>
-<!--        <div>
-            <form method="GET" action="verificarConfigAniversariante">
-                <button type="submit" class="btn btn-success" value="VerificarConfigAtual">Configuração Atual</button>
-            </form>               
-            <h4>${textoConfigAtual}</h4>
-        </div>
-        <br>
-        <button type="button" class="btn btn-success" onclick="editarConfig()" value="Confirmar">Editar Configuração</button>
-        <br>
-        <div id="formEditarConfig" class="d-flex justify-content-center" style="display: none !important">
-             form para config aniversario 
-            <form method="GET" action="configAniversariante"> <%-- joga formulario para o controllerConfigAniversariante --%>
-                <div class="form-group">
-                    <div class="text-center">
-                        <div class="form-group row">
-                            <label for="qtdDias">Por favor, digite a quantidade de dias para a notificação de aniversariante próximo:</label>
-                            <input type="text" name="qtdDias" placeholder="Digite a quantidade de dias" class="form-control" id="qtdDias">
-                        </div>
-                         <div class="form-group row">
-                            <button type="submit" class="btn btn-success btn-lg btn-block" value="Confirmar">Confirmar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <h1>${msg}</h1>-->
+        
         <div class="container my-2">
 
             <div class="row justify-content-center">
@@ -177,7 +152,7 @@
 
                     <div class="col-sm-12 text-center">
                     
-                        <h3>${msg}</h3>
+                        <h3 class="text-success">${msg}</h3>
                         <h3>${textoConfigAtual}</h3>
                         
                     </div>
