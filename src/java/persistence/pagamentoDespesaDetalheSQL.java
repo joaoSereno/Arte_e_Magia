@@ -22,13 +22,14 @@ public class pagamentoDespesaDetalheSQL extends Conexao {
             open(); //abre conexão com o banco de dados
 
             //define comando para o banco de dados
-            stmt = con.prepareStatement("INSERT INTO pagamentoDespesasDetalhe(valor, dataPagamento, status, idDespesas) VALUES (?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO pagamentoDespesasDetalhe(valor, dataPagamento, status, idDespesas, idFormaPagamento) VALUES (?,?,?,?,?)");
 
             //atribui os valores das marcações do comando acima 
             stmt.setFloat(1, listaDespesasInseridas.get(i).getValor());
             stmt.setString(2, listaDespesasInseridas.get(i).getDataPagamento());
             stmt.setInt(3, listaDespesasInseridas.get(i).getStatus());
             stmt.setInt(4, idDespesa);
+            stmt.setInt(5, listaDespesasInseridas.get(i).getIdFormaPagamento());
 
             stmt.execute();//executa  insert no banco de dados
 

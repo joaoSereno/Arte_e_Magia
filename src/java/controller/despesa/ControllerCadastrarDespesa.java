@@ -6,6 +6,7 @@
 package controller.despesa;
 
 import entidades.Despesas;
+import entidades.FormaPagamento;
 import entidades.PagamentoDespesasDetalhe;
 import entidades.TipoDeDespesa;
 import java.io.IOException;
@@ -20,7 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.DespesaSQL;
 import persistence.TipoDespesaSQL;
+import persistence.TipoPagamentoSQL;
 import persistence.pagamentoDespesaDetalheSQL;
+import util.Conversor;
 
 /**
  *
@@ -30,37 +33,63 @@ import persistence.pagamentoDespesaDetalheSQL;
 public class ControllerCadastrarDespesa extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int countDespesa2 = 0; //contador da quantidade de despesas cadastradas
-        int valorDisplay = 0; //controler se vai continuar listando tipo de de despesa
+        //variaveis necesarias para mostrar mensagem de retorno ao usuario
+        int msgConfirmacaoCadastro = 1; //msg de confirmação do cadastro para desocultar a div
+        request.setAttribute("msgConfirmacaoCadastro", msgConfirmacaoCadastro);
+        String msgSucesso = "Despesa cadastrada com sucesso!"; //msg de retorno para o usuário
+        String msgErro = "Por favor, informe o valor, forma de pagamento e a data da despesa!"; //msg de retorno para o usuário
+        
+        //variaveis complementares
+        int countDespesa2 = 0;  //contador da quantidade de despesas cadastradas
         int tipoDespesa2 = 0; //id do tipo de despesa selecionado 
-        int despesaFechada2 = 0; //controler se o usuário marcou como despesa fechada (1 = Sim e 0 = Não)
-        boolean despesaFechada = true;
-        List<TipoDeDespesa> listaTipoDespesas = null; //lista que vai receber os dados do tipo de despesas
-        ArrayList<PagamentoDespesasDetalhe> listaDespesasInseridas = new ArrayList(); //lista de detalhes da despesa
-        String msg = ""; //msg de retorno para o usuário
+        int idFormaPagamento2 = 0; //id do tipo de pagamento selecionado
         boolean deveCadastrar = true;
+        boolean despesaFechada = true;
+        ArrayList<PagamentoDespesasDetalhe> listaDespesasInseridas = new ArrayList(); //lista de detalhes da despesa
+        Conversor conversor = new Conversor();
 
-        //aqui pega os dados adicionais da despesas (nada voltado a valores)
-        String descricaoDespesa = request.getParameter("descricaoDespesa");
-
-        String tipoDespesa = request.getParameter("tipoDespesa");
+        //COMEÇO DOS GETS DO BANCO DE DADOS PARA O TIPO DE DESPESA E FORMA DE PAGAMENTO
+        List<TipoDeDespesa> listaTipoDespesas; //lista que vai receber os dados do tipo de despesas
+        List<FormaPagamento> listaTipoPagamento; //lista que vai receber os tipos de pagamento
+        
+        //classes de comunicação com o banco de dados
+        TipoDespesaSQL tipoDespesaBanco = new TipoDespesaSQL();
+        TipoPagamentoSQL tipoPagamentoBanco = new TipoPagamentoSQL();
+        
+        try {
+            //recebendo os cadastros na lista
+            listaTipoDespesas = tipoDespesaBanco.getTipoDeDespesa();
+            listaTipoPagamento = tipoPagamentoBanco.getFormaPagamento();
+            
+            //setando no response as lista
+            request.setAttribute("listaTipoPagamento", listaTipoPagamento);
+            request.setAttribute("listaTipoDespesas", listaTipoDespesas); 
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPreCadastroDespesa.class.getName()).log(Level.SEVERE, null, ex);
+            deveCadastrar = false;
+        }
+        //FIM DOS GETS DO BANCO DE DADOS PARA O TIPO DE DESPESA E FORMA DE PAGAMENTO
+        
+        //COMEÇO DOS GETS DO REQUEST PARA OS INPUTS QUE NÃO SÃO RELACIONADOS A VALORES
+        String descricaoDespesa = conversor.ConvereterString(request.getParameter("descricaoDespesa")); //descricao da despesa
+       
+        String tipoDespesa = request.getParameter("tipoDespesa");  //tipo de despesa
         if (tipoDespesa != null) {
 
             if (!tipoDespesa.equals("")) {
 
                 tipoDespesa2 = Integer.parseInt(tipoDespesa);
 
-                //para continuar listando os tipos de despesa
-                valorDisplay = 1;
-                request.setAttribute("valorDisplay", valorDisplay);
-
             }
 
         }
-
-        String obsDespesa = request.getParameter("obsDespesa");
-
-        //aqui começa a pegar os detalhes da despesas cadastradas... valores, quantidade etc
+       
+        String obsDespesa = conversor.ConvereterString(request.getParameter("obsDespesa")); //observação da despesa
+        //FIM DOS GETS DO REQUEST PARA OS INPUTS QUE NÃO SÃO RELACIONADOS A VALORES
+        
+        //COMEÇO DOS GETS DO REQUEST DINAMICOS PARA OS VALORES, QUANTIDE ETC
+        //pega a quantidade de despesas adicionadas
         String countDespesa = request.getParameter("countDespesa");
         if (countDespesa != null) {
 
@@ -72,7 +101,9 @@ public class ControllerCadastrarDespesa extends HttpServlet {
         }
 
         if (countDespesa2 != 0) { //se existir despesa
+            
             for (int i = 0; i < countDespesa2; i++) { //loop enquanto tiver despesa
+
                 PagamentoDespesasDetalhe pagamentoDespesasDetalhe = new PagamentoDespesasDetalhe();
                 float valorDespesa2 = 0;
 
@@ -86,69 +117,69 @@ public class ControllerCadastrarDespesa extends HttpServlet {
                     }
                 }
 
+                String idFormaPagamento = request.getParameter("idFormaPagamento" + (i + 1));
+                if (idFormaPagamento != null) {
+                    if (!idFormaPagamento.equals("")) {
+                        idFormaPagamento2 = Integer.parseInt(idFormaPagamento);
+                    }
+                }
+
                 String despesaIsPago = request.getParameter("despesaIsPago" + (i + 1));
 
-                //setando os valores pegos na variavel
-                if (dataDespesa != null) {
+                //verifica se existe
+                if (dataDespesa != null && idFormaPagamento != null && despesaIsPago != null && valorDespesa != null) {
+                    
+                    //converte a data da despesa para o formato correto
+                    dataDespesa = conversor.formatarData(dataDespesa);
+                    
+                    //seta valores na classe que representa
                     pagamentoDespesasDetalhe.setDataPagamento(dataDespesa);
-                }
-
-                if (valorDespesa2 != 0) {
                     pagamentoDespesasDetalhe.setValor(valorDespesa2);
-                }
+                    pagamentoDespesasDetalhe.setIdFormaPagamento(idFormaPagamento2);
 
-                if (despesaIsPago != null) {
                     if (despesaIsPago.equals("Sim")) {
                         pagamentoDespesasDetalhe.setStatus(1);
                     } else {
                         pagamentoDespesasDetalhe.setStatus(0);
                         despesaFechada = false; //se algumas das despesas estiver marcada como "Não" 
                     }
-                }
 
-                //add variavel na lista de despesas do back-end
-                if (dataDespesa != null && despesaIsPago != null && valorDespesa != null) {
+                    //adiciona na lista
                     listaDespesasInseridas.add(pagamentoDespesasDetalhe);
                 }
 
             }
 
+            if (listaDespesasInseridas.size() < 1) {
+                deveCadastrar = false;
+            }
+
         } else { //se não existir 
 
             deveCadastrar = false;
-            msg = "Para realizar o cadastro, deve conter no minimo 1 despesa";
-            request.setAttribute("msg", msg);
 
-            if (valorDisplay != 0) { //se for cadastro utilizando "tipo de despesa", continua listando...
-                TipoDespesaSQL tipoDespesaBanco = new TipoDespesaSQL();
+            request.setAttribute("msgErro", msgErro);
 
-                try {
-                    listaTipoDespesas = tipoDespesaBanco.getTipoDeDespesa();
-                } catch (Exception ex) {
-                    Logger.getLogger(ControllerCadastrarDespesa.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                request.setAttribute("valorDisplay", valorDisplay);
-                request.setAttribute("listaTipoDespesas", listaTipoDespesas); // atribui a lista na marcação "listaTipoDespesas"
-
-            } else {
-
+            if (tipoDespesa2 == 0) {
                 request.setAttribute("descricaoDespesa", descricaoDespesa);
-                request.setAttribute("valorDisplay", valorDisplay);
-
             }
 
             request.setAttribute("obsDespesa", obsDespesa);
 
+            //dispara para a página com a msg de erro
             request.getRequestDispatcher("despesaCadastrar.jsp").forward(request, response); // dispara para essa página            
 
         }
+        //FIM DOS GETS DO REQUEST DINAMICOS PARA OS VALORES, QUANTIDE ETC
 
-        //aqui começa o processo de cadastro no banco
+        //COMEÇO DO PROCESSO DE CADASTRO NO BANCO PARA A TABELA DESPESAS E DESPESAS DETALHE
         if (deveCadastrar == true) {
 
-            DespesaSQL despesaBanco = new DespesaSQL(); //instancia classe que faz comunicação com o banco de dados
-            Despesas despesa = new Despesas(); //instancia a classe que representa a despesa
+            int despesaFechada2 = 0;
+
+            //instancia a classe de comunicação com o banco de dados e a entidade que representa a tabela
+            DespesaSQL despesaBanco = new DespesaSQL();
+            Despesas despesa = new Despesas();
 
             //verifica se a despesa está fechada
             if (despesaFechada == true) {
@@ -160,17 +191,14 @@ public class ControllerCadastrarDespesa extends HttpServlet {
             //cadastro na tabela "despesas"
             if (tipoDespesa2 != 0) { //se for cadastro utilizando os cadatros do tipo de despesa
 
-                TipoDespesaSQL tipoDespesaBanco = new TipoDespesaSQL();//instancia a classe de comunicação com o banco de dados
                 TipoDeDespesa tipoDeDespesa = new TipoDeDespesa();//instancia a classe que representa o tipo de depesa
-
                 try {
-                    //recebendo na variavel que representa o tipo de despesa , o registro do tipo de despesa do banco 
+                    //recebe a despesa 
                     tipoDeDespesa = tipoDespesaBanco.getTipoDeDespesaEspecifico(tipoDespesa2);
-
                 } catch (Exception ex) {
                     Logger.getLogger(ControllerCadastrarDespesa.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                
                 //setando na variavel que representa a despesa, os valores
                 despesa.setDescricaoDespesa(tipoDeDespesa.getNomeDespesa());
                 despesa.setIdTipoDeDespesa(tipoDespesa2);
@@ -181,10 +209,6 @@ public class ControllerCadastrarDespesa extends HttpServlet {
                     //chamando método que realiza o cadastro de despesa, passando como parametro a variavel que representa a despesa
                     despesaBanco.createDespesa(despesa);
 
-                    listaTipoDespesas = tipoDespesaBanco.getTipoDeDespesa();
-
-                    request.setAttribute("valorDisplay", valorDisplay);
-                    request.setAttribute("listaTipoDespesas", listaTipoDespesas); // atribui a lista na marcação "listaTipoDespesas"                    
                 } catch (Exception ex) {
                     deveCadastrar = false;
                     Logger.getLogger(ControllerCadastrarDespesa.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,12 +238,11 @@ public class ControllerCadastrarDespesa extends HttpServlet {
                 try {
                     //pegando o id da ultima despesa cadastrada no banco
                     int idDespesa = despesaBanco.getUltimoIdDespesas();
+
                     //chamando o método de creat do banco e passando a lista de despesa inserida pelo usuário e o id da ultima despesa cadastrada
                     detalheDespesaBanco.createDespesaDetalhe(listaDespesasInseridas, idDespesa);
 
-                    msg = "Despesa cadastrada com sucesso!";
-
-                    request.setAttribute("msg", msg);
+                    request.setAttribute("msgSucesso", msgSucesso);
 
                     request.getRequestDispatcher("despesaCadastrar.jsp").forward(request, response); // dispara para essa página            
 

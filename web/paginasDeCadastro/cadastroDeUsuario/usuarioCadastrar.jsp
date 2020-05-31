@@ -142,7 +142,7 @@
                             <div class="form-group col-lg-6" id="func" style="display: none">
                                 <input type="hidden" id="valorDisplay" value="${valorDisplay}">
 
-                                <label for="idFuncionario">Funcionario: *</label>
+                                <label for="idFuncionario">Colaborador: *</label>
                                 <select type="select" id="idFuncionario" class="form-control" name="idFuncionario">
                                     <option value="">Clique para selecionar</option>
                                     <c:forEach var="item" items="${funcionarios}">

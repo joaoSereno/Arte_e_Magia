@@ -15,6 +15,7 @@ public class PagamentoDespesasDetalhe {
 
     private Integer idPagamentoDespesas;
     private float valor;
+    private Integer idFormaPagamento;
     private String dataPagamento;
     private int status;
     private Integer idDespesas;
@@ -39,6 +40,14 @@ public class PagamentoDespesasDetalhe {
 
     public void setIdPagamentoDespesas(Integer idPagamentoDespesas) {
         this.idPagamentoDespesas = idPagamentoDespesas;
+    }
+
+    public Integer getIdFormaPagamento() {
+        return idFormaPagamento;
+    }
+
+    public void setIdFormaPagamento(Integer idFormaPagamento) {
+        this.idFormaPagamento = idFormaPagamento;
     }
 
     public float getValor() {

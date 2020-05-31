@@ -13,3 +13,38 @@ and open the template in the editor.
     padding: 2rem 2rem !important; 
     border-radius: unset;    
 }
+
+.mt-3, .my-3 {
+    margin-top: 2.5rem!important;
+}
+
+.valores{
+    font-size: 1.1rem;
+    color: black !important;
+}
+
+#msgTextoSelecioneOpcoes{
+    font-size: 1.4rem;
+}
+
+#msgErro{
+    font-size: 1.318rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .mt-3, .my-3 {
+        margin-top: 0.5rem!important;
+    }
+    
+    .valores{
+        font-size: 1.5rem;
+    }
+    
+    #msgTextoSelecioneOpcoes{
+        font-size: 1.5rem;
+    }
+}
+
+
+

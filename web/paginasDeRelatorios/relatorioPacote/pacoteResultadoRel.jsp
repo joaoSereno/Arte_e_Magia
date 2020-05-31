@@ -19,6 +19,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>                
         <!-- Icons -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
@@ -59,7 +60,81 @@
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
-        </nav>        
-        <h1>Hello World!</h1>
+        </nav>     
+        
+        <div class="jumbotron text-center">
+            <h1>Relatório de Pacote</h1>
+            <h4>Análise de vendas por pacote no período de ${periodo} à ${periodo2}</h4>
+        </div>
+        
+        <!-- controladores para criar os gráficos -->
+        <input type="hidden" id="listaConcatenadaRelPacote" value="${listaConcatenadaRelPacote}">
+        <input type="hidden" id="cha" value="${totalResultadoRelPacote}">
+        
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <h4>Gráfico Coluna:</h4>
+
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <canvas id="myChart" width="300" height="300"></canvas>
+
+                        </div>
+                        
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>
+        
+        <div class="container mt-5">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <h4>Gráfico Pizza:</h4>
+
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <canvas id="myChart2" width="300" height="300"></canvas>
+
+                        </div>
+                        
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>
+        
     </body>
+    <script src="../../javascripts/relatorioPacote/resultadoRelPacote.js"></script>
 </html>

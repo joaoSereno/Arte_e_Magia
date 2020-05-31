@@ -14,6 +14,7 @@ import entidadesRelatorio.AniversariantesProximos;
 import entidadesRelatorio.RelatorioAniversariante;
 import entidadesRelatorio.RelatorioEvento;
 import entidadesRelatorio.RelatorioFuncionario;
+import entidadesRelatorio.RelatorioPacote;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -358,7 +359,62 @@ public class RelatoriosSQL extends Conexao{
             }
         }        
     }
+    
+    public ArrayList<RelatorioPacote> getRelatorioPacote(String periodo, String periodo2) throws Exception {
+        try {
+            open(); //abre conexão com o banco
 
+            //cria lista que será retornada
+            ArrayList<RelatorioPacote> listaRelatorioPacote = new ArrayList();
+            
+            stmt = con.prepareStatement("SELECT COUNT(1),\n" +
+                                        "	p.nomePacote\n" +
+                                        "FROM festa f,\n" +
+                                        "     pacote p\n" +
+                                        "WHERE f.idPacote = p.idPacote\n" +
+                                        "AND p.ativo = 1\n" +
+                                        "AND f.dataFesta >= ?\n" +
+                                        "AND f.dataFesta <= ?\n" +
+                                        "GROUP BY p.nomePacote");
+    
+            //define valor dos ?
+            stmt.setString(1, periodo);
+            stmt.setString(2, periodo2);
+
+            //executa a query no banco
+            ResultSet resultadoConsulta = stmt.executeQuery();
+            
+            //percorre o resultado e monta o dados da lista que será retornado
+            while (resultadoConsulta.next()) {
+                
+                RelatorioPacote relatorioPacote = new RelatorioPacote();
+
+                //seta valores pegos no select no cliente
+                relatorioPacote.setQtdVendida(resultadoConsulta.getInt("COUNT(1)"));
+                relatorioPacote.setNomePacote(resultadoConsulta.getString("p.nomePacote"));
+
+                listaRelatorioPacote.add(relatorioPacote); 
+                
+            }
+            
+            close(); // fecha conexão com o banco
+
+            return listaRelatorioPacote; //retorna para onde foi chamado
+
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+            throw new RuntimeException(e);
+            
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }        
+    }
+    
 //    public ArrayList<AniversariantesProximos> getAniversariantesProximos() throws Exception {
 //        try {
 //            open(); //abre conexão com o banco
@@ -407,5 +463,6 @@ public class RelatoriosSQL extends Conexao{
 //            }
 //        }        
 //    }
+
 }
     

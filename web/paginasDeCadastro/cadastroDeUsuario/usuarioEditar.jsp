@@ -97,7 +97,7 @@
                                 <div id="func" style="display: none"> 
                                     <input type="hidden" name="valorDisplay" id="valorDisplay" value="${valorDisplay}">
 
-                                    <label for="idFuncionario">Funcionario: *</label>
+                                    <label for="idFuncionario">Colaborador: *</label>
                                     <select type="select" class="form-control" id="idFuncionario" name="idFuncionario" >
                                         <option value="${funcionarioDoUsuario.idFuncionario}">${funcionarioDoUsuario.nomeFuncionario}</option>
                                             <c:forEach var="item" items="${listaFuncionario}">

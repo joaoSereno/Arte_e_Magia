@@ -136,10 +136,10 @@
                 
             </div>
             
-        </div>                
+        </div>     
     </body>
     <script>
         $("#periodo").mask("00/00/0000");
         $("#periodo2").mask("00/00/0000");
-    </script>
+    </script>  
 </html>

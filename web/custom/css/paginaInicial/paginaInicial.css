@@ -13,11 +13,11 @@ body, label, button, a, h1, input {
 }
 
 .bg-danger {
-    background-color: #fb5877!important;
+    background-color: #17a2b8!important;
 }
 
 .jumbotron {
-    background-color: #ff365ce6;
+    background-color: #07bfe6;
     color: white;
     padding: 2rem 2rem !important; 
     border-radius: unset;    

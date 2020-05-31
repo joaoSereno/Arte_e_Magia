@@ -818,7 +818,7 @@
 
                             <div class="form-row my-1">
 
-                                <div class="form-group col-lg-6">
+                                <div class="form-group col-lg-4">
 
                                     <label for="jsFormaPagamentoDespesa"><h5>Forma de Pagamento: *</h5></label>
                                     <select type="select" class="form-control" name="jsFormaPagamentoDespesa">
@@ -831,8 +831,15 @@
                                     </select>                                    
 
                                 </div> 
+                                
+                                <div class="form-group col-lg-4">
 
-                                <div class="form-group col-lg-6">
+                                    <label for="jsDataPagamentoDespesa"><h5>Data de Pagamento: *</h5></label>
+                                    <input type="text" class="form-control" placeholder="00/00/0000" name="jsDataPagamentoDespesa" id="jsDataPagamentoDespesa" value="">
+
+                                </div> 
+
+                                <div class="form-group col-lg-4">
 
                                     <label for="jsDespesaPaga"><h5>Despesa paga?: *</h5></label>
                                     <select  class="form-control" name="jsDespesaPaga">
@@ -841,17 +848,6 @@
                                     </select>
 
                                 </div>
-
-                            </div>
-
-                            <div class="form-row my-1" id="dataPagamentoDespesa" style="display: none">
-
-                                <div class="form-group col-lg-12">
-
-                                    <label for="jsDataPagamentoDespesa"><h5>Data de Pagamento: *</h5></label>
-                                    <input type="text" class="form-control" placeholder="00/00/0000" name="jsDataPagamentoDespesa" id="jsDataPagamentoDespesa" value="">
-
-                                </div> 
 
                             </div>
 
@@ -901,6 +897,7 @@
                                                 <th scope="col">Descrição da Despesa</th>
                                                 <th scope="col">Valor</th>
                                                 <th scope="col">Forma de Pagamento</th>
+                                                <th scope="col">Data de Pagamento</th>
                                                 <th scope="col">Pago?</th>
                                                 <th></th>
                                             </tr>
@@ -2083,6 +2080,7 @@
                
         $("#jsHorario").mask("00:00");
         $("#cep").mask("00000-000");
+        $("#jsDataPagamentoDespesa").mask("00/00/0000");
         $("#dataFesta").mask("00/00/0000");
         $("#qtdCriancaNaFesta").mask("0000");
         $("#jsCache").mask("999999.00", {reverse: true});
