@@ -121,7 +121,8 @@
                                 <label for="origem"><h5>Origem da Despesa: *</h5></label>
                                 <select id="origem" name="origem" class="form-control">
                                     <option value="1">Cadastro de Despesa</option>
-                                    <option value="2">Cadastro de Festa</option>
+                                    <option value="2">Cadastro de Evento</option>
+                                    <option value="3">Ambas</option>
                                 </select>
 
                             </div>
@@ -130,9 +131,9 @@
                                 
                                 <label for="exibir"><h5>Exibir *</h5></label>
                                 <select id="exibir" name="exibir" class="form-control">
-                                    <option value="1">Somente abertas</option>
-                                    <option value="2">Somente fechadas</option>
-                                    <option value="3">Todas</option>
+                                    <option value="1">Somente não pagas</option>
+                                    <option value="2">Somente pagas</option>
+                                    <option value="3">Ambas</option>
                                 </select>
 
                             </div>
@@ -208,7 +209,7 @@
                     <div class="row">
                         
                         <div class="col-lg-12">
-                            
+
                             <a  class="btn btn-secondary btn-lg btn-block" href="../cadastros.jsp">Voltar</a>
                             
                         </div>
@@ -220,52 +221,5 @@
             </div>
 
         </div>            
-                
-<!--        <form method="GET" action="listarDespesas">
-            Origem Despesa
-            <select name="origem">
-                <option value="1">Cadastro de Despesa</option>
-                <option value="2">Cadastro de Festa</option>
-            </select>
-            Exibir
-            <select name="exibir">
-                <option value="1">Somente abertas</option>
-                <option value="2">Somente fechadas</option>
-                <option value="3">Todas</option>
-            </select>
-            <button type="submit">Listar</button>
-        </form>         
-        <br>
-        <br>
-         div de listagem despesas          
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead> 
-                    <tr class="bg-danger">    
-                        <th scope="col">Origem da Despesa</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Status</th>
-                        <th></th>
-                    </tr>
-                </thead> 
-                <tbody>
-                    <c:forEach items="${listaDespesas}" var="item"> 
-                        <tr>
-                            <td>${item.origem}</td>
-                            <td>${item.descricao}</td>
-                            <td>${item.status}</td>
-                             botão/form para editar registro cliente  
-                            <td>
-                                <form method="GET" action="edicaoDespesa">
-                                    <input type="hidden" name="idDespesas" value="${item.idDespesas}">
-                                    <button class="btn btn-info"> + </button>
-                                </form> 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div> 
-        <a  class="btn btn-primary" href="../cadastros.jsp">Voltar</a> -->
     </body>
 </html>
