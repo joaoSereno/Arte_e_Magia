@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/06/2020, 09:16:24
+    Author     : João Pedro
+*/
+
+.jumbotron {
+    background-color: #d037dee6;
+    color: white;
+    padding: 2rem 2rem !important; 
+    border-radius: unset;    
+}
+
+.mt-3, .my-3 {
+    margin-top: 2.5rem!important;
+}
+
+.valores{
+    font-size: 1.1rem;
+    color: black !important;
+}
+
+#msgTextoSelecioneOpcoes{
+    font-size: 1.4rem;
+}
+
+#msgErro{
+    font-size: 1.318rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .mt-3, .my-3 {
+        margin-top: 0.5rem!important;
+    }
+    
+    .valores{
+        font-size: 1.5rem;
+    }
+    
+    #msgTextoSelecioneOpcoes{
+        font-size: 1.5rem;
+    }
+}
+

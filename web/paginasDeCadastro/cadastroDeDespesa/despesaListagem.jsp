@@ -61,10 +61,13 @@
         
         <div class="jumbotron text-center">
             <h1>Despesas</h1>
+            <h4>Origem:  ${origemDaDespesa} | Exibir: ${exibirDespesa} | Período: ${periodoDespesa} à ${periodoDespesa2} </h4>
         </div>
         
         <input type="hidden" id="origemDespesa" value="${origemDespesa}">
         <input type="hidden" id="origemEvento" value="${origemEvento}">
+        <input type="hidden" id="origemEventoSemConteudo" value="${origemEventoSemConteudo}">
+        <input type="hidden" id="origemDespesaSemConteudo" value="${origemDespesaSemConteudo}">
         
         <div id="divOrigemDespesa" class="my-3" style="display: none">
             
@@ -74,7 +77,7 @@
 
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         
-                        <h3>Despesas Cadastro despesa</h3>
+                        <h4>Origem: Cadastro de Despesa</h4>
                         
                         <div class="table-responsive border border-secondary rounded">
 
@@ -83,7 +86,7 @@
                                    <tr class="bg-danger">    
                                        <th scope="col">Descrição da Despesa</th>
                                        <th scope="col">Valor Total</th>
-                                       <th scope="col">Data de Pagamento</th>
+                                       <th scope="col">Valor Pago</th>
                                        <th scope="col">Pago?</th>
                                        <th></th>
                                    </tr>
@@ -93,13 +96,16 @@
                                        <tr>
                                            <td>${item.descricaoDespesa}</td>
                                            <td>${item.valor}</td>
-                                           <td>${item.dataPagamento}</td>
+                                           <td>${item.valorPago}</td>
                                            <td>${item.pago}</td>
-                                           <!-- botão/form para editar registro tipo despesa , envia para ControllerUsuarioEditar  --> 
                                            <td>
-                                               <form method="GET" action="usuarioEditar">
+                                               <form method="POST" action="editarDespesa">                                               
+                                                   <input type="hidden" name="periodoDespesa" value="${periodoDespesa}">
+                                                   <input type="hidden" name="periodoDespesa2" value="${periodoDespesa2}">
+                                                   <input type="hidden" name="exibir" value="${exibir}">
+                                                   <input type="hidden" name="origem" value="${origem}">
                                                    <input type="hidden" name="idDespesa" value="${item.idDespesa}">
-                                                   <button class="btn btn-info"> Editar </button>
+                                                   <button class="btn btn-info"> +Detalhes </button>
                                                </form> 
                                            </td>
                                        </tr>
@@ -116,6 +122,27 @@
             </div>
                                                
         </div>
+        
+        <div id="divOrigemDespesaSemConteudo" class="my-3" style="display: none">
+            
+            <div class="container">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        
+                        <h4>Origem: Cadastro de Despesa</h4>
+                        
+                        <h5>${msgTratamentoSemConteudo}</h5>
+                        
+                    </div> 
+
+                </div> 
+                                       
+            </div>
+                                               
+        </div>
+        
                                                    
         <div id="divOrigemEvento" class="my-3" style="display: none">
             
@@ -125,16 +152,16 @@
 
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         
-                        <h3>Despesas Evento</h3>
+                        <h4>Origem: Cadastro de Evento</h4>
 
                         <div class="table-responsive border border-secondary rounded">
 
                            <table class="table table-striped table-bordered">
                                <thead> 
-                                   <tr  class="bg-danger">    
+                                   <tr  class="bg-danger">  
                                        <th scope="col">Descrição do Evento</th>
-                                       <th scope="col">Descrição da Despesa</th>
-                                       <th scope="col">Valor</th>
+                                       <th scope="col">Valor Total</th>
+                                       <th scope="col">Valor Pago</th>
                                        <th scope="col">Pago?</th>
                                        <th></th>
                                    </tr>
@@ -143,14 +170,13 @@
                                    <c:forEach items="${listagemDespesaEvento}" var="item"> 
                                        <tr>
                                            <td>${item.descricaoEvento}</td>
-                                           <td>${item.descricaoDespesa}</td>
                                            <td>${item.valor}</td>
+                                           <td>${item.valorPago}</td>
                                            <td>${item.pago}</td>
-                                           <!-- botão/form para editar registro tipo despesa , envia para ControllerUsuarioEditar  --> 
                                            <td>
-                                               <form method="GET" action="usuarioEditar">
+                                               <form method="GET" action="editarFesta">
                                                    <input type="hidden" name="idFesta" value="${item.idFesta}">
-                                                   <button class="btn btn-info"> Editar </button>
+                                                   <button class="btn btn-info"> +Detalhes </button>
                                                </form> 
                                            </td>
                                        </tr>
@@ -167,6 +193,26 @@
             </div>
                                                
         </div>
+                        
+        <div id="divOrigemEventoSemConteudo" class="my-3" style="display: none">
+            
+            <div class="container">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        
+                        <h4>Origem: Cadastro de Evento</h4>
+                        
+                        <h5>${msgTratamentoSemConteudo}</h5>
+                        
+                    </div> 
+
+                </div> 
+                                       
+            </div>
+                                               
+        </div>                        
 
         <div class="container mt-4">
             
@@ -184,7 +230,8 @@
                 
             </div>
             
-        </div>         
+        </div> 
+                        
     </body>
     <script src="../../javascripts/cadastroDeDespesa/despesaListagem.js"></script>
 </html>

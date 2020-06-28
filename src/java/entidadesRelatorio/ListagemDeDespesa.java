@@ -10,13 +10,29 @@ package entidadesRelatorio;
  * @author João Pedro
  */
 public class ListagemDeDespesa {
+    private int idDespesa;
+    private int idFesta;
     private String descricaoEvento;
     private String descricaoDespesa;
     private float valor;
-    private String dataPagamento;
+    private float valorPago;
     private String pago;
-    private Integer idDespesa;
-    private Integer idFesta;
+
+    public int getIdDespesa() {
+        return idDespesa;
+    }
+
+    public void setIdDespesa(int idDespesa) {
+        this.idDespesa = idDespesa;
+    }
+
+    public int getIdFesta() {
+        return idFesta;
+    }
+
+    public void setIdFesta(int idFesta) {
+        this.idFesta = idFesta;
+    }
 
     public String getDescricaoEvento() {
         return descricaoEvento;
@@ -42,12 +58,12 @@ public class ListagemDeDespesa {
         this.valor = valor;
     }
 
-    public String getDataPagamento() {
-        return dataPagamento;
+    public float getValorPago() {
+        return valorPago;
     }
 
-    public void setDataPagamento(String dataPagamento) {
-        this.dataPagamento = dataPagamento;
+    public void setValorPago(float valorPago) {
+        this.valorPago = valorPago;
     }
 
     public String getPago() {
@@ -56,18 +72,6 @@ public class ListagemDeDespesa {
 
     public void setPago(String pago) {
         this.pago = pago;
-    }
-
-    public Integer getIdDespesa() {
-        return idDespesa;
-    }
-
-    public void setIdDespesa(Integer idDespesa) {
-        this.idDespesa = idDespesa;
-    }
-
-    public Integer getIdFesta() {
-        return idFesta;
     }
     
 }

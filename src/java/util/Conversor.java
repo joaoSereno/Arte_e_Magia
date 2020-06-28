@@ -32,4 +32,15 @@ public class Conversor {
         return dataFormatada;
     }
     
+    public String formatarData2(String data){
+        
+        String dataFormatada = "";
+
+        dataFormatada = dataFormatada + data.substring(8,10) + "/";
+        dataFormatada = dataFormatada + data.substring(5,7) + "/";
+        dataFormatada = dataFormatada + data.substring(0,4);
+  
+        return dataFormatada;
+    }
+    
 }

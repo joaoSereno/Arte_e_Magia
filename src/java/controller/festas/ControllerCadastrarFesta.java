@@ -726,7 +726,7 @@ public class ControllerCadastrarFesta extends HttpServlet {
                         if (!valorAdicional.equals("") && !valorAdicional.equals("")) {
 
                             //se existir converte os valores do input para o tipo correto
-                            int valorAdicional2 = Integer.parseInt(valorAdicional);
+                            float valorAdicional2 = Float.parseFloat(valorAdicional);
                             descricaoValorAdicional = conversorString.ConvereterString(descricaoValorAdicional);
 
                             //instancia entidade do valor adicional

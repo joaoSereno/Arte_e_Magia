@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import persistence.DespesaSQL;
 import persistence.TipoDespesaSQL;
 import persistence.TipoPagamentoSQL;
-import persistence.pagamentoDespesaDetalheSQL;
+import persistence.PagamentoDespesaDetalheSQL;
 import util.Conversor;
 
 /**
@@ -233,7 +233,7 @@ public class ControllerCadastrarDespesa extends HttpServlet {
 
             //cadastro na tabela pagamentoDespesaDetalhe
             if (deveCadastrar == true) {
-                pagamentoDespesaDetalheSQL detalheDespesaBanco = new pagamentoDespesaDetalheSQL();
+                PagamentoDespesaDetalheSQL detalheDespesaBanco = new PagamentoDespesaDetalheSQL();
 
                 try {
                     //pegando o id da ultima despesa cadastrada no banco

@@ -57,6 +57,39 @@ public class TipoPagamentoSQL extends Conexao {
             }
         }
     }
+    
+    public ArrayList<FormaPagamento> getFormaPagamentoTodos() throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            ArrayList<FormaPagamento> listaFormapagamento = new ArrayList(); //instancia uma arrayList de forma de pagamento
+
+            stmt = con.prepareStatement("SELECT idFormaPagamento, nomePagamento FROM formapagamento"); //executa query na base               
+
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+                FormaPagamento formaPagamento = new FormaPagamento(); //toda vez que passar no while vai criar uma variavel do tipo forma de pagamento
+
+                //seta valores retornados pelo banco na variavel do tipo forma de pagamento
+                formaPagamento.setIdFormaPagamento(resultadoConsulta.getInt("idFormaPagamento"));
+                formaPagamento.setNomePagamento(resultadoConsulta.getString("nomePagamento"));
+
+                listaFormapagamento.add(formaPagamento);// add na lista de forma de pagamento
+            }
+            close(); // fecha conexão com o banco
+            return listaFormapagamento;//retorna a lista de forma de pagamento para onde foi chamado
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
 
     /**
      * Método que realizada um insert na tabela "formapagamento" do banco de

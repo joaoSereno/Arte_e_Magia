@@ -15,3 +15,15 @@ if(origemEvento == 1){
     //desoculta a div
     document.getElementById('divOrigemEvento').style.display = "";
 }
+
+var origemEventoSemConteudo = document.getElementById('origemEventoSemConteudo').value;
+if(origemEventoSemConteudo == 1){
+    //desoculta a div
+    document.getElementById('divOrigemEventoSemConteudo').style.display = "";
+}
+
+var origemDespesaSemConteudo = document.getElementById('origemDespesaSemConteudo').value;
+if(origemDespesaSemConteudo == 1){
+    //desoculta a div
+    document.getElementById('divOrigemDespesaSemConteudo').style.display = "";
+}

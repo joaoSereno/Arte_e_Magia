@@ -8,11 +8,16 @@ package controller.despesa;
 import entidadesRelatorio.ListagemDeDespesa;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.DespesaFestaSQL;
+import persistence.DespesaSQL;
+import persistence.PagamentoDespesaDetalheSQL;
 import util.Conversor;
 
 /**
@@ -29,11 +34,19 @@ public class ControllerDespesaListar extends HttpServlet{
         int exibir2 = 0; // 1 = nao pagas ---  2 = pagas  --- 3 = ambas
         String periodoDespesaConvertido = "";
         String periodoDespesaConvertido2 = "";
+        String msgValidacao = "Desculpe, no momento não foi encontrado nenhum resultado para o filtro informado!";
         
         Conversor conversor = new Conversor();
+        
+        //classe que vai receber a lista das despesa
         ArrayList<ListagemDeDespesa> listagemDespesaDespesa = new ArrayList(); 
         ArrayList<ListagemDeDespesa> listagemDespesaEvento = new ArrayList(); 
         
+        //classe de comunicação com o banco de dados 
+        DespesaSQL despesaBanco = new DespesaSQL();
+        DespesaFestaSQL despesaFestaBanco = new DespesaFestaSQL();
+        
+        //pegando do request as informações necessarias
         String origem = request.getParameter("origem");
         if (origem != null) {
 
@@ -65,134 +78,215 @@ public class ControllerDespesaListar extends HttpServlet{
                 periodoDespesaConvertido2 = conversor.formatarData(periodoDespesa2);
             }
         }
-
-        switch (origem2) {
-            case 1: //somente despesa
+        
+        //DEFINE STRINGS DO FILTRO
+        String origemDaDespesa = "";
+        switch (origem2) { //1 = cadastro de despesas ----  2 = cadastro de evento --- 3 ambas
+            case 1: {
                 
-
-                    
+                origemDaDespesa= " Cadastro de Despesa ";
+                        
                 break;
-
-            case 2: //somente evento
+            }
+            case 2: {
                 
-                                   
+                origemDaDespesa= " Cadastro de Evento ";
+                
                 break;
-
-            case 3: //ambas
-
-                                   
+            }
+            case 3: {
+                
+                origemDaDespesa= " Ambas ";
+                
                 break;
+            }
+        }
+        
+
+        String exibirDespesa = "";
+        switch (exibir2) { // 1 = nao pagas ---  2 = pagas  --- 3 = ambas
+            case 1: {
+                
+                exibirDespesa = " Somente não pagas ";
+                
+                break;
+            }
+            case 2: {
+                
+                exibirDespesa = " Somente pagas ";
+                
+                break;
+            }
+            case 3: {
+                
+                exibirDespesa = " Ambas ";
+                
+                break;
+            }
         }
 
-//        switch (origem2) {
-//            case 1: //somente despesa
-//                
-//                    switch (exibir2) {
-//                        case 1: //nao pagas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//
-//                            break;
-//
-//                        case 2: //pagas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//
-//                            break;
-//
-//                        case 3: //ambas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//                            
-//                            break;    
-//                    }
-//                    
-//                break;
-//
-//            case 2: //somente evento
-//                
-//                    switch (exibir2) {
-//                        case 1: //nao pagas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//
-//                            break;
-//
-//                        case 2: //pagas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//
-//                            break;
-//
-//                        case 3: //ambas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//                            
-//                            break;    
-//                    }
-//                                   
-//                break;
-//
-//            case 3: //ambas
-//                
-//                    switch (exibir2) {
-//                        case 1: //nao pagas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//
-//                            break;
-//
-//                        case 2: //pagas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//
-//                            break;
-//
-//                        case 3: //ambas
-//                            
-//                            if(periodoDespesaConvertido.equals("") && periodoDespesaConvertido2.equals("")){
-//                                
-//                            }else{
-//                                    
-//                            }
-//                            
-//                            break;    
-//                    }
-//                                   
-//                break;
-//        }
+        switch (origem2) {
+            case 1: {//somente despesa
+                
+                try {
+                    
+                    //chama o método de comunicação com o banco e recebe o resultado na lista
+                    listagemDespesaDespesa = despesaBanco.getListagemDeDespesa(exibir2, periodoDespesaConvertido, periodoDespesaConvertido2);
+                    
+                    if(listagemDespesaDespesa.size() > 0) { //se a lista tiver conteudo 
+                        
+                        //adiciona os parametro no response e dispacha para a pagina de listagem
+                        request.setAttribute("listagemDespesaDespesa", listagemDespesaDespesa);
+                        request.setAttribute("origemDespesa", 1);
+                        request.setAttribute("origemDaDespesa", origemDaDespesa);
+                        request.setAttribute("exibirDespesa", exibirDespesa);                        
+                        request.setAttribute("origem", origem);
+                        request.setAttribute("exibir", exibir);
+                        request.setAttribute("periodoDespesa", periodoDespesa);
+                        request.setAttribute("periodoDespesa2", periodoDespesa2);
+                        
+                        request.getRequestDispatcher("despesaListagem.jsp").forward(request, response); // dispara para essa página
+                        
+                    }else{ //se a lista não tiver conteudo 
+                        
+                        //adiciona os parametro no response e dispacha para a pagina de pesquisa
+                        request.setAttribute("msgValidacao", msgValidacao);
+                        request.setAttribute("msgValidacaoController", 1);
+                        
+                        request.getRequestDispatcher("despesaPrincipal.jsp").forward(request, response); // dispara para essa página
+                    }
+
+                } catch (Exception ex) {
+                    //se acontecer um problema vai ser tratado igual como não tivesse conteudo
+                    Logger.getLogger(ControllerDespesaListar.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                    request.setAttribute("msgValidacao", msgValidacao);
+                    request.setAttribute("msgValidacaoController", 1);
+
+                    request.getRequestDispatcher("despesaPrincipal.jsp").forward(request, response); // dispara para essa página
+                    
+                }
+                
+                break;
+            }
+            
+            case 2: { //somente evento
+                
+                try {
+                    //chama o método de comunicação com o banco e recebe o resultado na lista
+                    listagemDespesaEvento = despesaFestaBanco.getListagemDeDespesa(exibir2, periodoDespesaConvertido, periodoDespesaConvertido2);
+                    
+                    if(listagemDespesaEvento.size() > 0) { //se a lista tiver conteudo 
+                        
+                        //adiciona os parametro no response e dispacha para a pagina de listagem
+                        request.setAttribute("listagemDespesaEvento", listagemDespesaEvento);
+                        request.setAttribute("origemEvento", 1);
+                        request.setAttribute("origem", origem);
+                        request.setAttribute("exibir", exibir);                        
+                        request.setAttribute("origemDaDespesa", origemDaDespesa);
+                        request.setAttribute("exibirDespesa", exibirDespesa);
+                        request.setAttribute("periodoDespesa", periodoDespesa);
+                        request.setAttribute("periodoDespesa2", periodoDespesa2);                      
+                        
+                        request.getRequestDispatcher("despesaListagem.jsp").forward(request, response); // dispara para essa página
+                        
+                    }else{ //se a lista não tiver conteudo 
+                        
+                        //adiciona os parametro no response e dispacha para a pagina de pesquisa
+                        request.setAttribute("msgValidacao", msgValidacao);
+                        request.setAttribute("msgValidacaoController", 1);
+                        
+                        request.getRequestDispatcher("despesaPrincipal.jsp").forward(request, response); // dispara para essa página
+                    }                    
+                    
+                } catch (Exception ex) {
+                    
+                    Logger.getLogger(ControllerDespesaListar.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                    request.setAttribute("msgValidacao", msgValidacao);
+                    request.setAttribute("msgValidacaoController", 1);
+
+                    request.getRequestDispatcher("despesaPrincipal.jsp").forward(request, response); // dispara para essa página
+                    
+                }
+                
+                break;
+            }
+                  
+            case 3: { //ambas
+                
+                try {
+
+                    //recebe as despesas através dos metodos de comunicação com o banco de dados
+                    listagemDespesaEvento = despesaFestaBanco.getListagemDeDespesa(exibir2, periodoDespesaConvertido, periodoDespesaConvertido2);                
+                    listagemDespesaDespesa = despesaBanco.getListagemDeDespesa(exibir2, periodoDespesaConvertido, periodoDespesaConvertido2);
+
+                    if(listagemDespesaEvento.size() > 0 || listagemDespesaDespesa.size() > 0) { //se uma das 2 lista tiver conteudo
+                        
+                        //verifica se tem despesa de evento
+                        if(listagemDespesaEvento.size() > 0){
+                            
+                            //adiciona os parametro no response e dispacha para a pagina de listagem
+                            request.setAttribute("listagemDespesaEvento", listagemDespesaEvento);
+                            request.setAttribute("origemEvento", 1);
+                            
+                        }else{
+                            
+                            //adiciona os parametro no response e dispacha para a pagina de listagem
+                            request.setAttribute("msgTratamentoSemConteudo", msgValidacao);
+                            request.setAttribute("origemEventoSemConteudo", 1);                        
+                            
+                        }
+                        
+                        //verifica se tem despesa de despesa
+                        if(listagemDespesaDespesa.size() > 0){
+                            
+                            //adiciona os parametro no response e dispacha para a pagina de listagem
+                            request.setAttribute("listagemDespesaDespesa", listagemDespesaDespesa);
+                            request.setAttribute("origemDespesa", 1);      
+                            
+                        }else{
+                         
+                            //adiciona os parametro no response e dispacha para a pagina de listagem
+                            request.setAttribute("msgTratamentoSemConteudo", msgValidacao);
+                            request.setAttribute("origemDespesaSemConteudo", 1);                        
+                            
+                        }
+                        
+                        request.setAttribute("origemDaDespesa", origemDaDespesa);
+                        request.setAttribute("exibirDespesa", exibirDespesa);
+                        request.setAttribute("origem", origem);
+                        request.setAttribute("exibir", exibir);                        
+                        request.setAttribute("periodoDespesa", periodoDespesa);
+                        request.setAttribute("periodoDespesa2", periodoDespesa2);
+                        
+                        request.getRequestDispatcher("despesaListagem.jsp").forward(request, response); // dispara para essa página
+
+                    }else{ //se nenhuma das duas lista tiver conteudo
+
+                        //adiciona os parametro no response e dispacha para a pagina de pesquisa
+                        request.setAttribute("msgValidacao", msgValidacao);
+                        request.setAttribute("msgValidacaoController", 1);
+
+                        request.getRequestDispatcher("despesaPrincipal.jsp").forward(request, response); // dispara para essa página
+                    }                
+
+                } catch (Exception ex) {
+
+                    Logger.getLogger(ControllerDespesaListar.class.getName()).log(Level.SEVERE, null, ex);
+
+                    request.setAttribute("msgValidacao", msgValidacao);
+                    request.setAttribute("msgValidacaoController", 1);
+
+                    request.getRequestDispatcher("despesaPrincipal.jsp").forward(request, response); // dispara para essa página
+
+                }
+                
+                break;
+                
+            }
+
+        }
   
     } 
 }
