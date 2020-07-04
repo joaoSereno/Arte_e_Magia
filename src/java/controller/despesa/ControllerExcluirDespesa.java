@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.DespesaSQL;
-import persistence.PagamentoDespesaDetalheSQL;
+import persistence.PagamentoDespesasDetalheSQL;
 
 /**
  *
@@ -39,7 +39,7 @@ public class ControllerExcluirDespesa  extends HttpServlet {
         }
         
         //instanciando classe de comunicação 
-        PagamentoDespesaDetalheSQL pagamentoDespesaDetalheBanco = new PagamentoDespesaDetalheSQL();
+        PagamentoDespesasDetalheSQL pagamentoDespesaDetalheBanco = new PagamentoDespesasDetalheSQL();
         DespesaSQL despesaBanco = new DespesaSQL();
         
         try {

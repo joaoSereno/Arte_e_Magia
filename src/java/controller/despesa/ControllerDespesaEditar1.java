@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.DespesaSQL;
-import persistence.PagamentoDespesaDetalheSQL;
+import persistence.PagamentoDespesasDetalheSQL;
 import persistence.TipoDespesaSQL;
 import persistence.TipoPagamentoSQL;
 import util.Conversor;
@@ -52,7 +52,7 @@ public class ControllerDespesaEditar1 extends HttpServlet {
         }        
         
         //instanciando as classe de comunicação com o banco de dados e as entidades
-        PagamentoDespesaDetalheSQL pagamentoDespesaDetalheBanco = new PagamentoDespesaDetalheSQL();
+        PagamentoDespesasDetalheSQL pagamentoDespesaDetalheBanco = new PagamentoDespesasDetalheSQL();
         DespesaSQL despesaBanco = new DespesaSQL();
         TipoDespesaSQL tipoDespesaBanco = new TipoDespesaSQL();
         TipoPagamentoSQL tipoPagamentoBanco = new TipoPagamentoSQL();        

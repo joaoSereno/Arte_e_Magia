@@ -143,7 +143,7 @@ public class DespesaSQL extends Conexao{
             ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
             
             //instancia classe de comunicação com o banco 
-            PagamentoDespesaDetalheSQL pagamentoDespesaDetalheBanco = new PagamentoDespesaDetalheSQL();
+            PagamentoDespesasDetalheSQL pagamentoDespesaDetalheBanco = new PagamentoDespesasDetalheSQL();
                     
             while (resultadoConsulta.next()) { //percorre o resultado da query
                 

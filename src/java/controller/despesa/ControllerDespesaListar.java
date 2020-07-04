@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.DespesaFestaSQL;
 import persistence.DespesaSQL;
-import persistence.PagamentoDespesaDetalheSQL;
+import persistence.PagamentoDespesasDetalheSQL;
 import util.Conversor;
 
 /**
