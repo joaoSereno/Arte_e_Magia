@@ -131,6 +131,7 @@ function montaInputEaddTableStringValores(string) {
     //percorre essa lista
     resultado.forEach((valorAtual) => {
 
+
         if (valorAtual !== "") {
 
             resultado2 = valorAtual.split(",");
