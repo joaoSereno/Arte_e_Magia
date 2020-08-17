@@ -62,13 +62,9 @@
         
         <input type="hidden" id="valorOptionTipoDespesa" value="${valorOptionTipoDespesa}">
         <input type="hidden" id="controllerTipoCadastroDespesa" value="${controllerTipoCadastroDespesa}">
-        <input type="hidden" id="listaPagamentoDespesasDetalheQtd" value="${listaPagamentoDespesasDetalheQtd}">
-        <input type="hidden" id="listaPagamentoDespesasDetalheString" value="${listaPagamentoDespesasDetalheString}">
-        <input type="hidden" id="totalDespesa" value="${totalDespesa}">
-        <input type="hidden" id="valorPago" value="${valorPago}">
-        <input type="hidden" id="valorApagar" value="${valorApagar}">    
-        <input type="hidden" id="valorApagar" value="${valorApagar}">    
         
+        <input type="hidden" id="listaPagamentoDespesasDetalheString" value="${listaPagamentoDespesasDetalheString}">
+                
         <div class="jumbotron text-center">
             <h1>Editar Despesa</h1>
         </div>
@@ -108,8 +104,6 @@
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
                     <form method="POST" id="cadastrarDespesaForm" action="editarDespesa2">
-
-                        <input type="hidden" id="countDespesa" name="countDespesa" value="0">
 
                         <div class="form-row">
 
@@ -194,7 +188,7 @@
 
                         </div> 
                         
-                        <div id="divTabelaDespesa" style="display: none">
+                        <div id="divTabelaDespesa">
                             
                             <div class="form-row my-2">    
                                 
@@ -280,6 +274,11 @@
 
                         </div> 
 
+                        <input type="hidden" id="countDespesa" name="countDespesa" value="0">                                
+                        <input type="hidden" id="totalDespesa" value="${totalDespesa}">
+                        <input type="hidden" id="valorPago" value="${valorPago}">
+                        <input type="hidden" id="valorApagar" value="${valorApagar}">
+                        
                     </form>
 
                 </div>

@@ -20,7 +20,7 @@ and open the template in the editor.
 }
 
 .valores{
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: black !important;
 }
 
@@ -39,7 +39,7 @@ and open the template in the editor.
     }
     
     .valores{
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     
     #msgTextoSelecioneOpcoes{

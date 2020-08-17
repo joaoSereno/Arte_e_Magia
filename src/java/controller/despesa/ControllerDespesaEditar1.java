@@ -137,6 +137,7 @@ public class ControllerDespesaEditar1 extends HttpServlet {
             }
             
             //setando os atributos que serão enviados para o front
+            //dados da despesa
             request.setAttribute("listaPagamentoDespesasDetalheQtd", listaPagamentoDespesasDetalhe.size());
             request.setAttribute("listaPagamentoDespesasDetalheString", listaPagamentoDespesasDetalheString);
             request.setAttribute("totalDespesa", totalDespesa);
@@ -146,6 +147,7 @@ public class ControllerDespesaEditar1 extends HttpServlet {
             request.setAttribute("listaTipoDespesas", listaTipoDespesas);
             request.setAttribute("listaTipoPagamento", listaTipoPagamento);
             
+            //botão voltar
             request.setAttribute("origem", origem);
             request.setAttribute("exibir", exibir);
             request.setAttribute("periodoDespesa", periodoDespesa);
