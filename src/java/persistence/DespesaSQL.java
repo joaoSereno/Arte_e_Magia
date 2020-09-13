@@ -51,6 +51,38 @@ public class DespesaSQL extends Conexao{
         stmt.execute();//executa  insert no banco de dados
         close();//fecha conexão com o banco de dados
 
+    }
+
+    public void editarDespesa(Despesas despesa) throws Exception {
+
+        open(); //abre conexão com o banco de dados
+
+        stmt = con.prepareStatement("UPDATE despesas SET descricao = ?, idTipoDeDespesa = ?, obs = ?, status = ? where idDespesas = ?");
+        
+        //define comando para o banco de dados
+        if(despesa.getIdTipoDeDespesa() == null ){ //se não tiver idTipoDeDespesa
+
+            //atribui os valores das marcações do comando acima 
+            stmt.setString(1, despesa.getDescricaoDespesa());
+            stmt.setString(2, null);
+            stmt.setString(3, despesa.getObs());
+            stmt.setInt(4, despesa.getStatusDespesa());     
+            stmt.setInt(5, despesa.getIdDespesas());  
+            
+        }else{ //se tiver
+
+            //atribui os valores das marcações do comando acima 
+            stmt.setString(1, despesa.getDescricaoDespesa());
+            stmt.setInt(2, despesa.getIdTipoDeDespesa());    
+            stmt.setString(3, despesa.getObs());
+            stmt.setInt(4, despesa.getStatusDespesa());      
+            stmt.setInt(5, despesa.getIdDespesas());
+            
+        }
+
+        stmt.execute();//executa  insert no banco de dados
+        close();//fecha conexão com o banco de dados
+        
     }    
 
     public int getUltimoIdDespesas() throws Exception {

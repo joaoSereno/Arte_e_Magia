@@ -72,19 +72,39 @@ public class ControllerCadastrarDespesa extends HttpServlet {
         //FIM DOS GETS DO BANCO DE DADOS PARA O TIPO DE DESPESA E FORMA DE PAGAMENTO
         
         //COMEÇO DOS GETS DO REQUEST PARA OS INPUTS QUE NÃO SÃO RELACIONADOS A VALORES
-        String descricaoDespesa = conversor.ConvereterString(request.getParameter("descricaoDespesa")); //descricao da despesa
-       
-        String tipoDespesa = request.getParameter("tipoDespesa");  //tipo de despesa
-        if (tipoDespesa != null) {
+        //pega o controller se é tipo manual ou tipo despesa
+        int controllerManualOuTipoDespesa2 = 0;
+        String controllerManualOuTipoDespesa = request.getParameter("controllerManualOuTipoDespesa");  //id despesa
+        if (controllerManualOuTipoDespesa != null) {
 
-            if (!tipoDespesa.equals("")) {
+            if (!controllerManualOuTipoDespesa.equals("")) {
 
-                tipoDespesa2 = Integer.parseInt(tipoDespesa);
+                controllerManualOuTipoDespesa2 = Integer.parseInt(controllerManualOuTipoDespesa);
 
             }
 
+        }   
+        
+        String descricaoDespesa = "";
+        if(controllerManualOuTipoDespesa2 == 1){
+            
+            descricaoDespesa = conversor.ConvereterString(request.getParameter("descricaoDespesa")); //descricao da despesa
+            
+        }else{
+            
+            String tipoDespesa = request.getParameter("tipoDespesa");  //tipo de despesa
+            if (tipoDespesa != null) {
+
+                if (!tipoDespesa.equals("")) {
+
+                    tipoDespesa2 = Integer.parseInt(tipoDespesa);
+
+                }
+
+            }    
+            
         }
-       
+        
         String obsDespesa = conversor.ConvereterString(request.getParameter("obsDespesa")); //observação da despesa
         //FIM DOS GETS DO REQUEST PARA OS INPUTS QUE NÃO SÃO RELACIONADOS A VALORES
         
@@ -174,7 +194,7 @@ public class ControllerCadastrarDespesa extends HttpServlet {
 
         //COMEÇO DO PROCESSO DE CADASTRO NO BANCO PARA A TABELA DESPESAS E DESPESAS DETALHE
         if (deveCadastrar == true) {
-
+            
             int despesaFechada2 = 0;
 
             //instancia a classe de comunicação com o banco de dados e a entidade que representa a tabela

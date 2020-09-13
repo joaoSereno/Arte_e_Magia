@@ -74,6 +74,36 @@
             <div class="row justify-content-center">
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div id="divMsgErro" class="form-row my-2" style="display: none">
+                        
+                        <input type="hidden" id="msgErroController" value="${msgErroController}">
+                        
+                        <div class="form-group col-lg-12">
+                            
+                            <p id="msgErro" class="text-danger">${msgErro}</p>
+
+                        </div>
+
+                    </div> 
+
+                    <div class="row col-lg-12">
+
+                        <h6 id="msgTextoSelecioneOpcoes">Por favor, selecione a opção de cadastro nos botões abaixo:</h6>
+
+                    </div> 
+
+                </div>  
+
+            </div>
+
+        </div>
+                            
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
 
                     <div class="row">
 
@@ -103,8 +133,15 @@
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
-                    <form method="POST" id="cadastrarDespesaForm" action="editarDespesa2">
-
+                    <form method="POST" id="editarDespesaForm" action="editarDespesa2">
+                       
+                        <!-- 1-> manual e 2 -> tipoDespesa -->
+                        <input type="hidden" id="controllerManualOuTipoDespesa" name="controllerManualOuTipoDespesa" value="">
+                        <input type="hidden" name="origem" value="${origem}">
+                        <input type="hidden" name="exibir" value="${exibir}">
+                        <input type="hidden" name="periodoDespesa" value="${periodoDespesa}">
+                        <input type="hidden" name="periodoDespesa2" value="${periodoDespesa2}">  
+                        
                         <div class="form-row">
 
                             <div class="form-group col-lg-12">
@@ -274,7 +311,9 @@
 
                         </div> 
 
-                        <input type="hidden" id="countDespesa" name="countDespesa" value="0">                                
+                        <input type="hidden" name="idDespesas" value="${despesas.idDespesas}">
+                        <input type="hidden" id="countDespesa" name="countDespesa" value="0">
+                        
                         <input type="hidden" id="totalDespesa" value="${totalDespesa}">
                         <input type="hidden" id="valorPago" value="${valorPago}">
                         <input type="hidden" id="valorApagar" value="${valorApagar}">

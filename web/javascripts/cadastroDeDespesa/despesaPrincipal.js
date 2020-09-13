@@ -18,3 +18,9 @@ if(msgValidacaoExclusaoController == 1){
     //desoculta a div
     document.getElementById('divMsgValidacaoExclusao').style.display = "";
 }
+
+var msgEdicaoController = document.getElementById('msgEdicaoController').value;
+if(msgEdicaoController == 1){
+    //desoculta a div
+    document.getElementById('divMsgEdicao').style.display = "";
+}

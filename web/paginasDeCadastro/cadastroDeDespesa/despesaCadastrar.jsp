@@ -131,7 +131,8 @@
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
                     <form method="POST" id="cadastrarDespesaForm" action="cadastrarDespesa">
-
+                        
+                        <input type="hidden" id="controllerManualOuTipoDespesa" name="controllerManualOuTipoDespesa" value="1">
                         <input type="hidden" id="countDespesa" name="countDespesa" value="0">
 
                         <div class="form-row">

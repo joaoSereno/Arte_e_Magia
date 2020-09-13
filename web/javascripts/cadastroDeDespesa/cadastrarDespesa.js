@@ -234,11 +234,15 @@ botaoAdicionar.addEventListener("click", function (event) {
 //função para definir opção de cadastro
 function tipoDespesaManual() {
     document.getElementById('descricaoDespesa').style.display = '';  // habilita descrição manual            
-    document.getElementById('tipoDespesa').style.display = 'none';  //desabilita tipo de despesa                
+    document.getElementById('tipoDespesa').style.display = 'none';  //desabilita tipo de despesa
+    
+    document.getElementById('controllerManualOuTipoDespesa').value = 1; //coloca o controller como manual
 };
 
 //função para definir opção de cadastro
 function tipoDespesa() {
     document.getElementById('tipoDespesa').style.display = '';  //habilita tipo de despesa               
     document.getElementById('descricaoDespesa').style.display = 'none';  //desabilita descrição manual
+    
+    document.getElementById('controllerManualOuTipoDespesa').value = 2; //coloca o controller como manual
 };

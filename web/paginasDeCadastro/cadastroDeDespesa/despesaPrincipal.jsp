@@ -85,6 +85,30 @@
 
             </div>
 
+        </div>  
+                            
+        <div class="container my-3" id="divMsgEdicao" style="display: none">
+            
+            <input type="hidden"  id="msgEdicaoController" value="${msgEdicaoController}">
+            
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+                            
+                            <h4 class="text-success">${msgEdicao}</h4>
+                            
+                        </div>
+                        
+                    </div>
+
+                </div>  
+
+            </div>
+
         </div>        
         
         <div class="container">

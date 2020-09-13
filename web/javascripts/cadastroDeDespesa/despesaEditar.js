@@ -9,10 +9,18 @@
 var jsCountDespesa = 0;
 var jsCountDespesa2 = 0;
 
+//verifica se é para desocultar a div de msg de erro
+var msgErroController = document.getElementById('msgErroController').value;
+if(msgErroController == 1){
+    //desoculta a div
+    document.getElementById('divMsgErro').style.display = "";
+}
 
 var controllerTipoCadastroDespesa = document.getElementById('controllerTipoCadastroDespesa').value;
 if (controllerTipoCadastroDespesa == 1) {
 
+    document.getElementById('controllerManualOuTipoDespesa').value = 2; //coloca o controller como manual
+    
     var valorOptionTipoDespesa = document.getElementById('valorOptionTipoDespesa').value;
 
     //separa o id e o nome da despesa
@@ -48,6 +56,8 @@ if (controllerTipoCadastroDespesa == 1) {
 
 
 } else {
+    
+    document.getElementById('controllerManualOuTipoDespesa').value = 1; //coloca o controller como manual
 
     document.getElementById('descricaoDespesa').style.display = '';  // habilita descrição manual            
     document.getElementById('tipoDespesa').style.display = 'none';  //desabilita tipo de despesa     
@@ -125,192 +135,199 @@ botaoAdicionar.addEventListener("click", function (event) {
 
 //aqui recebo uma string concatenada e transformo ela nos inputs
 function montaInputEaddTableStringValores(string) {
+    
+    if(string !== ""){
+        
+        resultado = string.split("|");
+    
+        //percorre essa lista
+        resultado.forEach((valorAtual) => {
 
-    resultado = string.split("|");
+            if (valorAtual !== "") {
 
-    //percorre essa lista
-    resultado.forEach((valorAtual) => {
+                resultado2 = valorAtual.split(",");
+
+                //toda vez que add, vai somar 1 no count para saber quantas despesas foram adicionadas
+                jsCountDespesa++;
+
+                document.getElementById('countDespesa').value = jsCountDespesa; 
+
+                jsCountDespesa2++;
+
+                var despesasTr = document.createElement("tr");
+                despesasTr.id = "tdDespesas" + jsCountDespesa;
+
+                var inputDespesaValor = "";
+                var inputDespesaFP = "";
+                var inputDespesaData = "";
+                var inputDespesaIsPago = "";
+
+                var count = 0;
+                resultado2.forEach((valorAtual2) => {
+
+                    //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
+                    formCadastrarDespesa = document.querySelector('#editarDespesaForm');
 
 
-        if (valorAtual !== "") {
+                    switch (count) {
 
-            resultado2 = valorAtual.split(",");
+                        case 0: //valor
 
-            //toda vez que add, vai somar 1 no count para saber quantas despesas foram adicionadas
-            jsCountDespesa++;
-            
-            document.getElementById('countDespesa').value = jsCountDespesa; 
-            
-            jsCountDespesa2++;
+                            var valorTd = document.createElement("td");
+                            valorTd.classList.add("valorTd");
+                            valorTd.textContent = "R$ " + valorAtual2;
+                            despesasTr.appendChild(valorTd);
 
-            var despesasTr = document.createElement("tr");
-            despesasTr.id = "tdDespesas" + jsCountDespesa;
-            
-            var inputDespesaValor = "";
-            var inputDespesaFP = "";
-            var inputDespesaData = "";
-            var inputDespesaIsPago = "";
+                            inputDespesaValor = document.createElement("input");
+                            inputDespesaValor.type = "hidden";
+                            inputDespesaValor.value = valorAtual2;
+                            inputDespesaValor.name = "valorDespesa" + jsCountDespesa;
+                            inputDespesaValor.id = "idDespesaValor" + jsCountDespesa;
+                            formCadastrarDespesa.appendChild(inputDespesaValor);
 
-            var count = 0;
-            resultado2.forEach((valorAtual2) => {
+                            count++;
+                            break;
 
-                //pegando o form de comunição com o back-end e setando nele controladores(inputs) criados
-                formCadastrarDespesa = document.querySelector('#cadastrarDespesaForm');
-                
-                
-                switch (count) {
-                    
-                    case 0: //valor
+                        case 1: //forma pagamento
 
-                        var valorTd = document.createElement("td");
-                        valorTd.classList.add("valorTd");
-                        valorTd.textContent = "R$ " + valorAtual2;
-                        despesasTr.appendChild(valorTd);
+                            resultado3 = valorAtual2.split("+");
 
-                        inputDespesaValor = document.createElement("input");
-                        inputDespesaValor.type = "hidden";
-                        inputDespesaValor.value = valorAtual2;
-                        inputDespesaValor.name = "valorDespesa" + jsCountDespesa;
-                        inputDespesaValor.id = "idDespesaValor" + jsCountDespesa;
-                        formCadastrarDespesa.appendChild(inputDespesaValor);
+                            countFP = 0;
+                            resultado3.forEach((valorAtual3) => {
+                                countFP++;
+                                if(countFP == 1){
+                                    inputDespesaFP = document.createElement("input");
+                                    inputDespesaFP.type = "hidden";
+                                    inputDespesaFP.value = valorAtual3;
+                                    inputDespesaFP.name = "idFormaPagamento" + jsCountDespesa;
+                                    inputDespesaFP.id = "idFormaPagamento" + jsCountDespesa;
+                                    formCadastrarDespesa.appendChild(inputDespesaFP);                                
+                                }
 
-                        count++;
-                        break;
+                                if (countFP == 2) {
+                                    var formaDePagamentoTd = document.createElement("td");
+                                    formaDePagamentoTd.textContent = valorAtual3;
+                                    despesasTr.appendChild(formaDePagamentoTd);
+                                }
+                            });
 
-                    case 1: //forma pagamento
+                            count++;
+                            break;
 
-                        resultado3 = valorAtual2.split("+");
+                        case 2: //data pagamento
 
-                        countFP = 0;
-                        resultado3.forEach((valorAtual3) => {
-                            countFP++;
-                            if(countFP == 1){
-                                inputDespesaFP = document.createElement("input");
-                                inputDespesaFP.type = "hidden";
-                                inputDespesaFP.value = valorAtual3;
-                                inputDespesaFP.name = "idFormaPagamento" + jsCountDespesa;
-                                inputDespesaFP.id = "idFormaPagamento" + jsCountDespesa;
-                                formCadastrarDespesa.appendChild(inputDespesaFP);                                
-                            }
-                            
-                            if (countFP == 2) {
-                                var formaDePagamentoTd = document.createElement("td");
-                                formaDePagamentoTd.textContent = valorAtual3;
-                                despesasTr.appendChild(formaDePagamentoTd);
-                            }
-                        });
+                            var dataTd = document.createElement("td");
+                            dataTd.textContent = valorAtual2;
+                            despesasTr.appendChild(dataTd);
 
-                        count++;
-                        break;
+                            inputDespesaData = document.createElement("input");
+                            inputDespesaData.type = "hidden";        
+                            inputDespesaData.value = valorAtual2;        
+                            inputDespesaData.name = "dataDespesa" + jsCountDespesa;        
+                            inputDespesaData.id = "idDespesaData" + jsCountDespesa;
+                            formCadastrarDespesa.appendChild(inputDespesaData);
 
-                    case 2: //data pagamento
+                            count++;
+                            break;
 
-                        var dataTd = document.createElement("td");
-                        dataTd.textContent = valorAtual2;
-                        despesasTr.appendChild(dataTd);
-                        
-                        inputDespesaData = document.createElement("input");
-                        inputDespesaData.type = "hidden";        
-                        inputDespesaData.value = valorAtual2;        
-                        inputDespesaData.name = "dataDespesa" + jsCountDespesa;        
-                        inputDespesaData.id = "idDespesaData" + jsCountDespesa;
-                        formCadastrarDespesa.appendChild(inputDespesaData);
+                        case 3: //pago?
 
-                        count++;
-                        break;
+                            inputDespesaIsPago = document.createElement("input");
+                            inputDespesaIsPago.type = "hidden";
+                            inputDespesaIsPago.name = "despesaIsPago" + jsCountDespesa;
+                            inputDespesaIsPago.id = "idDespesaIsPago" + jsCountDespesa;
+                            formCadastrarDespesa.appendChild(inputDespesaIsPago);                            
 
-                    case 3: //pago?
+                            var isPagoTd = document.createElement("td");
 
-                        inputDespesaIsPago = document.createElement("input");
-                        inputDespesaIsPago.type = "hidden";
-                        inputDespesaIsPago.name = "despesaIsPago" + jsCountDespesa;
-                        inputDespesaIsPago.id = "idDespesaIsPago" + jsCountDespesa;
-                        formCadastrarDespesa.appendChild(inputDespesaIsPago);                            
-                        
-                        var isPagoTd = document.createElement("td");
+                            if (valorAtual2 == 1) {
 
-                        if (valorAtual2 == 1) {
+                                isPagoTd.textContent = "Sim";
+                                inputDespesaIsPago.value = "Sim";
 
-                            isPagoTd.textContent = "Sim";
-                            inputDespesaIsPago.value = "Sim";
+                            } else {
 
-                        } else {
+                                isPagoTd.textContent = "Não";
+                                inputDespesaIsPago.value = "Não";
 
-                            isPagoTd.textContent = "Não";
-                            inputDespesaIsPago.value = "Não";
-
-                        }
-
-                        despesasTr.appendChild(isPagoTd);
-
-                        //aqui monta a despesa
-                        var removerDespesaTd = document.createElement("td");
-
-                        //criando elemento button para remover 
-                        var removerDespesaBotao = document.createElement("button");
-                        removerDespesaBotao.textContent = "Remover";
-                        removerDespesaBotao.type = "button";
-                        removerDespesaBotao.id = "idRemoverDespesaBotao";
-                        removerDespesaBotao.classList.add("btn", "btn-info");
-                        removerDespesaBotao.name = "nameRemoverDespesaBotao" + jsCountDespesa;
-
-                        //criando função onclik para remover a despesa adicionada
-                        removerDespesaBotao.onclick = function () {
-                            jsCountDespesa2--; //toda vez que remove diminui
-                            
-                            //COMEÇO PARTE QUE PEGA O VALOR E RECALCULA
-                            //pega a tr inteira da despesa deletada
-                            var trDespesaDeletada = document.getElementById(despesasTr.id);
-                            //pega a td do valor e dps pega o valor
-                            var tdValor = trDespesaDeletada.querySelector('.valorTd');
-                            var valorDeletado = tdValor.textContent;
-                            
-                            valorDeletado = valorDeletado.substring(3);
-                            //chama função que recalcula o valor
-                            calculaValoresFinaisDespesa(parseFloat(valorDeletado),valorAtual2, 1);
-                            //FIM PARTE QUE PEGA O VALOR E RECALCULA
-                            
-                            //pega o id da tr e remove
-                            document.getElementById(despesasTr.id).remove();
-
-                            //pega os controladores da despesa e remove tbm
-                            document.getElementById(inputDespesaValor.id).remove();
-                            document.getElementById(inputDespesaFP.id).remove();
-                            document.getElementById(inputDespesaData.id).remove();
-                            document.getElementById(inputDespesaIsPago.id).remove();
-
-                            if (jsCountDespesa2 == 0) { //se for igual a zero
-                                //desabilita a div da tabela
-                                document.getElementById('divTabelaDespesa').style.display = 'none';
-
-                                document.getElementById('countDespesa').value = 0;
                             }
 
-                        };
+                            despesasTr.appendChild(isPagoTd);
 
-                        //colocando o botão de remover dentro do td
-                        removerDespesaTd.appendChild(removerDespesaBotao);
+                            //aqui monta a despesa
+                            var removerDespesaTd = document.createElement("td");
 
-                        despesasTr.appendChild(removerDespesaTd);
+                            //criando elemento button para remover 
+                            var removerDespesaBotao = document.createElement("button");
+                            removerDespesaBotao.textContent = "Remover";
+                            removerDespesaBotao.type = "button";
+                            removerDespesaBotao.id = "idRemoverDespesaBotao";
+                            removerDespesaBotao.classList.add("btn", "btn-info");
+                            removerDespesaBotao.name = "nameRemoverDespesaBotao" + jsCountDespesa;
 
-                        count = 0;
-                        
-                        //pega o elemento table do html através do id e seta nele o TR criado
-                        var tabelaDespesa = document.querySelector("#tbodyDespesas");
-                        tabelaDespesa.appendChild(despesasTr);
+                            //criando função onclik para remover a despesa adicionada
+                            removerDespesaBotao.onclick = function () {
+                                jsCountDespesa2--; //toda vez que remove diminui
 
-                        break;
+                                //COMEÇO PARTE QUE PEGA O VALOR E RECALCULA
+                                //pega a tr inteira da despesa deletada
+                                var trDespesaDeletada = document.getElementById(despesasTr.id);
+                                //pega a td do valor e dps pega o valor
+                                var tdValor = trDespesaDeletada.querySelector('.valorTd');
+                                var valorDeletado = tdValor.textContent;
 
-                    default:
-                        break;
-                        
-                }
+                                valorDeletado = valorDeletado.substring(3);
+                                //chama função que recalcula o valor
+                                calculaValoresFinaisDespesa(parseFloat(valorDeletado),valorAtual2, 1);
+                                //FIM PARTE QUE PEGA O VALOR E RECALCULA
 
-            });
-        }
+                                //pega o id da tr e remove
+                                document.getElementById(despesasTr.id).remove();
 
-    });
+                                //pega os controladores da despesa e remove tbm
+                                document.getElementById(inputDespesaValor.id).remove();
+                                document.getElementById(inputDespesaFP.id).remove();
+                                document.getElementById(inputDespesaData.id).remove();
+                                document.getElementById(inputDespesaIsPago.id).remove();
 
+                                if (jsCountDespesa2 == 0) { //se for igual a zero
+                                    //desabilita a div da tabela
+                                    document.getElementById('divTabelaDespesa').style.display = 'none';
+
+                                    document.getElementById('countDespesa').value = 0;
+                                }
+
+                            };
+
+                            //colocando o botão de remover dentro do td
+                            removerDespesaTd.appendChild(removerDespesaBotao);
+
+                            despesasTr.appendChild(removerDespesaTd);
+
+                            count = 0;
+
+                            //pega o elemento table do html através do id e seta nele o TR criado
+                            var tabelaDespesa = document.querySelector("#tbodyDespesas");
+                            tabelaDespesa.appendChild(despesasTr);
+
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                });
+            }
+
+        });
+        
+    }else{
+        
+        document.getElementById('divTabelaDespesa').style.display = 'none';
+        
+    }
+    
 };
 
 //aqui calculo os valores finais da despesa e exibo correto em tela
@@ -373,11 +390,15 @@ function calculaValoresFinaisDespesa(valor, pago, operacao) {
 //função para definir opção de cadastro
 function tipoDespesaManual() {
     document.getElementById('descricaoDespesa').style.display = '';  // habilita descrição manual            
-    document.getElementById('tipoDespesa').style.display = 'none';  //desabilita tipo de despesa                
+    document.getElementById('tipoDespesa').style.display = 'none';  //desabilita tipo de despesa     
+    
+    document.getElementById('controllerManualOuTipoDespesa').value = 1; //coloca o controller como manual
 };
 
 //função para definir opção de cadastro
 function tipoDespesa() {
     document.getElementById('tipoDespesa').style.display = '';  //habilita tipo de despesa               
     document.getElementById('descricaoDespesa').style.display = 'none';  //desabilita descrição manual
+    
+    document.getElementById('controllerManualOuTipoDespesa').value = 2; //coloca o controller como manual
 };
