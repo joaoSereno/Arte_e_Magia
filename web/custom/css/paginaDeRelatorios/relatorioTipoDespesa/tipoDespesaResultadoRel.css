@@ -7,3 +7,9 @@ and open the template in the editor.
     Created on : 07/05/2020, 18:14:21
     Author     : João Pedro
 */
+.jumbotron {
+    background-color: #ff7c00e3;
+    color: white;
+    padding: 2rem 2rem !important; 
+    border-radius: unset;    
+}

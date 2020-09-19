@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-        <!-- Customização -->   
+        <!-- Customização -->
         <link rel="stylesheet" href="../../custom/css/navBarOnly/navBar.css">
         <link rel="stylesheet" href="../../custom/css/paginaDeRelatorios/relatorioTipoDespesa/tipoDespesaFiltroRel.css">
     </head>
@@ -72,23 +72,7 @@
                 <div class="col-sm-12 col-md-10 col-lg-8">
                     
                     <form  method="GET" action="relatorioTipoDespesa">
-                        
-                        <div class="form-row">
-                            
-                            <div class="form-group col-lg-4">
-                                <h5>Origem da Despesa:</h5>
-                            </div>
-                            
-                            <div class="form-group col-lg-8">                               
-                                <select class="form-control" name="origemDespesa">
-                                    <option value="1">Ambas</option>
-                                    <option value="2">Cadastro de Despesa</option>
-                                    <option value="3">Cadastro de Festa</option>
-                                </select>
-                            </div>
-                            
-                        </div>
-                        
+                                                
                         <div class="form-row">
                             
                             <div class="form-group col-lg-3">

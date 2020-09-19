@@ -58,10 +58,11 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
+       
         <div class="jumbotron text-center">
             <h1>Relatórios</h1>
         </div>          
-        <!-- Cards Dos Cadastros -->                       
+                       
         <div class="col-sm-12 col-md-12 col-lg-12">
 
             <div class="row justify-content-center">
@@ -108,6 +109,28 @@
 
                 </div>
 
+            </div>
+
+        </div>
+
+       <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <div class="row justify-content-center">
+
+                <div clas="col-lg-2" id="card-deck">
+
+                    <div class="card cards my-1">
+
+                        <img src="../custom/img/avatares-cards/relatorioDespesas.png" class="card-img-top imagens-cards" alt="Despesas">
+
+                        <div class="card-body">
+                            <a href="relatorioDespesas/despesasFiltroRel.jsp" class="btn bnt2 botoes-card">Despesas</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
 
                 <div clas="col-lg-2" id="card-deck">
 
@@ -140,46 +163,9 @@
             </div>
 
         </div>
-
+       
         <div class="my-3">
 
         </div>            
-<!--         Cards Dos Botões 
-        <div id="card-deck">
-             Card Evento  
-            <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioEvento.png" class="car-img-top imagens-cards" alt="Eventos">
-                <div class="card-body">
-                    <a href="relatorioEvento/eventoFiltroRel.jsp" class="btn botoes-card">Eventos</a>
-                </div>
-            </div>
-             CardCliente 
-            <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioAni.png" class="card-img-top imagens-cards" alt="Aniversariantes">
-                <div class="card-body">
-                    <a href="relatorioAniversariante/aniversarianteFiltroRel.jsp" class="btn botoes-card">Aniversariantes</a>
-                </div>
-            </div>
-             CardFuncionários 
-            <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioTD.png" class="card-img-top imagens-cards" alt="Tipos de Despesa" >
-                <div class="card-body">
-                    <a href="relatorioTipoDespesa/tipoDespesaFiltroRel.jsp" class="btn botoes-card">Tipos de Despesa</a>
-                </div>
-            </div>
-             CardFestas 
-            <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioFunc.png" class="car-img-top imagens-cards" alt="Colaboradores">
-                <div class="card-body">
-                    <a href="relatorioFuncionario/funcionarioFiltroRel.jsp" type="button" class="btn botoes-card">Colaboradores</a>
-                </div>
-            </div>
-             Card FormaPgto 
-            <div class="card cards">
-                <img src="../custom/img/avatares-cards/relatorioPacote.png" class="car-img-top imagens-cards" alt="Pacotes">
-                <div class="card-body">
-                    <a href="relatorioPacote/pacoteFiltroRel.jsp" class="btn botoes-card">Pacotes</a>
-                </div>
-            </div>
-        </div>-->
+
 </html>

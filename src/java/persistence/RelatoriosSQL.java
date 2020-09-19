@@ -15,9 +15,12 @@ import entidadesRelatorio.RelatorioAniversariante;
 import entidadesRelatorio.RelatorioEvento;
 import entidadesRelatorio.RelatorioFuncionario;
 import entidadesRelatorio.RelatorioPacote;
+import entidadesRelatorio.RelatorioTipoDespesa;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 /**
  *
@@ -414,6 +417,334 @@ public class RelatoriosSQL extends Conexao{
             }
         }        
     }
+
+    public ArrayList<RelatorioTipoDespesa> getRelatorioTipoDespesa(String periodo, String periodo2) throws Exception {
+        
+        try {
+            open(); //abre conexão com o banco
+
+            //lista do cadastro de despesa, evento e a que oficial do relatorio
+            ArrayList<RelatorioTipoDespesa> listaRelatorioTipoDespesaDespesa = new ArrayList();
+            ArrayList<RelatorioTipoDespesa> listaRelatorioTipoDespesaDespesaOficial = new ArrayList();
+            
+            ArrayList<RelatorioTipoDespesa> listaRelatorioTipoDespesaEvento = new ArrayList();
+            ArrayList<RelatorioTipoDespesa> listaRelatorioTipoDespesaEventoOficial = new ArrayList();
+
+            ArrayList<RelatorioTipoDespesa> listaRelatorioTipoDespesa = new ArrayList();
+            
+            //lista aonde é salva os id dos tipos de despesa
+            ArrayList<Integer> listaIdDespesas = new ArrayList();
+            ArrayList<Integer> listaIdEventos = new ArrayList();
+            
+            //COMEÇA DE MONTAR A LISTA DO CADASTRO DO DESPESA
+            //consulta as despesas que existem no periodo do parametro
+            stmt = con.prepareStatement("SELECT DISTINCT despesas.idDespesas \n" +
+                                        "FROM despesas despesas,\n" +
+                                        "     pagamentodespesasdetalhe pagamentodespesasdetalhe\n" +
+                                        "where despesas.idDespesas = pagamentodespesasdetalhe.idDespesas\n" +
+                                        "and pagamentodespesasdetalhe.dataPagamento >= ?\n" +
+                                        "and pagamentodespesasdetalhe.dataPagamento <= ?");
+
+            //define valor dos ?
+            stmt.setString(1, periodo);
+            stmt.setString(2, periodo2);
+
+            //executa a query no banco
+            ResultSet resultadoConsulta = stmt.executeQuery();
+   
+            //percorre o resultado e salva os ids retornado nas lista de id
+            while (resultadoConsulta.next()) {                              
+                //adiciona na lista os id das despesas que existe na data do filtro
+                listaIdDespesas.add(resultadoConsulta.getInt("despesas.idDespesas"));
+            }
+            
+            //percora os ids e monta o resto das informações 
+            for(int i = 0; i < listaIdDespesas.size(); i++){
+                
+                //pega o idTipoDeDespesa e o valor total da despesa
+                stmt = con.prepareStatement("SELECT despesas.idTipoDeDespesa, SUM(pagamentodespesasdetalhe.valor)\n" +
+                                            "FROM arteemagia.despesas,\n" +
+                                            "	 pagamentodespesasdetalhe pagamentodespesasdetalhe\n" +
+                                            "WHERE pagamentodespesasdetalhe.idDespesas = despesas.idDespesas\n" +
+                                            "AND despesas.idDespesas = ?");
+
+
+                //define valor dos ?
+                stmt.setInt(1, listaIdDespesas.get(i));
+                
+                //executa a query no banco
+                ResultSet resultadoConsulta2 = stmt.executeQuery();
+                
+                RelatorioTipoDespesa relatorioTipoDespesaDespesa = new RelatorioTipoDespesa();
+
+                //percorre o resultado e monta o dados da lista que será retornado
+                while (resultadoConsulta2.next()) {  
+                    
+                    relatorioTipoDespesaDespesa.setIdTipoDespesa(resultadoConsulta2.getInt("despesas.idTipoDeDespesa"));
+                    relatorioTipoDespesaDespesa.setValorTotal(resultadoConsulta2.getFloat("SUM(pagamentodespesasdetalhe.valor)"));
+                    
+                    if(relatorioTipoDespesaDespesa.getIdTipoDespesa() == 0){
+                        
+                        relatorioTipoDespesaDespesa.setDescricaoDespesa("Descrição Manual");
+                        
+                    }else{
+                        
+                        //verifica o filtro e salva a query
+                        stmt = con.prepareStatement("SELECT nomeDespesa\n" +
+                                                    "FROM tipodedespesa\n" +
+                                                    "WHERE idTipoDeDespesa = ?");
+
+
+                        //define valor dos ?
+                        stmt.setInt(1, relatorioTipoDespesaDespesa.getIdTipoDespesa());  
+                        
+                        ResultSet resultadoConsulta3 = stmt.executeQuery();
+                        
+                        while (resultadoConsulta3.next()) { 
+                            
+                            relatorioTipoDespesaDespesa.setDescricaoDespesa(resultadoConsulta3.getString("nomeDespesa"));
+
+                        }      
+                        
+                    }
+                    
+                    //adiciona na lista os id das despesas que existe na data do filtro
+                    listaRelatorioTipoDespesaDespesa.add(relatorioTipoDespesaDespesa);
+                    
+                }                
+   
+            }
+            
+            int controleFormataLista = 0;
+            
+            //formata a lista
+            for(int i = 0; i < listaRelatorioTipoDespesaDespesa.size(); i++){
+                
+                if(controleFormataLista == 0){
+                    
+                    controleFormataLista++;
+                    
+                    listaRelatorioTipoDespesaDespesa.get(i).setQtd(1);
+                    listaRelatorioTipoDespesaDespesaOficial.add(listaRelatorioTipoDespesaDespesa.get(i));
+                    
+                }else{
+                    
+                    boolean isNew = true;
+                    
+                    for(int x = 0; x < listaRelatorioTipoDespesaDespesaOficial.size(); x++){
+
+                        if(Objects.equals(listaRelatorioTipoDespesaDespesa.get(i).getIdTipoDespesa(), listaRelatorioTipoDespesaDespesaOficial.get(x).getIdTipoDespesa())){
+                            
+                            isNew = false;
+                            
+                            listaRelatorioTipoDespesaDespesaOficial.get(x).setValorTotal(listaRelatorioTipoDespesaDespesaOficial.get(x).getValorTotal() + listaRelatorioTipoDespesaDespesa.get(i).getValorTotal());
+                            listaRelatorioTipoDespesaDespesaOficial.get(x).setQtd(listaRelatorioTipoDespesaDespesaOficial.get(x).getQtd() + 1);
+
+                            x = listaRelatorioTipoDespesaDespesaOficial.size();
+                        }
+                       
+                    }
+
+                    if(isNew){
+
+                        listaRelatorioTipoDespesaDespesa.get(i).setQtd(1);
+                        listaRelatorioTipoDespesaDespesaOficial.add(listaRelatorioTipoDespesaDespesa.get(i));                            
+
+                    }                    
+   
+                }
+                
+            }
+            //TERMINA DE MONTAR A LISTA DO CADASTRO DO DESPESA
+            
+            //COMEÇA A MONTAR A LISTA DO CADASTRO DE EVENTO
+            //consulta as despesas de evento que existem no periodo do parametro
+            stmt = con.prepareStatement("SELECT idFesta \n" +
+                                        "FROM festa\n" +
+                                        "where dataFesta >= ?\n" +
+                                        "and dataFesta <= ?");
+
+            //define valor dos ?
+            stmt.setString(1, periodo);
+            stmt.setString(2, periodo2);            
+            
+            //executa a query no banco
+            ResultSet resultadoConsulta4 = stmt.executeQuery();
+   
+            //percorre o resultado e salva os ids retornado nas lista de id
+            while (resultadoConsulta4.next()) {                              
+                //adiciona na lista os id das festas que existe na data do filtro
+                listaIdEventos.add(resultadoConsulta4.getInt("idFesta"));
+            }      
+            
+            //percora os ids e monta o resto das informações 
+            for(int i = 0; i < listaIdEventos.size(); i++){
+                
+                //pega as despesas de cada idEvento
+                stmt = con.prepareStatement("SELECT idTipoDeDespesa,\n" +
+                                            "	   valorDespesa,\n" +
+                                            "	   isFuncionariaPag\n" +
+                                            "FROM despesafesta\n" +
+                                            "WHERE idFesta = ?");
+
+                //define valor dos ?
+                stmt.setInt(1, listaIdEventos.get(i));
+                
+                //executa a query no banco
+                ResultSet resultadoConsulta5 = stmt.executeQuery();
+                
+                //percorre o resultado e monta o dados da lista que será retornado
+                while (resultadoConsulta5.next()) {
+                    
+                    RelatorioTipoDespesa relatorioTipoDespesaEvento = new RelatorioTipoDespesa();
+                    
+                    relatorioTipoDespesaEvento.setIdTipoDespesa(resultadoConsulta5.getInt("idTipoDeDespesa"));
+                    relatorioTipoDespesaEvento.setIsFuncionario(resultadoConsulta5.getInt("isFuncionariaPag"));
+                    relatorioTipoDespesaEvento.setValorTotal(resultadoConsulta5.getFloat("valorDespesa"));                    
+                    
+                    //verifica se existe idTipoDespesa
+                    if(relatorioTipoDespesaEvento.getIdTipoDespesa() == 0){
+                        
+                        //verifica se é um pagamento de funcionario
+                        if(relatorioTipoDespesaEvento.getIsFuncionario() == 1){
+                            
+                            relatorioTipoDespesaEvento.setDescricaoDespesa("Pagamento Colaborador");
+                            relatorioTipoDespesaEvento.setIdTipoDespesa(1000); //coloca os pagamentos de funcionario como idTipo 1000 para facilitar a montagem dps
+                            
+                        }else{ //se não for
+                            
+                            relatorioTipoDespesaEvento.setDescricaoDespesa("Descrição Manual");
+                            
+                        }
+
+                    }else{ //se existir idTipoDespesa pega o nome dela
+                        
+                        //verifica o filtro e salva a query
+                        stmt = con.prepareStatement("SELECT nomeDespesa\n" +
+                                                    "FROM tipodedespesa\n" +
+                                                    "WHERE idTipoDeDespesa = ?");
+
+                        //define valor dos ?
+                        stmt.setInt(1, relatorioTipoDespesaEvento.getIdTipoDespesa());  
+                        
+                        ResultSet resultadoConsulta6 = stmt.executeQuery();
+                        
+                        while (resultadoConsulta6.next()) { 
+                            
+                            relatorioTipoDespesaEvento.setDescricaoDespesa(resultadoConsulta6.getString("nomeDespesa"));
+
+                        }      
+                        
+                    }      
+                    
+                    //adiciona na lista de relatorio de despesa das festa
+                    listaRelatorioTipoDespesaEvento.add(relatorioTipoDespesaEvento);
+                    
+                }       
+                
+            }
+            
+            int controleFormataLista2 = 0;
+            
+            //formata a lista
+            for(int i = 0; i < listaRelatorioTipoDespesaEvento.size(); i++){
+                
+                if(controleFormataLista2 == 0){
+                    
+                    controleFormataLista2++;
+                    
+                    listaRelatorioTipoDespesaEvento.get(i).setQtd(1);
+                    listaRelatorioTipoDespesaEventoOficial.add(listaRelatorioTipoDespesaEvento.get(i));
+                    
+                }else{
+                    
+                    boolean isNew = true;
+                    
+                    for(int x = 0; x < listaRelatorioTipoDespesaEventoOficial.size(); x++){
+
+                        if(Objects.equals(listaRelatorioTipoDespesaEvento.get(i).getIdTipoDespesa(), listaRelatorioTipoDespesaEventoOficial.get(x).getIdTipoDespesa())){
+                            
+                            isNew = false;
+                            
+                            listaRelatorioTipoDespesaEventoOficial.get(x).setValorTotal(listaRelatorioTipoDespesaEventoOficial.get(x).getValorTotal() + listaRelatorioTipoDespesaEvento.get(i).getValorTotal());
+                            listaRelatorioTipoDespesaEventoOficial.get(x).setQtd(listaRelatorioTipoDespesaEventoOficial.get(x).getQtd() + 1);
+
+                            x = listaRelatorioTipoDespesaEventoOficial.size();
+                        }
+                        
+                    }
+
+                    if(isNew){
+
+                        listaRelatorioTipoDespesaEvento.get(i).setQtd(1);
+                        listaRelatorioTipoDespesaEventoOficial.add(listaRelatorioTipoDespesaEvento.get(i));                            
+
+                    }                    
+   
+                }
+                
+            }            
+            //TERMINA A MONTAR A LISTA DO CADASTRO DE EVENTO
+            
+            close(); // fecha conexão com o banco
+            
+            //COMEÇA ONDE JUNTO AS LISTA DO EVENTO E DESPESA E ORDENO POR ORDEM CRESCENTE
+            //lista do relatorio recebe todos os dados da lista de evento
+            listaRelatorioTipoDespesa = listaRelatorioTipoDespesaEventoOficial;
+            
+            //percorre a lista de despesa e junta com a lista oficial
+            for(int y = 0; y < listaRelatorioTipoDespesaDespesaOficial.size(); y++){
+                
+                boolean isNew = true;
+                
+                for(int b = 0; b < listaRelatorioTipoDespesa.size(); b++){
+                                      
+                    if(Objects.equals(listaRelatorioTipoDespesa.get(b).getIdTipoDespesa(), listaRelatorioTipoDespesaDespesaOficial.get(y).getIdTipoDespesa())){
+                        
+                        isNew = false;
+                        
+                        listaRelatorioTipoDespesa.get(b).setValorTotal(listaRelatorioTipoDespesa.get(b).getValorTotal() + listaRelatorioTipoDespesaDespesaOficial.get(y).getValorTotal());
+                        listaRelatorioTipoDespesa.get(b).setQtd(listaRelatorioTipoDespesa.get(b).getQtd() + listaRelatorioTipoDespesaDespesaOficial.get(y).getQtd());
+                                
+                        b = listaRelatorioTipoDespesa.size();                        
+                        
+                    }
+   
+                }
+                
+                if(isNew){
+
+                    listaRelatorioTipoDespesa.add(listaRelatorioTipoDespesaDespesaOficial.get(y));
+  
+                }                
+ 
+            }
+            
+            //COMEÇA ONDE JUNTO AS LISTA DO EVENTO E DESPESA E ORDENO POR ORDEM CRESCENTE
+            //ordena a lista em ordem crescente
+            Collections.sort(listaRelatorioTipoDespesa);
+            
+            //percorre a lista para colocar a ordem nos counts
+            for(int n = 0; n < listaRelatorioTipoDespesa.size(); n++){
+                listaRelatorioTipoDespesa.get(n).setCount(n + 1);
+            }
+            //FIM ONDE JUNTO AS LISTA DO EVENTO E DESPESA E ORDENO POR ORDEM CRESCENTE
+            
+            return listaRelatorioTipoDespesa; //retorna para onde foi chamado
+
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+            throw new RuntimeException(e);
+            
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }        
+    }    
     
 //    public ArrayList<AniversariantesProximos> getAniversariantesProximos() throws Exception {
 //        try {

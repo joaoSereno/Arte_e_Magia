@@ -59,7 +59,54 @@
                 </ul>
                 <!-- Fim navbar da página-->
             </div>
-        </nav>        
-        <h1>Hello World!</h1>
+        </nav>   
+        
+        <div class="jumbotron text-center">
+            <h1>Relatório de Tipo de Despesa</h1>
+            <h4>Análise de gasto por tipo de despesa no período de ${periodo} à ${periodo2}</h4>
+        </div>
+                            
+        <div class="table-responsive mt-2"> 
+            
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Descrição da Despesa</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Total Gasto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${relatorioTipoDespesa}" var="item"> 
+                        <tr>
+                            <th scope="row">${item.count}</th>
+                            <td>${item.descricaoDespesa}</td>
+                            <td>${item.qtd}</td>
+                            <td>R$ ${item.valorTotal}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            
+        </div>
+                            
+        <div class="container">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="form-col-lg-8 my-2">
+
+                        <a  class="btn btn-secondary btn-lg btn-block" href="tipoDespesaFiltroRel.jsp">Voltar</a> 
+
+                    </div>
+                            
+                </div>  
+                
+            </div>
+            
+        </div>
     </body>
 </html>
