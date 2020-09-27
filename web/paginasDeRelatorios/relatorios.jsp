@@ -108,30 +108,7 @@
                     </div>
 
                 </div>
-
-            </div>
-
-        </div>
-
-       <div class="col-sm-12 col-md-12 col-lg-12">
-
-            <div class="row justify-content-center">
-
-                <div clas="col-lg-2" id="card-deck">
-
-                    <div class="card cards my-1">
-
-                        <img src="../custom/img/avatares-cards/relatorioDespesas.png" class="card-img-top imagens-cards" alt="Despesas">
-
-                        <div class="card-body">
-                            <a href="relatorioDespesas/despesasFiltroRel.jsp" class="btn bnt2 botoes-card">Despesas</a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
+                
                 <div clas="col-lg-2" id="card-deck">
 
                     <div class="card cards my-1">
@@ -158,7 +135,7 @@
 
                     </div>
 
-                </div>
+                </div>                
 
             </div>
 

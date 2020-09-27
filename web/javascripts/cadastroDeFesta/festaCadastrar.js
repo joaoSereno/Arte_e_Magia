@@ -965,7 +965,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
             document.getElementById('selecionarPacotes').style.display = 'none'; //desabilita a etapa 4    
             
             //recebe a string de pacote selecionado e faz um split e salva em uma lista
-            resultado = pacoteSelecionado.split("+");
+            resultado = pacoteSelecionado.split("¬");
 
             //variavel utilizada para percorrer a lista
             var countResultado = 0;
@@ -1032,7 +1032,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                 var countResultado = 0;
 
                 //recebe o id + o nome e usa a função split para separar e coloca em uma lista
-                resultado = pacoteAdicional.split("+");
+                resultado = pacoteAdicional.split("¬");
 
                 //percorre essa lista
                 resultado.forEach((valorAtual) => {
@@ -1079,7 +1079,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     document.getElementById(inputValorPacoteAdicional.id).remove();
 
                     //removendo da lista de pacotes add que forma o texto de confirmação da ultima etapa
-                    listaPacotesAdicionais.splice(listaPacotesAdicionais.indexOf(descricaoPacoteAdd+"+"+valorPacoteAdicional), 1);
+                    listaPacotesAdicionais.splice(listaPacotesAdicionais.indexOf(descricaoPacoteAdd + "¬" + valorPacoteAdicional), 1);
 
                     //remove da lista de valores 
                     listaPacoteAddValores.splice(listaPacoteAddValores.indexOf(valorPacoteAdicional), 1);
@@ -1092,7 +1092,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                         countPacotesAdicionais++;
 
                         //realiza um split no valor atual
-                        var resultado = valorAtualLista.split("+");        
+                        var resultado = valorAtualLista.split("¬");        
 
                         //variaveis utilizadas para montagem do texto
                         var textoParagrafoPacoteAdd = "";
@@ -1152,10 +1152,10 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                 //MONTAGEM DE TEXTO DE CONFIRMAÇÃO PARA OS PACOTES ADD NA ULTIMA ETAPA
 
                 //adiciona na lista o nome + valor do pacote add adicionado
-                listaPacotesAdicionais.push(descricaoPacoteAdd+"+"+valorPacoteAdicional);
+                listaPacotesAdicionais.push(descricaoPacoteAdd + "¬" + valorPacoteAdicional);
 
                 //adiciona na lista de valores
-                listaPacoteAddValores.push(+valorPacoteAdicional);
+                listaPacoteAddValores.push(valorPacoteAdicional);
 
                 //recebe o elemento html que está as inf dos pacotes e apaga tudo, pois vai ser montado novamente
                 var confirmacaoInfPacoteAdd = document.querySelector("#pacoteAddInf");
@@ -1165,7 +1165,7 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
                     countPacotesAdicionais++;
 
                     //realiza um split no valor atual
-                    var resultado = valorAtualLista.split("+");        
+                    var resultado = valorAtualLista.split("¬");        
 
                     //variaveis utilizadas para montagem do texto
                     var textoParagrafoPacoteAdd = "";
@@ -3063,6 +3063,10 @@ var btnFPeValor = document.querySelector("#add-valorEfp");
         //recebendo os valores os valores inseridos no input
         var descricaoEvento = document.getElementById('descricaoEvento').value;
         var qtdCriancaNaFesta = document.getElementById('qtdCriancaNaFesta').value;
+        if (qtdCriancaNaFesta == ""){
+            qtdCriancaNaFesta = "Não informado."
+        }
+        
         var dataDaFesta = document.getElementById('dataFesta').value;
         var tipoDaFesta = document.getElementById('tipoDaFesta').value;
         var observacao = document.getElementById('obs').value;

@@ -418,7 +418,7 @@
                                 <select type="select" class="form-control" name="jsPacote" id="jsPacote">
                                     <option value="">Clique para selecionar</option>
                                     <c:forEach var="item" items="${listaPacote}">
-                                        <option value="${item.idPacote}+${item.nomePacote}+${item.valorPacoteVenda}">
+                                        <option value="${item.idPacote}¬${item.nomePacote}¬${item.valorPacoteVenda}">
                                             ${item.nomePacote}
                                         </option>
                                     </c:forEach>
@@ -493,7 +493,7 @@
                                             id="jsPacotesAdicionais">
                                             <option value="">Clique para selecionar</option>
                                             <c:forEach var="item" items="${listaTipoPacoteAdicional}">
-                                                <option value="${item.idTipoPacoteAdicional}+${item.descricaoPacoteAdd}">
+                                                <option value="${item.idTipoPacoteAdicional}¬${item.descricaoPacoteAdd}">
                                                     ${item.descricaoPacoteAdd}
                                                 </option>
                                             </c:forEach>
