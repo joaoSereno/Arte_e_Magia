@@ -922,11 +922,15 @@ public class ControllerCadastrarFesta extends HttpServlet {
 
             //caso de certo o cadastro , msg de confirmação e redirecionamento para a página 
             request.setAttribute("controllerCadastroEvento", 1);
-            request.setAttribute("msgConfirmaçãoFesta", "Festa cadastrada com sucesso!");
+            request.setAttribute("msgConfirmaçãoFesta", "Evento cadastrada com sucesso!");
             request.getRequestDispatcher("festaPrincipal.jsp").forward(request, response);
 
         } catch (Exception ex) {
             Logger.getLogger(ControllerCadastrarFesta.class.getName()).log(Level.SEVERE, null, ex);
+            
+            request.setAttribute("controllerCadastroEvento", 1);
+            request.setAttribute("msgConfirmaçãoFestaErro", "Desculpe, não foi possível cadastrar o evento!");
+            request.getRequestDispatcher("festaPrincipal.jsp").forward(request, response);
         }
 
     }

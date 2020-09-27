@@ -188,5 +188,20 @@ public class AgendamentoFestaSQL extends Conexao {
                 throw new Exception(e.getMessage());
             }
         }
-    }    
+    }
+
+    public void excluir(int idFesta) throws Exception {
+
+        open(); //abre conexão com o banco de dados 
+        
+        //comando que vai ser executado
+        stmt = con.prepareStatement("DELETE FROM agendamentofesta WHERE idFesta = ?");
+
+        //atribui os valores nos ? do comando acima 
+        stmt.setInt(1, idFesta);
+
+        stmt.execute();//executa  insert no banco de dados
+        close();//fecha conexão com o banco de dados
+
+    }
 }

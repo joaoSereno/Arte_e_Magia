@@ -155,4 +155,18 @@ public class EnderecoSQL extends Conexao {
         }        
     }
     
+    public void excluir(int idEnderecos) throws Exception{
+        
+        open(); //abre conexão com o banco de dados  
+        
+        stmt = con.prepareStatement("DELETE FROM enderecos WHERE idEnderecos = ?"); // query para executar no banco
+        
+        stmt.setInt(1, idEnderecos); //seta getIdCliente no ?
+        
+        stmt.execute(); // executa query
+        
+        close(); // fecha conexão com o banco de dados
+        
+    }    
+    
 }

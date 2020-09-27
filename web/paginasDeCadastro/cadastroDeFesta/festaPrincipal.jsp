@@ -100,6 +100,32 @@
                         <div class="col-lg-12 my-3">
                             
                             <p id="textoFestaCastrada" class="text-success">${msgConfirmaçãoFesta}</p>
+                            <p id="textoFestaCastrada" class="text-danger">${msgConfirmaçãoFestaErro}</p>
+                            
+                        </div>
+                            
+                    </div>
+
+                </div>  
+
+            </div>
+
+        </div> 
+                            
+        <div class="container" id="divMsgConfirmacaoDeExclusaoFesta" style="display: none;">
+            
+            <input type="hidden" id="controllerExclusaoEvento" value="${controllerExclusaoEvento}">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12 my-3">
+                            
+                            <p id="textoFestaCastrada" class="text-success">${msgExclusaoFesta}</p>
+                            <p id="textoFestaCastrada" class="text-danger">${msgExclusaoFestaErro}</p>
                             
                         </div>
                             
@@ -232,6 +258,7 @@
                                     <th scope="col">Data do Evento</th>
                                     <th scope="col">Evento realizado?</th>
                                     <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead> 
                             <tbody>
@@ -244,9 +271,12 @@
                                         <td>
                                             <form method="GET" action="edicaoEvento">
                                                 <input type="hidden" name="idFesta" value="${item.idFesta}">
-                                                <button class="btn btn-info"> + </button>
+                                                <button class="btn btn-info"> Editar </button>
                                             </form> 
                                         </td>
+                                        <td>
+                                            <button onclick="excluirEvento(${item.idFesta})" class="btn btn-danger" data-toggle="modal" data-target="#confirmaçãoExclusaoEvento">Excluir</button> 
+                                        </td>    
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -276,7 +306,72 @@
 
             </div>
 
-        </div>           
+        </div>
+                        
+        <!-- Modal de exclusão do cadastro-->
+        <div>
+            
+            <div class="modal fade" id="confirmaçãoExclusaoEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                
+                <div class="modal-dialog" role="document">
+                  
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <h5 class="modal-title" id="exampleModalLabel">Excluir Evento</h5>
+                            
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            
+                        </div>
+
+                        <div class="modal-body">
+                          Tem certeza que deseja realizar a exclusão do evento?
+                        </div>
+
+                        <div class="container">
+                            
+                            <div class="row justify-content-center">
+                                
+                                <div class="col-sm-12 col-md-10 col-lg-8">
+                                    
+                                    <form method="GET" action="excluirEvento">
+                                        
+                                        <div class="form-row">
+
+                                            <div class="form-group col-lg-6">
+
+                                                <input type="hidden" id="idEventoExcluir" name="idEventoExcluir" value="">
+
+                                                <button type="submit" class="btn btn-danger btn-block" value="Confirmar">Sim</button>
+
+                                            </div>
+                                                
+                                            <div class="form-group col-lg-6">
+
+                                                <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Não</button>
+
+                                            </div>
+                                            
+                                        </div>
+
+                                    </form>                                
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                        
+                </div>
+                        
+            </div>
+                        
+        </div>
+                                                
     </body>
     <script src="../../javascripts/cadastroDeFesta/festaPrincipal.js"></script> 
 </html>

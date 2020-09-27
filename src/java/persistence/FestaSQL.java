@@ -164,4 +164,80 @@ public class FestaSQL extends Conexao {
         }
     }
     
+    public void excluir(int idFesta) throws Exception {
+
+        open(); //abre conexão com o banco de dados 
+        
+        //comando que vai ser executado
+        stmt = con.prepareStatement("DELETE FROM festa WHERE idFesta = ?");
+
+        //atribui os valores nos ? do comando acima 
+        stmt.setInt(1, idFesta);
+
+        stmt.execute();//executa  insert no banco de dados
+        close();//fecha conexão com o banco de dados
+
+    }
+
+    public Festa getFestaEspecifica(int idFesta) throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            
+            Festa festa = new Festa();
+
+            stmt = con.prepareStatement("SELECT idFesta, \n" +
+                                                "descricaoFesta,\n" +
+                                                "idCliente,\n" +
+                                                "qtdCriancas,\n" +
+                                                "dataFesta,\n" +
+                                                "idPacote,\n" +
+                                                "idTipoDeFesta,\n" +
+                                                "idEnderecos,\n" +
+                                                "obs,\n" +
+                                                "valorTotal,\n" +
+                                                "descontoEvento,\n" +
+                                                "totalDespesa,\n" +
+                                                "lucroEvento,\n" +
+                                                "receberContrante,\n" +
+                                                "festaStatus\n" +
+                                                "FROM festa \n" +
+                                        "WHERE idFesta = ?"); //executa query na base
+            
+            stmt.setInt(1, idFesta);
+            
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) {
+                festa.setIdFesta(resultadoConsulta.getInt("idFesta"));
+                festa.setDescricaoFesta(resultadoConsulta.getString("descricaoFesta"));
+                festa.setIdCliente(resultadoConsulta.getInt("idCliente"));
+                festa.setQtdCriancas(resultadoConsulta.getInt("qtdCriancas"));
+                festa.setDataFesta(resultadoConsulta.getString("dataFesta"));
+                festa.setIdPacote(resultadoConsulta.getInt("idPacote"));
+                festa.setIdTipoDeFesta(resultadoConsulta.getInt("idTipoDeFesta"));
+                festa.setIdEnderecos(resultadoConsulta.getInt("idEnderecos"));    
+                festa.setObs(resultadoConsulta.getString("obs"));    
+                festa.setValorTotal(resultadoConsulta.getFloat("valorTotal"));    
+                festa.setDescontoEvento(resultadoConsulta.getFloat("descontoEvento"));    
+                festa.setTotalDespesa(resultadoConsulta.getFloat("totalDespesa"));    
+                festa.setLucroFesta(resultadoConsulta.getFloat("lucroEvento"));    
+                festa.setReceberContrante(resultadoConsulta.getFloat("receberContrante"));    
+                festa.setFestaStatus(resultadoConsulta.getInt("festaStatus"));      
+            }
+
+            close(); // fecha conexão com o banco
+            return festa;//retorna festa para onde foi chamado
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }    
+    
 }
