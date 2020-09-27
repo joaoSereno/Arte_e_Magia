@@ -26,7 +26,7 @@ public class FestaSQL extends Conexao {
         open(); //abre conexão com o banco de dados 
 
         //comando que vai ser executado
-        stmt = con.prepareStatement("INSERT INTO festa(descricaoFesta, idCliente, qtdCriancas, dataFesta, idPacote, idTipoDeFesta, idEnderecos, obs, valorTotal, totalDespesa, lucroEvento, receberContrante, festaStatus) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        stmt = con.prepareStatement("INSERT INTO festa(descricaoFesta, idCliente, qtdCriancas, dataFesta, idPacote, idTipoDeFesta, idEnderecos, obs, valorTotal, descontoEvento, totalDespesa, lucroEvento, receberContrante, festaStatus) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
         //atribui os valores nos ? do comando acima 
         stmt.setString(1, festa.getDescricaoFesta()); //descricaoFesta
@@ -38,10 +38,11 @@ public class FestaSQL extends Conexao {
         stmt.setInt(7, festa.getIdEnderecos()); //idEnderecos
         stmt.setString(8, festa.getObs()); //obs
         stmt.setFloat(9, festa.getValorTotal()); //valorTotal
-        stmt.setFloat(10, festa.getTotalDespesa()); //totalDespesa
-        stmt.setFloat(11, festa.getLucroFesta()); //lucroEvento
-        stmt.setFloat(12, festa.getReceberContrante()); //recebeContrante
-        stmt.setInt(13, festa.getFestaStatus()); //festaStatus
+        stmt.setFloat(10, festa.getDescontoEvento()); //descontoEvento
+        stmt.setFloat(11, festa.getTotalDespesa()); //totalDespesa
+        stmt.setFloat(12, festa.getLucroFesta()); //lucroEvento
+        stmt.setFloat(13, festa.getReceberContrante()); //recebeContrante
+        stmt.setInt(14, festa.getFestaStatus()); //festaStatus
 
         stmt.execute();//executa  insert no banco de dados
         close();//fecha conexão com o banco de dados

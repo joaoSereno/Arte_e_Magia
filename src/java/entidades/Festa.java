@@ -24,6 +24,7 @@ public class Festa {
     private int qtdCriancas; 
     private Integer idTipoDeFesta; 
     private float valorTotal; 
+    private float descontoEvento;
     private float totalDespesa;
     private float lucroFesta; 
     private float receberContrante; 
@@ -48,6 +49,14 @@ public class Festa {
         this.dataFesta = dataFesta;
         this.obs = obs;
         this.festaStatus = festaStatus;
+    }
+
+    public float getDescontoEvento() {
+        return descontoEvento;
+    }
+
+    public void setDescontoEvento(float descontoEvento) {
+        this.descontoEvento = descontoEvento;
     }
 
     public Integer getIdFesta() {

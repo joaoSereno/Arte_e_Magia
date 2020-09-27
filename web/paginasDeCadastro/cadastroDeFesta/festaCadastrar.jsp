@@ -637,20 +637,43 @@
 
                             <div class="col-lg-12">
 
-                                <h5 id="subTituloEtapa5">Por favor, informe os valores adicionais do evento. Caso não tenha siga para a 6° Etapa.</h5>
+                                <h5 id="subTituloEtapa5">Por favor, informe os valores adicionais e/ou desconto do evento. Caso não tenha siga para a 6° Etapa.</h5>
 
                             </div>
 
                         </div>
+                        
+                        <div class="row mt-4">
 
-                        <form class="form-group" id="formValorAdicional">
+                            <div class="col-lg-8">
+
+                                <label for="jsDesconto"><h5>Desconto:</h5></label>
+                                
+                                <input type="text" class="form-control" placeholder="0.00" name="jsDesconto"
+                                id="jsDesconto" required>
+                                
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-4">
+
+                            <div class="col-lg-12">
+
+                                <h5>Valores Adicionais:</h5>
+
+                            </div>
+
+                        </div>                          
+
+                        <form class="form-group mt-1" id="formValorAdicional">
 
                             <div class="form-row">
 
                                 <div class="form-group col-lg-6">
 
                                     <label for="jsValorPacoteAdicional">
-                                        <h5>Valor: *</h5>
+                                        <h6>Valor: *</h6>
                                     </label>
                                     <input type="text" class="form-control" placeholder="0.00" name="jsValorAdicional"
                                         id="jsValorAdicional" required>
@@ -660,7 +683,7 @@
                                 <div class="form-group col-lg-6">
 
                                     <label for="jsDescricaoValorAdicional">
-                                        <h5>Descrição: *</h5>
+                                        <h6>Descrição: *</h6>
                                     </label>
                                     <input type="text" class="form-control" placeholder="Ex: Hora Extra"
                                         name="jsDescricaoValorAdicional" id="jsDescricaoValorAdicional" required>
@@ -950,19 +973,25 @@
 
                         <div class="row my-3">
 
-                            <div class="col-lg-4 my-1">
+                            <div class="col-lg-3 my-1">
 
                                 <h5 class="fontInfValores" id="valorTotal"></h5>
 
                             </div>
 
-                            <div class="col-lg-4 my-1">
+                            <div class="col-lg-3 my-1">
+
+                                <h5 class="fontInfValores" id="totalDesconto"></h5>
+
+                            </div>
+                            
+                            <div class="col-lg-3 my-1">
 
                                 <h5 class="fontInfValores" id="totalDespesas"></h5>
 
                             </div>
 
-                            <div class="col-lg-4 my-1">
+                            <div class="col-lg-3 my-1">
 
                                 <h5 class="fontInfValores" id="lucro"></h5>
 
@@ -1706,7 +1735,7 @@
                                 <div class="col-lg-8 my-2">
 
                                     <button class="btn btn-link collapsed btn-block" type="button" data-toggle="collapse" data-target="#collapseValoresAdd" aria-expanded="false" aria-controls="collapseValoresAdd">
-                                        <h4 class="mb-0">5° ETAPA - VALORES ADICIONAIS</h4>
+                                        <h4 class="mb-0">5° ETAPA - VALORES ADICIONAIS & DESCONTO</h4>
                                     </button>
 
                                 </div>
@@ -2008,6 +2037,7 @@
                             <input type="hidden" name="festaRealizadaF" id="festaRealizadaF" value="">
                             <!-- input valores finais da festa -->
                             <input type="hidden" name="valorTotalFesta" id="valorTotalFesta" value="">
+                            <input type="hidden" name="descontoEvento" id="descontoEvento" value="">
                             <input type="hidden" name="valorTotalDespesa" id="valorTotalDespesa" value="">
                             <input type="hidden" name="valorTotalLucro" id="valorTotalLucro" value="">
                             <input type="hidden" name="valorReceberContratante" id="valorReceberContratante" value="">
@@ -2079,6 +2109,7 @@
         $("#jsValorAdicional").mask("999999.00", {reverse: true});
         $("#jsValorDepesa").mask("999999.00", {reverse: true});
         $("#jsValorFormaPagamento").mask("999999.00", {reverse: true});
-  
+        $("#jsDesconto").mask("999999.00", {reverse: true});
+ 
     </script>
 </html>

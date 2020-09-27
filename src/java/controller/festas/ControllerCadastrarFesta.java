@@ -210,6 +210,18 @@ public class ControllerCadastrarFesta extends HttpServlet {
 
                 }
             }
+            
+            //DESCONTO DO EVENTO
+            String descontoEvento = request.getParameter("descontoEvento");
+            if (descontoEvento != null) {
+                if (!descontoEvento.equals("")) {
+
+                    //converte o valor para float e add na festa
+                    float descontoEvento2 = Float.parseFloat(descontoEvento);
+                    festa.setDescontoEvento(descontoEvento2);
+
+                }
+            }            
 
             //VALOR TOTAL DESPESA
             String valorTotalDespesa = request.getParameter("valorTotalDespesa");

@@ -58,180 +58,224 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        
+
         <div class="jumbotron text-center">
             <h1>Despesas</h1>
             <h4>Origem:  ${origemDaDespesa} | Exibir: ${exibirDespesa} | Período: ${periodoDespesa} à ${periodoDespesa2} </h4>
         </div>
-        
+
         <input type="hidden" id="origemDespesa" value="${origemDespesa}">
         <input type="hidden" id="origemEvento" value="${origemEvento}">
         <input type="hidden" id="origemEventoSemConteudo" value="${origemEventoSemConteudo}">
         <input type="hidden" id="origemDespesaSemConteudo" value="${origemDespesaSemConteudo}">
-        
+
         <div id="divOrigemDespesa" class="my-3" style="display: none">
-            
+
             <div class="container">
 
                 <div class="row justify-content-center">
 
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        
+
                         <h4>Origem: Cadastro de Despesa</h4>
-                        
+
+                        <div class="row my-2 mt-4">
+
+                            <div class="col-lg-4">
+
+                                <h4>Valor Total: R$ ${valorTotalDespesa}</h4> 
+
+                            </div>
+                            
+                            <div class="col-lg-4">
+
+                                <h4>Valor Pago: R$ ${valorPagoDespesa}</h4> 
+
+                            </div>
+                            
+                            <div class="col-lg-4">
+
+                                <h4>Valor em Aberto: R$ ${valorAbertoDespesa}</h4> 
+
+                            </div>
+
+                        </div>                        
+
                         <div class="table-responsive border border-secondary rounded">
 
-                           <table class="table table-striped table-bordered">
-                               <thead> 
-                                   <tr class="bg-danger">    
-                                       <th scope="col">Descrição da Despesa</th>
-                                       <th scope="col">Valor Total</th>
-                                       <th scope="col">Valor Pago</th>
-                                       <th scope="col">Pago?</th>
-                                       <th></th>
-                                   </tr>
-                               </thead> 
-                               <tbody>
-                                   <c:forEach items="${listagemDespesaDespesa}" var="item"> 
-                                       <tr>
-                                           <td>${item.descricaoDespesa}</td>
-                                           <td>${item.valor}</td>
-                                           <td>${item.valorPago}</td>
-                                           <td>${item.pago}</td>
-                                           <td>
-                                               <form method="POST" action="editarDespesa">                                               
-                                                   <input type="hidden" name="periodoDespesa" value="${periodoDespesa}">
-                                                   <input type="hidden" name="periodoDespesa2" value="${periodoDespesa2}">
-                                                   <input type="hidden" name="exibir" value="${exibir}">
-                                                   <input type="hidden" name="origem" value="${origem}">
-                                                   <input type="hidden" name="idDespesa" value="${item.idDespesa}">
-                                                   <button class="btn btn-info"> +Detalhes </button>
-                                               </form> 
-                                           </td>
-                                       </tr>
-                                   </c:forEach>
-                               </tbody>
-                           </table>
+                            <table class="table table-striped table-bordered">
+                                <thead> 
+                                    <tr class="bg-danger">    
+                                        <th scope="col">Descrição da Despesa</th>
+                                        <th scope="col">Valor Total</th>
+                                        <th scope="col">Valor Pago</th>
+                                        <th scope="col">Pago?</th>
+                                        <th></th>
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <c:forEach items="${listagemDespesaDespesa}" var="item"> 
+                                        <tr>
+                                            <td>${item.descricaoDespesa}</td>
+                                            <td>${item.valor}</td>
+                                            <td>${item.valorPago}</td>
+                                            <td>${item.pago}</td>
+                                            <td>
+                                                <form method="POST" action="editarDespesa">                                               
+                                                    <input type="hidden" name="periodoDespesa" value="${periodoDespesa}">
+                                                    <input type="hidden" name="periodoDespesa2" value="${periodoDespesa2}">
+                                                    <input type="hidden" name="exibir" value="${exibir}">
+                                                    <input type="hidden" name="origem" value="${origem}">
+                                                    <input type="hidden" name="idDespesa" value="${item.idDespesa}">
+                                                    <button class="btn btn-info"> +Detalhes </button>
+                                                </form> 
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
 
                         </div>  
 
                     </div> 
 
                 </div> 
-                                       
+
             </div>
-                                               
+
         </div>
-        
+
         <div id="divOrigemDespesaSemConteudo" class="my-3" style="display: none">
-            
+
             <div class="container">
 
                 <div class="row justify-content-center">
 
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        
+
                         <h4>Origem: Cadastro de Despesa</h4>
-                        
+
                         <h5>${msgTratamentoSemConteudo}</h5>
-                        
+
                     </div> 
 
                 </div> 
-                                       
+
             </div>
-                                               
+
         </div>
-        
-                                                   
-        <div id="divOrigemEvento" class="my-3" style="display: none">
-            
+
+
+        <div id="divOrigemEvento" class="my-3 mt-5" style="display: none">
+
             <div class="container">
 
                 <div class="row justify-content-center">
 
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        
-                        <h4>Origem: Cadastro de Evento</h4>
 
+                        <h4>Origem: Cadastro de Evento</h4>
+                        
+                        <div class="row my-2 mt-4">
+
+                            <div class="col-lg-4">
+
+                                <h4>Valor Total: R$ ${valorTotalEvento}</h4> 
+
+                            </div>
+                            
+                            <div class="col-lg-4">
+
+                                <h4>Valor Pago: R$ ${valorPagoEvento}</h4> 
+
+                            </div>
+                            
+                            <div class="col-lg-4">
+
+                                <h4>Valor em Aberto: R$ ${valorAbertoEvento}</h4> 
+
+                            </div>
+
+                        </div>  
+                        
                         <div class="table-responsive border border-secondary rounded">
 
-                           <table class="table table-striped table-bordered">
-                               <thead> 
-                                   <tr  class="bg-danger">  
-                                       <th scope="col">Descrição do Evento</th>
-                                       <th scope="col">Valor Total</th>
-                                       <th scope="col">Valor Pago</th>
-                                       <th scope="col">Pago?</th>
-                                       <th></th>
-                                   </tr>
-                               </thead> 
-                               <tbody>
-                                   <c:forEach items="${listagemDespesaEvento}" var="item"> 
-                                       <tr>
-                                           <td>${item.descricaoEvento}</td>
-                                           <td>${item.valor}</td>
-                                           <td>${item.valorPago}</td>
-                                           <td>${item.pago}</td>
-                                           <td>
-                                               <form method="GET" action="editarFesta">
-                                                   <input type="hidden" name="idFesta" value="${item.idFesta}">
-                                                   <button class="btn btn-info"> +Detalhes </button>
-                                               </form> 
-                                           </td>
-                                       </tr>
-                                   </c:forEach>
-                               </tbody>
-                           </table>
+                            <table class="table table-striped table-bordered">
+                                <thead> 
+                                    <tr  class="bg-danger">  
+                                        <th scope="col">Descrição do Evento</th>
+                                        <th scope="col">Valor Total</th>
+                                        <th scope="col">Valor Pago</th>
+                                        <th scope="col">Pago?</th>
+                                        <th></th>
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <c:forEach items="${listagemDespesaEvento}" var="item"> 
+                                        <tr>
+                                            <td>${item.descricaoEvento}</td>
+                                            <td>${item.valor}</td>
+                                            <td>${item.valorPago}</td>
+                                            <td>${item.pago}</td>
+                                            <td>
+                                                <form method="GET" action="editarFesta">
+                                                    <input type="hidden" name="idFesta" value="${item.idFesta}">
+                                                    <button class="btn btn-info"> +Detalhes </button>
+                                                </form> 
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
 
                         </div>  
 
                     </div> 
 
                 </div> 
-                                       
+
             </div>
-                                               
+
         </div>
-                        
-        <div id="divOrigemEventoSemConteudo" class="my-3" style="display: none">
-            
+
+        <div id="divOrigemEventoSemConteudo" class="my-3 mt-5" style="display: none">
+
             <div class="container">
 
                 <div class="row justify-content-center">
 
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        
+
                         <h4>Origem: Cadastro de Evento</h4>
-                        
+
                         <h5>${msgTratamentoSemConteudo}</h5>
-                        
+
                     </div> 
 
                 </div> 
-                                       
+
             </div>
-                                               
+
         </div>                        
 
         <div class="container mt-4">
-            
+
             <div class="row justify-content-center">
-                
+
                 <div class="col-sm-12 col-md-10 col-lg-8">
-                    
+
                     <div class="form-col-lg-8 my-2">
 
                         <a  class="btn btn-secondary btn-lg btn-block" href="despesaPrincipal.jsp">Voltar</a> 
 
                     </div>
-                            
+
                 </div>  
-                
+
             </div>
-            
+
         </div> 
-                        
+
     </body>
     <script src="../../javascripts/cadastroDeDespesa/despesaListagem.js"></script>
 </html>

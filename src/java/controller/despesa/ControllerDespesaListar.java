@@ -36,6 +36,16 @@ public class ControllerDespesaListar extends HttpServlet{
         String periodoDespesaConvertido2 = "";
         String msgValidacao = "Desculpe, no momento não foi encontrado nenhum resultado para o filtro informado!";
         
+        //valores da origem despesa
+        float valorTotalDespesa = 0;
+        float valorPagoDespesa = 0;
+        float valorAbertoDespesa = 0;
+        
+        //valores da origem despesa
+        float valorTotalEvento = 0;
+        float valorPagoEvento = 0;
+        float valorAbertoEvento = 0;
+        
         Conversor conversor = new Conversor();
         
         //classe que vai receber a lista das despesa
@@ -133,7 +143,17 @@ public class ControllerDespesaListar extends HttpServlet{
                     //chama o método de comunicação com o banco e recebe o resultado na lista
                     listagemDespesaDespesa = despesaBanco.getListagemDeDespesa(exibir2, periodoDespesaConvertido, periodoDespesaConvertido2);
                     
-                    if(listagemDespesaDespesa.size() > 0) { //se a lista tiver conteudo 
+                    if(listagemDespesaDespesa.size() > 0) { //se a lista tiver conteudo
+                        
+                        //faz o calculo dos valores da despesa de despesa
+                        for(int i = 0; i < listagemDespesaDespesa.size(); i++){
+                            
+                            valorTotalDespesa = valorTotalDespesa + listagemDespesaDespesa.get(i).getValor();
+                            valorPagoDespesa = valorPagoDespesa + listagemDespesaDespesa.get(i).getValorPago();
+                            
+                        }
+                        
+                        valorAbertoDespesa = valorTotalDespesa - valorPagoDespesa;
                         
                         //adiciona os parametro no response e dispacha para a pagina de listagem
                         request.setAttribute("listagemDespesaDespesa", listagemDespesaDespesa);
@@ -144,6 +164,9 @@ public class ControllerDespesaListar extends HttpServlet{
                         request.setAttribute("exibir", exibir);
                         request.setAttribute("periodoDespesa", periodoDespesa);
                         request.setAttribute("periodoDespesa2", periodoDespesa2);
+                        request.setAttribute("valorTotalDespesa", valorTotalDespesa);
+                        request.setAttribute("valorPagoDespesa", valorPagoDespesa);
+                        request.setAttribute("valorAbertoDespesa", valorAbertoDespesa);                         
                         
                         request.getRequestDispatcher("despesaListagem.jsp").forward(request, response); // dispara para essa página
                         
@@ -178,6 +201,16 @@ public class ControllerDespesaListar extends HttpServlet{
                     
                     if(listagemDespesaEvento.size() > 0) { //se a lista tiver conteudo 
                         
+                        //faz o calculo dos valores da despesa de evento
+                        for(int i = 0; i < listagemDespesaEvento.size(); i++){
+                            
+                            valorTotalEvento = valorTotalEvento + listagemDespesaEvento.get(i).getValor();
+                            valorPagoEvento = valorPagoEvento + listagemDespesaEvento.get(i).getValorPago();
+                            
+                        }
+                        
+                        valorAbertoEvento = valorTotalEvento - valorPagoEvento;
+                        
                         //adiciona os parametro no response e dispacha para a pagina de listagem
                         request.setAttribute("listagemDespesaEvento", listagemDespesaEvento);
                         request.setAttribute("origemEvento", 1);
@@ -186,7 +219,10 @@ public class ControllerDespesaListar extends HttpServlet{
                         request.setAttribute("origemDaDespesa", origemDaDespesa);
                         request.setAttribute("exibirDespesa", exibirDespesa);
                         request.setAttribute("periodoDespesa", periodoDespesa);
-                        request.setAttribute("periodoDespesa2", periodoDespesa2);                      
+                        request.setAttribute("periodoDespesa2", periodoDespesa2);
+                        request.setAttribute("valorTotalEvento", valorTotalEvento);
+                        request.setAttribute("valorPagoEvento", valorPagoEvento);
+                        request.setAttribute("valorAbertoEvento", valorAbertoEvento);                        
                         
                         request.getRequestDispatcher("despesaListagem.jsp").forward(request, response); // dispara para essa página
                         
@@ -226,9 +262,22 @@ public class ControllerDespesaListar extends HttpServlet{
                         //verifica se tem despesa de evento
                         if(listagemDespesaEvento.size() > 0){
                             
+                            //faz o calculo dos valores da despesa de evento
+                            for(int i = 0; i < listagemDespesaEvento.size(); i++){
+
+                                valorTotalEvento = valorTotalEvento + listagemDespesaEvento.get(i).getValor();
+                                valorPagoEvento = valorPagoEvento + listagemDespesaEvento.get(i).getValorPago();
+
+                            }
+
+                            valorAbertoEvento = valorTotalEvento - valorPagoEvento;
+                        
                             //adiciona os parametro no response e dispacha para a pagina de listagem
                             request.setAttribute("listagemDespesaEvento", listagemDespesaEvento);
                             request.setAttribute("origemEvento", 1);
+                            request.setAttribute("valorTotalEvento", valorTotalEvento);
+                            request.setAttribute("valorPagoEvento", valorPagoEvento);
+                            request.setAttribute("valorAbertoEvento", valorAbertoEvento);                               
                             
                         }else{
                             
@@ -241,9 +290,22 @@ public class ControllerDespesaListar extends HttpServlet{
                         //verifica se tem despesa de despesa
                         if(listagemDespesaDespesa.size() > 0){
                             
+                            //faz o calculo dos valores da despesa de despesa
+                            for(int i = 0; i < listagemDespesaDespesa.size(); i++){
+
+                                valorTotalDespesa = valorTotalDespesa + listagemDespesaDespesa.get(i).getValor();
+                                valorPagoDespesa = valorPagoDespesa + listagemDespesaDespesa.get(i).getValorPago();
+
+                            }
+
+                            valorAbertoDespesa = valorTotalDespesa - valorPagoDespesa;
+                        
                             //adiciona os parametro no response e dispacha para a pagina de listagem
                             request.setAttribute("listagemDespesaDespesa", listagemDespesaDespesa);
-                            request.setAttribute("origemDespesa", 1);      
+                            request.setAttribute("origemDespesa", 1);
+                            request.setAttribute("valorTotalDespesa", valorTotalDespesa);
+                            request.setAttribute("valorPagoDespesa", valorPagoDespesa);
+                            request.setAttribute("valorAbertoDespesa", valorAbertoDespesa);                            
                             
                         }else{
                          
