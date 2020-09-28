@@ -1,0 +1,70 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/09/2020, 15:30:27
+    Author     : João Pedro
+*/
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/03/2020, 20:27:55
+    Author     : João Pedro
+*/
+
+body, label, button, a, h1, input {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-danger {
+    background-color: #17a2b8!important;
+}
+
+.jumbotron {
+    background-color: #07bfe6;
+    color: white;
+    padding: 2rem 2rem !important; 
+    border-radius: unset;    
+}
+
+#textoEventoAgendados{
+    font-size: 1.17rem;
+}
+
+#textoResumoEventos{
+    font-size: 1.17rem;
+}
+
+#textoValidacaoAgendamento{
+    font-size: 1.17rem;
+}
+
+#textoAlterarSenha{
+    font-size: 1.17rem;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    #textoEventoAgendados{
+        font-size: 1.35rem;
+    }
+
+    #textoResumoEventos{
+        font-size: 1.35rem;
+    }
+
+    #textoValidacaoAgendamento{
+        font-size: 1.35rem;
+    }
+
+    #textoAlterarSenha{
+        font-size: 1.35rem;;
+    } 
+    
+}

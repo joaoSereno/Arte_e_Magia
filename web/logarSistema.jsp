@@ -17,6 +17,9 @@
             
         }else{ //se for usuario do tipo FUNC
             
+            request.setAttribute("idUsuario", usuarioLogado.getIdusuario());
+            request.setAttribute("nomeUsuario", usuarioLogado.getNomeUsuario());
+            request.getRequestDispatcher("funcPaginaInicial.jsp").forward(request, response); //redireciona para a pagina de inicial dos funcionarios           
         }
         
     }else{ //se não aqui
