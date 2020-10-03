@@ -247,5 +247,50 @@ public class FuncionarioSQL extends Conexao { //extende classe de conexão com o
         }
         
     }
+    
+    public Funcionario getFuncionarioEspecificoUsuario(int idUsuario) throws Exception {
+
+        try {
+            open(); //abre conexão com o banco
+
+            //instanciando "variavel" do tipo funcionario para returnar na chamada
+            Funcionario funcionario = new Funcionario();
+
+            //define consulta
+            stmt = con.prepareStatement("SELECT f.idFuncionario,\n" +
+                                        "	f.nomeFuncionario,\n" +
+                                        "       f.sexo\n" +
+                                        "FROM usuario u,\n" +
+                                        "	 funcionario f\n" +
+                                        "WHERE u.idFuncionario = f.idFuncionario\n" +
+                                        "AND u.idusuario = ?");
+            
+            //seta valores para comando sql
+            stmt.setInt(1, idUsuario);
+            
+            ResultSet resultadoConsulta = stmt.executeQuery(); //salvando resultado na query do banco em uma variavel
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+
+                funcionario.setIdFuncionario(resultadoConsulta.getInt("f.idFuncionario"));
+                funcionario.setNomeFuncionario(resultadoConsulta.getString("f.nomeFuncionario"));
+                funcionario.setSexo(resultadoConsulta.getString("f.sexo"));
+
+            }
+            close(); // fecha conexão com o banco
+            return funcionario;//retorna funcionario para onde foi chamado
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+        
+    }    
 
 }

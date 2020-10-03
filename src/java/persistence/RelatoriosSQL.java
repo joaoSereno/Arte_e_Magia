@@ -266,58 +266,46 @@ public class RelatoriosSQL extends Conexao{
                 switch (statusEvento) {
                     case 1:
                         stmt = con.prepareStatement("SELECT COUNT(1),\n" +
-                                                    "	    func.nomeFuncionario,\n" +
-                                                    "	    SUM(funcFesta.cacheDaFesta)\n" +
+                                                    "	   SUM(funcFesta.cacheDaFesta)\n" +
                                                     "FROM funcionariofesta funcFesta,\n" +
-                                                    "	  funcionario func,\n" +
+                                                    "     funcionario func,\n" +
                                                     "     festa festa\n" +
-                                                    "WHERE func.idFuncionario = funcFesta.idFuncionario\n" +
-                                                    "AND funcFesta.idFesta = festa.idFesta\n" +
-                                                    "AND func.ativo = 1 \n" +
-                                                    "AND func.idFuncionario = ? \n" +
-                                                    "AND festa.dataFesta >= ? \n" +
+                                                    "WHERE festa.dataFesta >= ? \n" +
                                                     "AND festa.dataFesta <= ? \n" +
-                                                    "GROUP BY func.nomeFuncionario\n" +
-                                                    "ORDER BY SUM(funcFesta.cacheDaFesta) DESC");
+                                                    "AND func.idFuncionario = ?  \n" +
+                                                    "AND func.idFuncionario = funcFesta.idFuncionario\n" +
+                                                    "AND funcFesta.idFesta = festa.idFesta");
 
                         break;
 
                     case 2:
                         stmt = con.prepareStatement("SELECT COUNT(1),\n" +
-                                                    "	    func.nomeFuncionario,\n" +
-                                                    "	    SUM(funcFesta.cacheDaFesta)\n" +
+                                                    "	   SUM(funcFesta.cacheDaFesta)\n" +
                                                     "FROM funcionariofesta funcFesta,\n" +
-                                                    "	  funcionario func,\n" +
+                                                    "     funcionario func,\n" +
                                                     "     festa festa\n" +
-                                                    "WHERE func.idFuncionario = funcFesta.idFuncionario\n" +
-                                                    "AND funcFesta.idFesta = festa.idFesta\n" +
-                                                    "AND func.ativo = 1 \n" +
-                                                    "AND festa.festaStatus = 1 \n" +
-                                                    "AND func.idFuncionario = ? \n" +
-                                                    "AND festa.dataFesta >= ? \n" +
+                                                    "WHERE festa.dataFesta >= ? \n" +
                                                     "AND festa.dataFesta <= ? \n" +
-                                                    "GROUP BY func.nomeFuncionario\n" +
-                                                    "ORDER BY SUM(funcFesta.cacheDaFesta) DESC");
+                                                    "AND func.idFuncionario = ?  \n" +
+                                                    "AND func.idFuncionario = funcFesta.idFuncionario\n" +
+                                                    "AND funcFesta.idFesta = festa.idFesta\n" +
+                                                    "AND festa.festaStatus = 1");
 
 
                         break;
 
                     default:
                         stmt = con.prepareStatement("SELECT COUNT(1),\n" +
-                                                    "	    func.nomeFuncionario,\n" +
-                                                    "	    SUM(funcFesta.cacheDaFesta)\n" +
+                                                    "	   SUM(funcFesta.cacheDaFesta)\n" +
                                                     "FROM funcionariofesta funcFesta,\n" +
-                                                    "	  funcionario func,\n" +
+                                                    "     funcionario func,\n" +
                                                     "     festa festa\n" +
-                                                    "WHERE func.idFuncionario = funcFesta.idFuncionario\n" +
-                                                    "AND funcFesta.idFesta = festa.idFesta\n" +
-                                                    "AND func.ativo = 1 \n" +
-                                                    "AND festa.festaStatus = 0 \n" +
-                                                    "AND func.idFuncionario = ? \n" +
-                                                    "AND festa.dataFesta >= ? \n" +
+                                                    "WHERE festa.dataFesta >= ? \n" +
                                                     "AND festa.dataFesta <= ? \n" +
-                                                    "GROUP BY func.nomeFuncionario\n" +
-                                                    "ORDER BY SUM(funcFesta.cacheDaFesta) DESC");
+                                                    "AND func.idFuncionario = ?  \n" +
+                                                    "AND func.idFuncionario = funcFesta.idFuncionario\n" +
+                                                    "AND funcFesta.idFesta = festa.idFesta\n" +
+                                                    "AND festa.festaStatus = 0");
                         break;
                 }
                 
@@ -340,7 +328,9 @@ public class RelatoriosSQL extends Conexao{
 
                 //seta valores pegos no select no cliente
                 relatorioFuncionario.setTotalFesta(resultadoConsulta.getInt("COUNT(1)"));
-                relatorioFuncionario.setNomeFuncionario(resultadoConsulta.getString("func.nomeFuncionario"));
+                if (idFuncionario == 0) {
+                    relatorioFuncionario.setNomeFuncionario(resultadoConsulta.getString("func.nomeFuncionario"));
+                }
                 relatorioFuncionario.setTotalGanho(resultadoConsulta.getFloat("SUM(funcFesta.cacheDaFesta)"));
                 relatorioFuncionario.setCount(count);
 

@@ -18,6 +18,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>        
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- Icons -->
@@ -26,7 +27,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->       
         <link rel="stylesheet" href="custom/css/navBarOnly/navBar.css">
-<!--        <link rel="stylesheet" href="custom/css/paginaInicialFunc/paginaInicialFunc.css" />-->
+        <link rel="stylesheet" href="custom/css/acessosFunc/funcResumoEvento.css" />
     </head>
     <body>
         <!-- NavBar -->
@@ -100,7 +101,7 @@
                         <div class="form-row my-2">
                             
                             <div class="form-group col-lg-12">
-                                <button type="submit" class="btn btn-info btn-lg btn-block" >Gerar Resumo</button>
+                                <button type="submit" class="btn btn-info btn-lg btn-block">Gerar Resumo</button>
                             </div>
                             
                         </div>   
@@ -125,30 +126,40 @@
         
         <div class="container mt-3" id="divResumoEventoFunc" style="display: none">        
             
+            <input name="controllerResumoEventoResultado" id="controllerResumoEventoResultado" type="hidden" value="${controllerResumoEventoResultado}">
+            
             <div class="row justify-content-center">
                 
                 <div class="col-sm-12 col-md-8 col-lg-8">
                 
                     <div class="row">
-
-                        <div class="col-lg-4 my-1">
                         
-                            <h4>Resumo de Eventos | Colaborador: ${nomeUsuario}</h4>
-                        
-                        </div>
+                        <div class="col-lg-12 my-1">
                             
-                        <div class="col-lg-4 my-1">
+                            <h4>Resumo de Eventos | Colaborador: ${nomeUsuario}</h4>
+                            
+                        </div>
+
+                    </div>
                         
+                    <div class="row">
+                        
+                        <div class="col-lg-12 my-1">
+                            
                             <h4>Qtd de Evento Realizados: ${totalEventoPeriodo}</h4>
-                 
+                            
                         </div>
+
+                    </div>
                         
-                        <div class="col-lg-4 my-1">
+                    <div class="row">
                         
-                            <h4>Valor Total Recebido: R$ ${totalValorPagoFunc}</h4>
-                        
-                        </div>
-                        
+                        <div class="col-lg-12 my-1">
+                            
+                            <h4>Valor Total Recebido: R$ ${totalValorPagoFunc}</h4> 
+                            
+                        </div>   
+
                     </div>
  
                 </div>               
@@ -183,11 +194,5 @@
         </div> 
                         
     </body>
-    
-    <script>
-        $("#periodoEvento").mask("00/00/0000");
-        $("#periodoEvento2").mask("00/00/0000");
-    </script>
-    
-    </body>
+    <script src="javascripts/acessosFunc/funcResumoEvento.js"></script>
 </html>

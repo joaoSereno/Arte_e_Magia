@@ -26,7 +26,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->       
         <link rel="stylesheet" href="custom/css/navBarOnly/navBar.css">
-        <link rel="stylesheet" href="custom/css/paginaInicialFunc/paginaInicialFunc.css" />
+        <link rel="stylesheet" href="custom/css/acessosFunc/paginaInicialFunc.css" />
     </head>
     <body>
         <!-- NavBar -->
@@ -43,12 +43,12 @@
                 <!-- Fim navbar da página-->
             </div>
         </nav>
-        
+
         <div class="jumbotron text-center">
-            <h1>Olá ${nomeUsuario}, bem vindo ao sistema do Arte & Magia</h1>
+            <h2>Olá ${nomeUsuario}, bem vindo ao sistema do Arte & Magia</h2>
         </div>
         
-        <div class="container my-2">
+        <div class="container my-3" id="divMsgAlteracaoSenha" style="display: none">
 
             <div class="row justify-content-center">
 
@@ -56,16 +56,45 @@
 
                     <div class="row">
                         
+                        <!-- 1 = msgConfirmacaoAlteracaoSenha ||  2 = msgErroAlteracaoSenha ||  3 = msgErroAlteracaoSenha2 -->
+                        <input id="controllerMsgAlteracaoSenha" type="hidden" value="${controllerMsgAlteracaoSenha}">
+
+                        <div class="col-lg-12">
+
+                            <p id="msgConfirmacaoAlteracaoSenha" class="text-success" style="display: none">${msgConfirmacaoAlteracaoSenha}</p>
+                            
+                            <p id="msgErroAlteracaoSenha" class="text-danger" style="display: none">${msgErroAlteracaoSenha}</p>
+                            
+                            <p id="msgErroAlteracaoSenha2" class="text-danger">${msgErroSenhasNaoIguais}</p>
+                            
+                        </div>
+
+                    </div>   
+
+                </div>  
+
+            </div> 
+
+        </div>         
+
+        <div class="container my-2">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+
                         <div class="col-lg-12">
 
                             <p id="textoEventoAgendados">Liste seus eventos agendados através do botão "Eventos Agendados".</p>
 
                         </div>
-                        
+
                     </div>  
-                    
+
                     <div class="row">
-                        
+
                         <div class="col-lg-12">
 
                             <form method="GET" action="listarAgendamentosFunc">
@@ -75,51 +104,51 @@
                             </form>   
 
                         </div>
-                        
+
                     </div>  
-                                        
+
                 </div>  
-                
+
             </div> 
-            
-        </div> 
-                            
-        <div class="container my-3">
+
+        </div>
+                                
+        <div class="container mt-3">
 
             <div class="row justify-content-center">
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
                     <div class="row">
-                        
+
                         <div class="col-lg-12">
 
                             <p id="textoValidacaoAgendamento" class="text-danger">${msgValidacaoAgendamento}</p> 
-
+                            
                         </div>
-                        
+
                     </div>   
-                                        
+
                 </div>  
-                
+
             </div> 
-            
-        </div>                         
-        
-        <div class="container my-2" id="divAgendamentoFesta" style="display: none">
+
+        </div>                                 
+
+        <div class="container mt-3" id="divAgendamentoFesta" style="display: none">
 
             <div class="row justify-content-center">
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
                     <div class="row">
-                        
+
                         <div class="col-lg-12">        
-                            
+
                             <div class="table-responsive border border-secondary rounded"> 
-                                
+
                                 <input type="hidden" id="controllerListagemAgendamento" value="${controllerListagemAgendamento}">          
-                                
+
                                 <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr class="bg-danger">
@@ -148,37 +177,37 @@
                                         </c:forEach>
                                     </tbody>
                                 </table>
-                                
+
                             </div>   
-                                
+
                         </div>
-                        
+
                     </div>  
-                                        
+
                 </div>  
-                
+
             </div> 
-            
+
         </div>
-                                                               
-        <div class="container my-2">
+
+        <div class="container mt-3">
 
             <div class="row justify-content-center">
 
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
                     <div class="row">
-                        
+
                         <div class="col-lg-12">
 
                             <p id="textoResumoEventos">Veja o resumo dos eventos que você realizou através do botão "Resumo de Eventos". </p>
 
                         </div>
-                        
+
                     </div>  
-                    
+
                     <div class="row">
-                        
+
                         <div class="col-lg-12">
 
                             <form method="GET" action="paginaResumoEventoFunc">
@@ -188,15 +217,15 @@
                             </form>   
 
                         </div>
-                        
+
                     </div>  
-                                        
+
                 </div>  
-                
+
             </div> 
-            
+
         </div>
-                                                        
+
         <div class="container my-2 mt-5">
 
             <div class="row justify-content-center">
@@ -204,96 +233,101 @@
                 <div class="col-sm-12 col-md-10 col-lg-8">
 
                     <div class="row">
-                        
+
                         <div class="col-lg-12">
 
                             <p id="textoAlterarSenha">Altere sua senha de acesso através do botão "Alterar Senha". </p>
 
                         </div>
-                        
+
                     </div>  
-                    
+
                     <div class="row">
-                        
+
                         <div class="col-lg-12">
 
                             <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modalAlteracaoSenha">Alterar Senha</button> 
 
                         </div>
-                        
+
                     </div>  
-                                        
+
                 </div>  
-                
+
             </div> 
-            
+
         </div>
-                                
-        <!-- Modal de exclusão do cadastro-->
-        <div>
-            
-            <div class="modal fade" id="modalAlteracaoSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                
-                <div class="modal-dialog" role="document">
-                  
-                    <div class="modal-content">
 
-                        <div class="modal-header">
+        <!-- Modal de alterar senha-->
+        <div class="modal fade" id="modalAlteracaoSenha" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
-                            <h5 class="modal-title" id="exampleModalLabel">Alteração de Senha</h5>
-                            
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                            
-                        </div>
+            <div class="modal-dialog" role="document">
 
-                        <div class="modal-body">
-                          Tem certeza que deseja realizar a exclusão do evento?
-                        </div>
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="modalAlteracaoSenha">Alteração de Senha</h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
 
                         <div class="container">
-                            
-                            <div class="row justify-content-center">
-                                
-                                <div class="col-sm-12 col-md-10 col-lg-8">
-                                    
-                                    <form method="POST" action="alterarSenhaFunc">
 
-                                        <div class="form-row">
+                            <form method="POST" action="alterarSenhaFunc">
 
-                                            <div class="form-group col-lg-6">
+                                <input name="idUsuario" type="hidden" value="${idUsuario}">
+                                <input name="nomeUsuario" type="hidden" value="${nomeUsuario}">
 
-                                                <input name="idUsuario" type="hidden" value="${idUsuario}">
-                                                <input name="nomeUsuario" type="hidden" value="${nomeUsuario}">
+                                <div class="form-row">
 
-                                                <button type="submit" class="btn btn-danger btn-block" value="Confirmar">Confirmar</button>
+                                    <span>Informe sua nova senha nos campos a seguir:</span>
 
-                                            </div>
-                                                
-                                            <div class="form-group col-lg-6">
-
-                                                <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Cancelar</button>
-
-                                            </div>
-                                            
-                                        </div>
-
-                                    </form>                                
-                                    
                                 </div>
-                            </div>
+
+                                <div class="form-row mt-3">
+
+                                    <label for="senha">Senha *</label>
+                                    <input type="password" minlength="5" class="form-control" name="senha" required>
+
+                                </div>
+
+                                <div class="form-row mt-2">
+
+                                    <label for="confirmacaoDeSenha">Confirmação de Senha *</label>
+                                    <input type="password" minlength="5" class="form-control" name="confirmacaoDeSenha" required>
+
+                                </div>
+
+                                <div class="form-row mt-3">
+
+                                    <button type="submit" class="btn btn-info btn-block" value="Confirmar">Confirmar</button>  
+
+                                </div>
+
+                                <div class="form-row mt-3">
+
+                                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cancelar</button>
+
+                                </div>  
+
+                            </form>
 
                         </div>
 
                     </div>
-                        
+
                 </div>
-                        
+
             </div>
-                        
-        </div>                                
-                                                        
+
+        </div>                               
+
     </body>
-    <script src="javascripts/paginaInicialFunc/paginaInicialFunc.js"></script>
+    <script src="javascripts/acessosFunc/paginaInicialFunc.js"></script>
 </html>

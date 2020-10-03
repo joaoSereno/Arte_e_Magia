@@ -45,6 +45,20 @@ body, label, button, a, h1, input {
     font-size: 1.17rem;
 }
 
+#msgConfirmacaoAlteracaoSenha{
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+#msgErroAlteracaoSenha{
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+#msgErroAlteracaoSenha2{
+    font-size: 1.1rem;
+}
+
 #textoAlterarSenha{
     font-size: 1.17rem;
 }
@@ -64,7 +78,15 @@ body, label, button, a, h1, input {
     }
 
     #textoAlterarSenha{
+        font-size: 1.35rem;
+    }
+    
+    #msgConfirmacaoAlteracaoSenha{
         font-size: 1.35rem;;
-    } 
+    }
+
+    #msgErroAlteracaoSenha{
+        font-size: 1.35rem;;
+    }
     
 }

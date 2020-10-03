@@ -1,5 +1,5 @@
 <%-- 
-    Document   : paginaDetalheAgendamentoFunc
+    Document   : funcPaginaDetalheAgendamento
     Created on : 27/09/2020, 20:21:59
     Author     : João Pedro
 --%>
@@ -26,7 +26,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
         <!-- Customização -->       
         <link rel="stylesheet" href="custom/css/navBarOnly/navBar.css">
-<!--        <link rel="stylesheet" href="custom/css/paginaInicialFunc/paginaInicialFunc.css" />-->
+        <link rel="stylesheet" href="custom/css/acessosFunc/funcPaginaDetalheAgendamento.css" />
     </head>
     <body>
         <!-- NavBar -->
@@ -47,6 +47,64 @@
         <input name="idUsuario" type="hidden" value="${idUsuario}">
         <input name="nomeUsuario" type="hidden" value="${nomeUsuario}">   
         
-        <h1>Hello World!</h1>
+        <div class="jumbotron text-center">
+            <h1>Detalhes do Evento</h1>
+        </div> 
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+                
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    
+                    <div class="list-group">
+
+                        ${agendamentoFesta.descricaoFesta}
+                        ${agendamentoFesta.contratante}
+                        <h5  class="list-group-item list-group-item-info">Data do Evento:</h5>
+                        <p class="list-group-item">${agendamentoFesta.dataEvento}</p>            
+                        ${agendamentoFesta.tipoDeFesta}
+                        ${agendamentoFesta.aniversariante}
+                        ${agendamentoFesta.pacote}
+                        ${agendamentoFesta.pacotesAdicionais}
+                        ${agendamentoFesta.valorPegarContratante}
+                        ${agendamentoFesta.qtdCriancas}
+                        ${agendamentoFesta.cacheFuncionarios}
+                        ${agendamentoFesta.horarios}
+                        ${agendamentoFesta.observacaoFesta}  
+                        ${agendamentoFesta.localDaFesta} 
+
+                    </div>
+                        
+                </div>
+             
+            </div> 
+                    
+        </div>  
+                    
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">                    
+                    
+                    <form method="GET" action="listarAgendamentosFunc">
+                        
+                        <input name="idUsuario" type="hidden" value="${idUsuario}">
+                        <input name="nomeUsuario" type="hidden" value="${nomeUsuario}">
+                        
+                        <div class="form-row my-3">
+
+                            <button type="submit" class="btn btn-secondary btn-lg btn-block" value="listagemAgendamento">Voltar</button>
+                            
+                        </div>
+                
+                    </form>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
     </body>
 </html>

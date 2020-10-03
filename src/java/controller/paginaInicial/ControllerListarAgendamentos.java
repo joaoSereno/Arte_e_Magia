@@ -54,7 +54,12 @@ public class ControllerListarAgendamentos extends HttpServlet{
 
         } catch (Exception ex) {
             Logger.getLogger(ControllerListarAgendamentos.class.getName()).log(Level.SEVERE, null, ex);
-            ex.getMessage();
+            
+            String msgValidacaoAgendamento = "Desculpe, ocorreu um erro.";
+
+            //define o atributo do response e dispacha para página
+            request.setAttribute("msgValidacaoAgendamento", msgValidacaoAgendamento);
+            request.getRequestDispatcher("paginaInicial.jsp").forward(request, response); 
         }  
         
     }  

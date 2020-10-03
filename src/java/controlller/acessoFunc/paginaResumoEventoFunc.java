@@ -22,6 +22,7 @@ public class paginaResumoEventoFunc extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //PEGANDO idUsuario e nomeUsuario E JOGANDO DE VOLTA NO DISPACHE
         int idUsuario2 = 0;
         
         String idUsuario = request.getParameter("idUsuario");
