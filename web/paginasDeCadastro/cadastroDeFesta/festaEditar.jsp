@@ -60,6 +60,114 @@
             </div>
         </nav>
         <h3>Tela Editar Festa</h3>
+        <!-- titulo da etapa -->
+        <div class="jumbotron text-center">
+            <h1 id="tituloDaEtapa">1º Etapa - Contratante</h1>
+        </div> 
+
+        <!-- 1 etapa -->
+        <!-- div de listagem cliente-->
+        <div class="container" id="listagemDeCliente">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-12 col-lg-10">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <h3> Por favor selecione o contratante do evento: </h3>
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-lg-12">
+
+                            <div class="table-responsive border border-secondary rounded">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr class="bg-info">
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">CPF/CNPJ</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${listaClientes}" var="item">
+                                            <tr>
+                                                <td>${item.nomeCliente}</td>
+                                                <td>${item.cpf}</td>
+                                                <!-- botão/form para editar registro cliente -->
+                                                <td>
+                                                    <input type="hidden" id="nomeCliente${item.idCliente}"
+                                                        value="${item.nomeCliente}">
+                                                    <button id="btnSelecionarCliente" onclick="selecionarCliente(${item.idCliente})"
+                                                        class="btn btn-info"> Selecionar </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- div de confirmação cliente-->
+        <div class="container" id="confirmacaoCliente" style="display: none">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-12 col-lg-10">
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+
+                            <h2 id="clienteSelecionado" class="text-center"></h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-2">
+
+                        <div class="col-lg-6 my-2">
+
+                            <button id="btn-trocarCliente" type="submit" class="btn btn-secondary btn-lg btn-block"
+                                onclick="trocarCliente()"> Trocar Contratante </button>
+
+                        </div>
+
+                        <div class="col-lg-6 my-2">
+
+                            <button id="btn-2etapa" class="btn btn-info btn-lg btn-block" onclick="etapa2()"> 2º Etapa </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- fim 1 etapa -->        
+        
+        
+        
+        
         <!-- div confirmar informações ( etapa final etapa )-->         
         <div id="confirmarInformacoes" style="display: none">
             <div class="accordion" id="accordionExample">

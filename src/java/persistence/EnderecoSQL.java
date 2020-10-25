@@ -167,6 +167,45 @@ public class EnderecoSQL extends Conexao {
         
         close(); // fecha conexão com o banco de dados
         
+    } 
+    
+    public Enderecos getEnderecoEspecifico(int idEnderecos) throws Exception {
+
+        try {
+            open(); //abre conexão com o banco
+
+            Enderecos endereco = new Enderecos();
+
+            stmt = con.prepareStatement("SELECT idEnderecos, cep, cidade, bairro, rua, numero, complemento FROM enderecos WHERE idEnderecos = ?"); 
+            stmt.setInt(1, idEnderecos);
+            
+            ResultSet resultadoConsulta = stmt.executeQuery(); 
+
+            while (resultadoConsulta.next()) {
+                //seta valores pego na consulta na classe endereco 
+                endereco.setIdEnderecos(resultadoConsulta.getInt("idEnderecos"));
+                endereco.setCep(resultadoConsulta.getString("cep"));
+                endereco.setCidade(resultadoConsulta.getString("cidade"));
+                endereco.setBairro(resultadoConsulta.getString("bairro"));
+                endereco.setRua(resultadoConsulta.getString("rua"));
+                endereco.setNumero(resultadoConsulta.getString("numero"));
+                endereco.setComplemento(resultadoConsulta.getString("complemento"));
+            }
+
+            close(); 
+            return endereco;
+                    
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+
     }    
     
 }

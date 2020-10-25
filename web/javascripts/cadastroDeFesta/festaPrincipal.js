@@ -8,6 +8,7 @@ var controllerMsgEvento = document.getElementById('controllerMsgEvento').value;
 var controllerListagemEvento = document.getElementById('controllerListagemEvento').value;
 var controllerCadastroEvento = document.getElementById('controllerCadastroEvento').value;
 var controllerExclusaoEvento = document.getElementById('controllerExclusaoEvento').value;
+var controllerEdicaoEvento = document.getElementById('controllerEdicaoEvento').value;
 
 if(controllerMsgEvento == 1){
     document.getElementById('divMsgEvento').style.display = '';
@@ -22,6 +23,10 @@ if(controllerCadastroEvento == 1){
 
 if(controllerExclusaoEvento == 1){
     document.getElementById('divMsgConfirmacaoDeExclusaoFesta').style.display = '';
+}
+
+if(controllerEdicaoEvento == 1){
+    document.getElementById('divMsgConfirmacaoEdicaoFesta').style.display = '';
 }
 
 //função que joga o idEvento que será excluido para o modal

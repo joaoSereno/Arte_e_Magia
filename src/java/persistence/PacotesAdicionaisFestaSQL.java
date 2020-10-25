@@ -7,6 +7,9 @@ package persistence;
 
 import configConexao.Conexao;
 import entidades.PacotesAdicionaisFesta;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -44,6 +47,47 @@ public class PacotesAdicionaisFestaSQL extends Conexao{
         stmt.execute();//executa  insert no banco de dados
         close();//fecha conexão com o banco de dados
 
+    }
+
+    public ArrayList<PacotesAdicionaisFesta> getPacotesAdicionaisEspecifica(int idEvento) throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            ArrayList<PacotesAdicionaisFesta> listaPacotesAdicionaisFesta = new ArrayList();
+
+            stmt = con.prepareStatement("SELECT idPacotesAdicionaisFesta,\n" +
+                                        "	valorPacoteAdd,\n" +
+                                        "	idFesta,\n" +
+                                        "	idTipoPacoteAdicional \n" +
+                                        "FROM pacotesadicionaisfesta\n" +
+                                        "WHERE idFesta = ?"); //executa query na base               
+            
+            stmt.setInt(1, idEvento); //seta idEvento no ?
+            
+            ResultSet resultadoConsulta = stmt.executeQuery();
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+                PacotesAdicionaisFesta pacotesAdicionaisFesta = new PacotesAdicionaisFesta();
+                
+                pacotesAdicionaisFesta.setIdPacotesAdicionaisFesta(resultadoConsulta.getInt("idPacotesAdicionaisFesta"));
+                pacotesAdicionaisFesta.setIdTipoPacoteAdicional(resultadoConsulta.getInt("idTipoPacoteAdicional"));
+                pacotesAdicionaisFesta.setValorPacoteAdd(resultadoConsulta.getFloat("valorPacoteAdd"));
+                pacotesAdicionaisFesta.setIdFesta(resultadoConsulta.getInt("idFesta"));
+
+                listaPacotesAdicionaisFesta.add(pacotesAdicionaisFesta);
+            }
+            close();
+            return listaPacotesAdicionaisFesta;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
     }    
     
 }

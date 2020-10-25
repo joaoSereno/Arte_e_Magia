@@ -228,4 +228,53 @@ public class DespesaFestaSQL extends Conexao {
 
     }    
     
+    public ArrayList<DespesaFesta> getDespesaFestaEspecifica(int idEvento) throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            ArrayList<DespesaFesta> listaDespesaFesta = new ArrayList();
+
+            stmt = con.prepareStatement("SELECT idDespesaFesta,\n" +
+                                        "	descricao,\n" +
+                                        "	idTipoDeDespesa,\n" +
+                                        "	valorDespesa,\n" +
+                                        "	idFormaPagamento,\n" +
+                                        "	idFesta,\n" +
+                                        "	status\n" +
+                                        "FROM despesafesta\n" +
+                                        "where idFesta = ?\n" +
+                                        "and isFuncionariaPag = 0"); //executa query na base               
+            
+            stmt.setInt(1, idEvento); //seta idEvento no ?
+            
+            ResultSet resultadoConsulta = stmt.executeQuery();
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+                DespesaFesta despesaFesta = new DespesaFesta();
+                
+                despesaFesta.setIdDespesaFesta(resultadoConsulta.getInt("idHorarioFesta"));
+                despesaFesta.setDescricao(resultadoConsulta.getString("idHorarioFesta"));
+                despesaFesta.setIdTipoDeDespesa(resultadoConsulta.getInt("idHorarioFesta"));
+                despesaFesta.setValorDespesa(resultadoConsulta.getFloat("idHorarioFesta"));
+                despesaFesta.setIdFormaPagamento(resultadoConsulta.getInt("idHorarioFesta"));
+                despesaFesta.setIdFesta(resultadoConsulta.getInt("idHorarioFesta"));
+                despesaFesta.setStatus(resultadoConsulta.getInt("idHorarioFesta"));
+                
+                listaDespesaFesta.add(despesaFesta);
+            }
+            
+            close();
+            return listaDespesaFesta;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    } 
+    
 }

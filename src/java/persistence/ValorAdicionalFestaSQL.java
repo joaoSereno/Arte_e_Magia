@@ -7,6 +7,9 @@ package persistence;
 
 import configConexao.Conexao;
 import entidades.ValorAdicionalFesta;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -44,6 +47,47 @@ public class ValorAdicionalFestaSQL extends Conexao{
         stmt.execute();//executa  insert no banco de dados
         close();//fecha conexão com o banco de dados
 
-    }    
+    }
+
+    public ArrayList<ValorAdicionalFesta> getValorAdicionalFestaEspecifica(int idEvento) throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            ArrayList<ValorAdicionalFesta> listaValorAdicionalFesta = new ArrayList();
+
+            stmt = con.prepareStatement("SELECT  idValorAdicionalFesta,\n" +
+                                        "	 descricao,\n" +
+                                        "	 valor,\n" +
+                                        "	 idFesta\n" +
+                                        "FROM valoradicionalfesta\n" +
+                                        "where idFesta = ?"); //executa query na base               
+            
+            stmt.setInt(1, idEvento); //seta idEvento no ?
+            
+            ResultSet resultadoConsulta = stmt.executeQuery();
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+                ValorAdicionalFesta valorAdicionalFesta = new ValorAdicionalFesta();
+                
+                valorAdicionalFesta.setIdValorAdicionalFesta(resultadoConsulta.getInt("idValorAdicionalFesta"));
+                valorAdicionalFesta.setDescricao(resultadoConsulta.getString("descricao"));
+                valorAdicionalFesta.setValor(resultadoConsulta.getFloat("valor"));
+                valorAdicionalFesta.setIdFesta(resultadoConsulta.getInt("idFesta"));
+
+                listaValorAdicionalFesta.add(valorAdicionalFesta);
+            }
+            close();
+            return listaValorAdicionalFesta;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }     
     
 }

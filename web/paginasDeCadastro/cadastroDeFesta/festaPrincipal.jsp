@@ -111,6 +111,31 @@
             </div>
 
         </div> 
+        
+        <div class="container" id="divMsgConfirmacaoEdicaoFesta" style="display: none;">
+
+            <input type="hidden" id="controllerEdicaoEvento" value="${controllerEdicaoEvento}">
+
+            <div class="row justify-content-center">
+
+                <div class="col-sm-12 col-md-10 col-lg-8">
+
+                    <div class="row">
+
+                        <div class="col-lg-12 my-3">
+
+                            <p id="textoFestaCastrada" class="text-success">${msgEdicaoFesta}</p>
+                            <p id="textoFestaCastrada" class="text-danger">${msgEdicaoFestaErro}</p>
+
+                        </div>
+
+                    </div>
+
+                </div>  
+
+            </div>
+
+        </div>                            
                             
         <div class="container" id="divMsgConfirmacaoDeExclusaoFesta" style="display: none;">
             
@@ -269,8 +294,8 @@
                                         <td>${item.festaStatus2}</td>
                                         <!-- botão/form para editar registro cliente --> 
                                         <td>
-                                            <form method="GET" action="edicaoEvento">
-                                                <input type="hidden" name="idFesta" value="${item.idFesta}">
+                                            <form method="GET" action="preEdicaoEvento">
+                                                <input type="hidden" name="idEvento" value="${item.idFesta}">
                                                 <button class="btn btn-info"> Editar </button>
                                             </form> 
                                         </td>

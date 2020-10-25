@@ -7,6 +7,9 @@ package persistence;
 
 import configConexao.Conexao;
 import entidades.FestaCrianca;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -43,5 +46,45 @@ public class FestaCriancaSQL extends Conexao{
         stmt.execute();//executa  insert no banco de dados
         close();//fecha conexão com o banco de dados
 
-    }    
+    }
+    
+    public ArrayList<FestaCrianca> getFestaCriancaEspecifica(int idEvento) throws Exception {
+        try {
+            open(); //abre conexão com o banco
+            ArrayList<FestaCrianca> listaFestaCrianca = new ArrayList();
+
+            stmt = con.prepareStatement("SELECT idFestaCrianca,\n" +
+                                        "	idFesta,\n" +
+                                        "	idCrianca\n" +
+                                        "FROM festacrianca\n" +
+                                        "WHERE idFesta = ?"); //executa query na base               
+            
+            stmt.setInt(1, idEvento); //seta idEvento no ?
+            
+            ResultSet resultadoConsulta = stmt.executeQuery();
+
+            while (resultadoConsulta.next()) { //loop até passar por todos os resultados
+                FestaCrianca festaCrianca = new FestaCrianca();
+
+                //seta valores retornados pelo banco na variavel do tipo despesa
+                festaCrianca.setIdFestaCrianca(resultadoConsulta.getInt("idFestaCrianca"));
+                festaCrianca.setIdFesta(resultadoConsulta.getInt("idFesta"));
+                festaCrianca.setIdFestaCrianca(resultadoConsulta.getInt("idCrianca"));
+
+                listaFestaCrianca.add(festaCrianca);
+            }
+            close();
+            return listaFestaCrianca;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                close();
+            } catch (SQLException e) {
+                throw new Exception(e.getMessage());
+            }
+        }
+    }     
 }
